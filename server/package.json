@@ -1,0 +1,24 @@
+{
+  "name": "montra",
+  "version": "1.0.0",
+  "description": "personal money tracker",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "finance"
+  ],
+  "author": "rvpanoz@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "boom": "^4.2.0",
+    "handlebars": "^4.0.5",
+    "hapi": "^15.2.0",
+    "inert": "^4.0.2",
+    "lodash": "^4.17.2",
+    "mongoose": "^4.6.6",
+    "vision": "^4.1.0",
+    "wreck": "^10.0.0"
+  }
+}

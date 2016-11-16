@@ -1,0 +1,25 @@
+<div class="container">
+    <h2><%= title %></h2>
+    <p><%= date_created %></p>
+</div>
+
+<div id="exTab2" class="container">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#1" data-toggle="tab">Situation</a></li>
+        <li><a href="#2" data-toggle="tab">Emotions</a></li>
+        <li><a href="#3" data-toggle="tab">Automatic thoughts</a></li>
+        <li><a href="#4" data-toggle="tab">Rational response</a></li>
+    </ul>
+    <div class="tab-content ">
+        <div class="tab-pane active" id="1">
+            <h3><%= situation %></h3>
+        </div>
+        <div class="tab-pane emotions-container" id="2"></div>
+        <div class="tab-pane" id="3">
+            <h3><%= automatic_thoughts %></h3>
+        </div>
+        <div class="tab-pane" id="4">
+            <h3><%= rational_response %></h3>
+        </div>
+    </div>
+</div>
