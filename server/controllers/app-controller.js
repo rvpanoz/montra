@@ -24,7 +24,6 @@ module.exports = function(server) {
           if(err) {
             throw Boom.badRequest(err);
           }
-
           reply({
             success: true,
             data: categories
@@ -32,9 +31,9 @@ module.exports = function(server) {
         });
       },
 
-      insert: function(reply, data) {
+      insert: function(reply, attrs) {
 
-        let category = new Category(data);
+        let category = new Category(attrs);
 
         category.save(function(err, new_category) {
           if (err) {

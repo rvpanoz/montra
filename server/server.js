@@ -52,17 +52,15 @@ server.route({
 });
 
 server.route({
-  method: 'GET',
-  path: '/data/categories/add/{name}',
+  method: 'POST',
+  path: '/data/category',
   config: {
     handler: function(req, reply) {
-      let params = req.params;
-      return app.categories.insert(reply, {
-        name: params.name || 'New category'
-      });
+      let payload = req.payload;
+      return app.categories.insert(reply, payload);
     }
   }
-});
+})
 
 
 server.start(function(err) {

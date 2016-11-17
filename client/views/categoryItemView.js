@@ -7,18 +7,13 @@ define([
 
   var CategoryItemView = Marionette.View.extend({
     template: templates.categoryItemView,
-    tagName: 'li',
-    className: 'list-group-item',
     events: {
       'click': 'onEventClick'
     },
     onEventClick: function(e) {
       e.preventDefault();
-      // app.navigate('recordDetailView', {
-      //   id: this.model.get('_id')
-      // });
     },
-    serializeData: function(){
+    serializeData: function() {
       var d = this.model.get('created_at');
       return _.extend(this.model.toJSON(), {
         'date_created': moment(d).format('DD/MM/YYYY HH:mm')
