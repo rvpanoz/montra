@@ -1,5 +1,5 @@
 /*
-** Emotion model definition
+** Category model definition
 */
 
 //imports

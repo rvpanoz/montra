@@ -1,0 +1,4 @@
+{
+  "proxy": "slgproxy.slg.gr:8080",
+  "https-proxy": "slgproxy.slg.gr:8080"
+}

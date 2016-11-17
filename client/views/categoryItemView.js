@@ -1,13 +1,12 @@
 define([
   'marionette',
-  'schemas/record-schema',
-  'views/add',
+  'schemas/category-schema',
   'templates',
   'moment'
-],function(Marionette, RecordSchema, AddView, templates, moment) {
+],function(Marionette, CategorySchema, templates, moment) {
 
-  var RecordItemView = Marionette.View.extend({
-    template: templates.recordItemView,
+  var CategoryItemView = Marionette.View.extend({
+    template: templates.categoryItemView,
     tagName: 'li',
     className: 'list-group-item',
     events: {
@@ -15,9 +14,9 @@ define([
     },
     onEventClick: function(e) {
       e.preventDefault();
-      app.navigate('recordDetailView', {
-        id: this.model.get('_id')
-      });
+      // app.navigate('recordDetailView', {
+      //   id: this.model.get('_id')
+      // });
     },
     serializeData: function(){
       var d = this.model.get('created_at');
@@ -27,5 +26,5 @@ define([
     }
   });
 
-  return RecordItemView;
+  return CategoryItemView;
 });

@@ -14,6 +14,10 @@ define([
       try {
         var url = utils.decode(actions), opts;
 
+        if(_.isNull(url)) {
+          url = app.homeUrl
+        }
+        
         require(["views/" + url.cls], (View) => {
           var params = url.params
           var view = new View(params);

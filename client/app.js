@@ -10,16 +10,20 @@ define([
   var Application = Marionette.Application.extend({
     region: '#app-content',
     baseUrl: config.protocol + config.host + ":" + config.port,
+    homeUrl: {
+      "cls": "home"
+    },
 
     onBeforeStart: function() {
       this.router = new Router();
     },
 
     navigate: function(cls, opts) {
-      app.router.navigate(JSON.stringify({
+      var url = {
         cls: cls,
         params: opts
-      }), {
+      };
+      app.router.navigate(JSON.stringify(url), {
         trigger: true
       });
     },

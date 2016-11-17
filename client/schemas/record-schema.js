@@ -13,12 +13,11 @@ define([
       }
     },
     defaults: {
-      title: '',
-      situation: '',
-      automatic_thoughts: '',
-      rational_response: '',
-      emotions: [],
+      amount: 0,
+      payment_method: 1,
+      category_id: 0,
       additional_notes: '',
+      updated_at: new Date(),
       created_at: new Date()
     },
     parse: function(response) {
