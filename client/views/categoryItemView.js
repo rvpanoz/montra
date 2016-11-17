@@ -12,6 +12,9 @@ define([
     },
     onEventClick: function(e) {
       e.preventDefault();
+      app.navigate('view-category', {
+        id: this.model.get('_id')
+      });
     },
     serializeData: function() {
       var d = this.model.get('created_at');

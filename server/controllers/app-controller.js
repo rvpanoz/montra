@@ -32,7 +32,6 @@ module.exports = function(server) {
       },
 
       insert: function(reply, attrs) {
-
         let category = new Category(attrs);
 
         category.save(function(err, new_category) {
@@ -46,6 +45,20 @@ module.exports = function(server) {
           } else {
             throw Boom.badRequest(err);
           }
+        });
+      },
+
+      get: function(reply, id) {
+        Category.findOne({
+          _id: id
+        }).exec(function(err, category) {
+          if(err) {
+            throw Boon.badRequest(err);
+          }
+          reply({
+            success: true,
+            data: category
+          });
         });
       }
     }

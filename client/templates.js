@@ -7,8 +7,8 @@ define((require) => {
     newRecord: require('tpl!templates/new-record.html'),
     newCategory: require('tpl!templates/new-category.html'),
     browseCategories: require('tpl!templates/browse-categories.html'),
-    categoryItemView: require('tpl!templates/view-categoryItem.html'),
-    categoryDetailView: require('tpl!templates/detail-categoryItem.html')
+    categoryItemView: require('tpl!templates/category-listitem.html'),
+    categoryDetailView: require('tpl!templates/category-detailitem.html')
   }
 
 });

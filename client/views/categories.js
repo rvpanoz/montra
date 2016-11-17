@@ -16,14 +16,15 @@ define([
     events: {
       "click .navigate": "onNavigate"
     },
+    initialize: function() {
+      _.bindAll(this, '_render');
+      this.collection = new CategorySchema.collection();
+      this.collection.fetch();
+    },
     onNavigate: function(e) {
       e.preventDefault();
       var cls = this.$(e.currentTarget).data('cls');
       return app.navigate(cls);
-    },
-    initialize: function() {
-      this.collection = new CategorySchema.collection();
-      this.collection.fetch();
     },
     serializedData: function() {
       return _.extend(this.collection.toJSON(), {

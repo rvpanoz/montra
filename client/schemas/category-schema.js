@@ -8,7 +8,7 @@ define([
       if (this.isNew()) {
         return app.baseUrl + "/data/category";
       } else {
-        return app.baseUrl + "/data/categories/" + this.get('_id');
+        return app.baseUrl + "/data/category/" + this.get('_id');
       }
     },
     defaults: {

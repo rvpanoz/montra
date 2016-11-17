@@ -60,6 +60,17 @@ server.route({
       return app.categories.insert(reply, payload);
     }
   }
+});
+
+server.route({
+  method: 'GET',
+  path: '/data/category/{id}',
+  config: {
+    handler: function(req, reply) {
+      let cid = req.params.id;
+      return app.categories.get(reply, cid);
+    }
+  }
 })
 
 
