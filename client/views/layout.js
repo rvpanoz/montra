@@ -7,7 +7,7 @@ define([
 
   return Marionette.View.extend({
     template: templates.layout,
-    className: 'thot-view',
+    className: 'ma-view',
     regions: {
       headerRegion: '#header-content',
       mainRegion: '#main-content'
@@ -17,6 +17,7 @@ define([
       var mainRegion = this.getRegion('mainRegion');
 
       this.listenTo(app, 'app:view_show', function(View, options) {
+        View.$el.addClass('container-fluid');
         mainRegion.show(View, options);
       });
 

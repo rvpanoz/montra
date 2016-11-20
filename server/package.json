@@ -19,6 +19,13 @@
     "lodash": "^4.17.2",
     "mongoose": "^4.6.6",
     "vision": "^4.1.0",
-    "wreck": "^10.0.0"
+    "winston": "^2.3.0",
+    "wreck": "^10.0.0",
+    "bcryptjs": "^2.3.0",
+    "glob": "^7.0.0",
+    "hapi-auth-jwt": "^4.0.0",
+    "joi": "^8.0.4",
+    "joi-objectid": "^2.0.0",
+    "jsonwebtoken": "^5.7.0"
   }
 }

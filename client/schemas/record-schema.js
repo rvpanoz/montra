@@ -13,28 +13,54 @@ define([
       }
     },
     defaults: {
-      amount: 0,
+      amount: null,
       payment_method: 1,
-      category_id: 0,
-      additional_notes: '',
+      entry_date: new Date(),
+      kind: 1,
+      category_id: null,
+      notes: null,
       updated_at: new Date(),
       created_at: new Date()
     },
     parse: function(response) {
-      if(response.data) {
-        if(_.isArray(response.data)) {
-          return response.data[0];
-        } else {
-          return response.data;
-        }
+      if(response.success == false) {
+        let error = (response.error) ? response.error : false;
+        this.trigger('invalid', this, error);
       }
+      return response.data;
+    },
+    validate: function(attrs) {
+      var errors = [];
+
+      if(!attrs.amount) {
+        errors.push({
+          field: 'amount',
+          error: 'Field amount is required'
+        });
+      }
+
+      if(!attrs.category_id) {
+        errors.push({
+          field: 'category_id',
+          error: 'Field category_id is required'
+        });
+      }
+
+      if(!attrs.entry_date) {
+        errors.push({
+          field: 'entry_date',
+          error: 'Field entry_date is required'
+        });
+      }
+
+      return _.isEmpty(errors) ? void 0 : errors;
     }
   });
 
   var Records = Backbone.Collection.extend({
     url: app.baseUrl + "/data/records",
     comparator: function (r1) {
-      return -moment(r1.get('created_at')).unix();
+      return -moment(r1.get('entry_date')).unix();
     },
     parse: function(response) {
       return response.data;

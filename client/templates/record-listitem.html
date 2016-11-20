@@ -1,0 +1,17 @@
+<div class="overview">
+    <p class="main-detail">
+        <%= entry_date_formatted %>
+    </p>
+    <p class="sub-detail">
+        <%= amount %>&nbsp;&euro;</p>
+    <p class="sub-detail">
+        <%= category_id.name %>
+    </p>
+    <span class="label label-<%= label_cls_kind %>"><%= kind_descr %></span>
+    <span class="label label-<%= label_cls_payment_method %>"><%= payment_method_descr %></span>
+</div>
+<div class="detail">
+    <a class="btn btn-default btn-sm btn-update pull-right" href="#">Update</a>
+</div>
+
+<div class="clearfix"></div>

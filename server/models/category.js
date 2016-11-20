@@ -9,7 +9,12 @@ var Mongoose = require('mongoose');
 var CategorySchema = new Mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: [true, 'Field name is required']
+  },
+  user_id: {
+    type: Mongoose.Schema.ObjectId,
+    ref: 'User',
+    required: [true, 'Field user_id is required']
   },
   updated_at: {
     type: Date

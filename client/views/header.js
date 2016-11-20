@@ -8,24 +8,50 @@ define([
     template: templates.header,
     ui: {
       "signinButton": "#signin-button",
-      "signoutButton": "#signout-button"
+      "registerButton": "#register-button",
+      "signoutButton": "#signout-button",
+      "menu": "#menu-collapse"
     },
     events: {
       "click .navigate": "onNavigate",
+      "click .signout": "onSignout"
+    },
+    initialize: function() {
+      this.listenTo(app, 'user:signin', _.bind(function() {
+        this.onUpdateUI(true);
+      }, this));
+      this.listenTo(app, 'user:signout', _.bind(function() {
+        this.onUpdateUI();
+        return app.navigate(app.signinUrl);
+      }, this));
+    },
+    onAttach: function() {
+      var id_token = localStorage.getItem('id_token');
+      this.onUpdateUI(id_token);
     },
     onNavigate: function(e) {
       e.preventDefault();
       var cls = this.$(e.currentTarget).data('cls');
+      this.ui.menu.collapse('hide');
       return app.navigate(cls);
     },
-    onAttach: function() {
-      let access_token = sessionStorage.getItem('access_token');
-
-      app.triggerMethod('update:status', {
-        status: (access_token === "false" || _.isNull(access_token)) ? false : true
-      });
+    onUpdateUI: function(signin) {
+      if(signin) {
+        this.ui.signinButton.hide();
+        this.ui.registerButton.hide();
+        this.ui.signoutButton.show();
+      } else {
+        this.ui.signinButton.show();
+        this.ui.registerButton.show();
+        this.ui.signoutButton.hide();
+      }
+    },
+    onSignout: function(e) {
+      e.preventDefault();
+      localStorage.setItem('id_token', "");
+      this.onUpdateUI();
+      return app.navigate('user-signin');
     }
-
   });
 
 });

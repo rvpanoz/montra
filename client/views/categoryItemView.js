@@ -12,7 +12,7 @@ define([
     },
     onEventClick: function(e) {
       e.preventDefault();
-      app.navigate('view-category', {
+      app.navigate('category', {
         id: this.model.get('_id')
       });
     },

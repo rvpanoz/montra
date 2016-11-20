@@ -14,15 +14,23 @@ define([
       try {
         var url = utils.decode(actions), opts;
 
-        if(_.isNull(url)) {
-          url = app.homeUrl
+        //authenticate
+        var id_token = localStorage.getItem('id_token');
+        if(!id_token && ($.inArray(url.cls, app.publicUrls) == -1)) {
+          url = app.signinUrl;
+          app.showModal();
+        } else {
+          if(_.isNull(url)) {
+            url = app.homeUrl;
+          }
         }
-        
+
         require(["views/" + url.cls], (View) => {
-          var params = url.params
+          var params = _.extend(url.params, {});
           var view = new View(params);
           app.trigger('app:view_show', view);
         });
+
       } catch (e) {
         throw new Error(e);
       }

@@ -8,12 +8,16 @@ define([
 
   var CategoryView = Marionette.View.extend({
     template: templates.categoryDetailView,
-    model: new CategorySchema.model(),
     modelEvents: {
       'sync': '_render'
     },
+    events: {
+      'click .btn-update': 'onEventUpdate',
+      'click .btn-delete': 'onEventDelete'
+    },
     initialize: function (params) {
       _.bindAll(this, '_render');
+      this.model = new CategorySchema.model();
 
       if (params.id) {
         this.model.set('_id', params.id);
@@ -22,6 +26,21 @@ define([
     },
     _render: function () {
       this.render();
+    },
+    onEventUpdate: function(e) {
+      e.preventDefault();
+      app.navigate('category', {
+        id: this.model.get('_id')
+      });
+    },
+    onEventDelete: function(e) {
+      e.preventDefault();
+      this.model.destroy({
+        success: _.bind(function(removed_category) {
+          app.navigate('categories');
+          return false;
+        })
+      });
     },
     serializeData: function(){
       var d = this.model.get('created_at');

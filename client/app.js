@@ -13,6 +13,13 @@ define([
     homeUrl: {
       "cls": "home"
     },
+    signinUrl: {
+      "cls": "user-signin"
+    },
+    registerUrl: {
+      "cls": "user-register"
+    },
+    publicUrls: ['user-signin', 'user-register'],
 
     onBeforeStart: function() {
       this.router = new Router();
@@ -28,18 +35,27 @@ define([
       });
     },
 
+    showModal: function() {
+      $('.app-modal').modal('show');
+    },
+
+    hideModal: function() {
+      $('.app-modal').modal('hide');
+    },
+
     onStart: function() {
       this.showView(new LayoutView());
       if (Backbone.history) {
         Backbone.history.start();
       }
+
     },
 
     /**
     * dispatch function to handle internal app events
     **/
     onAppEvent: function(event, opts) {
-      this.trigger(event, opts.data);
+      this.trigger(event, (opts && opts.data) ? opts.data : null);
     }
   });
 
