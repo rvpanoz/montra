@@ -7,6 +7,7 @@ define([
 ], function(Marionette, RecordSchema, CategorySelectView, templates, moment) {
 
   return Marionette.View.extend({
+    type: 'formHandler',
     template: templates.record,
     className: 'container',
     regions: {
@@ -57,10 +58,8 @@ define([
       'sync': 'onEventSync'
     },
     events: {
-      'click #record-submit': 'onEventSave',
       'click #btn-delete': 'onEventDelete',
-      'click #btn-ok': '_onEventDeleteAction',
-      'click #record-back': 'onBack'
+      'click #btn-ok': '_onEventDeleteAction'
     },
     ui: {
       actions: 'div.form-actions',
@@ -78,6 +77,7 @@ define([
         this.model.fetch();
       }
       this.listenTo(this.model, 'invalid', this.onValidationError, this);
+      this.listenTo(app, 'form:save', this.onEventSave, this);
     },
 
     onRender: function() {
@@ -117,7 +117,9 @@ define([
     onEventSync: function(model) {},
 
     onEventSave: function(e) {
-      e.preventDefault();
+      if(e) {
+        e.preventDefault();
+      }
       this.model.save(null, {
         success: _.bind(this.onEventSaveCallback, this)
       });

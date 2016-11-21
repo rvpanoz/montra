@@ -48,12 +48,9 @@ define([
       if (Backbone.history) {
         Backbone.history.start();
       }
-
     },
 
-    /**
-    * dispatch function to handle internal app events
-    **/
+    // dispatch function to handle internal app events
     onAppEvent: function(event, opts) {
       this.trigger(event, (opts && opts.data) ? opts.data : null);
     }

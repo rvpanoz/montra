@@ -15,7 +15,9 @@ define((require) => {
     categoriesSelect: require('tpl!templates/microtemplates/categories-select.html'),
     categoryOption: require('tpl!templates/microtemplates/category-option.html'),
     userRegister: require('tpl!templates/user-register.html'),
-    userSignin: require('tpl!templates/user-signin.html')
+    userSignin: require('tpl!templates/user-signin.html'),
+    footerForm: require('tpl!templates/footer-form.html'),
+    footerList: require('tpl!templates/footer-list.html')
   }
 
 });

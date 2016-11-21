@@ -5,6 +5,7 @@ define([
 ], function(Marionette, CategorySchema, templates) {
 
   return Marionette.View.extend({
+    type: 'formHandler',
     template: templates.category,
     className: 'container',
     bindings: {
@@ -19,8 +20,6 @@ define([
       'sync': 'onEventSync'
     },
     events: {
-      'click #category-submit': 'onEventSave',
-      'click #category-back': 'onBack',
       'click #btn-delete': 'onEventDelete',
       'click #btn-ok': '_onEventDeleteAction'
     },
@@ -31,16 +30,19 @@ define([
         this.model.fetch();
       }
       this.listenTo(this.model, 'invalid', this.onValidationError, this);
+      this.listenTo(app, 'form:save', this.onEventSave, this);
     },
     onRender: function() {
       this.stickit();
     },
     onAttach: function() {},
     onEventSync: function(model) {
-      console.log('model fetched');
+      // console.log('model fetched');
     },
     onEventSave: function(e) {
-      e.preventDefault();
+      if(e) {
+        e.preventDefault();
+      }
       this.model.save(null, {
         success: _.bind(this.onEventSaveCallback, this)
       });

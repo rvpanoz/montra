@@ -6,6 +6,7 @@ define([
 ], function(Marionette, CategorySchema, CategoryItemView, templates) {
 
   return Marionette.CompositeView.extend({
+    // type: 'listHandler',
     template: templates.browseCategories,
     className: 'container',
     childView: CategoryItemView,
