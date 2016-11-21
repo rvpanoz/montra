@@ -89,8 +89,9 @@ define([
       let categoriesView = this.getChildView('categories'), self;
       $('#input-entry-date').datepicker({
         onSelect: _.bind(function(fd, value) {
-          if(moment(value).isValid()) {
-            this.model.set('entry_date', value);
+          var d = new Date(fd);
+          if(moment(d).isValid()) {
+            this.model.set('entry_date', moment(d).format('DD/MM/YYYY'));
           } else {
             return false;
           }

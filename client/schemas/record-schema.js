@@ -1,11 +1,11 @@
 define([
   'backbone',
   'moment'
-], function (Backbone, moment) {
+], function(Backbone, moment) {
 
   var Record = Backbone.Model.extend({
     idAttribute: '_id',
-    url: function () {
+    url: function() {
       if (this.isNew()) {
         return app.baseUrl + "/data/record";
       } else {
@@ -15,15 +15,19 @@ define([
     defaults: {
       amount: null,
       payment_method: 1,
-      entry_date: new Date(),
+      entry_date: moment().format('DD/MM/YYYY'), // or toISOString(),
       kind: 1,
       category_id: null,
       notes: null,
       updated_at: new Date(),
       created_at: new Date()
     },
+    sync: function(method, model, options) {
+      //override if necessary
+      return Backbone.sync.call(this, method, model, options);
+    },
     parse: function(response) {
-      if(response.success == false) {
+      if (response.success == false) {
         let error = (response.error) ? response.error : false;
         this.trigger('invalid', this, error);
       }
@@ -32,21 +36,21 @@ define([
     validate: function(attrs) {
       var errors = [];
 
-      if(!attrs.amount) {
+      if (!attrs.amount) {
         errors.push({
           field: 'amount',
           error: 'Field amount is required'
         });
       }
 
-      if(!attrs.category_id) {
+      if (!attrs.category_id) {
         errors.push({
           field: 'category_id',
           error: 'Field category_id is required'
         });
       }
 
-      if(!attrs.entry_date) {
+      if (!attrs.entry_date) {
         errors.push({
           field: 'entry_date',
           error: 'Field entry_date is required'
@@ -59,7 +63,7 @@ define([
 
   var Records = Backbone.Collection.extend({
     url: app.baseUrl + "/data/records",
-    comparator: function (r1) {
+    comparator: function(r1) {
       return -moment(r1.get('entry_date')).unix();
     },
     parse: function(response) {

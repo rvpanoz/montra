@@ -36,10 +36,6 @@ module.exports = function(server) {
       authenticate: function(req, reply) {
         // If the user's password is correct, we can issue a token.
         // If it was incorrect, the error will bubble up from the pre method
-
-        // set user_id
-        app.user_id = req.pre.user._id;
-
         reply({
           success: true,
           data: {
@@ -73,9 +69,9 @@ module.exports = function(server) {
     },
 
     records: {
-      browse: function(reply, opts) {
+      browse: function(uid, reply) {
         Record.find({
-          user_id: app.user_id
+          user_id: uid
         }).populate('category_id').lean().exec(function(err, records) {
           if (err) {
             throw Boom.badRequest(err);
@@ -87,12 +83,11 @@ module.exports = function(server) {
         });
       },
 
-      insert: function(reply, attrs) {
-        _.extend(attrs, {
-          user_id: app.user_id
-        });
+      insert: function(uid, data, reply) {
+        let record = new Record(_.extend(data, {
+          user_id: uid
+        }));
 
-        let record = new Record(attrs);
         record.save(function(err, new_record) {
           if (err) {
             reply({
@@ -111,9 +106,9 @@ module.exports = function(server) {
         });
       },
 
-      get: function(reply, id) {
+      get: function(uid, id, reply) {
         Record.findOne({
-          user_id: app.user_id,
+          user_id: uid,
           _id: id
         }).exec(function(err, record) {
           if (err) {
@@ -126,18 +121,21 @@ module.exports = function(server) {
         });
       },
 
-      update: function(reply, id, attrs) {
-        Record.findById(id, function(err, record) {
+      update: function(uid, id, data, reply) {
+        Record.findOne({
+          user_id: uid,
+          _id: id
+        }, function(err, record) {
           if (err) {
             throw Boon.badRequest(err);
           }
 
-          record.amount = attrs.amount;
-          record.entry_date = attrs.entry_date;
-          record.kind = attrs.kind;
-          record.payment_method = attrs.payment_method;
-          record.category_id = attrs.category_id;
-          record.notes = attrs.notes;
+          record.amount = data.amount;
+          record.entry_date = data.entry_date;
+          record.kind = data.kind;
+          record.payment_method = data.payment_method;
+          record.category_id = data.category_id;
+          record.notes = data.notes;
 
           record.save(function(err, updated_record) {
             if (err) {
@@ -151,7 +149,7 @@ module.exports = function(server) {
         });
       },
 
-      remove: function(reply, id) {
+      remove: function(uid, rid, reply) {
         Record.findById(id, function(err, record) {
           if (err) {
             throw Boon.badRequest(err);
@@ -172,10 +170,9 @@ module.exports = function(server) {
     },
 
     categories: {
-
-      browse: function(reply, opts) {
+      browse: function(uid, reply) {
         Category.find({
-          user_id: app.user_id
+          user_id: uid
         }).lean().exec(function(err, categories) {
           if (err) {
             throw Boom.badRequest(err);
@@ -187,12 +184,12 @@ module.exports = function(server) {
         });
       },
 
-      insert: function(reply, attrs) {
-        _.extend(attrs, {
-          user_id: app.user_id
-        });
+      insert: function(uid, data, reply) {
+        // set user_id
+        let category = new Category(_.extend(data, {
+          user_id: uid
+        }));
 
-        let category = new Category(attrs);
         category.save(function(err, new_category) {
           if (err) {
             reply({
@@ -211,13 +208,16 @@ module.exports = function(server) {
         });
       },
 
-      update: function(reply, id, attrs) {
-        Category.findById(id, function(err, category) {
+      update: function(uid, id, data, reply) {
+        Category.findOne({
+          user_id: uid,
+          _id: id
+        }, function(err, category) {
           if (err) {
             throw Boon.badRequest(err);
           }
-
-          category.name = attrs.name;
+          // set new attrs
+          category.name = data.name;
           category.save(function(err, updated_category) {
             if (err) {
               throw Boon.badImplementation('Category:  Error on updating category', err);
@@ -230,10 +230,10 @@ module.exports = function(server) {
         });
       },
 
-      get: function(reply, id) {
+      get: function(uid, id, reply) {
         Category.findOne({
-          _id: id,
-          user_id: app.user_id
+          user_id: uid,
+          _id: id
         }).exec(function(err, category) {
           if (err) {
             throw Boon.badRequest(err);
@@ -245,8 +245,11 @@ module.exports = function(server) {
         });
       },
 
-      remove: function(reply, id) {
-        Category.findById(id, function(err, category) {
+      remove: function(uid, id, reply) {
+        Category.findOne({
+          user_id: uid,
+          _id: id
+        }, function(err, category) {
           if (err) {
             throw Boon.badRequest(err);
           }

@@ -26,7 +26,7 @@ define([
       this.listenTo(app, 'app:view_show', function(View, options) {
 
         //add cls class
-        View.$el.addClass('container-fluid');
+        View.$el.addClass('container');
 
         //show the main view
         mainRegion.show(View, options);

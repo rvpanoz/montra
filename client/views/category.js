@@ -7,7 +7,6 @@ define([
   return Marionette.View.extend({
     type: 'formHandler',
     template: templates.category,
-    className: 'container',
     bindings: {
       '#input-name': 'name'
     },
