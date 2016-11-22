@@ -9,6 +9,7 @@ const bcrypt = require('bcryptjs');
 const Boom = require('boom');
 const wlog = require('winston');
 const _ = require('lodash');
+const moment = require('moment');
 const createToken = require('../token');
 const User = require('../models/user');
 const Record = require('../models/record');
@@ -84,6 +85,18 @@ module.exports = function(server) {
       },
 
       insert: function(uid, data, reply) {
+        //fix date for mongodb
+        var dateString = data.entry_date;
+        var parts = dateString.split('-');
+        var dt = new Date(parseInt(parts[2], 10),parseInt(parts[1], 10) - 1,parseInt(parts[0], 10));
+        var fd = moment(dt);
+        //is valid date
+        if (fd.isValid()) {
+          data.entry_date = fd.toISOString();
+        } else {
+          throw new Error('Record: Invalid entry date');
+        }
+        //save the record
         let record = new Record(_.extend(data, {
           user_id: uid
         }));

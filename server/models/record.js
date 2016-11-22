@@ -46,9 +46,4 @@ var RecordSchema = new Mongoose.Schema({
   }
 });
 
-RecordSchema.pre('save', function(next) {
-  var ed = this.entry_date;
-  this.entry_date = moment(new Date(ed)).toISOString();
-  next();
-});
 module.exports = Mongoose.model('Record', RecordSchema);
