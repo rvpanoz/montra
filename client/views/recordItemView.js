@@ -28,8 +28,8 @@ define([
         'entry_date_formatted': moment(new Date(d)).format('MMMM DD YYYY'),
         'kind_descr': (k == 1) ? 'Expense' : 'Income',
         'payment_method_descr': (p == 1) ? 'Cash' : 'Credit card',
-        'label_cls_kind': (k == 1) ? 'danger' : 'success',
-        'label_cls_payment_method': (p == 1) ? 'info' : 'primary'
+        'label_cls_kind': (k == 1) ? 'primary' : 'primary',
+        'label_cls_payment_method': (p == 1) ? 'primary' : 'primary'
       });
     }
   });
