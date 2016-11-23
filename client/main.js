@@ -65,7 +65,8 @@ requirejs([
   $.ajaxSetup({
     cache: false,
     beforeSend: function(xhr) {
-      xhr.setRequestHeader('Authorization', 'Bearer ' + app.token);
+      var token = localStorage.getItem('token');
+      xhr.setRequestHeader('Authorization', 'Bearer ' + token);
     }
   });
 
