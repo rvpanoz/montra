@@ -43,7 +43,8 @@ define([
             app.onAppEvent('app:signin', token);
             return false;
           }
-        })
+        });
+        return false;
       },
       onEventSaveCallback: function(model) {
         app.navigate('home');

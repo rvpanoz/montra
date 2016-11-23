@@ -1,81 +1,89 @@
 <div class="row">
-    <div class="col-sm-3">
-
+    <div class="col-md-3">
+        <button type="button" class="btn btn-default btn-show-search" data-toggle="tooltip" data-placement="top" title="" data-original-title="search records">Search</button>
     </div>
-    <div class="col-sm-9">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Search in records</h3>
+    <br/>
+    <div class="col-md-9">
+        <ul class="records-items item-summary">
+    </div>
+</div>
+
+<div class="search-modal modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Search records</h4>
             </div>
-            <div class="panel-body">
-                <form class="form-horizontal">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group input-entry-date">
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control datepicker-here" id="input-entry-date-from" name="input-entry-date-from" placeholder="Date from">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group input-entry-date">
-                                <div class="col-lg-10">
-                                    <input type="text" class="form-control datepicker-here" id="input-entry-date-to" name="input-entry-date-to" placeholder="Date to">
-                                </div>
-                            </div>
-                        </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Search in records</h3>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="col-lg-10">
-                                    <div class="radio">
-                                        <label>
+                    <div class="panel-body">
+                        <form class="form-horizontal form-search">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group entry-date">
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control datepicker-here" id="entry-date-from" name="entry-date-from" placeholder="Date from">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group entry-date">
+                                        <div class="col-lg-10">
+                                            <input type="text" class="form-control datepicker-here" id="entry-date-to" name="entry-date-to" placeholder="Date to">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-lg-10">
+                                            <div class="radio">
+                                                <label>
                                         <input type="radio" name="payment_method" id="payment-method-cash" value="1" checked="">
                                         Cash
                                       </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
                                         <input type="radio" name="payment_method" id="payment-method-card" value="2">
                                         Credit card
                                       </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="col-lg-10">
-                                    <div class="radio">
-                                        <label>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <div class="col-lg-10">
+                                            <div class="radio">
+                                                <label>
                                           <input type="radio" name="kind" id="kind-expense" value="1" checked="">
                                           Expense
                                         </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
                                           <input type="radio" name="kind" id="kind-income" value="2">
                                           Income
                                         </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-9 col-sm-offset-2">
-                            <div class="form-group">
-                                <div class="btn-group pull-right">
-                                    <a href="#" class="btn btn-primary" id="record-search">Search</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-search">Search</button>
             </div>
         </div>
-        <br/>
-        <ul class="records-items item-summary">
     </div>
 </div>

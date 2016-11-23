@@ -19,6 +19,8 @@ Mongoose.connect(config.mongoConString);
 // use bluebird Promises Library
 Mongoose.Promise = require('bluebird');
 
+// enable debug mode - log queries to the console
+Mongoose.set('debug', config.mongoDebug);
 // hapi server instance
 var server = new Hapi.Server({
   connections: {
@@ -204,6 +206,17 @@ server.register(require('hapi-auth-jwt'), (err) => {
     }
   });
 
+  server.route({
+    method: 'POST',
+    path: '/search/records',
+    config: {
+      handler: function(req, reply) {
+        var params = req.payload;
+        var uid = req.auth.credentials.id;
+        return app.records.browse(uid, reply, params);
+      }
+    }
+  });
 });
 
 

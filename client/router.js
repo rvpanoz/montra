@@ -19,9 +19,11 @@ define([
           url = app.homeUrl;
         }
 
+
         if((!token || _.isNull(token)) && ($.inArray(url.cls, app.publicUrls) == -1)) {
           url = app.signinUrl;
         }
+
 
         require(["views/" + url.cls], (View) => {
           var params = _.extend(url.params, {});

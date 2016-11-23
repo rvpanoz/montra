@@ -22,113 +22,40 @@ body {
 }
 
 /* loader */
-.animation(@settings) {
-  animation: @settings;
-  -moz-animation: @settings;
-  -webkit-animation: @settings;
-  -o-animation: @settings;
-  -ms-animation: @settings;
-}
-.animation-delay(@settings) {
-  animation-delay: @settings;
-  -moz-animation-delay: @settings;
-  -webkit-animation-delay: @settings;
-  -o-animation-delay: @settings;
-  -ms-animation-delay: @settings;
-}
+.loading {
+  margin: 10em auto;
+  perspective: 50em;
+  width: 12em;
 
-.loadingKeyframes {
-  0% {
-    width: 6px;
-    height: 6px;
-    margin: 2px;
-    background: rgba(144,144,144,0.5);
-    border-radius: 5px;
-  }
-  50% {
-    /* width: 8px; */
-    /* height: 8px; */
-    /* margin: 1px; */
-    background: rgba(0,0,0,0.5);
-    border-radius: 3px;
-  }
-  100% {
-    width: 6px;
-    height: 6px;
-    margin: 2px;
-    background: rgba(144,144,144,0.5);
-    border-radius: 5px;
+  div {
+    animation: loading 2s infinite linear;
+    background-color: darken(#0074d9, 30%);
+    backface-visibility: hidden;
+    display: block;
+    float: left;
+    height: 2em;
+    transition: all 1s ease 0s;
+    transform-origin: top center;
+    transform: rotateX(-90deg);
+    width: 2em;
+
+    &:nth-child(1) { animation-delay: 0.25s }
+    &:nth-child(2) { animation-delay: 0.50s }
+    &:nth-child(3) { animation-delay: 0.75s }
+    &:nth-child(4) { animation-delay: 1.00s }
+    &:nth-child(5) { animation-delay: 1.25s }
+    &:nth-child(6) { animation-delay: 1.50s }
+    &:nth-child(7) { animation-delay: 1.75s }
+    &:nth-child(8) { animation-delay: 2.00s }
   }
 }
 
 @keyframes loading {
-  .loadingKeyframes;
+  0%  { transform: rotateX(-90deg) }
+  30% { transform: rotateX(0deg); background-color: #0074d9 }
+  60% { transform: rotateX(0deg); background-color: #0074d9 }
+  90%, 100%{ transform: rotateX(91deg); transform-origin: bottom center }
 }
-
-#loading-indicator {
-  position: absolute;
-  margin: auto;
-  top: 45%;
-  left: 0;
-  right: 0;
-  display: block;
-  width: 30px;
-  height: 30px;
-  pointer-events: none;
-  z-index: 1000;
-
-  > div {
-    position: absolute;
-    display: block;
-    width: 6px;
-    height: 6px;
-    margin: 2px;
-    border-radius: 5px;
-    background: rgba(144,144,144,0.5);
-    .animation(loading .8s infinite);
-    &:nth-child(1) {
-      top:0px;
-      left: 10px;
-    }
-    &:nth-child(2) {
-      top:3px;
-      left: 3px;
-      .animation-delay(.1s);
-    }
-    &:nth-child(3) {
-      top:10px;
-      left: 0px;
-      .animation-delay(.2s);
-    }
-    &:nth-child(4) {
-      bottom: 3px;
-      left: 3px;
-      .animation-delay(.3s);
-    }
-    &:nth-child(5) {
-      bottom: 0px;
-      left: 10px;
-      .animation-delay(.4s);
-    }
-    &:nth-child(6) {
-      bottom: 3px;
-      right: 3px;
-      .animation-delay(.5s);
-    }
-    &:nth-child(7) {
-      top: 10px;
-      right: 0px;
-      .animation-delay(.6s);
-    }
-    &:nth-child(8) {
-      top: 3px;
-      right: 3px;
-      .animation-delay(.7s);
-    }
-  }
-}
-
-
 
 /* end loader */
 
@@ -146,7 +73,338 @@ body {
 .item-summary>li:first-child {
     border-top: 0px;
 }
+/* css overrides */
 
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+.form-group.required .control-label:after {
+    content: " * ";
+    color: red;
+}
+
+.app-message {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+
+/* loader */
+
+.loading {
+    margin: 10em auto;
+    perspective: 50em;
+    width: 12em;
+    div {
+        animation: loading 2s infinite linear;
+        background-color: darken(#0074d9, 30%);
+        backface-visibility: hidden;
+        display: block;
+        float: left;
+        height: 2em;
+        transition: all 1s ease 0s;
+        transform-origin: top center;
+        transform: rotateX(-90deg);
+        width: 2em;
+        &:nth-child(1) {
+            animation-delay: 0.25s
+        }
+        &:nth-child(2) {
+            animation-delay: 0.50s
+        }
+        &:nth-child(3) {
+            animation-delay: 0.75s
+        }
+        &:nth-child(4) {
+            animation-delay: 1.00s
+        }
+        &:nth-child(5) {
+            animation-delay: 1.25s
+        }
+        &:nth-child(6) {
+            animation-delay: 1.50s
+        }
+        &:nth-child(7) {
+            animation-delay: 1.75s
+        }
+        &:nth-child(8) {
+            animation-delay: 2.00s
+        }
+    }
+}
+
+@keyframes loading {
+    0% {
+        transform: rotateX(-90deg)
+    }
+    30% {
+        transform: rotateX(0deg);
+        background-color: #0074d9
+    }
+    60% {
+        transform: rotateX(0deg);
+        background-color: #0074d9
+    }
+    90%, 100% {
+        transform: rotateX(91deg);
+        transform-origin: bottom center
+    }
+}
+/* end loader */
+
+/* lists */
+.item-summary {
+    list-style: none;
+    padding-left: 0em;
+    margin-left: 0em;
+    border-bottom: 0px;
+    border-top: 1px solid #dddde2;
+}
+
+.item-summary>li:first-child {
+    border-top: 0px;
+}
+
+.item-summary>li {
+    padding: 1em 0em;
+    border-bottom: 1px solid #dddde2;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+}
+
+.item-summary .overview {
+    margin-right: 1em;
+    float: left;
+    width: 200px;
+}
+
+.item-summary .overview .main-detail {
+    color: #f89406;
+    font-size: 1.5em;
+    line-height: 1.2em;
+    margin-bottom: 0px;
+}
+
+
+/* end lists */
+
+.label.label-success, .badge.badge-success {
+    background: #6fa236;
+}
+
+.label {
+    font-weight: normal;
+}
+
+.label-success {
+    background-color: #5cb85c;
+}
+
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+.error-notice {
+    margin: 5px 5px;
+    /* Making sure to keep some distance from all side */
+}
+
+.oaerror {
+    width: 90%;
+    /* Configure it fit in your design  */
+    margin: 0 auto;
+    /* Centering Stuff */
+    background-color: #FFFFFF;
+    /* Default background */
+    padding: 20px;
+    border: 1px solid #eee;
+    border-left-width: 5px;
+    border-radius: 3px;
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+}
+
+.danger {
+    border-left-color: #d9534f;
+    /* Left side border color */
+    background-color: rgba(217, 83, 79, 0.1);
+    /* Same color as the left border with reduced alpha to 0.1 */
+}
+
+.danger strong {
+    color: #d9534f;
+}
+
+.warning {
+    border-left-color: #f0ad4e;
+    background-color: rgba(240, 173, 78, 0.1);
+}
+
+.warning strong {
+    color: #f0ad4e;
+}
+
+.info {
+    border-left-color: #5bc0de;
+    background-color: rgba(91, 192, 222, 0.1);
+}
+
+.info strong {
+    color: #5bc0de;
+}
+
+.success {
+    border-left-color: #2b542c;
+    background-color: rgba(43, 84, 44, 0.1);
+}
+
+.success strong {
+    color: #2b542c;
+}
+
+.page-header {
+    position: relative;
+}
+
+.reviews {
+    color: #555;
+    font-weight: bold;
+    margin: 10px auto 20px;
+}
+
+.notes {
+    color: #999;
+    font-size: 12px;
+}
+
+.media .media-object {
+    max-width: 120px;
+}
+
+.media-body {
+    position: relative;
+}
+
+.media-date {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+}
+
+.media-date li {
+    padding: 0;
+}
+
+.media-date li:first-child:before {
+    content: '';
+}
+
+.media-date li:before {
+    content: '.';
+    margin-left: -2px;
+    margin-right: 2px;
+}
+
+.media-comment {
+    margin-bottom: 20px;
+}
+
+.media-replied {
+    margin: 0 0 20px 50px;
+}
+
+.media-replied .media-heading {
+    padding-left: 6px;
+}
+
+.btn-circle {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 6px 15px;
+    border-radius: 20px;
+}
+
+.btn-circle span {
+    padding-right: 6px;
+}
+
+.embed-responsive {
+    margin-bottom: 20px;
+}
+
+.tab-content {
+    padding: 50px 15px;
+    border: 1px solid #ddd;
+    border-top: 0;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.custom-input-file {
+    overflow: hidden;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    background: #eee url('https://s3.amazonaws.com/uifaces/faces/twitter/walterstephanie/128.jpg');
+    background-size: 120px;
+    border-radius: 120px;
+}
+
+input[type="file"] {
+    z-index: 999;
+    line-height: 0;
+    font-size: 0;
+    position: absolute;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    -ms-filter: "alpha(opacity=0)";
+    margin: 0;
+    padding: 0;
+    left: 0;
+}
+
+.uploadPhoto {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    display: none;
+    width: 50%;
+    height: 50%;
+    color: #fff;
+    text-align: center;
+    line-height: 60px;
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, .3);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.custom-input-file:hover .uploadPhoto {
+    display: block;
+}
 .item-summary>li {
     padding: 1em 0em;
     border-bottom: 1px solid #dddde2;

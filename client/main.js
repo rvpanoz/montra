@@ -77,11 +77,11 @@ requirejs([
   });
 
   $(document).ajaxStart(function(){
-    $("#loading-indicator").css("display", "block");
+    $(".loading").css("display", "block");
   });
 
   $(document).ajaxComplete(function(){
-    $("#loading-indicator").css("display", "none");
+    $(".loading").css("display", "none");
   });
 
   $(document).ready(function() {

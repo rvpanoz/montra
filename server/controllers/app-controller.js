@@ -70,10 +70,18 @@ module.exports = function(server) {
     },
 
     records: {
-      browse: function(uid, reply) {
-        Record.find({
+      browse: function (uid, reply, dataParams) {
+        var edf, edt;
+        var params = _.extend({},{
           user_id: uid
-        }).populate('category_id').lean().exec(function(err, records) {
+        });
+        if(dataParams && !_.isNull(dataParams)) {
+          edf = dataParams['entry-date-from'];
+          edt = dataParams['entry-date-to'];
+          console.log(edf, edt);
+          _.extend(params, dataParams);
+        }
+        Record.find(params).populate('category_id').lean().exec(function (err, records) {
           if (err) {
             throw Boom.badRequest(err);
           }
