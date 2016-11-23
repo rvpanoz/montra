@@ -35,24 +35,55 @@ define([
       });
     },
 
+    onStart: function() {
+
+      //show the layout view
+      this.showView(new LayoutView());
+
+      //start backbone history
+      if (Backbone.history) {
+        Backbone.history.start();
+      }
+
+      this.listenTo(this, 'app:signin', this.onSignin, this, arguments);
+      this.listenTo(this, 'app:signout', this.onSignout, this, arguments);
+    },
+
+    // dispatch function to handle internal app events
+    onAppEvent: function(event, opts) {
+      this.trigger(event, opts);
+    },
+
+    onSignin: function(token) {
+      if(token) {
+        localStorage.setItem('token', token);
+        app.token = token;
+        app.navigate('home');
+      }
+      return false;
+    },
+
+    onSignout: function() {
+      localStorage.clear();
+      app.token = null;
+      app.navigate('user-signin');
+      return false;
+    },
+
+    showMessage: function() {
+      $('.app-message').addClass('bounceInDown').show();
+    },
+
+    hideMessage: function() {
+      $('.app-message').removeClass('bounceInDown').hide();
+    },
+
     showModal: function() {
       $('.app-modal').modal('show');
     },
 
     hideModal: function() {
       $('.app-modal').modal('hide');
-    },
-
-    onStart: function() {
-      this.showView(new LayoutView());
-      if (Backbone.history) {
-        Backbone.history.start();
-      }
-    },
-
-    // dispatch function to handle internal app events
-    onAppEvent: function(event, opts) {
-      this.trigger(event, (opts && opts.data) ? opts.data : null);
     }
   });
 

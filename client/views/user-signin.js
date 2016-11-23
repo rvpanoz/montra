@@ -39,9 +39,9 @@ define([
             password: this.model.get('password')
           },
           success: function(response) {
-            localStorage.setItem('id_token', response.data.id_token);
-            app.onAppEvent('user:signin');
-            app.navigate('home');
+            var token = response.data.id_token;
+            app.onAppEvent('app:signin', token);
+            return false;
           }
         })
       },

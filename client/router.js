@@ -12,17 +12,15 @@ define([
     },
     do_action: function(actions) {
       try {
+        var token = localStorage.getItem('token');
         var url = utils.decode(actions), opts;
 
-        //authenticate
-        var id_token = localStorage.getItem('id_token');
-        if(!id_token && ($.inArray(url.cls, app.publicUrls) == -1)) {
+        if(_.isNull(url)) {
+          url = app.homeUrl;
+        }
+
+        if((!token || _.isNull(token)) && ($.inArray(url.cls, app.publicUrls) == -1)) {
           url = app.signinUrl;
-          app.showModal();
-        } else {
-          if(_.isNull(url)) {
-            url = app.homeUrl;
-          }
         }
 
         require(["views/" + url.cls], (View) => {

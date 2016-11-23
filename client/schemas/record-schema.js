@@ -15,7 +15,7 @@ define([
     defaults: {
       amount: null,
       payment_method: 1,
-      entry_date: moment().format('DD-MM-YYYY'), // or toISOString(),
+      entry_date: moment().format('DD/MM/YYYY'), // or toISOString(),
       kind: 1,
       category_id: null,
       notes: null,

@@ -26,8 +26,8 @@ define([
       }, this));
     },
     onAttach: function() {
-      var id_token = localStorage.getItem('id_token');
-      this.onUpdateUI(id_token);
+      var token = localStorage.getItem('token');
+      this.onUpdateUI(token);
     },
     onNavigate: function(e) {
       e.preventDefault();
@@ -48,9 +48,8 @@ define([
     },
     onSignout: function(e) {
       e.preventDefault();
-      localStorage.setItem('id_token', "");
       this.onUpdateUI();
-      return app.navigate('user-signin');
+      app.onAppEvent('app:signout');
     }
   });
 

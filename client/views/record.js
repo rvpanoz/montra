@@ -7,7 +7,6 @@ define([
 ], function(Marionette, RecordSchema, CategorySelectView, templates, moment) {
 
   return Marionette.View.extend({
-    type: 'formHandler',
     template: templates.record,
     className: 'container',
     regions: {
@@ -59,7 +58,9 @@ define([
     },
     events: {
       'click #btn-delete': 'onEventDelete',
-      'click #btn-ok': '_onEventDeleteAction'
+      'click #btn-ok': '_onEventDeleteAction',
+      'click .btn-save': 'onEventSave',
+      'click #btn-back': 'onEventBack'
     },
     ui: {
       actions: 'div.form-actions',
@@ -77,7 +78,8 @@ define([
         this.model.fetch();
       }
       this.listenTo(this.model, 'invalid', this.onValidationError, this);
-      this.listenTo(app, 'form:save', this.onEventSave, this);
+      this.listenTo(app, 'do:save', this.onEventSave, this);
+      this.listenTo(app, 'do:back', this.onBack, this);
     },
 
     onRender: function() {
@@ -88,11 +90,10 @@ define([
     onAttach: function() {
       let categoriesView = this.getChildView('categories'), self;
       $('#input-entry-date').datepicker({
-        format: 'DD-MM-YYYY',
         onSelect: _.bind(function(fd, value) {
           var d = new Date(fd);
           if(moment(d).isValid()) {
-            this.model.set('entry_date', moment(d).format('DD-MM-YYYY'));
+            this.model.set('entry_date', moment(d).format('DD/MM/YYYY'));
           } else {
             return false;
           }
@@ -128,7 +129,7 @@ define([
     },
 
     onEventSaveCallback: function(model) {
-      return this.onBack();
+      return this.onEventBack();
     },
 
     onValidationError: function(model) {
@@ -140,9 +141,10 @@ define([
       return _.isEmpty(errors) ? void 0 : errors;
     },
 
-    onBack: function(e) {
-      if(e)
+    onEventBack: function(e) {
+      if(e) {
         e.preventDefault();
+      }
       return app.navigate('records');
     },
 

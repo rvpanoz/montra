@@ -19,7 +19,7 @@ define([
       this.collection.fetch();
     },
     onAttach: function() {
-      this.$el.append('<option value="0"></option>');
+      this.$el.append('<option value="0">Select category</option>');
     },
     onDomRefresh: function() {
 

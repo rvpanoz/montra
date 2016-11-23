@@ -4,8 +4,7 @@ define([
   'templates'
 ], function(Marionette, CategorySchema, templates) {
 
-  return Marionette.View.extend({
-    type: 'formHandler',
+  var CategoryView = Marionette.View.extend({
     template: templates.category,
     bindings: {
       '#input-name': 'name'
@@ -30,6 +29,8 @@ define([
       }
       this.listenTo(this.model, 'invalid', this.onValidationError, this);
       this.listenTo(app, 'form:save', this.onEventSave, this);
+      this.listenTo(app, 'do:back', this.onBack, this);
+      // CategoryView.__super__.initialize.call(this, arguments);
     },
     onRender: function() {
       this.stickit();
@@ -39,6 +40,8 @@ define([
       // console.log('model fetched');
     },
     onEventSave: function(e) {
+      debugger;
+
       if(e) {
         e.preventDefault();
       }
@@ -70,8 +73,11 @@ define([
         this.ui[err.field].addClass('has-error');
       }, this);
     },
+
     onBack: function(e) {
-      e.preventDefault();
+      if(e) {
+        e.preventDefault();
+      }
       app.navigate('categories');
       return false;
     },
@@ -85,4 +91,5 @@ define([
     }
   });
 
+  return CategoryView;
 });

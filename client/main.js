@@ -65,7 +65,7 @@ requirejs([
   $.ajaxSetup({
     cache: false,
     beforeSend: function(xhr) {
-      xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('id_token'));
+      xhr.setRequestHeader('Authorization', 'Bearer ' + app.token);
     }
   });
 
@@ -76,11 +76,11 @@ requirejs([
   });
 
   $(document).ajaxStart(function(){
-    $(".loading").css("display", "block");
+    $("#loading-indicator").css("display", "block");
   });
 
   $(document).ajaxComplete(function(){
-    $(".loading").css("display", "none");
+    $("#loading-indicator").css("display", "none");
   });
 
   $(document).ready(function() {
