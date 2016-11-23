@@ -7,6 +7,10 @@ body {
   min-height: 100%;
 }
 
+.datepickers-container {
+  z-index: 9999;
+}
+
 .form-group.required .control-label:after {
   content:" * ";
   color:red;
@@ -167,7 +171,7 @@ body {
     padding-left: 0em;
     margin-left: 0em;
     border-bottom: 0px;
-    border-top: 1px solid #dddde2;
+    /*border-top: 1px solid #dddde2;*/
 }
 
 .item-summary>li:first-child {

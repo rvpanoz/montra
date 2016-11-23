@@ -19,7 +19,9 @@ define([
     },
     events: {
       'click #btn-delete': 'onEventDelete',
-      'click #btn-ok': '_onEventDeleteAction'
+      'click #btn-ok': '_onEventDeleteAction',
+      'click .btn-save': 'onEventSave',
+      'click .btn-back': 'onEventBack'
     },
     initialize: function(params) {
       this.model = new CategorySchema.model();
@@ -28,20 +30,20 @@ define([
         this.model.fetch();
       }
       this.listenTo(this.model, 'invalid', this.onValidationError, this);
-      this.listenTo(app, 'form:save', this.onEventSave, this);
-      this.listenTo(app, 'do:back', this.onBack, this);
       // CategoryView.__super__.initialize.call(this, arguments);
     },
+
     onRender: function() {
       this.stickit();
     },
-    onAttach: function() {},
-    onEventSync: function(model) {
-      // console.log('model fetched');
-    },
-    onEventSave: function(e) {
-      debugger;
 
+    onAttach: function() {},
+
+    onEventSync: function(model) {
+      console.log('model synced');
+    },
+
+    onEventSave: function(e) {
       if(e) {
         e.preventDefault();
       }
@@ -49,10 +51,12 @@ define([
         success: _.bind(this.onEventSaveCallback, this)
       });
     },
+
     onEventSaveCallback: function(model) {
       app.navigate('categories');
       return false;
     },
+
     onEventDelete: function(e) {
       e.preventDefault();
       this.ui.modal.modal('show');

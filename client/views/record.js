@@ -1,10 +1,11 @@
 define([
   'marionette',
   'schemas/record-schema',
+  'schemas/record-bindings',
   'views/microviews/categories-select',
   'templates',
   'moment'
-], function(Marionette, RecordSchema, CategorySelectView, templates, moment) {
+], function(Marionette, RecordSchema, RecordBindings, CategorySelectView, templates, moment) {
 
   return Marionette.View.extend({
     template: templates.record,
@@ -12,53 +13,12 @@ define([
     regions: {
       categories: '.categories-select'
     },
-    bindings: {
-      '#input-amount': {
-        observe: 'amount'
-      },
-      '#payment-method-cash': {
-        observe: 'payment_method',
-        onSet: function(value) {
-          return parseInt(value);
-        }
-      },
-      '#payment-method-card': {
-        observe: 'payment_method',
-        onSet: function(value) {
-          return parseInt(value);
-        }
-      },
-      '#input-kind': 'kind',
-      '#input-entry-date': {
-        observe: 'entry_date'
-      },
-      '#input-category': {
-        observe: 'category_id',
-        onSet: function() {
-          var value = $('#input-category').val();
-          return value;
-        }
-      },
-      '#kind-income': {
-        observe: 'kind',
-        onSet: function(value) {
-          return parseInt(value);
-        }
-      },
-      '#kind-expense': {
-        observe: 'kind',
-        onSet: function(value) {
-          return parseInt(value);
-        }
-      },
-      '#input-notes': 'notes'
-    },
     modelEvents: {
       'sync': 'onEventSync'
     },
     events: {
       'click #btn-delete': 'onEventDelete',
-      'click #btn-ok': '_onEventDeleteAction',
+      'click #btn-ok': 'onEventDeleteAction',
       'click .btn-save': 'onEventSave',
       'click #btn-back': 'onEventBack'
     },
@@ -67,29 +27,38 @@ define([
       amount: 'div.input-amount',
       category_id: 'div.input-category',
       entry_date: 'div.input-entry-date',
+      inputEntryDate: '#input-entry-date',
       modal: '.modal'
     },
 
     initialize: function(params) {
+      //initialize a new record model;
       this.model = new RecordSchema.model();
 
+      //setup bindings
+      this.bindings = RecordBindings.call(this);
+
+      //fetch model if id
       if (params.id) {
         this.model.set('_id', params.id);
         this.model.fetch();
       }
+
+      //listen to validation errors
       this.listenTo(this.model, 'invalid', this.onValidationError, this);
-      this.listenTo(app, 'do:save', this.onEventSave, this);
-      this.listenTo(app, 'do:back', this.onBack, this);
     },
 
     onRender: function() {
+      //render categories-select micro view
       this.showChildView('categories', new CategorySelectView());
+
+      //init binding
       this.stickit();
     },
 
     onAttach: function() {
-      let categoriesView = this.getChildView('categories'), self;
-      $('#input-entry-date').datepicker({
+      //setup datepicker when view is attached to DOM
+      this.ui.inputEntryDate.datepicker({
         onSelect: _.bind(function(fd, value) {
           var d = new Date(fd);
           if(moment(d).isValid()) {
@@ -99,16 +68,19 @@ define([
           }
         }, this)
       });
+      // let categoriesView = this.getChildView('categories'), self;
     },
 
     onDomRefresh: function() {},
+
+    onEventSync: function(model) {},
 
     onEventDelete: function(e) {
       e.preventDefault();
       this.ui.modal.modal('show');
     },
 
-    _onEventDeleteAction: function() {
+    onEventDeleteAction: function() {
       this.model.destroy({
         success: _.bind(function() {
           this.ui.modal.modal('hide');
@@ -116,8 +88,6 @@ define([
         }, this)
       });
     },
-
-    onEventSync: function(model) {},
 
     onEventSave: function(e) {
       if(e) {

@@ -21,7 +21,9 @@ define([
     },
     ui: {
       'search': '.search-modal',
-      'searchForm': '.form-search'
+      'searchForm': '.form-search',
+      'searchEntryFrom': '#entry-date-from',
+      'searchEntryTo': '#entry-date-to'
     },
     initialize: function() {
       _.bindAll(this, '_render');
@@ -39,17 +41,25 @@ define([
     _render: function() {
       this.render();
     },
-    onAttach: function() {
-      $('#entry-date-from').datepicker({
-        format: 'DD/MM/YYYY'
-      });
-      $('#entry-date-to').datepicker();
-    },
     onShowSearch: function(e) {
       if(e) {
         e.preventDefault();
       }
       this.ui.search.modal('show');
+      this.ui.searchEntryFrom.datepicker({
+        onSelect: function(fd, value, dp) {
+          if(dp) {
+            dp.hide();
+          }
+        }
+      });
+      this.ui.searchEntryTo.datepicker({
+        onSelect: function(fd, value, dp) {
+          if(dp) {
+            dp.hide();
+          }
+        }
+      });
       return false;
     },
     onSearch: function(e) {
@@ -58,6 +68,7 @@ define([
       }
       var data = _.extend({});
       var serializedData = this.ui.searchForm.serializeArray();
+      debugger;
       if(serializedData.length) {
         _.each(serializedData, function(d) {
           if(d.value) {

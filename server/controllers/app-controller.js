@@ -70,29 +70,34 @@ module.exports = function(server) {
     },
 
     records: {
-      browse: function (uid, reply, dataParams) {
-        var params = _.extend({},{
-          user_id: uid
-        });
-        if(dataParams && !_.isNull(dataParams)) {
-          var edf = dataParams['entry-date-from'];
-          var edt = dataParams['entry-date-to'];
+      browse: function(uid, reply, dataParams) {
+        var params = _.extend({}, {
+            user_id: uid,
+          });
+        var q = {};
+
+        if(dataParams) {
+
+          _.extend(params, {
+            payment_method: dataParams.payment_method,
+            kind: dataParams.kind
+          });
+
+          var edf = moment(new Date(dataParams['entry-date-from']));
+          var edt = moment(new Date(dataParams['entry-date-to']));
+
           switch (true) {
-          case (edf && edt):
-            edf = moment(new Date(edf)).format();
-            edt = moment(new Date(edt)).format();
-            break;
+            case (edf.isValid() && edt.isValid()):
+              params['entry_date'] = {
+                '$gte': edf.toISOString(),
+                '$lte': edt.toISOString()
+              };
+              break;
           }
-          delete dataParams['entry-date-from'];
-          delete dataParams['entry-date-from'];
-          dataParams['entry_date'] = {
-            '$gte': edf,
-            '$lt': edt
-          };
-          console.log(dataParams);
-          _.extend(params, dataParams);
+
         }
-        Record.find(params).populate('category_id').lean().exec(function (err, records) {
+
+        Record.find(params).populate('category_id').lean().exec(function(err, records) {
           if (err) {
             throw Boom.badRequest(err);
           }
@@ -107,9 +112,9 @@ module.exports = function(server) {
         //fix date for mongodb
         var dateString = data.entry_date;
         var parts = dateString.split('/');
-        var dt = new Date(parseInt(parts[2], 10),parseInt(parts[1], 10) - 1,parseInt(parts[0], 10));
+        var dt = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
         var fd = moment(dt);
-        //is valid date
+
         if (fd.isValid()) {
           data.entry_date = fd.toISOString();
         } else {
