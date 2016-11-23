@@ -71,14 +71,25 @@ module.exports = function(server) {
 
     records: {
       browse: function (uid, reply, dataParams) {
-        var edf, edt;
         var params = _.extend({},{
           user_id: uid
         });
         if(dataParams && !_.isNull(dataParams)) {
-          edf = dataParams['entry-date-from'];
-          edt = dataParams['entry-date-to'];
-          console.log(edf, edt);
+          var edf = dataParams['entry-date-from'];
+          var edt = dataParams['entry-date-to'];
+          switch (true) {
+          case (edf && edt):
+            edf = moment(new Date(edf)).format();
+            edt = moment(new Date(edt)).format();
+            break;
+          }
+          delete dataParams['entry-date-from'];
+          delete dataParams['entry-date-from'];
+          dataParams['entry_date'] = {
+            '$gte': edf,
+            '$lt': edt
+          };
+          console.log(dataParams);
           _.extend(params, dataParams);
         }
         Record.find(params).populate('category_id').lean().exec(function (err, records) {

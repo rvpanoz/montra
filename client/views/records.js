@@ -39,6 +39,12 @@ define([
     _render: function() {
       this.render();
     },
+    onAttach: function() {
+      $('#entry-date-from').datepicker({
+        format: 'DD/MM/YYYY'
+      });
+      $('#entry-date-to').datepicker();
+    },
     onShowSearch: function(e) {
       if(e) {
         e.preventDefault();
