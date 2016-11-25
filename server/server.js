@@ -217,8 +217,6 @@ server.register(require('hapi-auth-jwt'), (err) => {
       }
     }
   });
-});
-
 
 server.start(function(err) {
   if (err) {
@@ -226,3 +224,5 @@ server.start(function(err) {
   }
   console.log('Server is running at ' + server.info.host + ":" + server.info.port);
 });
+});
+
