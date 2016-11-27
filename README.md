@@ -3,13 +3,14 @@
 Personal expense tracker application. 
 
 Client tools:
-marionettejs
+marionettejs,
 google material liste
 
 Server tools:
-HapiJS 
+HapiJS, 
 
 ## Installation
 
 client/bower install
+
 server/npm install
