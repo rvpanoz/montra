@@ -8,6 +8,7 @@ define([
   'use strict';
 
   var Application = Marionette.Application.extend({
+    content: null,
     region: '#app-content',
     baseUrl: config.protocol + config.host + ":" + config.port,
     homeUrl: {
@@ -58,32 +59,18 @@ define([
       if(token) {
         localStorage.setItem('token', token);
         app.token = token;
+        $('.mdl-layout__header').show();
         app.navigate('home');
+        app.onAppEvent('userstate:change');
       }
-      return false;
     },
 
     onSignout: function() {
       localStorage.clear();
       app.token = null;
+      $('.mdl-layout__header').hide();
       app.navigate('user-signin');
-      return false;
-    },
-
-    showMessage: function() {
-      $('.app-message').addClass('bounceInDown').show();
-    },
-
-    hideMessage: function() {
-      $('.app-message').removeClass('bounceInDown').hide();
-    },
-
-    showModal: function() {
-      $('.app-modal').modal('show');
-    },
-
-    hideModal: function() {
-      $('.app-modal').modal('hide');
+      app.onAppEvent('userstate:change');
     }
   });
 

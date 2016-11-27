@@ -1,51 +1,21 @@
-<div class="row">
-    <div class="col-xs-3 col-md-3">
-        <% if (items.isNew == true) { %>
-          <p>Create a new category.</p>
-        <% } else { %>
-          <ul class="nav nav-pills nav-stacked">
-              <li class="active"><a href="#" id="btn-delete">Delete</a></li>
-          </ul>
-        <% } %>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--4-col">
+        <!-- <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">New category</button> -->
     </div>
-    <div class="col-xs-9 col-md-9">
-        <form class="form-horizontal">
-            <fieldset>
-                <legend>
-                    <%= items.title %>
-                </legend>
-                <div class="form-group input-name">
-                    <label for="input-name" class="col-lg-2 control-label">Name</label>
-                    <div class="col-lg-10">
-                        <input type="text" class="form-control" id="input-name" name="input-name" placeholder="category name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="button" aria-label="form actions" class="btn btn-success btn-save btn-block">
-                      <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Save category
-                    </button>
-                </div>
-            </fieldset>
+    <div class="mdl-cell mdl-cell--8-col">
+        <form action="#">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-name">
+                <input class="mdl-textfield__input" type="text" id="input-name" name="input-name">
+                <label class="mdl-textfield__label" for="input-name">Category name</label>
+            </div>
         </form>
+        <div class="mdl-layout-spacer"></div>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored save">Save</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored back">Cancel</button>
     </div>
 </div>
 
-<div class="modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Message</h4>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-danger">
-                    <strong>Oh danger!</strong> <br/>Category will permanently deleted. Are you sure?
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="btn-ok">OK</button>
-            </div>
-        </div>
-    </div>
+<div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
 </div>

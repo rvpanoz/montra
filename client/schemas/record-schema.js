@@ -13,12 +13,12 @@ define([
       }
     },
     defaults: {
-      amount: null,
-      payment_method: 1,
-      entry_date: moment().format('DD/MM/YYYY'), // or toISOString(),
+      amount: 100,
+      payment_method: 2,
+      entry_date: moment(new Date()).format('DD/MM/YYYY'), // or toISOString(),
       kind: 1,
       category_id: null,
-      notes: null,
+      notes: 'test notes goes here.. ',
       updated_at: new Date(),
       created_at: new Date()
     },

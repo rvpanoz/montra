@@ -1,29 +1,52 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Montra</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <meta name="generator" content="">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="images/android-desktop.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Material Design Lite">
+    <link rel="apple-touch-icon-precomposed" href="images/ios-desktop.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <link rel="shortcut icon" href="images/favicon.png">
+
+    <!-- Google Fonts call. Font Used Roboto  -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- styles -->
-    <link href="./assets/css/font-style.css" rel="stylesheet">
-    <link href="./assets/css/flexslider.css" rel="stylesheet">
-    <link href="./assets/themes/paper/css/bootstrap.css" rel="stylesheet">
-    <link href="./plugins/datepicker/css/datepicker.css" rel="stylesheet">
+    <link href="./assets/themes/mdl/material.min.css" rel="stylesheet">
+    <link href="./assets/css/material-select.css" rel="stylesheet">
+    <!-- <link href="./assets/themes/paper/css/bootstrap.css" rel="stylesheet"> -->
     <link href="./assets/css/app.css" rel="stylesheet">
+    <link href="./plugins/datepicker/css/datepicker.css" rel="stylesheet" type="text/css">
     <link href="./assets/css/animate.css" rel="stylesheet">
 
-    <!-- Google Fonts call. Font Used Open Sans & Raleway -->
-    <link href="http://fonts.googleapis.com/css?family=Raleway:400,300" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <div id="app-content"></div>
+
     <script data-main="main" src="./bower_components/requirejs/require.js"></script>
+    <script defer="defer" src="./assets/themes/mdl/material.js"></script>
+    <script defer="defer" src="./assets/js/material-select.js"></script>
 </body>
 
 <div class="loading">
@@ -35,9 +58,9 @@
     <div></div>
 </div>
 
-<div class="alert alert-dismissible alert-danger animated app-message">
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  <p><strong>oooh!</strong>&nbsp;Your session has expired! Please sign in.</p>
-</div>
+<!-- <div class="alert alert-dismissible alert-danger animated app-message">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <p><strong>oooh!</strong>&nbsp;Your session has expired! Please sign in.</p>
+</div> -->
 
 </html>

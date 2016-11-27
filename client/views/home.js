@@ -5,7 +5,11 @@ define([
 
   return Marionette.View.extend({
     template: templates.home,
-    className: 'container'
+    events: {
+      'click .b': function(e) {
+        debugger;
+      }
+    }
   });
 
 });

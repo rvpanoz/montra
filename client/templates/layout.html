@@ -1,8 +1,20 @@
-<!-- header content -->
-<div id="header-content"></div>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer is-upgraded is-small-screen">
 
-<!-- page content -->
-<div id="main-content"></div>
+    <header class="mdl-layout__header is-casting-shadow">
+        <div id="header-content"></div>
+    </header>
 
-<!-- footer -->
-<div id="footer-content"></div>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Menu</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" data-cls="record" href="">New record</a>
+            <a class="mdl-navigation__link" data-cls="records" href="">Records</a>
+            <a class="mdl-navigation__link" data-cls="categories" href="">Categories</a>
+        </nav>
+    </div>
+
+    <main class="mdl-layout__content">
+        <div class="demo-content" id="main-content"></div>
+    </main>
+
+</div>

@@ -8,23 +8,20 @@ define([
 
     var UserSigninView = Marionette.View.extend({
       template: templates.userSignin,
-      className: 'container',
+      className: 'user-signin',
       bindings: {
         '#input-email': 'email',
         '#input-password': 'password'
       },
       events: {
-        'click #user-submit': 'onEventSignin',
-        'click #user-back': 'onBack'
+        'click button.signin': 'onEventSignin',
+        'click button.register': 'onEventRegister'
       },
       ui: {
-        actions: 'div.form-actions',
-        email: 'div.input-email',
-        password: 'div.input-password'
+        snackbar: '#snackbar'
       },
       initialize: function() {
         this.model = new UserSchema.model();
-        this.listenTo(this.model, 'invalid', this.onValidationError, this);
       },
       onRender: function() {
         this.stickit();
@@ -41,25 +38,18 @@ define([
           success: function(response) {
             var token = response.data.id_token;
             app.onAppEvent('app:signin', token);
-            return false;
-          }
+          },
+          error: _.bind(function() {
+            this.ui.snackbar[0].MaterialSnackbar.showSnackbar({
+              message: 'Ooops! Wrong credentials.'
+            });
+          }, this)
         });
         return false;
       },
-      onEventSaveCallback: function(model) {
-        app.navigate('home');
-        return false;
-      },
-      onValidationError: function(model) {
-        var errors = model.validationError;
-        _.each(errors, function(err) {
-          this.ui[err.field].addClass('has-error');
-        }, this);
-      },
-      onBack: function(e) {
+      onEventRegister: function(e) {
         e.preventDefault();
-        app.navigate('home');
-        return false;
+        app.navigate('user-register');
       }
     });
 

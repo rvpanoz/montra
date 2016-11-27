@@ -9,14 +9,13 @@ define([
     template: templates.categoryOption,
     tagName: 'option',
     model: CategorySchema.model,
-    attributes: function() {
-      return {
-        value: this.model.get('_id')
-      }
-    },
     modelEvents: {
       'sync': 'render'
+    },
+    initialize: function() {
+      this.$el.attr('value', this.model.get('_id'));
     }
+
   });
 
 })

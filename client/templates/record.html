@@ -1,116 +1,66 @@
-<div class="row">
-    <div class="col-xs-3 col-md-3">
-        <p>Fill the form to add a new record.</p>
+<div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--2-col">
+
     </div>
-    <div class="col-xs-9 col-md-9">
-        <form class="form-horizontal">
-            <fieldset>
-                <legend>
-                    <%= items.title %>
-                </legend>
-                <div class="form-group input-amount required">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="input-group">
-                                <span class="input-group-addon">&euro;</span>
-                                <input class="form-control" id="input-amount" name="input-amount" placeholder="enter amount" aria-label="Amount">
-                                <span class="help-block">Amount</span>
-                            </div>
-                        </div>
-                    </div>
+    <div class="mdl-cell mdl-cell--10-col">
+        <form action="#">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-amount">
+                <input class="mdl-textfield__input is-invalid" type="text" id="input-amount" name="input-amount">
+                <label class="mdl-textfield__label" for="input-amount">&euro; Amount</label>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-entry_date">
+                <input class="mdl-textfield__input" type="text" id="input-entry-date" name="input-entry-date" data-language='en'>
+                <label class="mdl-textfield__label" for="input-entry-date">Entry date</label>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-select mdl-js-select mdl-select--floating-label mdl-category_id">
+                <select class="mdl-select__input" id="input-category" name="input-category"></select>
+                <label class="mdl-select__label" for="input-category">Category</label>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--6-col">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-1" for="input-kind-1">
+                <input type="radio" id="input-kind-1" class="mdl-radio__button" name="input-kind" value="1">
+                <span class="mdl-radio__label">Expense</span>
+              </label>
                 </div>
-                <div class="form-group input-entry-date required">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                            <i class="glyphicon glyphicon-calendar"></i>
-                          </span>
-                                <input type="text" class="form-control datepicker-here" id="input-entry-date" name="input-entry-date" aria-label="Entry date" placeholder="entry date">
-                                <span class="help-block">Entry date</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="mdl-cell mdl-cell--6-col">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-2" for="input-kind-2">
+                <input type="radio" id="input-kind-2" class="mdl-radio__button" name="input-kind" value="2">
+                <span class="mdl-radio__label">Income</span>
+              </label>
                 </div>
-                <div class="form-group input-category required">
-                    <div class="col-sm-8">
-                        <div class="categories-select"></div>
-                    </div>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--6-col">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-payment-method-1" for="input-payment-method-1">
+                <input type="radio" id="input-payment-method-1" class="mdl-radio__button" name="input-payment-method" value="1">
+                <span class="mdl-radio__label">Cash</span>
+              </label>
                 </div>
-                <br/>
-                <div class="form-group well">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <div class="radio">
-                                    <label><input type="radio" name="payment_method" id="payment-method-cash" value="1" checked="">Cash</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="payment_method" id="payment-method-card" value="2">Credit card</label>
-                                    <span class="help-block">Payment method</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <div class="radio">
-                                    <label><input type="radio" name="kind" id="kind-expense" value="1" checked="">Expense</label>
-                                </div>
-                                <div class="radio">
-                                    <label><input type="radio" name="kind" id="kind-income" value="2">Income</label>
-                                    <span class="help-block">Transaction kind</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="mdl-cell mdl-cell--6-col">
+                    <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-payment-method-2" for="input-payment-method-2">
+                <input type="radio" id="input-payment-method-2" class="mdl-radio__button" name="input-payment-method" value="2">
+                <span class="mdl-radio__label">Credit card</span>
+              </label>
                 </div>
-                <br/>
-                <div class="form-group">
-                    <label for="textArea" class="col-lg-2 control-label">Notes</label>
-                    <div class="col-lg-10">
-                        <textarea class="form-control" rows="3" id="input-notes"></textarea>
-                        <span class="help-block">write additional notes.</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="button" aria-label="form actions" class="btn btn-success btn-save btn-block">
-                      <span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;Save record
-                    </button>
-                </div>
-            </fieldset>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-notes">
+                <input class="mdl-textfield__input" type="text" id="input-notes" name="input-notes">
+                <label class="mdl-textfield__label" for="input-notes">Notes</label>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored save">Save</button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored back">Cancel</button>
         </form>
     </div>
 </div>
 
-<!-- <div class="row">
-    <div class="col-sm-3">
-        <% if (items.isNew == false) { %>
-            <div class="btn-group">
-                <a class="btn btn-danger btn-sm" id="btn-delete" href="#">Delete</a>
-            </div>
-            <% } %>
-    </div>
-    <div class="col-sm-9">
-
-    </div>
-
-    <div class="modal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Message</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-danger">
-                        <strong>Oh danger!</strong> <br/>Record will permanently deleted. Are you sure?
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="btn-ok">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
+<div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>

@@ -1,27 +1,12 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand navigate" href="#" data-cls="home">Montra</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="menu-collapse">
-      <ul class="nav navbar-nav">
-        <li><a href="#" class="navigate" data-cls="record">New record <span class="sr-only">(current)</span></a></li>
-        <li><a href="#" class="navigate" data-cls="records">Records <span class="sr-only">(current)</span></a></li>
-        <li><a href="#" class="navigate" data-cls="category">New category <span class="sr-only">(current)</span></a></li>
-        <li><a href="#" class="navigate" data-cls="categories">Categories <span class="sr-only">(current)</span></a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#" id="signin-button" class="navigate" data-cls="user-signin">Sign in</a></li>
-        <li><a href="#" id="register-button" class="navigate" data-cls="user-register">Register</a></li>
-        <li><a href="#" id="signout-button" class="signout">Signout</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<div class="mdl-layout__header-row">
+  <span class="mdl-layout-title">Montra</span>
+  <div class="mdl-layout-spacer"></div>
+  <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+    <i class="material-icons">more_vert</i>
+  </button>
+  <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+    <li class="mdl-menu__item navigate" data-cls="record">New record</li>
+    <li class="mdl-menu__item navigate" data-cls="category">New category</li>
+    <li class="mdl-menu__item navigate signout">Sign out</li>
+  </ul>
+</div>

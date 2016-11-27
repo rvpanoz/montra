@@ -6,34 +6,32 @@ define([
 ], function(Marionette, CategorySchema, CategoryItemView, templates) {
 
   return Marionette.CompositeView.extend({
-    // type: 'listHandler',
     template: templates.browseCategories,
-    className: 'container',
     childView: CategoryItemView,
     childViewContainer: '.categories-items',
     collectionEvents: {
       'sync': '_render'
     },
     events: {
-      "click .navigate": "onNavigate"
+      'click .add': 'onEventAdd'
     },
     initialize: function() {
       _.bindAll(this, '_render');
       this.collection = new CategorySchema.collection();
       this.collection.fetch();
     },
-    onNavigate: function(e) {
+    onEventAdd: function(e) {
       e.preventDefault();
-      var cls = this.$(e.currentTarget).data('cls');
-      return app.navigate(cls);
+      app.navigate('category');
+      return false;
+    },
+    _render: function() {
+      this.render();
     },
     serializedData: function() {
       return _.extend(this.collection.toJSON(), {
 
       });
-    },
-    _render: function() {
-      this.render();
     }
   });
 

@@ -7,10 +7,11 @@ define([
 
   var CategoryItemView = Marionette.View.extend({
     template: templates.categoryItemView,
+    tagName: 'tr',
     events: {
-      'click': 'onEventClick'
+      'click .update': 'onEventUpdate'
     },
-    onEventClick: function(e) {
+    onEventUpdate: function(e) {
       e.preventDefault();
       app.navigate('category', {
         id: this.model.get('_id')

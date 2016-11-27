@@ -7,49 +7,51 @@ define([
   return Marionette.View.extend({
     template: templates.header,
     ui: {
-      "signinButton": "#signin-button",
-      "registerButton": "#register-button",
-      "signoutButton": "#signout-button",
-      "menu": "#menu-collapse"
+      "signinButton": ".signin",
+      "signoutButton": ".signout",
+      "menu": ".mdl-js-menu",
+      "menuButton": "#hdrbtn",
+      "titleButton": '.mdl-layout-title'
     },
     events: {
       "click .navigate": "onNavigate",
       "click .signout": "onSignout"
     },
     initialize: function() {
-      this.listenTo(app, 'user:signin', _.bind(function() {
-        this.onUpdateUI(true);
-      }, this));
-      this.listenTo(app, 'user:signout', _.bind(function() {
+      this.listenTo(app, 'userstate:change', _.bind(function() {
         this.onUpdateUI();
-        return app.navigate(app.signinUrl);
       }, this));
     },
+
     onAttach: function() {
-      var token = localStorage.getItem('token');
-      this.onUpdateUI(token);
+      this.onUpdateUI();
     },
+
     onNavigate: function(e) {
       e.preventDefault();
       var cls = this.$(e.currentTarget).data('cls');
-      this.ui.menu.collapse('hide');
-      return app.navigate(cls);
-    },
-    onUpdateUI: function(signin) {
-      if(signin) {
-        this.ui.signinButton.hide();
-        this.ui.registerButton.hide();
-        this.ui.signoutButton.show();
-      } else {
-        this.ui.signinButton.show();
-        this.ui.registerButton.show();
-        this.ui.signoutButton.hide();
+      if(cls) {
+        app.navigate(cls);
       }
     },
+
+    onUpdateUI: function() {
+      var token = localStorage.getItem('token');
+      if(token) {
+        this.ui.menu.show();
+        this.ui.menuButton.show();
+        this.ui.titleButton.show();
+      } else {
+        this.ui.menu.hide();
+        this.ui.menuButton.hide();
+        this.ui.titleButton.hide();
+      }
+    },
+
     onSignout: function(e) {
       e.preventDefault();
-      this.onUpdateUI();
       app.onAppEvent('app:signout');
+      this.onUpdateUI();
     }
   });
 

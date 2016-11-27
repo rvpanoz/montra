@@ -72,30 +72,31 @@ module.exports = function(server) {
     records: {
       browse: function(uid, reply, dataParams) {
         var params = _.extend({}, {
-            user_id: uid,
-          });
+          user_id: uid,
+        });
         var q = {};
 
-        if(dataParams) {
+        if (dataParams) {
 
           _.extend(params, {
-            payment_method: dataParams.payment_method,
-            kind: dataParams.kind
+            payment_method: dataParams['input-payment-method'] || 1,
+            kind: dataParams['input-kind'] || 1
           });
 
-          var edf = moment(new Date(dataParams['entry-date-from']));
-          var edt = moment(new Date(dataParams['entry-date-to']));
+          var edf = moment(new Date(dataParams['input-entry-date-from']));
+          var edt = moment(new Date(dataParams['input-entry-date-to']));
 
-          switch (true) {
-            case (edf.isValid() && edt.isValid()):
-              params['entry_date'] = {
+          if (edf.isValid() && edt.isValid()) {
+            _.extend(params, {
+              entry_date: {
                 '$gte': edf.toISOString(),
                 '$lte': edt.toISOString()
-              };
-              break;
+              }
+            });
           }
-
         }
+
+        console.log(params);
 
         Record.find(params).populate('category_id').lean().exec(function(err, records) {
           if (err) {
@@ -111,9 +112,7 @@ module.exports = function(server) {
       insert: function(uid, data, reply) {
         //fix date for mongodb
         var dateString = data.entry_date;
-        var parts = dateString.split('/');
-        var dt = new Date(parseInt(parts[2], 10), parseInt(parts[1], 10) - 1, parseInt(parts[0], 10));
-        var fd = moment(dt);
+        var fd = moment(new Date(dateString));
 
         if (fd.isValid()) {
           data.entry_date = fd.toISOString();
@@ -149,7 +148,7 @@ module.exports = function(server) {
           _id: id
         }).exec(function(err, record) {
           if (err) {
-            throw Boon.badRequest(err);
+            throw Boom.badRequest(err);
           }
           reply({
             success: true,
@@ -164,7 +163,7 @@ module.exports = function(server) {
           _id: id
         }, function(err, record) {
           if (err) {
-            throw Boon.badRequest(err);
+            throw Boom.badRequest(err);
           }
 
           record.amount = data.amount;
@@ -176,7 +175,7 @@ module.exports = function(server) {
 
           record.save(function(err, updated_record) {
             if (err) {
-              throw Boon.badImplementation('Record:  Error on updating record', err);
+              throw Boom.badImplementation('Record:  Error on updating record', err);
             }
             reply({
               success: true,
@@ -189,12 +188,12 @@ module.exports = function(server) {
       remove: function(uid, rid, reply) {
         Record.findById(id, function(err, record) {
           if (err) {
-            throw Boon.badRequest(err);
+            throw Boom.badRequest(err);
           }
 
           record.remove(function(err, removed_record) {
             if (err) {
-              throw Boon.badImplementation('Record:  Error on deleting record', err);
+              throw Boom.badImplementation('Record:  Error on deleting record', err);
             }
             reply({
               success: true,
@@ -251,13 +250,13 @@ module.exports = function(server) {
           _id: id
         }, function(err, category) {
           if (err) {
-            throw Boon.badRequest(err);
+            throw Boom.badRequest(err);
           }
           // set new attrs
           category.name = data.name;
           category.save(function(err, updated_category) {
             if (err) {
-              throw Boon.badImplementation('Category:  Error on updating category', err);
+              throw Boom.badImplementation('Category:  Error on updating category', err);
             }
             reply({
               success: true,
@@ -273,7 +272,7 @@ module.exports = function(server) {
           _id: id
         }).exec(function(err, category) {
           if (err) {
-            throw Boon.badRequest(err);
+            throw Boom.badRequest(err);
           }
           reply({
             success: true,
@@ -288,12 +287,12 @@ module.exports = function(server) {
           _id: id
         }, function(err, category) {
           if (err) {
-            throw Boon.badRequest(err);
+            throw Boom.badRequest(err);
           }
 
           category.remove(function(err, removed_category) {
             if (err) {
-              throw Boon.badImplementation('Category:  Error on deleting category', err);
+              throw Boom.badImplementation('Category:  Error on deleting category', err);
             }
             reply({
               success: true,

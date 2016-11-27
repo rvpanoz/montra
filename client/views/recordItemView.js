@@ -7,12 +7,13 @@ define([
 
   var RecordItemView = Marionette.View.extend({
     template: templates.recordItemView,
-    tagName: 'li',
+    tagName: 'tr',
     events: {
-      'click .btn-update': 'onEventUpdate'
+      'click .update': 'onEventUpdate'
     },
     ui: {
-      modal: '.modal'
+      'buttonUpdate': '.update',
+      'buttonRemove': '.remove'
     },
     onEventUpdate: function(e) {
       e.preventDefault();
@@ -20,6 +21,7 @@ define([
         id: this.model.get('_id')
       });
     },
+
     serializeData: function() {
       var d = this.model.get('entry_date');
       var k = this.model.get('kind');

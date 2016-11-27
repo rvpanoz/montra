@@ -2,41 +2,42 @@ define([
   'marionette',
   'schemas/record-schema',
   'schemas/record-bindings',
-  'views/microviews/categories-select',
+  'schemas/category-schema',
   'templates',
   'moment'
-], function(Marionette, RecordSchema, RecordBindings, CategorySelectView, templates, moment) {
+], function(Marionette, RecordSchema, RecordBindings, CategorySchema, templates, moment) {
 
   return Marionette.View.extend({
     template: templates.record,
-    className: 'container',
-    regions: {
-      categories: '.categories-select'
-    },
     modelEvents: {
-      'sync': 'onEventSync'
+      'change': 'onModelChange',
+      'sync': '_render'
+    },
+    childViewEvents: {
+      'update:element': 'onUpdateElement'
     },
     events: {
-      'click #btn-delete': 'onEventDelete',
-      'click #btn-ok': 'onEventDeleteAction',
-      'click .btn-save': 'onEventSave',
-      'click #btn-back': 'onEventBack'
+      'click .save': 'onEventSave',
+      'click .back': 'onEventBack'
     },
     ui: {
-      actions: 'div.form-actions',
-      amount: 'div.input-amount',
-      category_id: 'div.input-category',
-      entry_date: 'div.input-entry-date',
-      inputEntryDate: '#input-entry-date',
-      modal: '.modal'
+      snackbar: '#snackbar',
+      divCategory: '.mdl-select',
+      inputCategory_id: '#input-category',
+      inputEntryDate: '#input-entry-date'
     },
 
     initialize: function(params) {
       //initialize a new record model;
       this.model = new RecordSchema.model();
 
+      //categories
+      this.collection = new CategorySchema.collection();
+
       //setup bindings
       this.bindings = RecordBindings.call(this);
+
+      this.collection.fetch().done(_.bind(this._createCategories, this));
 
       //fetch model if id
       if (params.id) {
@@ -48,43 +49,67 @@ define([
       this.listenTo(this.model, 'invalid', this.onValidationError, this);
     },
 
-    onRender: function() {
-      //render categories-select micro view
-      this.showChildView('categories', new CategorySelectView());
+    _render: function() {
+      componentHandler.upgradeElement(this.el);
 
-      //init binding
+      var kind = this.model.get('kind').toString();
+      switch(kind) {
+        case "1":
+        this.$('.label-kind-1').addClass('is-checked');
+        this.$('.label-kind-2').removeClass('is-checked');
+        break;
+        case "2":
+        this.$('.label-kind-2').addClass('is-checked');
+        this.$('.label-kind-1').removeClass('is-checked');
+        break;
+      }
+
+      var payment_method = this.model.get('payment_method').toString();
+      switch(payment_method) {
+        case "1":
+        this.$('.label-payment-method-1').addClass('is-checked');
+        this.$('.label-payment-method-2').removeClass('is-checked');
+        break;
+        case "2":
+        this.$('.label-payment-method-2').addClass('is-checked');
+        this.$('.label-payment-method-1').removeClass('is-checked');
+        break;
+      }
+
+    },
+
+    _createCategories: function(categories) {
+      _.each(categories.data, function(category) {
+        this.ui.inputCategory_id.append('<option value="' + category._id + '">' + category.name + "</options");
+      }, this);
+      this.ui.inputCategory_id.val(this.model.get('category_id'));
+    },
+
+    onModelChange: function(model) {
+      for(var z in model.changed) {
+        var element = this.$('.mdl-' + z);
+        if(element.length) {
+          element.addClass('is-dirty');
+        }
+      }
+    },
+
+    onUpdateElement: function(element) {
+      componentHandler.upgradeElement(element);
+    },
+
+    onRender: function() {
       this.stickit();
     },
 
     onAttach: function() {
-      //setup datepicker when view is attached to DOM
       this.ui.inputEntryDate.datepicker({
-        onSelect: _.bind(function(fd, value) {
-          var d = new Date(fd);
-          if(moment(d).isValid()) {
-            this.model.set('entry_date', moment(d).format('DD/MM/YYYY'));
-          } else {
-            return false;
+        dateFormat: 'dd/mm/yyyy',
+        onSelect: _.bind(function(fd, nd) {
+          var d = moment(nd);
+          if(d.isValid()) {
+            this.model.set('entry_date', d.format());
           }
-        }, this)
-      });
-      // let categoriesView = this.getChildView('categories'), self;
-    },
-
-    onDomRefresh: function() {},
-
-    onEventSync: function(model) {},
-
-    onEventDelete: function(e) {
-      e.preventDefault();
-      this.ui.modal.modal('show');
-    },
-
-    onEventDeleteAction: function() {
-      this.model.destroy({
-        success: _.bind(function() {
-          this.ui.modal.modal('hide');
-          return app.navigate('records');
         }, this)
       });
     },
@@ -93,6 +118,7 @@ define([
       if(e) {
         e.preventDefault();
       }
+
       this.model.save(null, {
         success: _.bind(this.onEventSaveCallback, this)
       });
@@ -104,9 +130,17 @@ define([
 
     onValidationError: function(model) {
       var errors = model.validationError;
+
       _.each(errors, function(err) {
-        this.ui[err.field].addClass('has-error');
+        var element = this.$('.mdl-' + err.field);
+        if(element) {
+          element.addClass('is-invalid');
+        }
       }, this);
+
+      this.ui.snackbar[0].MaterialSnackbar.showSnackbar({
+        message: 'Fill the required fields.'
+      });
 
       return _.isEmpty(errors) ? void 0 : errors;
     },

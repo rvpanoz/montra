@@ -10,18 +10,16 @@ define([
       '#input-name': 'name'
     },
     ui: {
-      actions: 'div.form-actions',
-      name: 'div.input-name',
-      modal: '.modal'
+      snackbar: '#snackbar',
+      name: 'div.input-name'
     },
     modelEvents: {
-      'sync': 'onEventSync'
+      'sync': 'onEventSync',
+      'change': 'onModelChange'
     },
     events: {
-      'click #btn-delete': 'onEventDelete',
-      'click #btn-ok': '_onEventDeleteAction',
-      'click .btn-save': 'onEventSave',
-      'click .btn-back': 'onEventBack'
+      'click .save': 'onEventSave',
+      'click .back': 'onEventBack'
     },
     initialize: function(params) {
       this.model = new CategorySchema.model();
@@ -52,33 +50,38 @@ define([
       });
     },
 
+    onModelChange: function(model) {
+      for(var z in model.changed) {
+        var element = this.$('.mdl-' + z);
+        if(element.length) {
+          element.addClass('is-focused');
+        }
+      }
+    },
+
     onEventSaveCallback: function(model) {
       app.navigate('categories');
       return false;
     },
 
-    onEventDelete: function(e) {
-      e.preventDefault();
-      this.ui.modal.modal('show');
-    },
-
-    _onEventDeleteAction: function() {
-      this.model.destroy({
-        success: _.bind(function() {
-          this.ui.modal.modal('hide');
-          return app.navigate('categories');
-        }, this)
-      });
-    },
-
     onValidationError: function(model) {
       var errors = model.validationError;
+
       _.each(errors, function(err) {
-        this.ui[err.field].addClass('has-error');
+        var element = this.$('.mdl-' + err.field);
+        if(element) {
+          element.addClass('is-invalid');
+        }
       }, this);
+
+      this.ui.snackbar[0].MaterialSnackbar.showSnackbar({
+        message: 'Fill the required fields.'
+      });
+
+      return _.isEmpty(errors) ? void 0 : errors;
     },
 
-    onBack: function(e) {
+    onEventBack: function(e) {
       if(e) {
         e.preventDefault();
       }

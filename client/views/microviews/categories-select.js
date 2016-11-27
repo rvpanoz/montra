@@ -5,24 +5,22 @@ define([
   'templates'
 ], function(Marionette, CategorySchema, categoryOptionView, templates) {
 
-  return Marionette.CollectionView.extend({
+  return Marionette.CompositeView.extend({
     template: templates.categoriesSelect,
     childView: categoryOptionView,
-    tagName: 'select',
-    id: 'input-category',
-    className: 'form-control',
+    childViewContainer: '.items',
     collectionEvents: {
       'sync': 'render'
+    },
+    childViewEvents: {
+      'update:element': 'onUpdateElement'
     },
     initialize: function() {
       this.collection = new CategorySchema.collection();
       this.collection.fetch();
     },
     onAttach: function() {
-      this.$el.append('<option value="0">Select category</option>');
-    },
-    onDomRefresh: function() {
-
+      this.triggerMethod('update:element', this.el);
     }
   });
 

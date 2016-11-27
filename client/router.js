@@ -10,7 +10,7 @@ define([
     routes: {
       '*actions': 'do_action'
     },
-    do_action: function(actions) {
+    do_action: function(actions) {      
       try {
         var token = localStorage.getItem('token');
         var url = utils.decode(actions), opts;
@@ -23,7 +23,6 @@ define([
         if((!token || _.isNull(token)) && ($.inArray(url.cls, app.publicUrls) == -1)) {
           url = app.signinUrl;
         }
-
 
         require(["views/" + url.cls], (View) => {
           var params = _.extend(url.params, {});
