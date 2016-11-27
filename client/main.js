@@ -12,7 +12,8 @@ requirejs.config({
     'backbone.radio': './bower_components/backbone.radio/build/backbone.radio',
     marionette: './bower_components/backbone.marionette/lib/backbone.marionette',
     moment: './bower_components/moment/min/moment.min',
-    tpl: 'tpl'
+    tpl: 'tpl',
+    avgrund: './plugins/avgrund/jquery.avgrund.min'
   },
   shim: {
     jquery: {
@@ -29,6 +30,10 @@ requirejs.config({
     datepicker: {
       exports: 'datepicker',
       deps: ['jquery']
+    },
+    avgrund: {
+      exports: '$.fn.avgrund',
+      deps: ['jquery']
     }
   },
   waitSeconds: 30
@@ -42,7 +47,8 @@ requirejs([
   'config',
   'app',
   'utils',
-  'datepicker'
+  'datepicker',
+  'avgrund'
 ], ($, _, Backbone, stickit, config, app, utils) => {
 
   $.ajaxSetup({

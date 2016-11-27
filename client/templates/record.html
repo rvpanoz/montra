@@ -1,8 +1,13 @@
 <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--2-col">
+    <!-- <div class="mdl-cell mdl-cell--2-col">
 
-    </div>
-    <div class="mdl-cell mdl-cell--10-col">
+    </div> -->
+    <div class="mdl-cell mdl-cell--6-col">
+        <% if(items.isNew) { %>
+          <h4>New record</h4>
+        <% } else { %>
+          <h4>Edit record</h4>
+        <% } %>
         <form action="#">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-amount">
                 <input class="mdl-textfield__input is-invalid" type="text" id="input-amount" name="input-amount">

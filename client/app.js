@@ -41,6 +41,12 @@ define([
       //show the layout view
       this.showView(new LayoutView());
 
+      if(localStorage.getItem('token')) {
+        $('.mdl-layout__header').show();
+      } else {
+        $('.mdl-layout__header').hide();
+      }
+
       //start backbone history
       if (Backbone.history) {
         Backbone.history.start();
@@ -59,18 +65,18 @@ define([
       if(token) {
         localStorage.setItem('token', token);
         app.token = token;
-        $('.mdl-layout__header').show();
         app.navigate('home');
         app.onAppEvent('userstate:change');
+        $('.mdl-layout__header').show();
       }
     },
 
     onSignout: function() {
       localStorage.clear();
       app.token = null;
-      $('.mdl-layout__header').hide();
       app.navigate('user-signin');
       app.onAppEvent('userstate:change');
+      $('.mdl-layout__header').hide();
     }
   });
 

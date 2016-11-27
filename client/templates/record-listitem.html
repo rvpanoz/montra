@@ -1,15 +1,20 @@
 <td class="mdl-data-table__cell--non-numeric">
     <%= category_id.name %>
 </td>
-<td>
+<td class="mdl-data-table__cell--non-numeric">
     <%= entry_date_formatted %>
 </td>
-<td>&euro;
-    <%= amount %>
+<td>&euro;<%= amount %></td>
+<td>
+  <span class="label label--mini background-color--<%= kind_color %>"><%= kind_descr %></span>
 </td>
 <td>
-    <!-- Colored FAB button with ripple -->
-    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored update">
-  <i class="material-icons">update</i>
+  <button id="demo-menu-lower-right-<%= _id %>"
+        class="mdl-button mdl-js-button mdl-button--icon">
+  <i class="material-icons">more_vert</i>
 </button>
+    <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right-<%= _id %>">
+        <li class="mdl-menu__item update">Update</li>
+        <li class="mdl-menu__item remove">Remove</li>
+    </ul>
 </td>

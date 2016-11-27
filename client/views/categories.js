@@ -13,12 +13,21 @@ define([
       'sync': '_render'
     },
     events: {
+      'click .navigate': 'onNavigate',
       'click .add': 'onEventAdd'
     },
     initialize: function() {
       _.bindAll(this, '_render');
       this.collection = new CategorySchema.collection();
       this.collection.fetch();
+    },
+    onNavigate: function(e) {
+      e.preventDefault();
+      var cls = $(e.currentTarget).data('cls');
+      if(cls) {
+        app.navigate(cls);
+      }
+      return false;
     },
     onEventAdd: function(e) {
       e.preventDefault();

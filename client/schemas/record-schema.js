@@ -13,12 +13,12 @@ define([
       }
     },
     defaults: {
-      amount: 100,
-      payment_method: 2,
-      entry_date: moment(new Date()).format('DD/MM/YYYY'), // or toISOString(),
+      amount: null,
+      payment_method: 1,
+      entry_date: moment(new Date()).format('DD/MM/YYYY'),
       kind: 1,
       category_id: null,
-      notes: 'test notes goes here.. ',
+      notes: '',
       updated_at: new Date(),
       created_at: new Date()
     },
@@ -68,7 +68,19 @@ define([
     },
     parse: function(response) {
       return response.data;
-    }
+    },
+    get_expenses: function() {
+      var filtered = this.filter(function(model) {
+        return model.get('kind') == 1;
+      });
+      return filtered;
+    },
+    get_incomes: function() {
+      var filtered = this.filter(function(model) {
+        return model.get('kind') == 2;
+      });
+      return filtered;
+    },
   });
 
   return {
