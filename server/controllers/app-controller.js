@@ -72,31 +72,50 @@ module.exports = function(server) {
     records: {
       browse: function(uid, reply, dataParams) {
         var params = _.extend({}, {
-          user_id: uid,
+          user_id: uid
         });
         var q = {};
 
         if (dataParams) {
 
-          _.extend(params, {
-            payment_method: dataParams['input-payment-method'] || 1,
-            kind: dataParams['input-kind'] || 1
-          });
+          if(dataParams['input-payment-method']) {
+            _.extend(params, {
+              payment_method: dataParams['input-payment-method'],
+            });
+          }
 
-          var edf = moment(new Date(dataParams['input-entry-date-from']));
-          var edt = moment(new Date(dataParams['input-entry-date-to']));
+          if(dataParams['input-kind']) {
+            _.extend(params, {
+              kind: dataParams['input-kind'],
+            });
+          }
 
-          if (edf.isValid() && edt.isValid()) {
+          if(_.has(dataParams, 'input-entry-date-from')) {
+            var edf = moment(new Date(dataParams['input-entry-date-from']));
+          }
+
+          if(_.has(dataParams, 'input-entry-date-to')) {
+            var edt = moment(new Date(dataParams['input-entry-date-to']));
+          }
+
+          if ((edf && edf.isValid()) && (edt && edt.isValid())) {
             _.extend(params, {
               entry_date: {
-                '$gte': edf.toISOString(),
-                '$lte': edt.toISOString()
+                '$gte': (edf) ? edf.toISOString() : moment().startOf('month').toISOString(),
+                '$lte': (edt) ? edt.toISOString() : moment().endOf('month').toISOString(),
               }
             });
           }
         }
 
-        console.log(params);
+        if(!_.has(params, 'entry_date')) {
+          _.extend(params, {
+            entry_date: {
+              '$gte': moment().startOf('month').toISOString(),
+              '$lte': moment().endOf('month').toISOString(),
+            }
+          });
+        }
 
         Record.find(params).populate('category_id').lean().exec(function(err, records) {
           if (err) {
@@ -186,7 +205,7 @@ module.exports = function(server) {
       },
 
       remove: function(uid, rid, reply) {
-        Record.findById(id, function(err, record) {
+        Record.findById(rid, function(err, record) {
           if (err) {
             throw Boom.badRequest(err);
           }
