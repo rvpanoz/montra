@@ -1,4 +1,4 @@
-# Montra
+# Montra - MarionetteJS with Google Material Lite design.
 
 Personal expense tracking application
 
