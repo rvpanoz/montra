@@ -6,15 +6,15 @@ Personal expense tracking application
 
 Clone the repository and then cd to client folder and run 
 
-...
+```
 bower install
-...
+```
 
 Then cd to server folder and run
 
-...
+```
 npm install
-...
+```
 
 to install the required modules.
 
