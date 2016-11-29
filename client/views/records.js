@@ -14,7 +14,7 @@ define([
     className: 'mdl-grid',
     childViewContainer: '.records-items',
     collectionEvents: {
-      
+      'sort': 'render'
     },
     events: {
       'click .toggle-search' : 'onToggleSearch',
@@ -39,10 +39,10 @@ define([
       this.collection.sortField = element.data('field');
       this.collection.sortDir = element.hasClass('mdl-data-table__header--sorted-descending') ? -1 : 1;
 
-      this.collection.sort({
-        silent: false
-      });
+      //sort collection
+      this.collection.sort();
 
+      //update UI
       if(this.collection.sortDir == 1) {
         element.addClass('mdl-data-table__header--sorted-descending');
         element.removeClass('mdl-data-table__header--sorted-ascending');
@@ -54,20 +54,19 @@ define([
           this.collection.sortDir = 1;
         }
       }
-      componentHandler.upgradeDom();
     },
+
     onNavigate: function(e) {
       e.preventDefault();
       var cls = $(e.currentTarget).data('cls');
-      if(cls) {
-        app.navigate(cls);
-      }
-      return false;
+      app.navigate(cls);
     },
+
     onToggleSearch: function(e) {
       e.preventDefault();
       this.ui.searchForm.toggle();
     },
+
     serializeData: function() {
       var sumExpenses = 0, sumIncomes = 0;
       var expenses = this.collection.get_expenses();
@@ -93,14 +92,16 @@ define([
         }
       });
     },
+
     _fixDate: function(value) {
       var d = value.split('-');
       return moment(new Date(d[0] + '-' + d[1] + '-' + d[2])).toISOString();
     },
 
     onRender: function() {
+      debugger;
       componentHandler.upgradeDom();
-      
+
       this.ui.inputEntryDateFrom.datepicker({
         dateFormat: 'mm-dd-yyyy',
         onSelect: _.bind(function(fd, nd) {
