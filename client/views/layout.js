@@ -29,7 +29,6 @@ define([
 
         // when the page is completely loaded and rendered
         // I should run componentHandler.upgradeDom() to let MDL render the page.
-        // debugger;
         componentHandler.upgradeDom();
       });
     },
