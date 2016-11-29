@@ -21,11 +21,6 @@ define([
     },
 
     parse: function(response) {
-      var error;
-      if(response.success == false) {
-        error = response.error;
-        // this.trigger('invalid', this, error);
-      }
       return response.data;
     },
 
