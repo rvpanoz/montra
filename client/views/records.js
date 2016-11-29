@@ -37,13 +37,13 @@ define([
 
     onSort: function(e) {
       e.preventDefault();
-      var dataTable = this.$('.mdl-data-table');
-      var element = this.$(e.currentTarget);
-      this.collection.sortField = element.data('field');
-      this.collection.sortDir = element.hasClass('mdl-data-table__header--sorted-descending') ? -1 : 1;
+      var $dataTable = this.$('.mdl-data-table');
+      var $element = this.$(e.currentTarget);
+      this.collection.sortField = $element.data('field');
+      this.collection.sortDir = $element.hasClass('mdl-data-table__header--sorted-descending') ? -1 : 1;
 
       //mark element
-      element.addClass('sorted');
+      $element.addClass('sorted');
 
       //sort collection
       this.collection.sort();
@@ -153,7 +153,7 @@ define([
           }, this)
         });
       }
-      
+
       return false;
     }
   });

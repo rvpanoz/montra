@@ -83,7 +83,7 @@ define([
     comparator: function(m1) {
       var field = this.sortField;
       var dir = this.sortDir;
-      return (dir = -1) ? -m1.get(field) : m1.get(field);
+      return (dir == -1) ? -m1.get(field) : m1.get(field);
     }
   });
 
