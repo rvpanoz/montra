@@ -14,8 +14,8 @@ define([
     },
 
     defaults: {
-      email: 'rvpanoz@gmail.com',
-      password: 'zouzou252',
+      email: '',
+      password: '',
       updated_at: new Date(),
       created_at: new Date()
     },
