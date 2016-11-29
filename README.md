@@ -18,14 +18,6 @@ npm install
 
 to install the required modules.
 
-### Frameworks used
-
-```
-MarionetteJS
-Google Material lite
-HapiJS
-```
-
 ## Built With
 
 * [MarionetteJS](http://marionettejs.com/)
@@ -34,7 +26,7 @@ HapiJS
 
 ## Authors
 
-**rvpanoz(at)gmail.com**  -
+**rvpanoz(at)gmail.com**
 
 ## License
 
