@@ -11,20 +11,17 @@ define([
   return Marionette.CompositeView.extend({
     template: templates.browseRecords,
     childView: RecordItemView,
+    className: 'mdl-grid',
     childViewContainer: '.records-items',
-    // TODO: use regions - switch to Marionette.View
-    // regions: {
-    //   recordsRegion: '#records-content'
-    //   balanceRegion: '#balance-content'
-    // },
     collectionEvents: {
-      'sync': '_render'
+      
     },
     events: {
       'click .toggle-search' : 'onToggleSearch',
       'click .navigate': 'onNavigate',
       'click .search': 'onSearch',
-      'click .clear': 'onClearSearch'
+      'click .clear': 'onClearSearch',
+      'click .sort': 'onSort'
     },
     ui: {
       searchForm: '.search-form',
@@ -32,9 +29,32 @@ define([
       inputEntryDateTo: '#input-entry-date-to'
     },
     initialize: function() {
-      _.bindAll(this, '_render');
       this.collection = new RecordSchema.collection();
       this.collection.fetch();
+    },
+    onSort: function(e) {
+      e.preventDefault();
+      var dataTable = this.$('.mdl-data-table');
+      var element = this.$(e.currentTarget);
+      this.collection.sortField = element.data('field');
+      this.collection.sortDir = element.hasClass('mdl-data-table__header--sorted-descending') ? -1 : 1;
+
+      this.collection.sort({
+        silent: false
+      });
+
+      if(this.collection.sortDir == 1) {
+        element.addClass('mdl-data-table__header--sorted-descending');
+        element.removeClass('mdl-data-table__header--sorted-ascending');
+        this.collection.sortDir = -1;
+      } else {
+        if(this.collection.sortDir == -1) {
+          element.addClass('mdl-data-table__header--sorted-ascending');
+          element.removeClass('mdl-data-table__header--sorted-descending');
+          this.collection.sortDir = 1;
+        }
+      }
+      componentHandler.upgradeDom();
     },
     onNavigate: function(e) {
       e.preventDefault();
@@ -73,9 +93,14 @@ define([
         }
       });
     },
-    _render: function() {
-      this.render();
+    _fixDate: function(value) {
+      var d = value.split('-');
+      return moment(new Date(d[0] + '-' + d[1] + '-' + d[2])).toISOString();
+    },
+
+    onRender: function() {
       componentHandler.upgradeDom();
+      
       this.ui.inputEntryDateFrom.datepicker({
         dateFormat: 'mm-dd-yyyy',
         onSelect: _.bind(function(fd, nd) {
@@ -96,16 +121,6 @@ define([
           return nd;
         }, this)
       });
-    },
-
-    _fixDate: function(value) {
-      var d = value.split('-');
-      return moment(new Date(d[0] + '-' + d[1] + '-' + d[2])).toISOString();
-    },
-
-    onRender: function() {
-      // this.balanceView = new BalanceView();
-      // this.getRegion('balanceRegion').show(this.balanceView);
     },
 
     onClearSearch: function(e) {

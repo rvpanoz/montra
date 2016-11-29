@@ -63,9 +63,8 @@ define([
 
   var Records = Backbone.Collection.extend({
     url: app.baseUrl + "/data/records",
-    comparator: function(r1) {
-      return -moment(r1.get('entry_date')).unix();
-    },
+    sortField: null,
+    sortDir: 1,
     parse: function(response) {
       return response.data;
     },
@@ -81,6 +80,11 @@ define([
       });
       return filtered;
     },
+    comparator: function(m1) {
+      var field = this.sortField;
+      var dir = this.sortDir;
+      return (dir = -1) ? -m1.get(field) : m1.get(field);
+    }
   });
 
   return {
