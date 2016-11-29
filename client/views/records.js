@@ -24,14 +24,17 @@ define([
       'click .sort': 'onSort'
     },
     ui: {
+      dataTable: '.mdl-data-table',
       searchForm: '.search-form',
       inputEntryDateFrom: '#input-entry-date-from',
       inputEntryDateTo: '#input-entry-date-to'
     },
+
     initialize: function() {
       this.collection = new RecordSchema.collection();
       this.collection.fetch();
     },
+
     onSort: function(e) {
       e.preventDefault();
       var dataTable = this.$('.mdl-data-table');
@@ -39,18 +42,20 @@ define([
       this.collection.sortField = element.data('field');
       this.collection.sortDir = element.hasClass('mdl-data-table__header--sorted-descending') ? -1 : 1;
 
+      //mark element
+      element.addClass('sorted');
+
       //sort collection
       this.collection.sort();
 
-      //update UI
       if(this.collection.sortDir == 1) {
-        element.addClass('mdl-data-table__header--sorted-descending');
-        element.removeClass('mdl-data-table__header--sorted-ascending');
+        $element.addClass('mdl-data-table__header--sorted-descending');
+        $element.removeClass('mdl-data-table__header--sorted-ascending');
         this.collection.sortDir = -1;
       } else {
         if(this.collection.sortDir == -1) {
-          element.addClass('mdl-data-table__header--sorted-ascending');
-          element.removeClass('mdl-data-table__header--sorted-descending');
+          $element.addClass('mdl-data-table__header--sorted-ascending');
+          $element.removeClass('mdl-data-table__header--sorted-descending');
           this.collection.sortDir = 1;
         }
       }
@@ -93,35 +98,23 @@ define([
       });
     },
 
-    _fixDate: function(value) {
-      var d = value.split('-');
-      return moment(new Date(d[0] + '-' + d[1] + '-' + d[2])).toISOString();
+    setDatepickers: function() {
+      for(var z in this.ui) {
+        var contains = 'EntryDate';
+        if(z.indexOf(contains) > 0) {
+          this.ui[z].datepicker({
+            dateFormat: 'mm-dd-yyyy',
+          });
+        }
+      }
     },
 
     onRender: function() {
-      debugger;
       componentHandler.upgradeDom();
+    },
 
-      this.ui.inputEntryDateFrom.datepicker({
-        dateFormat: 'mm-dd-yyyy',
-        onSelect: _.bind(function(fd, nd) {
-          var d = moment(nd);
-          if (d.isValid()) {
-            this.$('.mdl-input-entry-date-from').addClass('is-dirty');
-          }
-          return nd;
-        }, this)
-      });
-      this.ui.inputEntryDateTo.datepicker({
-        dateFormat: 'mm-dd-yyyy',
-        onSelect: _.bind(function(fd, nd) {
-          var d = moment(nd);
-          if (d.isValid()) {
-            this.$('.mdl-input-entry-date-to').addClass('is-dirty');
-          }
-          return nd;
-        }, this)
-      });
+    onAttach: function() {
+      this.setDatepickers();
     },
 
     onClearSearch: function(e) {
@@ -140,7 +133,9 @@ define([
       _.each(serializedData, function(d) {
         var datefield = $('#' + d.name);
         if (d.value) {
-          data[d.name] = (datefield.length) ? this._fixDate(d.value) : d.value;
+          var fd = d.value.split('-');
+          var fdm = moment(new Date(fd[0] + '-' + fd[1] + '-' + fd[2])).toISOString();
+          data[d.name] = (datefield.length) ? fdm : d.value;
         }
       }, this);
 
@@ -152,12 +147,13 @@ define([
           success: _.bind(function(response) {
             if (response && response.data) {
               this.collection.reset(response.data);
-              this._render();
+              this.render();
             }
             return false;
           }, this)
         });
       }
+      
       return false;
     }
   });
