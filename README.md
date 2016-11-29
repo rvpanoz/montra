@@ -34,7 +34,7 @@ HapiJS
 
 ## Authors
 
-* **rvpanoz** - *Initial work* -
+**rvpanoz(at)gmail.com**  -
 
 ## License
 
