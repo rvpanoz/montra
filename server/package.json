@@ -18,6 +18,8 @@
     "inert": "^4.0.2",
     "lodash": "^4.17.2",
     "mongoose": "^4.6.6",
+    "mongoose-paginate": "^5.0.3",
+
     "vision": "^4.1.0",
     "winston": "^2.3.0",
     "wreck": "^10.0.0",

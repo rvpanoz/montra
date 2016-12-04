@@ -35,9 +35,12 @@ define([
     },
 
     serializeData: function() {
-      var d = this.model.get('created_at');
+      var dc = this.model.get('created_at');
+      var du = this.model.get('updated_at');
+
       return _.extend(this.model.toJSON(), {
-        'date_created': moment(d).format('DD/MM/YYYY HH:mm')
+        'date_created': moment(dc).format('DD/MM/YYYY HH:mm'),
+        'date_updated': moment(du).format('DD/MM/YYYY HH:mm')
       });
     }
   });

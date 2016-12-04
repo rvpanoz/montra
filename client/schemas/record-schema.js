@@ -15,10 +15,9 @@ define([
     defaults: {
       amount: null,
       payment_method: 1,
-      entry_date: moment(new Date()).format('DD/MM/YYYY'),
       kind: 1,
+      entry_date: new Date(),
       category_id: null,
-      notes: '',
       updated_at: new Date(),
       created_at: new Date()
     },
@@ -27,11 +26,18 @@ define([
       return Backbone.sync.call(this, method, model, options);
     },
     parse: function(response) {
+      var data;
       if (response.success == false) {
         let error = (response.error) ? response.error : false;
         this.trigger('invalid', this, error);
+      } else {
+        if(response.data) {
+          data = response.data;
+          data.entry_date = moment(data.entry_date).format('DD/MM/YYYY');
+        }
       }
-      return response.data;
+
+      return data;
     },
     validate: function(attrs) {
       var errors = [];

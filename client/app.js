@@ -77,6 +77,17 @@ define([
       app.navigate('user-signin');
       app.onAppEvent('userstate:change');
       $('.mdl-layout__header').hide();
+    },
+
+    wait: function(active) {
+      var spinner = $('.mdl-spinner');
+      if(active == true) {
+        spinner.addClass('is-active');
+      } else if(active == false){
+        setTimeout(function() {
+          spinner.removeClass('is-active');
+        }, 1000);
+      }
     }
   });
 

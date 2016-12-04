@@ -13,7 +13,8 @@ requirejs.config({
     marionette: './bower_components/backbone.marionette/lib/backbone.marionette',
     moment: './bower_components/moment/min/moment.min',
     tpl: 'tpl',
-    avgrund: './plugins/avgrund/jquery.avgrund.min'
+    avgrund: './plugins/avgrund/jquery.avgrund.min',
+    animatedModal: './plugins/animated-modal/animatedModal'
   },
   shim: {
     jquery: {
@@ -32,7 +33,11 @@ requirejs.config({
       deps: ['jquery']
     },
     avgrund: {
-      exports: '$.fn.avgrund',
+      exports: 'avgrund',
+      deps: ['jquery']
+    },
+    animatedModal: {
+      exports: '$.fn.animatedModal',
       deps: ['jquery']
     }
   },
@@ -48,7 +53,8 @@ requirejs([
   'app',
   'utils',
   'datepicker',
-  'avgrund'
+  'avgrund',
+  'animatedModal'
 ], ($, _, Backbone, stickit, config, app, utils) => {
 
   $.ajaxSetup({

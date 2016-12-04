@@ -1,18 +1,42 @@
 <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--4-col">
-        <!-- <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">New category</button> -->
+  <div class="mdl-cell mdl-cell--2-col"></div>
+  <div class="mdl-cell mdl-cell--8-col">
+    <div class="mdl-card">
+
+        <div class="mdl-card__title">
+            <h3> <% if(items.isNew) { %> New category <% } else { %> Edit category <% } %></h3>
+        </div>
+
+        <div class="mdl-card__supporting-text">
+            <form action="#" class="form">
+
+                <div class="form__article">
+                    <div class="mdl-grid">
+                        <div class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-name">
+                          <input class="mdl-textfield__input" type="text" id="input-name" name="input-name">
+                          <label class="mdl-textfield__label" for="input-name">Category name</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mdl-layout-spacer"></div>
+
+                <div class="form__action">
+                  <div class="mdl-grid">
+                      <div class="mdl-cell mdl-cell--8-col"></div>
+                      <div class="mdl-cell mdl-cell--2-col">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored back">Cancel</button>
+                      </div>
+                      <div class="mdl-cell mdl-cell--2-col">
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored save">Save</button>
+                      </div>
+                  </div>
+                </div>
+
+            </form>
+        </div>
     </div>
-    <div class="mdl-cell mdl-cell--8-col">
-        <form action="#">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-name">
-                <input class="mdl-textfield__input" type="text" id="input-name" name="input-name">
-                <label class="mdl-textfield__label" for="input-name">Category name</label>
-            </div>
-        </form>
-        <div class="mdl-layout-spacer"></div>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored save">Save</button>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored back">Cancel</button>
-    </div>
+  </div>
 </div>
 
 <div id="snackbar" class="mdl-js-snackbar mdl-snackbar">

@@ -8,13 +8,7 @@ define(['moment'], function(moment) {
       '[name="input-payment-method"]': 'payment_method',
       '[name="input-kind"]': 'kind',
       '#input-entry-date': {
-        observe: 'entry_date',
-        onGet: function(value) {
-          var d = new Date(value);
-          if(moment(d).isValid()) {
-            return moment(d).format('DD/MM/YYYY');
-          }
-        }
+        observe: 'entry_date'
       },
       '#input-category': {
         observe: 'category_id',

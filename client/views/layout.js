@@ -2,8 +2,8 @@ define([
   'marionette',
   'templates',
   '../views/header',
-  '../views/sidebar'
-], function(Marionette, templates, HeaderView, SidebarView) {
+  '../views/drawer'
+], function(Marionette, templates, HeaderView, DrawerView) {
   "use strict";
 
   return Marionette.View.extend({
@@ -11,6 +11,7 @@ define([
     template: templates.layout,
     regions: {
       headerRegion: '#header-content',
+      // drawerRegion: '#drawer-content',
       mainRegion: '#main-content'
     },
     events: {
@@ -36,22 +37,23 @@ define([
       if (e) {
         e.preventDefault();
       }
-      var cls = this.$(e.currentTarget).data('cls');
-      if (cls) {
-        app.navigate(cls);
-      }
       var drawer = this.$('.mdl-layout__drawer');
-      if (drawer) {
+      var cls = this.$(e.currentTarget).data('cls');
+
+      if (drawer && cls) {
         drawer.toggleClass('is-visible');
-        this.$('.mdl-layout__obfuscator').toggleClass('is-visible')
+        this.$('.mdl-layout__obfuscator').removeClass('is-visible');
+        app.navigate(cls);
       }
       return false;
     },
     onAttach: function() {
       this.getRegion('headerRegion').show(this.headerView);
+      // this.getRegion('drawerRegion').show(this.drawerView);
     },
     onRender: function() {
       this.headerView = new HeaderView();
+      // this.drawerView = new DrawerView();
     }
   });
 
