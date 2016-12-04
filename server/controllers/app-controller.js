@@ -128,7 +128,7 @@ module.exports = function(server) {
         if(!_.has(params, 'entry_date')) {
           _.extend(params, {
             entry_date: {
-              '$gt': moment().startOf('month').toISOString(),
+              '$gte': moment().startOf('month').toISOString(),
               '$lte': moment().endOf('month').toISOString()
             }
           });
