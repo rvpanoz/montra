@@ -13,8 +13,8 @@ requirejs.config({
     marionette: './bower_components/backbone.marionette/lib/backbone.marionette',
     moment: './bower_components/moment/min/moment.min',
     tpl: 'tpl',
-    avgrund: './plugins/avgrund/jquery.avgrund.min',
-    animatedModal: './plugins/animated-modal/animatedModal'
+    tether: './bower_components/tether/dist/js/tether',
+    shepherd: './bower_components/tether-shepherd/dist/js/shepherd'
   },
   shim: {
     jquery: {
@@ -32,13 +32,13 @@ requirejs.config({
       exports: 'datepicker',
       deps: ['jquery']
     },
-    avgrund: {
-      exports: 'avgrund',
+    tether: {
+      exports: 'tether',
       deps: ['jquery']
     },
-    animatedModal: {
-      exports: '$.fn.animatedModal',
-      deps: ['jquery']
+    shepherd: {
+      exports: 'shepherd',
+      deps: ['tether']
     }
   },
   waitSeconds: 30
@@ -52,10 +52,9 @@ requirejs([
   'config',
   'app',
   'utils',
-  'datepicker',
-  'avgrund',
-  'animatedModal'
-], ($, _, Backbone, stickit, config, app, utils) => {
+  'shepherd',
+  'datepicker'
+], ($, _, Backbone, stickit, config, app, utils, Shepherd) => {
 
   $.ajaxSetup({
     cache: false,
@@ -66,21 +65,42 @@ requirejs([
   });
 
   $(document).ajaxError(function(e, xhr, options, type) {
-    if(type && (type == "Unauthorized")) {
+    if (type && (type == "Unauthorized")) {
       return app.navigate('user-signin');
     }
   });
 
-  $(document).ajaxStart(function(){
-    $(".loading").css("display", "block");
+  $(document).ajaxStart(function() {
+    app.wait(true);
   });
 
-  $(document).ajaxComplete(function(){
-    $(".loading").css("display", "none");
+  $(document).ajaxComplete(function() {
+    app.wait(false);
   });
 
   $(document).ready(function() {
     componentHandler.upgradeDom();
+
+    var tour = new Shepherd.Tour({
+      defaults: {
+        classes: 'shepherd-theme-arrows'
+      }
+    });
+
+    tour.addStep('add_category', {
+      title: 'Welcome',
+      text: 'In order to create records you have to create your categories first',
+      attachTo: '.step1 right',
+      buttons: [
+        {
+          text: 'Close',
+          action: tour.next
+        }
+      ]
+    });
+
+    tour.start();
+
   });
 
   //start the application

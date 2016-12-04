@@ -42,6 +42,8 @@ define([
 
       if (drawer && cls) {
         drawer.toggleClass('is-visible');
+        $('nav > a').removeClass('mdl-navigation__link--current');
+        $(e.currentTarget).toggleClass('mdl-navigation__link--current');
         this.$('.mdl-layout__obfuscator').removeClass('is-visible');
         app.navigate(cls);
       }

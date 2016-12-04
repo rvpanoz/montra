@@ -24,8 +24,7 @@ define([
       'click .navigate': 'onNavigate',
       'click button.filter': 'onSearch',
       'click .clear': 'onClearSearch',
-      'click .sort': 'onSort',
-      // 'change .mntr-filter-form': 'onSearch'
+      'click .sort': 'onSort'
     },
     ui: {
       dataTable: '.mdl-data-table',
@@ -34,13 +33,14 @@ define([
       inputEntryDateFrom: '#input-entry-date-from',
       inputEntryDateTo: '#input-entry-date-to',
       divCategory: '.mdl-select',
-      inputCategory_id: '#input-category'
+      inputCategory_id: '#input-category',
+      next: 'button.next',
+      prev: 'button.prev'
     },
 
     initialize: function() {
       this.collection = new RecordSchema.collection();
       this.categories = new CategorySchema.collection();
-
       this.collection.fetch();
     },
 
@@ -173,9 +173,7 @@ define([
       }, this));
     },
 
-    onAttach: function() {
-
-    },
+    onAttach: function() {},
 
     onClearSearch: function(e) {
       e.preventDefault();
@@ -187,8 +185,6 @@ define([
       if (e) {
         e.preventDefault();
       }
-
-      app.wait(true);
 
       var data = _.extend({});
       var serializedData = this.ui.searchForm.serializeArray();
@@ -212,7 +208,6 @@ define([
             if (response && response.data) {
               this.collection.reset(response.data);
               this.render();
-              app.wait(false);
             }
             return false;
           }, this)

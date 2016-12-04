@@ -72,6 +72,9 @@ define([
     sortField: null,
     sortDir: 1,
     parse: function(response) {
+      if(response.totals) {
+        this.totals = response.totals;
+      }
       return response.data;
     },
     get_expenses: function() {
