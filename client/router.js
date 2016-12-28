@@ -21,7 +21,7 @@ define([
 
 
         if((!token || _.isNull(token)) && ($.inArray(url.cls, app.publicUrls) == -1)) {
-          url = app.signinUrl;
+          url = app.userForms;
         }
 
         require(["views/" + url.cls], (View) => {

@@ -27,8 +27,12 @@ define([
     validate: function (attrs) {
       var errors = [];
 
-      function ValidateEmail(mail) {
-        return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail));
+      function ValidateEmail(email) {
+        var regExp = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
+        if (regExp.test(email)) {
+          return true;
+        }
+        return false;
       }
 
       if (!attrs.email || _.isEmpty(attrs.email)) {
@@ -38,7 +42,7 @@ define([
         });
       } else {
         var isValidEmail = ValidateEmail(attrs.email);
-        if(!isValidEmail) {
+        if (!isValidEmail) {
           errors.push({
             field: 'email',
             message: 'Email is invalid'

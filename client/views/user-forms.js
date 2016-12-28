@@ -14,8 +14,9 @@ define([
         '#signup-input-password': 'password'
       },
       events: {
+        'click button.add': 'onSwitchForms',
         'click button.signin': 'onEventSignin',
-        'click button.register': 'onEventRegister'
+        'click button.signup': 'onEventRegister'
       },
       ui: {
         snackbar: '#snackbar'
@@ -31,6 +32,22 @@ define([
           this.ui.snackbar[0].MaterialSnackbar.showSnackbar({
             message: errors[0].message
           });
+        }
+        return false;
+      },
+
+      onSwitchForms: function(e) {
+        e.preventDefault();
+
+        var signinForm = this.$('.user-signin');
+        var signupForm = this.$('.user-signup');
+
+        if(signinForm.is(":visible")) {
+          signinForm.hide();
+          signupForm.show();
+        } else {
+          signinForm.show();
+          signupForm.hide();
         }
         return false;
       },
@@ -77,7 +94,8 @@ define([
         e.preventDefault();
         this.model.save(null, {
           success: _.bind(function(model) {
-            app.navigate('user-signin');
+            this.$('.user-signin').show();
+            this.$('.user-signup').hide();
           }, this),
           error: _.bind(function() {
             this.ui.snackbar[0].MaterialSnackbar.showSnackbar({
