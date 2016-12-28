@@ -4,9 +4,14 @@
 <td class="mdl-data-table__cell--non-numeric">
     <%= entry_date_formatted %>
 </td>
-<td>&euro;<%= amount %></td>
-<td>
+<td class="mdl-data-table__cell--non-numeric">
+  <span class="label label--mini background-color--<%= payment_method %>"><%= payment_method_descr %></span>
+</td>
+<td class="mdl-data-table__cell--non-numeric">
   <span class="label label--mini background-color--<%= kind_color %>"><%= kind_descr %></span>
+</td>
+<td class="mdl-data-table__cell">
+  &euro;<%= amount %>
 </td>
 <td>
   <button id="demo-menu-lower-right-<%= _id %>"

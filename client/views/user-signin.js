@@ -23,6 +23,9 @@ define([
       initialize: function() {
         this.model = new UserSchema.model();
       },
+      onAttach: function() {
+        $('.mdl-layout__drawer').hide();
+      },
       onRender: function() {
         this.stickit();
       },

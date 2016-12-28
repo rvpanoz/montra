@@ -11,6 +11,7 @@ const wlog = require('winston');
 const _ = require('lodash');
 const moment = require('moment');
 const createToken = require('../token');
+const utils = require('../util');
 const User = require('../models/user');
 const Record = require('../models/record');
 const Category = require('../models/category');
@@ -71,12 +72,28 @@ module.exports = function(server) {
 
     records: {
       browse: function(uid, reply, dataParams) {
+        function str2bool(strvalue){
+          var ret;
+          if(strvalue && typeof strvalue == 'string') {
+            return (strvalue.toLowerCase() == 'false' || strvalue == '0') ? false : true;
+          }
+        }
+
         var params = _.extend({}, {
           user_id: uid
         });
         var q = {};
 
         if (dataParams) {
+
+          if(dataParams['input-category']) {
+            var categoryId = dataParams['input-category'];
+            if(str2bool(categoryId) == true) {
+              _.extend(params, {
+                category_id: dataParams['input-category'],
+              });
+            }
+          }
 
           if(dataParams['input-payment-method']) {
             _.extend(params, {
@@ -102,7 +119,7 @@ module.exports = function(server) {
             _.extend(params, {
               entry_date: {
                 '$gte': (edf) ? edf.toISOString() : moment().startOf('month').toISOString(),
-                '$lte': (edt) ? edt.toISOString() : moment().endOf('month').toISOString(),
+                '$lte': (edt) ? edt.toISOString() : moment().endOf('month').toISOString()
               }
             });
           }
@@ -112,7 +129,7 @@ module.exports = function(server) {
           _.extend(params, {
             entry_date: {
               '$gte': moment().startOf('month').toISOString(),
-              '$lte': moment().endOf('month').toISOString(),
+              '$lte': moment().endOf('month').toISOString()
             }
           });
         }
@@ -129,17 +146,23 @@ module.exports = function(server) {
       },
 
       insert: function(uid, data, reply) {
+
         //fix date for mongodb
         var dateString = data.entry_date;
-        var fd = moment(new Date(dateString));
+        var parts = dateString.split('/');
+        var day = parts[0];
+        var month = parts[1];
+        var year = parts[2];
+
+        var fd = moment(utils.stringToDate(dateString,"dd/MM/yyyy","/"));
 
         if (fd.isValid()) {
           data.entry_date = fd.toISOString();
         } else {
           throw Boom.badRequest('Record: Invalid entry date');
         }
-        //save the record
-        let record = new Record(_.extend(data, {
+
+        var record = new Record(_.extend(data, {
           user_id: uid
         }));
 
@@ -183,6 +206,21 @@ module.exports = function(server) {
         }, function(err, record) {
           if (err) {
             throw Boom.badRequest(err);
+          }
+
+          //fix date for mongodb
+          var dateString = data.entry_date;
+          var parts = dateString.split('/');
+          var day = parts[0];
+          var month = parts[1];
+          var year = parts[2];
+
+          var fd = moment(utils.stringToDate(dateString,"dd/MM/yyyy","/"));
+
+          if (fd.isValid()) {
+            data.entry_date = fd.toISOString();
+          } else {
+            throw Boom.badRequest('Record: Invalid entry date');
           }
 
           record.amount = data.amount;
@@ -271,8 +309,11 @@ module.exports = function(server) {
           if (err) {
             throw Boom.badRequest(err);
           }
+
           // set new attrs
           category.name = data.name;
+          category.updated_at = moment().toISOString();
+
           category.save(function(err, updated_category) {
             if (err) {
               throw Boom.badImplementation('Category:  Error on updating category', err);

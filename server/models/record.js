@@ -4,6 +4,7 @@
 
 //imports
 var Mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 var moment = require('moment');
 
 //definition
@@ -45,5 +46,8 @@ var RecordSchema = new Mongoose.Schema({
     default: new Date()
   }
 });
+
+// add mongoosePaginate plugin
+RecordSchema.plugin(mongoosePaginate);
 
 module.exports = Mongoose.model('Record', RecordSchema);

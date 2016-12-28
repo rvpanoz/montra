@@ -3,7 +3,7 @@ define((require) => {
   return {
     home: require('tpl!templates/home.html'),
     header: require('tpl!templates/header.html'),
-    sidebar: require('tpl!templates/sidebar.html'),
+    drawer: require('tpl!templates/drawer.html'),
     layout: require('tpl!templates/layout.html'),
     record: require('tpl!templates/record.html'),
     category: require('tpl!templates/category.html'),

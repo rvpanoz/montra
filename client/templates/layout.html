@@ -1,21 +1,40 @@
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header has-drawer">
+<div class="mntr-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
 
-    <header class="mdl-layout__header is-casting-shadow" style="display: none;">
+    <header class="mntr-header mdl-layout__header is-casting-shadow">
         <div id="header-content"></div>
     </header>
 
-    <div class="mdl-layout__drawer">
+    <div class="mntr-drawer mdl-layout__drawer">
         <span class="mdl-layout-title">Menu</span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" data-cls="record" href="">New record</a>
-            <a class="mdl-navigation__link" data-cls="category" href="">New category</a>
-            <a class="mdl-navigation__link" data-cls="records" href="">Records</a>
-            <a class="mdl-navigation__link" data-cls="categories" href="">Categories</a>
+          <a class="mdl-navigation__link mdl-navigation__link--current" href="#" data-cls="home">
+              <i class="material-icons" role="presentation">dashboard</i>
+              Dashboard
+          </a>
+          <a class="mdl-navigation__link step2" href="" data-cls="record">
+              <i class="material-icons" role="presentation">add</i>
+              New record
+          </a>
+          <a class="mdl-navigation__link" href="" data-cls="records">
+              <i class="material-icons" role="presentation">list</i>
+              Records
+          </a>
+          <a class="mdl-navigation__link step1" href="" data-cls="category">
+              <i class="material-icons" role="presentation">add</i>
+              New category
+          </a>
+          <a class="mdl-navigation__link" href="" data-cls="categories">
+              <i class="material-icons" role="presentation">list</i>
+              Categories
+          </a>
+          <div class="mdl-layout-spacer"></div>
+          <a class="mdl-navigation__link" href="https://github.com/rvpanoz/montra">
+              <i class="material-icons" role="presentation">link</i>
+              GitHub
+          </a>
         </nav>
     </div>
 
-    <main class="mdl-layout__content">
-        <div class="demo-content" id="main-content"></div>
-    </main>
+    <main class="mdl-layout__content mdl-color--grey-100" id="main-content"></main>
 
 </div>

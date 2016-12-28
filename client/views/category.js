@@ -6,6 +6,7 @@ define([
 
   var CategoryView = Marionette.View.extend({
     template: templates.category,
+    className: 'category-form',
     bindings: {
       '#input-name': 'name'
     },

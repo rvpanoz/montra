@@ -9,6 +9,7 @@ define([
 
   return Marionette.View.extend({
     template: templates.record,
+    className: 'record-form',
     modelEvents: {
       'change': 'onModelChange',
       'sync': '_render'
@@ -17,6 +18,7 @@ define([
       'update:element': 'onUpdateElement'
     },
     events: {
+      'click .navigate': 'onNavigate',
       'click .save': 'onEventSave',
       'click .back': 'onEventBack'
     },
@@ -80,16 +82,25 @@ define([
 
     _createCategories: function(categories) {
       _.each(categories.data, function(category) {
-        this.ui.inputCategory_id.append('<option value="' + category._id + '">' + category.name + "</options");
+        this.ui.inputCategory_id.append('<option value="' + category._id + '">' + category.name + "</option>");
       }, this);
       this.ui.inputCategory_id.val(this.model.get('category_id'));
+    },
+
+    onNavigate: function(e) {
+      e.preventDefault();
+      var cls = $(e.currentTarget).data('cls');
+      if(cls) {
+        app.navigate(cls);
+      }
+      return false;
     },
 
     onModelChange: function(model) {
       for(var z in model.changed) {
         var element = this.$('.mdl-' + z);
         if(element.length) {
-          element.addClass('is-dirty');
+          element.addClass('is-dirty').removeClass('is-invalid');
         }
       }
     },
@@ -105,20 +116,24 @@ define([
     onAttach: function() {
       this.ui.inputEntryDate.datepicker({
         dateFormat: 'dd/mm/yyyy',
-        onSelect: _.bind(function(fd, nd) {
-          var d = moment(nd);
-          if(d.isValid()) {
-            this.model.set('entry_date', d.format());
-          }
+        autoClose: true,
+        onSelect: _.bind(function(d, fd) {
+          this.model.set('entry_date', d);
         }, this)
       });
+      if(this.model.isNew()) {
+        this.model.set('entry_date', moment().format('DD/MM/YYYY'));
+      } else {
+        var d = this.model.get('entry_date');
+        this.ui.inputEntryDate.val(d);
+      }
+
     },
 
     onEventSave: function(e) {
       if(e) {
         e.preventDefault();
       }
-
       this.model.save(null, {
         success: _.bind(this.onEventSaveCallback, this)
       });

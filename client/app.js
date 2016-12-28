@@ -68,6 +68,7 @@ define([
         app.navigate('home');
         app.onAppEvent('userstate:change');
         $('.mdl-layout__header').show();
+        $('.mdl-layout__drawer').show();
       }
     },
 
@@ -77,6 +78,20 @@ define([
       app.navigate('user-signin');
       app.onAppEvent('userstate:change');
       $('.mdl-layout__header').hide();
+      $('.mdl-layout__drawer').hide();
+    },
+
+    wait: function(active) {
+      var spinner = $('.mdl-spinner');
+      if(active == true) {
+        spinner.addClass('is-active');
+        $('.mdl-layout__obfuscator').addClass('is-visible');
+      } else if(active == false){
+        setTimeout(function() {
+          spinner.removeClass('is-active');
+          $('.mdl-layout__obfuscator').removeClass('is-visible');
+        }, 1000);
+      }
     }
   });
 
