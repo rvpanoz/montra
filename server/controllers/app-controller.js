@@ -46,8 +46,7 @@ module.exports = function(server) {
         });
       },
       insert: function(reply, attrs) {
-        let user = new User(attrs);
-        user.admin = false;
+        var user = new User(attrs);
 
         hashPassword(attrs.password, (err, hash) => {
           if (err) {

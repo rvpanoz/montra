@@ -17,7 +17,8 @@ const UserSchema = new Schema({
   },
   admin: {
     type: Boolean,
-    required: true
+    required: true,
+    default: false
   },
   updated_at: {
     type: Date
