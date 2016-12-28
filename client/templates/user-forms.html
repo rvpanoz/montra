@@ -1,0 +1,66 @@
+<div class="mdl-layout mdl-js-layout mdl-color--grey-100">
+    <main class="mdl-layout__content">
+        <h2 style="text-align: center;">Welcome</h2>
+        <div class="user-signin">
+            <div class="mdl-card mdl-shadow--6dp">
+                <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+                    <h2 class="mdl-card__title-text">Sign in</h2>
+                    <button id="signup-tooltip" class="rotate mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored add">
+                      <i class="material-icons">add</i>
+                    </button>
+                    <div class="mdl-tooltip" for="signup-tooltip">Click to Sign up</div>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="signin-input-email" name="signin-input-email" />
+                            <label class="mdl-textfield__label" for="signin-input-email">Email</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="password" id="signin-input-password" name="signin-input-password" />
+                            <label class="mdl-textfield__label" for="signin-input-password">Password</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect signin">Sign in</button>
+                </div>
+            </div>
+        </div>
+        <div class="user-signup" style="display: none;">
+            <div class="mdl-card mdl-shadow--6dp">
+                <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+                    <h2 class="mdl-card__title-text">Sign up</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <form action="#">
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="input-first-name" name="input-first-name" />
+                            <label class="mdl-textfield__label" for="input-first-name">First name</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="input-last-name" name="input-last-name" />
+                            <label class="mdl-textfield__label" for="input-last-name">Last name</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="text" id="input-email" name="input-email" />
+                            <label class="mdl-textfield__label" for="input-email">Email</label>
+                        </div>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="password" id="input-password" name="input-password" />
+                            <label class="mdl-textfield__label" for="input-password">Password</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect signup">Sign up</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>

@@ -5,7 +5,7 @@
         </div>
         <div class="mntr-filter">
             <form action="#" class="mntr-filter-form">
-                <div class="mntr-filter-block">
+                <div class="mntr-filter-block first">
                     <h4>Date range</h4>
                     <div class="mntr-filter-content">
                         <div class="mdl-grid">
@@ -44,33 +44,37 @@
                     <h4>Payment and Kind</h4>
                     <div class="mntr-filter-content">
                         <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--6-col">
-                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-1" for="input-kind-1">
-                                <input type="radio" id="input-kind-1" class="mdl-radio__button" name="input-kind" value="1">
-                                <span class="mdl-radio__label">Expense</span>
-                              </label>
+                            <div class="mdl-cell mdl-cell--12-col">
+                                <div class="mdl-grid">
+                                    <div class="mdl-cell mdl-cell--6-col">
+                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-1" for="input-kind-1">
+                                          <input type="radio" id="input-kind-1" class="mdl-radio__button" name="input-kind" value="1">
+                                          <span class="mdl-radio__label">Expense</span>
+                                        </label>
+                                    </div>
+                                    <div class="mdl-cell mdl-cell--6-col">
+                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-2" for="input-kind-2">
+                                        <input type="radio" id="input-kind-2" class="mdl-radio__button" name="input-kind" value="2">
+                                        <span class="mdl-radio__label">Income</span>
+                                      </label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mdl-cell mdl-cell--6-col">
-                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-2" for="input-kind-2">
-                                <input type="radio" id="input-kind-2" class="mdl-radio__button" name="input-kind" value="2">
-                                <span class="mdl-radio__label">Income</span>
-                              </label>
-                            </div>
-                        </div>
-
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--6-col">
-                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-payment-method-1" for="input-payment-method-1">
-                                <input type="radio" id="input-payment-method-1" class="mdl-radio__button" name="input-payment-method" value="1">
-                                <span class="mdl-radio__label">Cash</span>
-                              </label>
-                            </div>
-
-                            <div class="mdl-cell mdl-cell--6-col">
-                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-payment-method-2" for="input-payment-method-2">
-                                <input type="radio" id="input-payment-method-2" class="mdl-radio__button" name="input-payment-method" value="2">
-                                <span class="mdl-radio__label">Credit card</span>
-                              </label>
+                            <div class="mdl-cell mdl-cell--12-col">
+                                <div class="mdl-grid">
+                                    <div class="mdl-cell mdl-cell--6-col">
+                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-1" for="input-payment-1">
+                                              <input type="radio" id="input-payment-1" class="mdl-radio__button" name="input-payment" value="1">
+                                              <span class="mdl-radio__label">Cash</span>
+                                            </label>
+                                    </div>
+                                    <div class="mdl-cell mdl-cell--6-col">
+                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-payment-2" for="input-payment-2">
+                                            <input type="radio" id="input-payment-2" class="mdl-radio__button" name="input-payment" value="2">
+                                            <span class="mdl-radio__label">Credit card</span>
+                                          </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -109,15 +113,5 @@
             <tbody class="records-items"></tbody>
         </table>
     </div>
-    <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--4-col-tablet mdl-cell--4-col-phone mntr-cards">
-        <div class="mntr-options mdl-card mdl-color--deep-purple-500 mdl-shadow--2dp">
-            <div class="mdl-card__supporting-text mdl-color-text--blue-grey-50">
-                <h4>Incomes: <%= stats.incomes %>&nbsp;&euro;</h4>
-                <h4>Expenses: <%= stats.expenses %>&nbsp;&euro;</h4>
-                <hr/>
-                <h4>Balance: <%= stats.balance %>&nbsp;&euro;</h4>
-            </div>
-        </div>
-
-    </div>
+    <div class="mdl-cell mdl-cell--4"></div>
 </div>

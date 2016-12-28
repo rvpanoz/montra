@@ -1,14 +1,10 @@
 define([
   'marionette',
-  'templates',
-  'shepherd'
-], function(Marionette, templates, Shepherd) {
+  'templates'
+], function(Marionette, templates) {
 
   return Marionette.View.extend({
-    template: templates.home,
-    onAttach: function() {
-      
-    }
+    template: templates.home
   });
 
 });

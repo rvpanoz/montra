@@ -13,8 +13,7 @@ define((require) => {
     recordItemView: require('tpl!templates/record-listitem.html'),
     categoriesSelect: require('tpl!templates/microtemplates/categories-select.html'),
     categoryOption: require('tpl!templates/microtemplates/category-option.html'),
-    userRegister: require('tpl!templates/user-register.html'),
-    userSignin: require('tpl!templates/user-signin.html'),
+    userForms: require('tpl!templates/user-forms.html'),
     balanceView: require('tpl!templates/balance-view.html')
   }
 

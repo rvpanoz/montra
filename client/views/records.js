@@ -73,17 +73,10 @@ define([
       e.preventDefault();
       var $dataTable = this.$('.mdl-data-table');
       var $element = this.$(e.currentTarget);
-<<<<<<< HEAD
-      this.collection.sortField = $element.data('field');
-      this.collection.sortDir = $element.hasClass('mdl-data-table__header--sorted-descending') ? -1 : 1;
 
-      //mark element
-      $element.addClass('sorted');
-=======
 
       this.collection.sortField = $element.data('field');
       this.collection.sortDir = $element.hasClass('mdl-data-table__header--sorted-descending') ? -1 : 1;
->>>>>>> f1abd69595ea3a6a60bd2136da7628f50d59fc38
 
       //sort collection
       this.collection.sort();

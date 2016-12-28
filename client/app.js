@@ -14,13 +14,10 @@ define([
     homeUrl: {
       "cls": "home"
     },
-    signinUrl: {
-      "cls": "user-signin"
+    userForms: {
+      "cls": "user-forms"
     },
-    registerUrl: {
-      "cls": "user-register"
-    },
-    publicUrls: ['user-signin', 'user-register'],
+    publicUrls: ['user-forms'],
 
     onBeforeStart: function() {
       this.router = new Router();

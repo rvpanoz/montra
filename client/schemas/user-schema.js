@@ -1,8 +1,8 @@
 define([
   'backbone', 'underscore'
-], function(Backbone, _) {
+], function (Backbone, _) {
 
-  var User =  Backbone.Model.extend({
+  var User = Backbone.Model.extend({
     idAttribute: '_id',
 
     url: function () {
@@ -20,24 +20,36 @@ define([
       created_at: new Date()
     },
 
-    parse: function(response) {
+    parse: function (response) {
       return response.data;
     },
 
-    validate: function(attrs) {
+    validate: function (attrs) {
       var errors = [];
 
-      if(!attrs.email || _.isEmpty(attrs.email)) {
-        errors.push({
-          field: 'email',
-          error: 'Field email is required'
-        });
+      function ValidateEmail(mail) {
+        return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail));
       }
 
-      if(!attrs.password || _.isEmpty(attrs.password)) {
+      if (!attrs.email || _.isEmpty(attrs.email)) {
+        errors.push({
+          field: 'email',
+          message: 'Field email is required'
+        });
+      } else {
+        var isValidEmail = ValidateEmail(attrs.email);
+        if(!isValidEmail) {
+          errors.push({
+            field: 'email',
+            message: 'Email is invalid'
+          });
+        }
+      }
+
+      if (!attrs.password || _.isEmpty(attrs.password)) {
         errors.push({
           field: 'password',
-          error: 'Field password is required'
+          message: 'Field password is required'
         });
       }
 
@@ -49,7 +61,7 @@ define([
 
     url: app.baseUrl + "/data/users",
 
-    parse: function(response) {
+    parse: function (response) {
       return response.data;
     }
   });

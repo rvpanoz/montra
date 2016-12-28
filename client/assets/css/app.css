@@ -1,6 +1,22 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/roboto/Roboto-Light.eot');
+    src: url('../fonts/roboto/Roboto-Light.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/roboto/Roboto-Light.woff') format('woff'),
+         url('../fonts/roboto/Roboto-Light.ttf') format('truetype'),
+         url('../fonts/roboto/Roboto-Light.svg#RobotoThinItalic') format('svg');
+    font-weight: 200;
+    font-style: italic;
+}
+
 #app-content {
     width: 100%;
     height: 100%;
+}
+
+.center-content {
+  align-items: center;
+  justify-content: center;
 }
 
 .mdl-spinner {
@@ -15,28 +31,32 @@ a {
     text-decoration: none;
 }
 
-.shepherd-step {
-  z-index: 999 !important;
-}
-
-.user-signin .mdl-layout {
+.user-forms .mdl-layout {
     align-items: center;
     justify-content: center;
 }
 
-.user-signin .mdl-layout__content {
+.user-forms .mdl-layout__content {
     padding: 24px;
     flex: none;
 }
 
-.user-register .mdl-layout {
+.user-forms .mdl-layout {
     align-items: center;
     justify-content: center;
 }
 
-.user-register .mdl-layout__content {
+.user-forms .mdl-layout__content {
     padding: 24px;
     flex: none;
+}
+
+.user-forms .user-signin h2 {
+  padding: 10px;
+}
+
+.user-forms button.add {
+  left: 72px;
 }
 
 .required-field::before {
@@ -52,6 +72,14 @@ a {
     background-color: #ffffff;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.08);
     z-index: 1;
+}
+
+.mntr-filter-content {
+  display: none;
+}
+
+.first .mntr-filter-content {
+  display: block;
 }
 
 @media only screen and (min-width: 768px) .mntr-filter {
@@ -141,7 +169,7 @@ a {
     position: absolute;
     top: 0;
     left: 0;
-    width: 320px;
+    width: 480px;
     height: 100%;
     background: #ffffff;
     box-shadow: 4px 4px 20px transparent;
@@ -259,12 +287,6 @@ a {
 
 /* overrides */
 
-
-/*.mdl-layout {
-  align-items: center;
-  justify-content: center;
-}*/
-
 .record-form .mdl-card {
     width: 100%;
 }
@@ -284,6 +306,23 @@ a {
 
 /* end overrides */
 
+/* css animations */
+@keyframes rotateButton {
+  0% {
+    -webkit-transform: translateY(100%) rotate(-90deg);
+    -moz-transform: translateY(100%) rotate(-90deg);
+    -ms-transform: translateY(100%) rotate(-90deg);
+    -o-transform: translateY(100%) rotate(-90deg);
+    transform: translateY(100%) rotate(-90deg);
+  }
+}
+
+.rotate {
+  /*name, duration, iteration-count*/
+  animation: rotateButton 1s;
+}
+
+/* end css animations */
 
 /* pagination */
 
@@ -356,6 +395,5 @@ a {
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#565b5f), to(#3e4347));
     background: -moz-linear-gradient(0% 0% 270deg, #565b5f, #3e4347);
 }
-
 
 /* end pagination */
