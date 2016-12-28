@@ -2,14 +2,11 @@
   <div class="mdl-cell mdl-cell--2-col"></div>
   <div class="mdl-cell mdl-cell--8-col">
     <div class="mdl-card">
-
         <div class="mdl-card__title">
-            <h3> <% if(items.isNew) { %> New record <% } else { %> Edit record <% } %></h3>
+            <h2 class="mdl-card__title-text"> <% if(items.isNew) { %> New record <% } else { %> Edit record <% } %></h2>
         </div>
-
         <div class="mdl-card__supporting-text">
             <form action="#" class="form">
-
                 <div class="form__article">
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-amount">
@@ -18,7 +15,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form__article">
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-entry_date">
@@ -27,7 +23,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form__article">
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-category_id">
@@ -43,7 +38,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form__article">
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--8-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-notes">
@@ -54,7 +48,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form__article">
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--4-col">
@@ -70,7 +63,6 @@
                             </label>
                         </div>
                     </div>
-
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--4-col">
                             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-payment-method-1" for="input-payment-method-1">
@@ -78,7 +70,6 @@
                               <span class="mdl-radio__label">Cash</span>
                             </label>
                         </div>
-
                         <div class="mdl-cell mdl-cell--4-col">
                             <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-payment-method-2" for="input-payment-method-2">
                               <input type="radio" id="input-payment-method-2" class="mdl-radio__button" name="input-payment-method" value="2">
@@ -87,21 +78,14 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="mdl-layout-spacer"></div>
-
                 <div class="form__action">
                   <div class="mdl-grid">
-                      <div class="mdl-cell mdl-cell--8-col"></div>
-                      <div class="mdl-cell mdl-cell--2-col">
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored back">Cancel</button>
-                      </div>
                       <div class="mdl-cell mdl-cell--2-col">
                         <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored save">Save</button>
                       </div>
                   </div>
                 </div>
-
             </form>
         </div>
     </div>

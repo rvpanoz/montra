@@ -14,6 +14,7 @@ define([
         '#signup-input-password': 'password'
       },
       events: {
+        'click button.back': 'onSwitchForms',
         'click button.add': 'onSwitchForms',
         'click button.signin': 'onEventSignin',
         'click button.signup': 'onEventRegister'

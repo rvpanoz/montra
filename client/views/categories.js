@@ -13,8 +13,7 @@ define([
       'sync': '_render'
     },
     events: {
-      'click .navigate': 'onNavigate',
-      'click .add': 'onEventAdd'
+      'click .navigate': 'onNavigate'
     },
     initialize: function() {
       _.bindAll(this, '_render');
@@ -25,13 +24,8 @@ define([
       e.preventDefault();
       var cls = $(e.currentTarget).data('cls');
       if(cls) {
-        app.navigate(cls);
+        return app.navigate(cls);
       }
-      return false;
-    },
-    onEventAdd: function(e) {
-      e.preventDefault();
-      app.navigate('category');
       return false;
     },
     _render: function() {

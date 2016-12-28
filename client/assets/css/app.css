@@ -55,7 +55,7 @@ a {
   padding: 10px;
 }
 
-.user-forms button.add {
+.user-forms button.add, button.back {
   left: 72px;
 }
 
