@@ -35,7 +35,7 @@ define([
       this.listenTo(app, 'userstate:change', _.bind(function() {
         this.onUpdateUI();
       }, this));
-      
+
     },
 
     onNavigate: function(e) {
@@ -59,15 +59,17 @@ define([
 
     onUpdateUI: function() {
       var token = localStorage.getItem('token');
-      if(!token) {
-        this.headerView.$el.hide();
-        this.$('.mntr-header').hide();
-        this.$('.mntr-drawer').hide();
-      } else {
+
+      this.headerView.$el.hide();
+      this.$('.mntr-header').hide();
+      this.$('.mntr-drawer').hide();
+
+      if(token) {
         this.headerView.$el.show();
         this.$('.mntr-header').show();
         this.$('.mntr-drawer').show();
       }
+
     }
 
   });

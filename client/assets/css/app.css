@@ -55,6 +55,10 @@ a {
   padding: 10px;
 }
 
+.user-forms .user-signup h2 {
+  padding: 10px;
+}
+
 .user-forms button.add, button.back {
   left: 72px;
 }

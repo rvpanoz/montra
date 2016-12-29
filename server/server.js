@@ -33,13 +33,12 @@ var server = new Hapi.Server({
   }
 });
 
+var app = new require('./controllers/app-controller')(server);
+
 // server connection
 server.connection({
   port: config.port,
 });
-
-// application base controller
-let app = new require('./controllers/app-controller')(server);
 
 server.register(require('hapi-auth-jwt'), (err) => {
 
