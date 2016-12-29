@@ -30,6 +30,7 @@ define([
         // I should run componentHandler.upgradeDom() to let MDL render the page.
         componentHandler.upgradeDom();
 
+        $('.mdl-layout__drawer').removeClass('is-visible');
       });
 
       this.listenTo(app, 'userstate:change', _.bind(function() {
