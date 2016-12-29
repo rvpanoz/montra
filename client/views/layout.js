@@ -35,6 +35,7 @@ define([
       this.listenTo(app, 'userstate:change', _.bind(function() {
         this.onUpdateUI();
       }, this));
+      
     },
 
     onNavigate: function(e) {

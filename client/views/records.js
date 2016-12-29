@@ -4,10 +4,9 @@ define([
   'schemas/search-schema',
   'schemas/category-schema',
   'views/recordItemView',
-  'views/balanceView',
   'moment',
   'templates'
-], function(Marionette, RecordSchema, SearchSchema, CategorySchema, RecordItemView, BalanceView, moment, templates) {
+], function(Marionette, RecordSchema, SearchSchema, CategorySchema, RecordItemView, moment, templates) {
 
   return Marionette.CompositeView.extend({
     _searched: false,

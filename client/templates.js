@@ -3,7 +3,6 @@ define((require) => {
   return {
     home: require('tpl!templates/home.html'),
     header: require('tpl!templates/header.html'),
-    drawer: require('tpl!templates/drawer.html'),
     layout: require('tpl!templates/layout.html'),
     record: require('tpl!templates/record.html'),
     category: require('tpl!templates/category.html'),
@@ -13,8 +12,7 @@ define((require) => {
     recordItemView: require('tpl!templates/record-listitem.html'),
     categoriesSelect: require('tpl!templates/microtemplates/categories-select.html'),
     categoryOption: require('tpl!templates/microtemplates/category-option.html'),
-    userForms: require('tpl!templates/user-forms.html'),
-    balanceView: require('tpl!templates/balance-view.html')
+    userForms: require('tpl!templates/user-forms.html')
   }
 
 });

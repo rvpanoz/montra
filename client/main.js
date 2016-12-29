@@ -55,7 +55,7 @@ requirejs([
 
   $(document).ajaxError(function(e, xhr, options, type) {
     if (type && (type == "Unauthorized")) {
-      return app.navigate('user-forms');
+      app.triggerMethod('app:signout');
     }
   });
 

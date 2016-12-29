@@ -24,25 +24,21 @@ define([
     },
 
     navigate: function(cls, opts) {
-      var url = {
+      var url = _.extend({
         cls: cls,
-        params: opts
-      };
+        opts: opts
+      }), params;
       app.router.navigate(JSON.stringify(url), {
         trigger: true
       });
+
+      return false;
     },
 
     onStart: function() {
 
       //show the layout view
       this.showView(new LayoutView());
-
-      if(localStorage.getItem('token')) {
-        $('.mdl-layout__header').show();
-      } else {
-        $('.mdl-layout__header').hide();
-      }
 
       //start backbone history
       if (Backbone.history) {
@@ -64,18 +60,14 @@ define([
         app.token = token;
         app.navigate('home');
         app.onAppEvent('userstate:change');
-        $('.mdl-layout__header').show();
-        $('.mdl-layout__drawer').show();
       }
     },
 
     onSignout: function() {
       localStorage.clear();
       app.token = null;
-      app.navigate('user-signin');
       app.onAppEvent('userstate:change');
-      $('.mdl-layout__header').hide();
-      $('.mdl-layout__drawer').hide();
+      app.navigate('user-forms');
     },
 
     wait: function(active) {
@@ -93,5 +85,6 @@ define([
   });
 
   var app = new Application();
+
   return window.app = app;
 });
