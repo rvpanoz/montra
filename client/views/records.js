@@ -10,13 +10,16 @@ define([
 
   return Marionette.CompositeView.extend({
     _searched: false,
+    page: 1,
     template: templates.browseRecords,
     childView: RecordItemView,
     childViewContainer: '.records-items',
     collectionEvents: {
+      // 'sync': 'onSync',
       'sort': 'render'
     },
     events: {
+      'click .pagination-arrow': 'onPaginate',
       'click .mntr-filter h4': 'onToggleBlock',
       'click .mntr-filter-trigger': 'onToggleFilters',
       'click .mntr-close': 'onToggleFilters',
@@ -40,7 +43,11 @@ define([
     initialize: function() {
       this.collection = new RecordSchema.collection();
       this.categories = new CategorySchema.collection();
-      this.collection.fetch();
+      this.collection.fetch({
+        data: {
+          page: this.page
+        }
+      });
 
       this.listenTo(this.collection, 'change', _.bind(function() {
         this.render();
@@ -48,16 +55,16 @@ define([
     },
 
     _stringToDate(_date, _format, _delimiter) {
-        var formatLowerCase = _format.toLowerCase();
-        var formatItems = formatLowerCase.split(_delimiter);
-        var dateItems = _date.split(_delimiter);
-        var monthIndex = formatItems.indexOf("mm");
-        var dayIndex = formatItems.indexOf("dd");
-        var yearIndex = formatItems.indexOf("yyyy");
-        var month = parseInt(dateItems[monthIndex]);
-        month -= 1;
+      var formatLowerCase = _format.toLowerCase();
+      var formatItems = formatLowerCase.split(_delimiter);
+      var dateItems = _date.split(_delimiter);
+      var monthIndex = formatItems.indexOf("mm");
+      var dayIndex = formatItems.indexOf("dd");
+      var yearIndex = formatItems.indexOf("yyyy");
+      var month = parseInt(dateItems[monthIndex]);
+      month -= 1;
 
-        return new Date(dateItems[yearIndex], month, dateItems[dayIndex]);
+      return new Date(dateItems[yearIndex], month, dateItems[dayIndex]);
     },
 
     _createCategories: function(categories) {
@@ -69,6 +76,36 @@ define([
     onToggleBlock: function(e) {
       e.preventDefault();
       $(e.currentTarget).toggleClass('closed').siblings('.mntr-filter-content').slideToggle(300);
+      return false;
+    },
+
+    numPages: function() {
+      return Math.ceil(this.collection.total / 10);
+    },
+
+    onPaginate: function(e) {
+      e.preventDefault();
+      var target = this.$(e.currentTarget);
+      var page = this.page;
+
+      if (target.hasClass('arrow-right')) {
+        this.page++;
+      } else if (target.hasClass('arrow-left')) {
+        this.page--;
+      }
+
+      if (this.page < 1) this.page = 1;
+      if (this.page > this.numPages()) this.page = this.numPages();
+
+      this.collection.fetch({
+        data: {
+          page: (this.page <= 0) ? 1 : this.page
+        },
+        success: _.bind(function() {
+          this.$('.current-number').text(this.page);
+        }, this)
+      });
+
       return false;
     },
 
@@ -118,10 +155,10 @@ define([
       this.collection.each(function(model) {
         var kind = model.get('kind').toString();
         var amount = parseFloat(model.get('amount'));
-        if(kind == 1)
-          sumExpenses+=amount;
-        if(kind == 2)
-          sumIncomes+=amount;
+        if (kind == 1)
+          sumExpenses += amount;
+        if (kind == 2)
+          sumIncomes += amount;
       });
 
       var balance = sumIncomes - sumExpenses;
@@ -129,8 +166,8 @@ define([
       return _.extend(this.collection.toJSON(), {
         stats: {
           totals: this.collection.length,
-          expenses: sumExpenses,
-          incomes: sumIncomes,
+          expenses: sumExpenses.toFixed(2),
+          incomes: sumIncomes.toFixed(2),
           balance: balance.toFixed(2)
         }
       });

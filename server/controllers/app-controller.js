@@ -70,52 +70,53 @@ module.exports = function(server) {
     },
 
     records: {
-      browse: function(uid, reply, dataParams) {
-        function str2bool(strvalue){
+      browse: function(uid, page, reply, dataParams) {
+
+        function str2bool(strvalue) {
           var ret;
-          if(strvalue && typeof strvalue == 'string') {
+          if (strvalue && typeof strvalue == 'string') {
             return (strvalue.toLowerCase() == 'false' || strvalue == '0') ? false : true;
           }
         }
 
-        var params = _.extend({}, {
+        var query = _.extend({}, {
           user_id: uid
         });
         var q = {};
 
         if (dataParams) {
 
-          if(dataParams['input-category']) {
+          if (dataParams['input-category']) {
             var categoryId = dataParams['input-category'];
-            if(str2bool(categoryId) == true) {
-              _.extend(params, {
+            if (str2bool(categoryId) == true) {
+              _.extend(query, {
                 category_id: dataParams['input-category'],
               });
             }
           }
 
-          if(dataParams['input-payment-method']) {
-            _.extend(params, {
+          if (dataParams['input-payment-method']) {
+            _.extend(query, {
               payment_method: dataParams['input-payment-method'],
             });
           }
 
-          if(dataParams['input-kind']) {
-            _.extend(params, {
+          if (dataParams['input-kind']) {
+            _.extend(query, {
               kind: dataParams['input-kind'],
             });
           }
 
-          if(_.has(dataParams, 'input-entry-date-from')) {
+          if (_.has(dataParams, 'input-entry-date-from')) {
             var edf = moment(new Date(dataParams['input-entry-date-from']));
           }
 
-          if(_.has(dataParams, 'input-entry-date-to')) {
+          if (_.has(dataParams, 'input-entry-date-to')) {
             var edt = moment(new Date(dataParams['input-entry-date-to']));
           }
 
           if ((edf && edf.isValid()) && (edt && edt.isValid())) {
-            _.extend(params, {
+            _.extend(query, {
               entry_date: {
                 '$gte': (edf) ? edf.toISOString() : moment().startOf('month').toISOString(),
                 '$lte': (edt) ? edt.toISOString() : moment().endOf('month').toISOString()
@@ -124,8 +125,8 @@ module.exports = function(server) {
           }
         }
 
-        if(!_.has(params, 'entry_date')) {
-          _.extend(params, {
+        if (!_.has(query, 'entry_date')) {
+          _.extend(query, {
             entry_date: {
               '$gte': moment().startOf('month').toISOString(),
               '$lte': moment().endOf('month').toISOString()
@@ -133,13 +134,24 @@ module.exports = function(server) {
           });
         }
 
-        Record.find(params).populate('category_id').lean().exec(function(err, records) {
+        var options = {
+          sort: {
+            amount: 1
+          },
+          populate: 'category_id',
+          lean: true,
+          page: page,
+          limit: 10
+        };
+
+        Record.paginate(query,options, function(err, records) {
           if (err) {
-            throw Boom.badRequest(err);
+            throw new Error(err);
           }
           reply({
             success: true,
-            data: records
+            data: records.docs,
+            total: records.total
           });
         });
       },
@@ -153,7 +165,7 @@ module.exports = function(server) {
         var month = parts[1];
         var year = parts[2];
 
-        var fd = moment(utils.stringToDate(dateString,"dd/MM/yyyy","/"));
+        var fd = moment(utils.stringToDate(dateString, "dd/MM/yyyy", "/"));
 
         if (fd.isValid()) {
           data.entry_date = fd.toISOString();
@@ -214,7 +226,7 @@ module.exports = function(server) {
           var month = parts[1];
           var year = parts[2];
 
-          var fd = moment(utils.stringToDate(dateString,"dd/MM/yyyy","/"));
+          var fd = moment(utils.stringToDate(dateString, "dd/MM/yyyy", "/"));
 
           if (fd.isValid()) {
             data.entry_date = fd.toISOString();

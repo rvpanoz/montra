@@ -72,8 +72,8 @@ define([
     sortField: null,
     sortDir: 1,
     parse: function(response) {
-      if(response.totals) {
-        this.totals = response.totals;
+      if(response.total) {
+        this.total = response.total;
       }
       _.each(response.data, function(record) {
         record.amount = record.amount.toFixed(2);
