@@ -46,6 +46,8 @@ define([
       if (cls) {
         app.navigate(cls);
       }
+
+      return false;
     },
 
     onAttach: function() {

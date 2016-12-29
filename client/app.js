@@ -11,12 +11,6 @@ define([
     content: null,
     region: '#app-content',
     baseUrl: config.protocol + config.host + ":" + config.port,
-    homeUrl: {
-      "cls": "home"
-    },
-    userForms: {
-      "cls": "user-forms"
-    },
     publicUrls: ['user-forms'],
 
     onBeforeStart: function() {

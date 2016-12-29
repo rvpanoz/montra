@@ -1,10 +1,7 @@
 @font-face {
     font-family: 'Roboto';
     src: url('../fonts/roboto/Roboto-Light.eot');
-    src: url('../fonts/roboto/Roboto-Light.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/roboto/Roboto-Light.woff') format('woff'),
-         url('../fonts/roboto/Roboto-Light.ttf') format('truetype'),
-         url('../fonts/roboto/Roboto-Light.svg#RobotoThinItalic') format('svg');
+    src: url('../fonts/roboto/Roboto-Light.eot?#iefix') format('embedded-opentype'), url('../fonts/roboto/Roboto-Light.woff') format('woff'), url('../fonts/roboto/Roboto-Light.ttf') format('truetype'), url('../fonts/roboto/Roboto-Light.svg#RobotoThinItalic') format('svg');
     font-weight: 200;
     font-style: italic;
 }
@@ -15,8 +12,8 @@
 }
 
 .center-content {
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
 }
 
 .mdl-spinner {
@@ -52,15 +49,15 @@ a {
 }
 
 .user-forms .user-signin h2 {
-  padding: 10px;
+    padding: 10px;
 }
 
 .user-forms .user-signup h2 {
-  padding: 10px;
+    padding: 10px;
 }
 
 .user-forms button.add, button.back {
-  left: 72px;
+    left: 72px;
 }
 
 .required-field::before {
@@ -68,6 +65,38 @@ a {
     float: left;
     color: red;
 }
+
+
+/** cards **/
+
+.card {
+    position: relative;
+    /*margin: 0.5rem 0 1rem 0;*/
+    background-color: #fff;
+    transition: box-shadow .25s;
+    border-radius: 2px;
+}
+
+.card .card-content {
+    padding: 20px;
+    border-radius: 0 0 2px 2px;
+}
+
+.z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card .card-content p {
+    margin: 0;
+    color: inherit;
+}
+
+.black-text {
+    color: #000000 !important;
+}
+
+
+/** end cards **/
 
 
 /* filter bar */
@@ -79,11 +108,11 @@ a {
 }
 
 .mntr-filter-content {
-  display: none;
+    display: none;
 }
 
 .first .mntr-filter-content {
-  display: block;
+    display: block;
 }
 
 @media only screen and (min-width: 768px) .mntr-filter {
@@ -310,23 +339,27 @@ a {
 
 /* end overrides */
 
+
 /* css animations */
+
 @keyframes rotateButton {
-  0% {
-    -webkit-transform: translateY(100%) rotate(-90deg);
-    -moz-transform: translateY(100%) rotate(-90deg);
-    -ms-transform: translateY(100%) rotate(-90deg);
-    -o-transform: translateY(100%) rotate(-90deg);
-    transform: translateY(100%) rotate(-90deg);
-  }
+    0% {
+        -webkit-transform: translateY(100%) rotate(-90deg);
+        -moz-transform: translateY(100%) rotate(-90deg);
+        -ms-transform: translateY(100%) rotate(-90deg);
+        -o-transform: translateY(100%) rotate(-90deg);
+        transform: translateY(100%) rotate(-90deg);
+    }
 }
 
 .rotate {
-  /*name, duration, iteration-count*/
-  animation: rotateButton 1s;
+    /*name, duration, iteration-count*/
+    animation: rotateButton 1s;
 }
 
+
 /* end css animations */
+
 
 /* pagination */
 
@@ -399,5 +432,6 @@ a {
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#565b5f), to(#3e4347));
     background: -moz-linear-gradient(0% 0% 270deg, #565b5f, #3e4347);
 }
+
 
 /* end pagination */

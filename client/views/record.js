@@ -53,7 +53,7 @@ define([
 
     _render: function() {
       componentHandler.upgradeElement(this.el);
-
+      
       var kind = this.model.get('kind').toString();
       switch(kind) {
         case "1":

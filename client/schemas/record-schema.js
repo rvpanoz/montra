@@ -77,18 +77,6 @@ define([
       }
       return response.data;
     },
-    get_expenses: function() {
-      var filtered = this.filter(function(model) {
-        return model.get('kind') == 1;
-      });
-      return filtered;
-    },
-    get_incomes: function() {
-      var filtered = this.filter(function(model) {
-        return model.get('kind') == 2;
-      });
-      return filtered;
-    },
     comparator: function(m1) {
       var field = this.sortField;
       var dir = this.sortDir;

@@ -15,11 +15,13 @@ define([
     events: {
       'click .navigate': 'onNavigate'
     },
+
     initialize: function() {
       _.bindAll(this, '_render');
       this.collection = new CategorySchema.collection();
       this.collection.fetch();
     },
+
     onNavigate: function(e) {
       e.preventDefault();
       var cls = $(e.currentTarget).data('cls');
@@ -28,9 +30,11 @@ define([
       }
       return false;
     },
+
     _render: function() {
       this.render();
     },
+
     serializedData: function() {
       return _.extend(this.collection.toJSON(), {
 

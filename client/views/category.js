@@ -22,24 +22,20 @@ define([
       'click .save': 'onEventSave',
       'click .back': 'onEventBack'
     },
+
     initialize: function(params) {
       this.model = new CategorySchema.model();
+
       if (params.id) {
         this.model.set('_id', params.id);
         this.model.fetch();
       }
+
       this.listenTo(this.model, 'invalid', this.onValidationError, this);
-      // CategoryView.__super__.initialize.call(this, arguments);
     },
 
     onRender: function() {
       this.stickit();
-    },
-
-    onAttach: function() {},
-
-    onEventSync: function(model) {
-      console.log('model synced');
     },
 
     onEventSave: function(e) {
@@ -89,6 +85,7 @@ define([
       app.navigate('categories');
       return false;
     },
+    
     serializeData: function() {
       return {
         items: {

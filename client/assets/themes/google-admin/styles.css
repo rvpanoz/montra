@@ -22,13 +22,6 @@ html, body {
   height: 48px;
   border-radius: 24px;
 }
-.mntr-layout .mntr-header .mdl-textfield {
-  padding: 0px;
-  margin-top: 41px;
-}
-.mntr-layout .mntr-header .mdl-textfield .mdl-textfield__expandable-holder {
-  bottom: 19px;
-}
 .mntr-layout .mdl-layout__header .mdl-layout__drawer-button {
   color: rgba(0, 0, 0, 0.54);
 }
@@ -117,7 +110,6 @@ html, body {
 .mntr-charts {
   -webkit-align-items: center;
       -ms-flex-align: center;
-              -ms-grid-row-align: center;
           align-items: center;
 }
 .mntr-chart:nth-child(1) {
@@ -165,7 +157,6 @@ _:-ms-input-placeholder, :root .mntr-graph {
 .mntr-cards {
   -webkit-align-items: flex-start;
       -ms-flex-align: start;
-              -ms-grid-row-align: flex-start;
           align-items: flex-start;
   -webkit-align-content: flex-start;
       -ms-flex-line-pack: start;

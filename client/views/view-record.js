@@ -15,6 +15,7 @@ define([
       'click .btn-update': 'onEventUpdate',
       'click .btn-delete': 'onEventDelete'
     },
+
     initialize: function (params) {
       _.bindAll(this, '_render');
       this.model = new RecordSchema.model();
@@ -24,15 +25,18 @@ define([
         this.model.fetch();
       }
     },
+
     _render: function () {
       this.render();
     },
+
     onEventUpdate: function(e) {
       e.preventDefault();
       app.navigate('record', {
         id: this.model.get('_id')
       });
     },
+
     onEventDelete: function(e) {
       e.preventDefault();
       this.model.destroy({
@@ -42,6 +46,7 @@ define([
         })
       });
     },
+
     serializeData: function(){
       var d = this.model.get('created_at');
       return _.extend(this.model.toJSON(), {

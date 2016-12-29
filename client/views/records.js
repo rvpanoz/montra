@@ -73,7 +73,6 @@ define([
       var $dataTable = this.$('.mdl-data-table');
       var $element = this.$(e.currentTarget);
 
-
       this.collection.sortField = $element.data('field');
       this.collection.sortDir = $element.hasClass('mdl-data-table__header--sorted-descending') ? -1 : 1;
 
@@ -100,6 +99,7 @@ define([
       e.preventDefault();
       var cls = $(e.currentTarget).data('cls');
       app.navigate(cls);
+      return false;
     },
 
     onToggleFilters: function(e) {
@@ -110,33 +110,30 @@ define([
     serializeData: function() {
       var sumExpenses = 0,
         sumIncomes = 0;
-      var expenses = this.collection.get_expenses();
-      var incomes = this.collection.get_incomes();
 
-      if (expenses.length) {
-        _.each(expenses, function(model) {
-          sumExpenses += model.get('amount')
-        }, this);
-      }
+      this.collection.each(function(model) {
+        var kind = model.get('kind').toString();
+        var amount = parseFloat(model.get('amount'));
+        if(kind == 1)
+          sumExpenses+=amount;
+        if(kind == 2)
+          sumIncomes+=amount;
+      });
 
-      if (incomes.length) {
-        _.each(incomes, function(model) {
-          sumIncomes += model.get('amount')
-        }, this);
-      }
+      var balance = sumIncomes - sumExpenses;
 
       return _.extend(this.collection.toJSON(), {
         stats: {
-          expenses: sumExpenses,
-          incomes: sumIncomes,
-          balance: (sumIncomes - sumExpenses)
+          totals: this.collection.length,
+          expenses: sumExpenses.toFixed(2),
+          incomes: sumIncomes.toFixed(2),
+          balance: balance.toFixed(2)
         }
       });
     },
 
     setDatepickers: function() {
-      var z;
-      for (z in this.ui) {
+      for (var z in this.ui) {
         var contains = 'EntryDate';
         if (z.indexOf(contains) > 0) {
           this.ui[z].datepicker({
@@ -205,11 +202,8 @@ define([
           method: 'POST',
           data: data,
           success: _.bind(function(response) {
-            if (response && response.data) {
-              this.collection.reset(response.data);
-              this.render();
-            }
-            return false;
+            this.collection.reset(response.data);
+            this.render();
           }, this)
         });
       }

@@ -1,8 +1,8 @@
-<div class="mdl-grid">
+<div class="mdl-grid grid-filters">
     <div class="mdl-cell mdl-cell--4-col">
         <div class="mntr-filter-wrapper">
             <a href="#" class="mntr-filter-trigger" id="mntr-filter-trigger" alt="Filters">Filters</a>
-            <div class="mdl-tooltip" for="mntr-filter-trigger">Opens filters form</div>
+            <div class="mdl-tooltip" for="mntr-filter-trigger">Click to open filters</div>
         </div>
         <div class="mntr-filter">
             <form action="#" class="mntr-filter-form">
@@ -24,7 +24,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="mntr-filter-block">
                     <h4>Category</h4>
                     <div class="mntr-filter-content">
@@ -40,7 +39,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="mntr-filter-block">
                     <h4>Payment and Kind</h4>
                     <div class="mntr-filter-content">
@@ -80,16 +78,13 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="form__action">
                     <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--8-col"></div>
                         <div class="mdl-cell mdl-cell--2-col">
                             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored filter">Search</button>
                         </div>
                     </div>
                 </div>
-
             </form>
 
             <!-- close filter -->
@@ -98,14 +93,28 @@
     </div>
 </div>
 <div class="mdl-layout-spacer"></div>
-<div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--8-col-desktop mdl-cell--8-col-tablet mdl-cell--6-col-phone records-table-container">
+<div class="mdl-layout-spacer"></div>
+<div class="mdl-grid grid-records">
+  <div class="mdl-cell mdl-cell--4-col">
+    <div class="card">
+        <div class="card-content black-text">
+          <p><i class="mdi-social-group-add"></i> Balance <hr/></p>
+          <h4 class="card-stats-number"><%= stats.balance %>&euro;</h4>
+          <p class="card-stats-compare">
+            <i class="material-icons" role="presentation">trending_up</i> Incomes: <%= stats.incomes %>&euro;
+            <br/>
+            <i class="material-icons" role="presentation">trending_down</i> Expenses: <%= stats.expenses %>&euro;
+          </p>
+        </div>
+      </div>
+  </div>
+    <div class="mdl-cell mdl-cell--8-col records-table-container">
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp records-table">
             <thead>
                 <tr>
                     <th class="mdl-data-table__cell--non-numeric">Category</th>
                     <th class="mdl-data-table__cell--non-numeric">Date</th>
-                    <th class="mdl-data-table__cell--non-numeric">Payment method</th>
+                    <th class="mdl-data-table__cell--non-numeric">Payment</th>
                     <th class="mdl-data-table__cell--non-numeric">Kind</th>
                     <th class="mdl-data-table__cell">Amount</th>
                     <th class="mdl-data-table__cell"></th>
