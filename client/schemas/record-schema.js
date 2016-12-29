@@ -28,15 +28,15 @@ define([
     parse: function(response) {
       var data;
       if (response.success == false) {
-        let error = (response.error) ? response.error : false;
+        var error = (response.error) ? response.error : false;
         this.trigger('invalid', this, error);
       } else {
         if(response.data) {
           data = response.data;
           data.entry_date = moment(data.entry_date).format('DD/MM/YYYY');
+          data.amount = data.amount.toFixed(2);
         }
       }
-
       return data;
     },
     validate: function(attrs) {
@@ -75,6 +75,9 @@ define([
       if(response.totals) {
         this.totals = response.totals;
       }
+      _.each(response.data, function(record) {
+        record.amount = record.amount.toFixed(2);
+      });
       return response.data;
     },
     comparator: function(m1) {

@@ -66,6 +66,9 @@ a {
     color: red;
 }
 
+.grid-records button.btn-add {
+  margin-top: 15px;
+}
 
 /** cards **/
 

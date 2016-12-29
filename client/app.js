@@ -17,11 +17,11 @@ define([
       this.router = new Router();
     },
 
-    navigate: function(cls, opts) {
+    navigate: function(cls, params) {
       var url = _.extend({
         cls: cls,
-        opts: opts
-      }), params;
+        params: params
+      });
 
       app.router.navigate(JSON.stringify(url), {
         trigger: true
@@ -68,8 +68,9 @@ define([
       return false;
     },
 
-    wait: function(active) {
+    wait: function(active, t) {
       var spinner = $('.mdl-spinner');
+      var tm = (t) ? 0 : 500;
 
       if(active == true) {
         spinner.addClass('is-active');
@@ -78,7 +79,7 @@ define([
         setTimeout(function() {
           spinner.removeClass('is-active');
           $('.mdl-layout__obfuscator').removeClass('is-visible');
-        }, 500);
+        }, tm);
       }
     }
   });

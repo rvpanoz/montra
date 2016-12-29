@@ -41,6 +41,10 @@ define([
       this.collection = new RecordSchema.collection();
       this.categories = new CategorySchema.collection();
       this.collection.fetch();
+
+      this.listenTo(this.collection, 'change', _.bind(function() {
+        this.render();
+      }, this));
     },
 
     _stringToDate(_date, _format, _delimiter) {
@@ -125,8 +129,8 @@ define([
       return _.extend(this.collection.toJSON(), {
         stats: {
           totals: this.collection.length,
-          expenses: sumExpenses.toFixed(2),
-          incomes: sumIncomes.toFixed(2),
+          expenses: sumExpenses,
+          incomes: sumIncomes,
           balance: balance.toFixed(2)
         }
       });

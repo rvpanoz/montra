@@ -95,19 +95,23 @@
 <div class="mdl-layout-spacer"></div>
 <div class="mdl-layout-spacer"></div>
 <div class="mdl-grid grid-records">
-  <div class="mdl-cell mdl-cell--4-col">
-    <div class="card">
-        <div class="card-content black-text">
-          <p><i class="mdi-social-group-add"></i> Balance <hr/></p>
-          <h4 class="card-stats-number"><%= stats.balance %>&euro;</h4>
-          <p class="card-stats-compare">
-            <i class="material-icons" role="presentation">trending_up</i> Incomes: <%= stats.incomes %>&euro;
-            <br/>
-            <i class="material-icons" role="presentation">trending_down</i> Expenses: <%= stats.expenses %>&euro;
-          </p>
+    <div class="mdl-cell mdl-cell--4-col">
+        <div class="card">
+            <div class="card-content black-text">
+                <p><i class="mdi-social-group-add"></i> Balance
+                    <hr/>
+                </p>
+                <h4 class="card-stats-number"><%= stats.balance %>&euro;</h4>
+                <p class="card-stats-compare">
+                    <i class="material-icons" role="presentation">trending_up</i> Incomes:
+                    <%= stats.incomes %>&euro;
+                        <br/>
+                        <i class="material-icons" role="presentation">trending_down</i> Expenses:
+                        <%= stats.expenses %>&euro;
+                </p>
+            </div>
         </div>
-      </div>
-  </div>
+    </div>
     <div class="mdl-cell mdl-cell--8-col records-table-container">
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp records-table">
             <thead>

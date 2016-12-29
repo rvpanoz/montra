@@ -30,6 +30,8 @@ define([
         // I should run componentHandler.upgradeDom() to let MDL render the page.
         componentHandler.upgradeDom();
 
+        //remove obs
+        app.wait(false, true);
         $('.mdl-layout__drawer').removeClass('is-visible');
       });
 

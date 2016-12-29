@@ -15,7 +15,7 @@ define([
       name: 'div.input-name'
     },
     modelEvents: {
-      'sync': 'onEventSync',
+      // 'sync': 'onEventSync',
       'change': 'onModelChange'
     },
     events: {
@@ -85,7 +85,7 @@ define([
       app.navigate('categories');
       return false;
     },
-    
+
     serializeData: function() {
       return {
         items: {
