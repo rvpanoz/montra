@@ -87,6 +87,7 @@ define([
       e.preventDefault();
       var target = this.$(e.currentTarget);
       var page = this.page;
+
       if (target.hasClass('arrow-right')) {
         this.page++;
       } else if (target.hasClass('arrow-left')) {
@@ -103,7 +104,11 @@ define([
           page: (this.page <= 0) ? 1 : this.page
         },
         success: _.bind(function() {
-          this.$('.current-number').text(this.page);
+          var box = this.$('ul.component-pagination li');
+          box.each(function(idx, li) {
+            $(li).removeClass('current-number');
+          })
+          box.eq(this.page).addClass('current-number');
         }, this)
       });
 
@@ -212,27 +217,35 @@ define([
         this.ui.divCategory.addClass('is-dirty');
       }, this));
 
-      if (this.page >= this.numPages()) {
-        this.$('.arrow-right').hide();
-      } else {
-        this.$('.arrow-right').show();
-      }
-      if (this.page == 1) {
-        this.$('.arrow-left').hide();
-      } else {
-        this.$('.arrow-left').show();
+      // if (this.page >= this.numPages()) {
+      //   this.$('.arrow-right').hide();
+      // } else {
+      //   this.$('.arrow-right').show();
+      // }
+      // if (this.page == 1) {
+      //   this.$('.arrow-left').hide();
+      // } else {
+      //   this.$('.arrow-left').show();
+      // }
+
+      if(this.$('ul.component-pagination').hasClass('is-filled')) {
+        return;
       }
 
-      var $current = this.$('li.current-number');
-      
-      if(this.numPages() > 1) {
+      var $current = this.$('li.arrow-left');
+      var box = this.$('ul.component-pagination li');
+      var html = "";
+      if(this.numPages() > 0) {
         for(var z=0;z<this.numPages();z++) {
           var $pageNo = $('<li/>', {
             class: 'pagination-number',
-            text: z
+            text: z+1
           });
-          $current.append($pageNo);
+          html+=$pageNo[0].outerHTML;
         }
+        $current.after(html);
+        this.$('ul.component-pagination li').eq(1).addClass('current-number');
+        this.$('ul.component-pagination').addClass('is-filled');
       }
 
     },
