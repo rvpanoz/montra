@@ -9,17 +9,20 @@ define([
 ], function(Marionette, RecordSchema, SearchSchema, CategorySchema, RecordItemView, moment, templates) {
 
   return Marionette.CompositeView.extend({
-    _searched: false,
     page: 1,
+    perPage: 12,
+    pagination: true,
     className: 'mui-container-fluid',
     template: templates.browseRecords,
     childView: RecordItemView,
+    pagination: true,
     childViewContainer: '.records-items',
     collectionEvents: {
-      // 'sync': 'onSync',
+      'sync': 'onSync',
       'sort': 'render'
     },
     events: {
+      'click .pagination-number': 'onPaginate',
       'click .pagination-arrow': 'onPaginate',
       'click .mntr-filter h4': 'onToggleBlock',
       'click .mntr-filter-trigger': 'onToggleFilters',
@@ -44,29 +47,7 @@ define([
     initialize: function() {
       this.collection = new RecordSchema.collection();
       this.categories = new CategorySchema.collection();
-      this.collectionCloned = this.collection;
-      this.collection.fetch({
-        data: {
-          page: this.page
-        }
-      });
-
-      this.listenTo(this.collection, 'change', _.bind(function() {
-        this.render();
-      }, this));
-    },
-
-    _stringToDate(_date, _format, _delimiter) {
-      var formatLowerCase = _format.toLowerCase();
-      var formatItems = formatLowerCase.split(_delimiter);
-      var dateItems = _date.split(_delimiter);
-      var monthIndex = formatItems.indexOf("mm");
-      var dayIndex = formatItems.indexOf("dd");
-      var yearIndex = formatItems.indexOf("yyyy");
-      var month = parseInt(dateItems[monthIndex]);
-      month -= 1;
-
-      return new Date(dateItems[yearIndex], month, dateItems[dayIndex]);
+      this.collection.fetch();
     },
 
     _createCategories: function(categories) {
@@ -82,18 +63,22 @@ define([
     },
 
     numPages: function() {
-      return Math.ceil(this.collection.total / 10);
+      // return Math.ceil(this.collection.total / this.perPage);
+      return this.collection.pages;
     },
 
     onPaginate: function(e) {
       e.preventDefault();
       var target = this.$(e.currentTarget);
-      var page = this.page;
+      var page;
 
       if (target.hasClass('arrow-right')) {
         this.page++;
       } else if (target.hasClass('arrow-left')) {
         this.page--;
+      } else if (target.hasClass('pagination-number')) {
+        page = parseInt(target.text());
+        this.page = page;
       }
 
       if (this.page < 1) this.page = 1;
@@ -104,17 +89,51 @@ define([
       this.collection.fetch({
         data: {
           page: (this.page <= 0) ? 1 : this.page
-        },
-        success: _.bind(function() {
-          var box = this.$('ul.component-pagination li');
-          box.each(function(idx, li) {
-            $(li).removeClass('current-number');
-          })
-          box.eq(this.page).addClass('current-number');
-        }, this)
+        }
       });
 
       return false;
+    },
+
+    onSync: function() {
+      if (this.$('ul.component-pagination').hasClass('is-filled')) {
+        return;
+      }
+
+      var $current = this.$('li.pagination-number');
+      var box = this.$('ul.component-pagination li');
+      var html = "";
+
+
+      if (this.numPages() > 0) {
+        for (var z = 2; z < this.numPages() + 1; z++) {
+          var $pageNo = $('<li/>', {
+            class: 'pagination-number',
+            text: z
+          });
+          html += $pageNo[0].outerHTML;
+        }
+        $current.after(html);
+        this.$('ul.component-pagination li').eq(1).addClass('current-number');
+        this.$('ul.component-pagination').addClass('is-filled');
+      }
+
+      var box = this.$('ul.component-pagination li');
+      box.each(function(idx, li) {
+        $(li).removeClass('current-number');
+      });
+
+      box.eq(this.page).addClass('current-number');
+
+      if (this.page == 1) {
+        this.$('.arrow-left').hide();
+        this.$('.arrow-right').show();
+      } else {
+        if (this.page == this.numPages()) {
+          this.$('.arrow-right').hide();
+          this.$('.arrow-left').show();
+        }
+      }
     },
 
     onSort: function(e) {
@@ -160,7 +179,7 @@ define([
       var sumExpenses = 0,
         sumIncomes = 0;
 
-      this.collectionCloned.each(function(model) {
+      this.collection.each(function(model) {
         var kind = model.get('kind').toString();
         var amount = parseFloat(model.get('amount'));
         if (kind == 1)
@@ -219,37 +238,15 @@ define([
         this.ui.divCategory.addClass('is-dirty');
       }, this));
 
-      // if (this.page >= this.numPages()) {
-      //   this.$('.arrow-right').hide();
-      // } else {
-      //   this.$('.arrow-right').show();
-      // }
-      // if (this.page == 1) {
-      //   this.$('.arrow-left').hide();
-      // } else {
-      //   this.$('.arrow-left').show();
-      // }
+      var target = this.$('.records-table-container h3');
+      var table = this.$('.mdl-data-table');
+      var top = target.offset().top;
+      var left = table.offset().left;
 
-      if(this.$('ul.component-pagination').hasClass('is-filled')) {
-        return;
-      }
-
-      var $current = this.$('li.arrow-left');
-      var box = this.$('ul.component-pagination li');
-      var html = "";
-      if(this.numPages() > 0) {
-        for(var z=0;z<this.numPages();z++) {
-          var $pageNo = $('<li/>', {
-            class: 'pagination-number',
-            text: z+1
-          });
-          html+=$pageNo[0].outerHTML;
-        }
-        $current.after(html);
-        this.$('ul.component-pagination li').eq(1).addClass('current-number');
-        this.$('ul.component-pagination').addClass('is-filled');
-      }
-
+      this.$('.mntr-filter-trigger').css({
+        top: top - 10,
+        left: left + (table.width() - 50)
+      });
     },
 
     onAttach: function() {},
@@ -272,7 +269,7 @@ define([
         var datefield = $('#' + d.name);
         var isDateInput = (d.name.indexOf('date') > 0) ? true : false;
         if (d.value && isDateInput) {
-          data[d.name] = this._stringToDate(d.value, 'dd/mm/yyyy', '/');
+          data[d.name] = app.stringToDate(d.value, 'dd/mm/yyyy', '/');
         } else {
           data[d.name] = d.value;
         }
@@ -286,6 +283,7 @@ define([
           success: _.bind(function(response) {
             this.collection.reset(response.data);
             this.render();
+            this.onSync();
           }, this)
         });
       }

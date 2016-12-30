@@ -15,6 +15,7 @@ const utils = require('../util');
 const User = require('../models/user');
 const Record = require('../models/record');
 const Category = require('../models/category');
+const config = require('../config');
 
 //set log level
 wlog.level = 'debug';
@@ -70,7 +71,7 @@ module.exports = function(server) {
     },
 
     records: {
-      browse: function(uid, page, reply, dataParams) {
+      browse: function(uid, reply, dataParams, opts) {
 
         function str2bool(strvalue) {
           var ret;
@@ -136,22 +137,25 @@ module.exports = function(server) {
 
         var options = {
           sort: {
-            amount: -1
+            entry_date: -1
           },
           populate: 'category_id',
           lean: true,
-          page: page,
-          limit: 10
+          page: (opts && opts.page) ? opts.page : 1,
+          limit: config.perPage
         };
 
-        Record.paginate(query,options, function(err, records) {
+        Record.paginate(query, options, function(err, records) {
           if (err) {
             throw new Error(err);
           }
+          
           reply({
             success: true,
             data: records.docs,
-            total: records.total
+            total: records.total,
+            pages: records.pages,
+            page: records.page
           });
         });
       },

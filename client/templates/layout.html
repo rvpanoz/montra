@@ -1,37 +1,37 @@
-<div class="mntr-layout mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header is-small-screen">
-
-    <!-- header content -->
-    <header class="mntr-header mdl-layout__header is-casting-shadow pink darken-4">
-        <div id="header-content"></div>
-    </header>
-
-    <!-- drawer content -->
-    <div class="mntr-drawer mdl-layout__drawer">
-        <span class="mdl-layout-title">Menu</span>
-        <nav class="mdl-navigation">
-          <a class="mdl-navigation__link mdl-navigation__link--current" href="#" data-cls="home">
-              <i class="material-icons" role="presentation">dashboard</i>
-              Dashboard
-          </a>
-          <a class="mdl-navigation__link step2" href="" data-cls="record">
-              <i class="material-icons" role="presentation">add</i>
-              New record
-          </a>
-          <a class="mdl-navigation__link" href="" data-cls="records">
-              <i class="material-icons" role="presentation">list</i>
-              Records
-          </a>
-          <a class="mdl-navigation__link step1" href="" data-cls="category">
-              <i class="material-icons" role="presentation">add</i>
-              New category
-          </a>
-          <a class="mdl-navigation__link" href="" data-cls="categories">
-              <i class="material-icons" role="presentation">list</i>
-              Categories
-          </a>
-        </nav>
-    </div>
-
-    <!-- main content -->
-    <main class="mdl-layout__content mdl-color--grey-100" id="main-content"></main>
+<div id="sidedrawer" class="mui--no-user-select">
+  <div id="sidedrawer-brand" class="mui--appbar-line-height">
+  <span class="mui--text-title">Montra.io</span>
+</div>
+<div class="mui-divider"></div>
+<ul>
+  <li>
+    <strong>Records</strong>
+    <ul>
+      <li>
+        <a class="mdl-navigation__link" href="#" data-cls="records"><i class="material-icons" role="presentation">list</i>Browse records</a>
+      </li>
+      <li>
+        <a class="mdl-navigation__link" href="#" data-cls="record"><i class="material-icons" role="presentation">add</i>New record</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <strong>Categories</strong>
+    <ul>
+      <li>
+        <a class="mdl-navigation__link" href="#" data-cls="categories"><i class="material-icons" role="presentation">list</i>Browse categories</a>
+      </li>
+      <li>
+        <a class="mdl-navigation__link" href="#" data-cls="category"><i class="material-icons" role="presentation">add</i>New category</a>
+      </li>
+    </ul>
+  </li>
+</ul>
+</div>
+<header id="header"></header>
+<div id="content-wrapper">
+  <div class="mui--appbar-height"></div>
+  <div class="mui-container-fluid">
+    <div id="main-content"></div>
+  </div>
 </div>

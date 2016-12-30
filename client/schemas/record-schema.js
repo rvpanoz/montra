@@ -71,10 +71,12 @@ define([
     url: app.baseUrl + "/data/records",
     sortField: null,
     sortDir: 1,
+    pages: 1,
+    page: 1,
     parse: function(response) {
-      if(response.total) {
-        this.total = response.total;
-      }
+      this.total = response.total;
+      this.pages = response.pages;
+      this.page = response.page;
       _.each(response.data, function(record) {
         record.amount = record.amount.toFixed(2);
       });

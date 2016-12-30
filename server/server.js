@@ -33,8 +33,6 @@ var server = new Hapi.Server({
   }
 });
 
-var app = new require('./controllers/app-controller')(server);
-
 // server connection
 server.connection({
   port: config.port,
@@ -137,10 +135,10 @@ server.register(require('hapi-auth-jwt'), (err) => {
     path: '/data/records',
     config: {
       handler: function(req, reply) {
-        // console.log(req.auth.isAuthenticated);
         var uid = req.auth.credentials.id;
-        var page = req.query.page;
-        return app.records.browse(uid, page, reply);
+        var opts = req.query;
+       
+        return app.records.browse(uid, reply, false, opts);
       }
     }
   });
@@ -211,18 +209,26 @@ server.register(require('hapi-auth-jwt'), (err) => {
     path: '/search/records',
     config: {
       handler: function(req, reply) {
-        var params = req.payload;
         var uid = req.auth.credentials.id;
-        return app.records.browse(uid, reply, params);
+        var payload = req.payload;
+        var opts = {
+          page: 1,
+          sorting: {
+            entry_date: -1
+          }
+        }
+        return app.records.browse(uid, reply, payload, opts);
       }
     }
   });
 
-server.start(function(err) {
-  if (err) {
-    throw new Error(err);
-  }
-  console.log('Server is running at ' + server.info.host + ":" + server.info.port);
-});
+  server.start(function(err) {
+    if (err) {
+      throw new Error(err);
+    }
+    console.log('Server is running at ' + server.info.host + ":" + server.info.port);
+  });
+
+  var app = new require('./controllers/app-controller')(server);
 });
 

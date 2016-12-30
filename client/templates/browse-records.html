@@ -1,7 +1,3 @@
-<div class="mntr-filter-wrapper">
-    <a href="#" class="mntr-filter-trigger" id="mntr-filter-trigger" alt="Filters">Filters</a>
-    <div class="mdl-tooltip" for="mntr-filter-trigger">Click to open filters</div>
-</div>
 <div class="mntr-filter">
     <form action="#" class="mntr-filter-form">
         <div class="mntr-filter-block first">
@@ -9,19 +5,19 @@
             <div class="mntr-filter-content">
                 <div class="mui-row">
                     <div class="mui-col-md-6 mdl-entry_date-from">
-                      <div class="mui-textfield">
-                        <input type="text" id="input-entry-date-from" data-language='en' name="input-entry-date-from">
-                        <label>Date from</label>
-                      </div>
+                        <div class="mui-textfield">
+                            <input type="text" id="input-entry-date-from" data-language='en' name="input-entry-date-from">
+                            <label>Date from</label>
+                        </div>
                     </div>
                 </div>
 
                 <div class="mui-row">
                     <div class="mui-col-md-6 mdl-entry_date-to">
-                      <div class="mui-textfield">
-                        <input type="text" id="input-entry-date-to" data-language='en' name="input-entry-date-to">
-                        <label>Date to</label>
-                      </div>
+                        <div class="mui-textfield">
+                            <input type="text" id="input-entry-date-to" data-language='en' name="input-entry-date-to">
+                            <label>Date to</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -31,13 +27,13 @@
             <div class="mntr-filter-content">
                 <div class="mui-row">
                     <div class="mui-col-md-6 mdl-category_id">
-                      <div class="mui-select">
-                      <select id="input-category" name="input-category">
+                        <div class="mui-select">
+                            <select id="input-category" name="input-category">
                         <option value="0"></option>
                       </select>
-                      <label>Select category</label>
+                            <label>Select category</label>
+                        </div>
                     </div>
-                  </div>
                 </div>
             </div>
         </div>
@@ -81,73 +77,97 @@
             </div>
         </div>
         <div class="mntr-filter-block">
-          <div class="mui-row">
-              <div class="mui-col-4 mui-col-md-offset-8">
-                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored filter">Search</button>
-              </div>
-          </div>
+            <div class="mui-row">
+                <div class="mui-col-4 mui-col-md-offset-8">
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored filter">Search</button>
+                </div>
+            </div>
         </div>
     </form>
 
     <!-- close filter -->
     <a href="#" class="mntr-close">
-      <i class="material-icons close-filters">clear</i>
+        <i class="material-icons close-filters">clear</i>
     </a>
 </div>
 
 <div class="mui-row">
     <div class="mui-col-md-4">
-        <div class="mui-panel">
-            <div class="card-content black-text">
-                <p><i class="mdi-social-group-add"></i> Balance
-                    <hr/>
-                </p>
-                <h4 class="card-stats-number"><%= stats.balance %>&euro;</h4>
-                <p class="card-stats-compare">
-                    <i class="material-icons" role="presentation">trending_up</i> Incomes:
-                    <%= stats.incomes %>&euro;
-                        <br/>
-                        <i class="material-icons" role="presentation">trending_down</i> Expenses:
-                        <%= stats.expenses %>&euro;
-                </p>
+        <div class="dw-item">
+            <div class="dwi-header">
+                <div class="dwih-title"></div>
+            </div>
+            <div class="list-group lg-even-white">
+                <div class="list-group-item media sv-item">
+                    <div class="media-body">
+                        <h3>Balance</h3>
+                        <h2><%= stats.balance %></h2>
+                    </div>
+                </div>
+
+                <div class="list-group-item media sv-item">
+                    <div class="media-body">
+                        <h3>Incomes</h3>
+                        <h2><%= stats.incomes %></h2>
+                    </div>
+                </div>
+
+                <div class="list-group-item media sv-item">
+                    <div class="media-body">
+                        <h3>Expenses</h3>
+                        <h2><%= stats.expenses %></h2>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="mui-col-md-4">
-        <div class="mui-panel">
-            <div class="card-content black-text">
-                <p><i class="mdi-social-group-add"></i> Transactions
-                    <hr/>
-                </p>
-                <h4><%= stats.totals %></h4>
-            </div>
-        </div>
-    </div>
-  </div>
-  <div class="mdl-layout-spacer"></div>
-  <div class="mui-row">
     <div class="mui-col-md-8 records-table-container">
-        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp records-table">
-            <thead>
-                <tr>
-                    <th class="mdl-data-table__cell--non-numeric">Category</th>
-                    <th class="mdl-data-table__cell--non-numeric">Date</th>
-                    <th class="mdl-data-table__cell--non-numeric">Payment</th>
-                    <th class="mdl-data-table__cell--non-numeric">Kind</th>
-                    <th class="mdl-data-table__cell">Amount</th>
-                    <th class="mdl-data-table__cell"></th>
-                </tr>
-            </thead>
-            <tbody class="records-items"></tbody>
-        </table>
-        <ul class="md-ui component-pagination">
-            <li class="pagination-arrow arrow-left">
-              <i class="material-icons">keyboard_arrow_left</i>
-            </li>
-            <!-- <li class="pagination-number current-number">1</li> -->
-            <li class="pagination-arrow arrow-right">
-              <i class="material-icons">keyboard_arrow_right</i>
-            </li>
-        </ul>
+        <div class="mui-row">
+            <div class="mui-col-md-4">
+                <h3>Your records</h3>
+                <div class="mntr-filter-wrapper">
+                  <a href="#" class="mntr-filter-trigger" id="mntr-filter-trigger" alt="Filters"></a>
+                  <div class="mdl-tooltip" for="mntr-filter-trigger">Click to open filters</div>
+                </div>
+            </div>
+            <div class="mui-col-md-4">
+
+            </div>
+        </div>
+        <div class="mui-row">
+            <div class="mui-col-md-12">
+                <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp records-table">
+                    <thead>
+                        <tr>
+                            <th class="mdl-data-table__cell--non-numeric">Category</th>
+                            <th class="mdl-data-table__cell--non-numeric">Date</th>
+                            <th class="mdl-data-table__cell--non-numeric">Payment</th>
+                            <th class="mdl-data-table__cell--non-numeric">Kind</th>
+                            <th class="mdl-data-table__cell">Amount</th>
+                            <th class="mdl-data-table__cell">
+                                <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+                                  <i class="material-icons">more_vert</i>
+                                </button>
+                                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+                                    <li class="mdl-menu__item">Remove</li>
+                                </ul>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="records-items"></tbody>
+                </table>
+                <ul class="md-ui component-pagination">
+                    <li class="pagination-arrow arrow-left">
+                        <i class="material-icons">keyboard_arrow_left</i>
+                    </li>
+                    <li class="pagination-number current-number">1</li>
+                    <li class="pagination-arrow arrow-right">
+                        <i class="material-icons">keyboard_arrow_right</i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
     </div>
 </div>
