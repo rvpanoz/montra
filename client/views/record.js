@@ -53,7 +53,7 @@ define([
 
     _render: function() {
       componentHandler.upgradeElement(this.el);
-      
+
       var kind = this.model.get('kind').toString();
       switch(kind) {
         case "1":
@@ -84,7 +84,11 @@ define([
       _.each(categories.data, function(category) {
         this.ui.inputCategory_id.append('<option value="' + category._id + '">' + category.name + "</option>");
       }, this);
-      this.ui.inputCategory_id.val(this.model.get('category_id'));
+
+      if(this.collection.length == 1) {
+        var category = this.collection.at(0);
+        this.model.set('category_id', category.get('_id'));
+      }
     },
 
     onNavigate: function(e) {

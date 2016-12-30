@@ -87,7 +87,6 @@ define([
       e.preventDefault();
       var target = this.$(e.currentTarget);
       var page = this.page;
-
       if (target.hasClass('arrow-right')) {
         this.page++;
       } else if (target.hasClass('arrow-left')) {
@@ -95,7 +94,9 @@ define([
       }
 
       if (this.page < 1) this.page = 1;
-      if (this.page > this.numPages()) this.page = this.numPages();
+      if (this.page > this.numPages()) {
+        this.page = this.numPages();
+      }
 
       this.collection.fetch({
         data: {
@@ -205,10 +206,35 @@ define([
     onRender: function() {
       componentHandler.upgradeDom();
       this.setDatepickers();
+
       this.categories.fetch().done(_.bind(function(response) {
         this._createCategories(response);
         this.ui.divCategory.addClass('is-dirty');
       }, this));
+
+      if (this.page >= this.numPages()) {
+        this.$('.arrow-right').hide();
+      } else {
+        this.$('.arrow-right').show();
+      }
+      if (this.page == 1) {
+        this.$('.arrow-left').hide();
+      } else {
+        this.$('.arrow-left').show();
+      }
+
+      var $current = this.$('li.current-number');
+      
+      if(this.numPages() > 1) {
+        for(var z=0;z<this.numPages();z++) {
+          var $pageNo = $('<li/>', {
+            class: 'pagination-number',
+            text: z
+          });
+          $current.append($pageNo);
+        }
+      }
+
     },
 
     onAttach: function() {},

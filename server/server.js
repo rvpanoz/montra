@@ -138,8 +138,9 @@ server.register(require('hapi-auth-jwt'), (err) => {
     config: {
       handler: function(req, reply) {
         // console.log(req.auth.isAuthenticated);
-        let uid = req.auth.credentials.id;
-        return app.records.browse(uid, reply);
+        var uid = req.auth.credentials.id;
+        var page = req.query.page;
+        return app.records.browse(uid, page, reply);
       }
     }
   });

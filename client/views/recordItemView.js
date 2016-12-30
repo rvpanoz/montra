@@ -47,6 +47,23 @@ define([
         'label_cls_kind': (k == 1) ? 'primary' : 'primary',
         'label_cls_payment_method': (p == 1) ? 'primary' : 'primary'
       });
+    },
+
+    onRender: function() {
+      var model = this.model;
+      var amount = parseFloat(model.get('amount'));
+
+      if(amount >= 250 && amount <= 500) {
+        this.$el.addClass('value-250-500');
+      }
+
+      if(amount >= 500 && amount <= 750) {
+        this.$el.addClass('value-500-750');
+      }
+
+      if(amount >= 750 && amount <= 10000) {
+        this.$el.addClass('value-750-1000');
+      }
     }
   });
 

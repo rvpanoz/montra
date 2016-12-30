@@ -66,6 +66,24 @@ a {
     color: red;
 }
 
+.value-250-500 {
+  border: 1px solid;
+  border-color: red;
+  background: antiquewhite;
+}
+
+.value-500-750 {
+  border: 1px solid;
+  border-color: red;
+  background: coral;
+}
+
+.value-750-1000 {
+  border: 1px solid;
+  border-color: red;
+  background: #dd44aa;
+}
+
 .grid-records button.btn-add {
     margin-top: 15px;
 }
@@ -208,7 +226,7 @@ a {
 .mntr-filter-trigger {
     position: absolute;
     top: 0;
-    left: 10px;
+    right: 10px;
     height: 50px;
     line-height: 50px;
     width: 60px;
