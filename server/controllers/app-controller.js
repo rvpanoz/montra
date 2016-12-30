@@ -136,7 +136,7 @@ module.exports = function(server) {
 
         var options = {
           sort: {
-            amount: 1
+            amount: -1
           },
           populate: 'category_id',
           lean: true,

@@ -84,11 +84,8 @@ define([
       _.each(categories.data, function(category) {
         this.ui.inputCategory_id.append('<option value="' + category._id + '">' + category.name + "</option>");
       }, this);
-
-      if(this.collection.length == 1) {
-        var category = this.collection.at(0);
-        this.model.set('category_id', category.get('_id'));
-      }
+      var category = this.collection.at(0);
+      this.model.set('category_id', category.get('_id'));
     },
 
     onNavigate: function(e) {
@@ -115,6 +112,11 @@ define([
 
     onRender: function() {
       this.stickit();
+      var model = this.model;
+      this.ui.inputCategory_id.bind('change', function(e) {
+        var target = $(e.currentTarget);
+        model.set('category_id', target.val());
+      });
     },
 
     onAttach: function() {
@@ -131,7 +133,6 @@ define([
         var d = this.model.get('entry_date');
         this.ui.inputEntryDate.val(d);
       }
-
     },
 
     onEventSave: function(e) {
