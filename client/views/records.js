@@ -11,6 +11,7 @@ define([
   return Marionette.CompositeView.extend({
     _searched: false,
     page: 1,
+    className: 'mui-container-fluid',
     template: templates.browseRecords,
     childView: RecordItemView,
     childViewContainer: '.records-items',
@@ -43,6 +44,7 @@ define([
     initialize: function() {
       this.collection = new RecordSchema.collection();
       this.categories = new CategorySchema.collection();
+      this.collectionCloned = this.collection;
       this.collection.fetch({
         data: {
           page: this.page
@@ -158,7 +160,7 @@ define([
       var sumExpenses = 0,
         sumIncomes = 0;
 
-      this.collection.each(function(model) {
+      this.collectionCloned.each(function(model) {
         var kind = model.get('kind').toString();
         var amount = parseFloat(model.get('amount'));
         if (kind == 1)
@@ -171,7 +173,7 @@ define([
 
       return _.extend(this.collection.toJSON(), {
         stats: {
-          totals: this.collection.length,
+          totals: this.collection.total,
           expenses: sumExpenses.toFixed(2),
           incomes: sumIncomes.toFixed(2),
           balance: balance.toFixed(2)

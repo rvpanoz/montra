@@ -66,6 +66,16 @@ a {
     color: red;
 }
 
+.mui-panel {
+  margin-top: 50px;
+}
+
+i.close-filters {
+  position: absolute;
+    top: 13px;
+    left: 30%;
+}
+
 .value-250-500 {
   border: 1px solid;
   border-color: red;

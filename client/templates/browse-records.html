@@ -1,101 +1,103 @@
-<div class="mdl-grid grid-filters">
-    <div class="mdl-cell mdl-cell--4-col">
-        <div class="mntr-filter-wrapper">
-            <a href="#" class="mntr-filter-trigger" id="mntr-filter-trigger" alt="Filters">Filters</a>
-            <div class="mdl-tooltip" for="mntr-filter-trigger">Click to open filters</div>
-        </div>
-        <div class="mntr-filter">
-            <form action="#" class="mntr-filter-form">
-                <div class="mntr-filter-block first">
-                    <h4>Date range</h4>
-                    <div class="mntr-filter-content">
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-entry_date-from">
-                                <input class="mdl-textfield__input" type="text" id="input-entry-date-from" data-language='en' name="input-entry-date-from" />
-                                <label class="mdl-textfield__label" for="input-entry-date-from">Date from</label>
-                            </div>
-                        </div>
-
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--6-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-entry_date-to">
-                                <input class="mdl-textfield__input" type="text" id="input-entry-date-to" data-language='en' name="input-entry-date-to" />
-                                <label class="mdl-textfield__label" for="input-entry-date-to">Date to</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mntr-filter-block">
-                    <h4>Category</h4>
-                    <div class="mntr-filter-content">
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--8-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-category_id">
-                                <div class="mdl-select mdl-js-select mdl-select--floating-label mdl-category_id">
-                                    <select class="mdl-select__input" id="input-category" name="input-category">
-                                      <option value="0"></option>
-                                    </select>
-                                    <label class="mdl-select__label" for="input-category">Select category</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mntr-filter-block">
-                    <h4>Payment and Kind</h4>
-                    <div class="mntr-filter-content">
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--12-col">
-                                <div class="mdl-grid">
-                                    <div class="mdl-cell mdl-cell--6-col">
-                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-1" for="input-kind-1">
-                                          <input type="radio" id="input-kind-1" class="mdl-radio__button" name="input-kind" value="1">
-                                          <span class="mdl-radio__label">Expense</span>
-                                        </label>
-                                    </div>
-                                    <div class="mdl-cell mdl-cell--6-col">
-                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-2" for="input-kind-2">
-                                        <input type="radio" id="input-kind-2" class="mdl-radio__button" name="input-kind" value="2">
-                                        <span class="mdl-radio__label">Income</span>
-                                      </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mdl-cell mdl-cell--12-col">
-                                <div class="mdl-grid">
-                                    <div class="mdl-cell mdl-cell--6-col">
-                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-1" for="input-payment-1">
-                                              <input type="radio" id="input-payment-1" class="mdl-radio__button" name="input-payment" value="1">
-                                              <span class="mdl-radio__label">Cash</span>
-                                            </label>
-                                    </div>
-                                    <div class="mdl-cell mdl-cell--6-col">
-                                        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-payment-2" for="input-payment-2">
-                                            <input type="radio" id="input-payment-2" class="mdl-radio__button" name="input-payment" value="2">
-                                            <span class="mdl-radio__label">Credit card</span>
-                                          </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form__action">
-                    <div class="mdl-grid">
-                        <div class="mdl-cell mdl-cell--2-col">
-                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored filter">Search</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-            <!-- close filter -->
-            <a href="#" class="mntr-close">Close</a>
-        </div>
-    </div>
+<div class="mntr-filter-wrapper">
+    <a href="#" class="mntr-filter-trigger" id="mntr-filter-trigger" alt="Filters">Filters</a>
+    <div class="mdl-tooltip" for="mntr-filter-trigger">Click to open filters</div>
 </div>
-<div class="mdl-layout-spacer"></div>
-<div class="mdl-grid grid-records">
-    <div class="mdl-cell mdl-cell--4-col">
-        <div class="card">
+<div class="mntr-filter">
+    <form action="#" class="mntr-filter-form">
+        <div class="mntr-filter-block first">
+            <h4>Date range</h4>
+            <div class="mntr-filter-content">
+                <div class="mui-row">
+                    <div class="mui-col-md-6 mdl-entry_date-from">
+                      <div class="mui-textfield">
+                        <input type="text" id="input-entry-date-from" data-language='en' name="input-entry-date-from">
+                        <label>Date from</label>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="mui-row">
+                    <div class="mui-col-md-6 mdl-entry_date-to">
+                      <div class="mui-textfield">
+                        <input type="text" id="input-entry-date-to" data-language='en' name="input-entry-date-to">
+                        <label>Date to</label>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mntr-filter-block">
+            <h4>Category</h4>
+            <div class="mntr-filter-content">
+                <div class="mui-row">
+                    <div class="mui-col-md-6 mdl-category_id">
+                      <div class="mui-select">
+                      <select id="input-category" name="input-category">
+                        <option value="0"></option>
+                      </select>
+                      <label>Select category</label>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="mntr-filter-block">
+            <h4>Payment and Kind</h4>
+            <div class="mntr-filter-content">
+                <div class="mui-row">
+                    <div class="mui-col-md-12">
+                        <div class="mui-row">
+                            <div class="mui-col-md-6">
+                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-1" for="input-kind-1">
+                                  <input type="radio" id="input-kind-1" class="mdl-radio__button" name="input-kind" value="1">
+                                  <span class="mdl-radio__label">Expense</span>
+                                </label>
+                            </div>
+                            <div class="mui-col-md-6">
+                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-2" for="input-kind-2">
+                                <input type="radio" id="input-kind-2" class="mdl-radio__button" name="input-kind" value="2">
+                                <span class="mdl-radio__label">Income</span>
+                              </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mui-col-md-12">
+                        <div class="mui-row">
+                            <div class="mui-col-md-6">
+                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-1" for="input-payment-1">
+                                      <input type="radio" id="input-payment-1" class="mdl-radio__button" name="input-payment" value="1">
+                                      <span class="mdl-radio__label">Cash</span>
+                                    </label>
+                            </div>
+                            <div class="mui-col-md-6">
+                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-payment-2" for="input-payment-2">
+                                    <input type="radio" id="input-payment-2" class="mdl-radio__button" name="input-payment" value="2">
+                                    <span class="mdl-radio__label">Credit card</span>
+                                  </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mntr-filter-block">
+          <div class="mui-row">
+              <div class="mui-col-4 mui-col-md-offset-8">
+                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored filter">Search</button>
+              </div>
+          </div>
+        </div>
+    </form>
+
+    <!-- close filter -->
+    <a href="#" class="mntr-close">
+      <i class="material-icons close-filters">clear</i>
+    </a>
+</div>
+
+<div class="mui-row">
+    <div class="mui-col-md-4">
+        <div class="mui-panel">
             <div class="card-content black-text">
                 <p><i class="mdi-social-group-add"></i> Balance
                     <hr/>
@@ -111,7 +113,20 @@
             </div>
         </div>
     </div>
-    <div class="mdl-cell mdl-cell--8-col records-table-container">
+    <div class="mui-col-md-4">
+        <div class="mui-panel">
+            <div class="card-content black-text">
+                <p><i class="mdi-social-group-add"></i> Transactions
+                    <hr/>
+                </p>
+                <h4><%= stats.totals %></h4>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="mdl-layout-spacer"></div>
+  <div class="mui-row">
+    <div class="mui-col-md-8 records-table-container">
         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp records-table">
             <thead>
                 <tr>
