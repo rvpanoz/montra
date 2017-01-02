@@ -14,17 +14,14 @@ define([
     },
 
     defaults: {
-      name: '',
+      name: null,
+      color: null,
       updated_at: new Date(),
       created_at: new Date()
     },
 
     parse: function(response) {
       var error;
-      if(response.success == false) {
-        error = response.error;
-        // this.trigger('invalid', this, error);
-      }
       return response.data;
     },
 

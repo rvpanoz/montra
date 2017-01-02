@@ -3,6 +3,10 @@
     justify-content: center;
 }
 
+li.selected {
+  background: #ccc !important;
+}
+
 a {
     color: #41307c;
     text-decoration: none;

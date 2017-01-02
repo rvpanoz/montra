@@ -1,23 +1,25 @@
 <div class="row">
     <div class="col-md-1 col-sm-12">
         <div class="checkbox">
-            <input type="checkbox" id="checkbox<%= _id %>">
+            <input type="checkbox" class="check-action" id="checkbox<%= _id %>">
             <label for="checkbox<%= _id %>"></label>
         </div>
     </div>
-    <div class="record-basic col-md-5 col-sm-5 col-xs-12">
-        <span class="amount" style="color: <%= kind_color %>"><%= amount %>&euro;</span>
-        <span class="badge badge-info"><span><%= category_id.name %></span></span>
-        <span class="badge badge-default pull-right"><%= payment_method_descr %></span>
+    <div class="record-basic col-md-3 col-sm-4 col-xs-12">
+        <span class="badge" style="background-color:<%= category_id.color %>"><span><%= category_id.name %></span></span>
     </div>
     <div class="record-time col-md-4 col-sm-4 col-xs-12">
         <div class="divider hidden-md hidden-sm hidden-xs"></div>
         <i class="fa fa-calendar-o"></i>
         <span class="time"><%= entry_date_formatted %></span>
+        <div class="pull-right">
+          <i class="fa fa-<%= payment_check %>"></i>
+          <span class="amount" style="color: <%= kind_color %>"><%= amount %>&euro;</span>
+      </div>
     </div>
     <div class="record-type col-md-2 col-sm-2 col-xs-12">
         <span class="divider hidden-xs"></span>
-        <div class="btn-group">
+        <div class="btn-group pull-right">
             <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Actions <span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu">
                 <li><a href="#" class="update">Update</a></li>

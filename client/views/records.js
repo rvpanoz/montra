@@ -1,13 +1,12 @@
 define([
   'marionette',
   'schemas/record-schema',
-  'schemas/search-schema',
   'schemas/category-schema',
   'views/recordItemView',
   'views/recordsStatsView',
   'moment',
   'templates'
-], function(Marionette, RecordSchema, SearchSchema, CategorySchema, RecordItemView, RecordsStatsView, moment, templates) {
+], function(Marionette, RecordSchema, CategorySchema, RecordItemView, RecordsStatsView, moment, templates) {
 
   return Marionette.CompositeView.extend({
     template: templates.browseRecords,
@@ -34,7 +33,7 @@ define([
       'click .navigate': 'onNavigate',
       'click button.search': 'onSearch',
       'click button.new': 'onNew',
-      'click button.clear': 'onClearSearch',
+      'click button.clear': 'onClearSearch'
     },
     ui: {
       filters: '.filter-bar',
@@ -61,6 +60,12 @@ define([
     _fixFilterBar: function() {
       var filterBar = this.ui.filters;
       filterBar.addClass('filter-is-hidden');
+    },
+
+    onSort: function(e) {
+      e.preventDefault();
+      
+
     },
 
     onChildCloneModel: function(model) {

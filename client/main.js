@@ -9,14 +9,15 @@ requirejs.config({
     underscore: './bower_components/underscore/underscore',
     backbone: './bower_components/backbone/backbone',
     stickit: './bower_components/backbone.stickit/backbone.stickit',
-    'backbone.radio': './bower_components/backbone.radio/build/backbone.radio',
     marionette: './bower_components/backbone.marionette/lib/backbone.marionette',
     moment: './bower_components/moment/min/moment.min',
     chartjs: './bower_components/chart.js/dist/Chart.min',
+    tpl: 'tpl',
+    'backbone.radio': './bower_components/backbone.radio/build/backbone.radio',
     'bootstrap': './bower_components/bootstrap/dist/js/bootstrap',
     'bootstrapSelect': './bower_components/bootstrap-select/dist/js/bootstrap-select',
-    'niceScroll': './plugins/nicescroll/jquery.nicescroll.min',
-    tpl: 'tpl'
+    'bootstrapColorpicker': './bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker',
+    'niceScroll': './plugins/nicescroll/jquery.nicescroll.min'
   },
   shim: {
     niceScroll: {
@@ -27,6 +28,9 @@ requirejs.config({
       deps: ['jquery']
     },
     bootstrapSelect: {
+      deps: ['jquery', 'bootstrap']
+    },
+    bootstrapColorpicker: {
       deps: ['jquery', 'bootstrap']
     },
     backbone: {
@@ -90,9 +94,7 @@ requirejs([
     app.wait(false);
   });
 
-  $(document).ready(function() {
-    app.initializeJS();
-  });
+  $(document).ready(function() {});
 
   //start the application
   app.start();

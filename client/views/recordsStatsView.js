@@ -6,7 +6,8 @@ define([
 
   var RecordsStatsView = Marionette.View.extend({
     template: templates.recordsStats,
-    initialize: function(collection) {
+    initialize: function(params) {
+      var collection = params.collection;
       this.collection = new RecordSchema.collection();
       this.collection.reset(collection.allRecords);
     },

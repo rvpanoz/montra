@@ -11,6 +11,10 @@ var CategorySchema = new Mongoose.Schema({
     type: String,
     required: [true, 'Field name is required']
   },
+  color: {
+    type: String,
+    required: [false]
+  },
   user_id: {
     type: Mongoose.Schema.ObjectId,
     ref: 'User',

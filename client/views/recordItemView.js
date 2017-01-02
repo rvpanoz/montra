@@ -14,7 +14,7 @@ define([
       'destroy': 'onModelDestroy'
     },
     events: {
-      'click :checkbox': 'onSelect',
+      'click .check-action': 'onSelect',
       'click .update': 'onEventUpdate',
       'click .remove': 'onEventRemove',
       'click .clone': 'onEventClone'
@@ -38,10 +38,14 @@ define([
     },
 
     onSelect: function(e) {
-      // e.preventDefault();
-      // var $target = $(e.target);
-      // var selected = $target.is(':checked');
-      // console.log('selected: ', selected, 'value: ', $target.val());
+      var $target = $(e.target);
+      var selected = $target.is(':checked');
+      if(selected == true) {
+        $target.closest('li').addClass('selected')
+      } else if(selected == false) {
+        $target.closest('li').removeClass('selected')
+      }
+      this.model.set('_selected', selected);
       return true;
     },
 
@@ -78,7 +82,7 @@ define([
         'kind_descr': (k == 1) ? 'Expense' : 'Income',
         'kind_color': (k == 1) ? 'red' : 'green',
         'kind_check': (k == 1) ? 'times' : 'check',
-        'payment_check': (p == 1) ? 'money' : 'list',
+        'payment_check': (p == 1) ? 'euro' : 'credit-card',
         'payment_badge': (p == 1) ? 'primary' : 'primary',
         'payment_method_descr': (p == 1) ? 'Cash' : 'Credit card'
       });

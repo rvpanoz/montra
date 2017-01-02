@@ -326,8 +326,7 @@ module.exports = function(server) {
       },
 
       insert: function(uid, data, reply) {
-        // set user_id
-        let category = new Category(_.extend(data, {
+        var category = new Category(_.extend(data, {
           user_id: uid
         }));
 
@@ -360,6 +359,7 @@ module.exports = function(server) {
 
           // set new attrs
           category.name = data.name;
+          category.color = data.color;
           category.updated_at = moment().toISOString();
 
           category.save(function(err, updated_category) {

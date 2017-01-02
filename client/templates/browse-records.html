@@ -7,21 +7,20 @@
         <div class="widget-main no-padding">
             <div class="records-container">
               <div class="btn-group">
-                  <button type="button" class="btn btn-primary btn-sm new">
+                  <button type="button" class="btn btn-sm new">
                     <i class="fa fa-plus"></i>
                   New record</button>
               </div>
               <div class="btn-group">
-                  <button type="button" class="btn btn-primary btn-sm filter-trigger">
+                  <button type="button" class="btn btn-sm filter-trigger">
                   <i class="fa fa-search"></i>
                   Filters</button>
               </div>
                 <div class="btn-group pull-right">
-                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">List actions <span class="caret"></span></button>
+                    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Sorting <span class="caret"></span></button>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Remove selected</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Sort</a></li>
+                        <li><a href="#" data-sort="amount" data-dir="desc">Desceding</a></li>
+                        <li><a href="#" data-sort="amount" data-dir="asc">Ascending</a></li>
                     </ul>
                 </div>
                 <ul class="records-list records-items"></ul>

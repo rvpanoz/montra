@@ -26,13 +26,13 @@ define([
       this.showChildView('recordsRegion', new RecordsView());
     },
 
-    onChildFetchRecords: function(opts) {
-      var recordsStatsView = new RecordsStatsView(opts.collection);
-      this.showChildView('statsRegion', recordsStatsView);
+    onChildFetchRecords: function(collection) {
+      this.recordsStatsView = new RecordsStatsView(collection);
+      this.showChildView('statsRegion', this.recordsStatsView);
     },
 
-    onChildModelRemoved: function(opts) {
-      /** TODO: render stats **/
+    onChildModelRemoved: function() {
+      this.render();
     }
 
   });

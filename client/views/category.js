@@ -1,20 +1,22 @@
 define([
   'marionette',
   'schemas/category-schema',
-  'templates'
+  'templates',
+  'bootstrapColorpicker'
 ], function(Marionette, CategorySchema, templates) {
 
   var CategoryView = Marionette.View.extend({
     template: templates.category,
     className: 'category-form',
     bindings: {
-      '#input-name': 'name'
+      '#input-name': 'name',
+      '#colorpickerr': 'color'
     },
     ui: {
-      name: 'div.input-name'
+      name: '#input-name',
+      colorpicker: '#colorpicker'
     },
     modelEvents: {
-      // 'sync': 'onEventSync',
       'change': 'onModelChange'
     },
     events: {
@@ -24,35 +26,40 @@ define([
 
     initialize: function(params) {
       this.model = new CategorySchema.model();
-
       if (params.id) {
         this.model.set('_id', params.id);
         this.model.fetch();
       }
-
       this.listenTo(this.model, 'invalid', this.onValidationError, this);
     },
 
     onRender: function() {
       this.stickit();
+      this.ui.colorpicker.colorpicker({
+        color: '#AA3399',
+        format: 'hex'
+      });
+      this.ui.colorpicker.bind('changeColor', _.bind(function(e) {
+        var value = this.ui.colorpicker.colorpicker('getValue');
+        if(value != false) {
+          this.model.set('color', value);
+        }
+      }, this));
+
     },
 
     onEventSave: function(e) {
-      if(e) {
+      if (e) {
         e.preventDefault();
       }
+
       this.model.save(null, {
         success: _.bind(this.onEventSaveCallback, this)
       });
     },
 
     onModelChange: function(model) {
-      for(var z in model.changed) {
-        var element = this.$('.mdl-' + z);
-        if(element.length) {
-          element.addClass('is-focused');
-        }
-      }
+      // console.log(model.toJSON());
     },
 
     onEventSaveCallback: function(model) {
@@ -67,7 +74,7 @@ define([
     },
 
     onEventBack: function(e) {
-      if(e) {
+      if (e) {
         e.preventDefault();
       }
       app.navigate('categories');

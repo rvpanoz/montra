@@ -106,24 +106,28 @@
     overflow: hidden;
 }
 
+.records-container .records-list .record-item:first-child {
+
+}
+
+.records-container .records-list .record-item:last-child {
+  margin-bottom: 8px;
+}
+
 .records-container .records-list .record-item {
     position: relative;
     background-color: #fff;
     -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .2);
     -moz-box-shadow: 0 0 3px rgba(0, 0, 0, .2);
     box-shadow: 0 0 3px rgba(0, 0, 0, .2);
-    -webkit-border-radius: 3px;
-    -webkit-background-clip: padding-box;
-    -moz-border-radius: 3px;
-    -moz-background-clip: padding;
-    border-radius: 3px;
     background-clip: padding-box;
-    margin-bottom: 8px;
+    margin-bottom: 0px;
     padding: 0 15px;
     vertical-align: top;
 }
 
 .records-container .records-list {
+    margin-top: 20px;
     list-style: none;
     padding: 0;
     margin-bottom: 0;

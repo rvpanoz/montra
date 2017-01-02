@@ -13,6 +13,7 @@ define([
       }
     },
     defaults: {
+      _selected: false,
       amount: null,
       payment_method: 1,
       kind: 1,
