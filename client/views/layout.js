@@ -6,7 +6,7 @@ define([
 ], function(Marionette, templates, SidebarView, NavbarView) {
   "use strict";
 
-  var LayoutView =  Marionette.View.extend({
+  var LayoutView = Marionette.View.extend({
     template: templates.layout,
     className: 'layout-view',
     regions: {
@@ -37,7 +37,7 @@ define([
     },
 
     onSignout: function(e) {
-      if(e) {
+      if (e) {
         e.preventDefault();
       }
 
@@ -46,66 +46,29 @@ define([
     },
 
     initializeJS: function() {
+      $(".sidebar-toggle").bind("click", function(e) {
+        $("#sidebar").toggleClass("active");
+        $(".app-container").toggleClass("__sidebar");
+      });
 
+      $(".navbar-toggle").bind("click", function(e) {
+        $("#navbar").toggleClass("active");
+        $(".app-container").toggleClass("__navbar");
+      });
 
-        //tool tips
-        $('.tooltips').tooltip();
-
-        //popovers
-        $('.popovers').popover();
-
-        //custom scrollbar
-        //for html
-        $("html").niceScroll({
-          styler: "fb",
-          cursorcolor: "#007AFF",
-          cursorwidth: '6',
-          cursorborderradius: '10px',
-          background: '#F7F7F7',
-          cursorborder: '',
-          zindex: '1000'
-        });
-        //for sidebar
-        $("#sidebar").niceScroll({
-          styler: "fb",
-          cursorcolor: "#007AFF",
-          cursorwidth: '3',
-          cursorborderradius: '10px',
-          background: '#F7F7F7',
-          cursorborder: ''
-        });
-        // for scroll panel
-        $(".scroll-panel").niceScroll({
-          styler: "fb",
-          cursorcolor: "#007AFF",
-          cursorwidth: '3',
-          cursorborderradius: '10px',
-          background: '#F7F7F7',
-          cursorborder: ''
-        });
-
-        $(".sidebar-toggle").bind("click", function(e) {
-          $("#sidebar").toggleClass("active");
-          $(".app-container").toggleClass("__sidebar");
-        });
-
-        $(".navbar-toggle").bind("click", function(e) {
-          $("#navbar").toggleClass("active");
-          $(".app-container").toggleClass("__navbar");
-        });
-
-        $('.sidebar-nav .navigation-link').bind('click', function(e) {
-          $("#sidebar").toggleClass("active");
-          return true;
-        });
-
+      $('.sidebar-nav .navigation-link').bind('click', function(e) {
+        $("#sidebar").toggleClass("active");
+        return true;
+      });
     },
+    
     onAttach: function() {
       var token = localStorage.getItem('token');
       this.initializeJS();
     },
 
     onRender: function() {
+      var token = localStorage.getItem('token');
       this.showChildView('sidebarRegion', new SidebarView());
       this.showChildView('navbarRegion', new NavbarView());
     }

@@ -26,7 +26,7 @@ define([
     },
 
     onModelDestroy: function(model, collection) {
-      console.log('model destroyed.');
+      this.triggerMethod('remove:model', model);
     },
 
     onEventUpdate: function(e) {

@@ -6,24 +6,33 @@ define([
 
   var RecordsStatsView = Marionette.View.extend({
     template: templates.recordsStats,
+    collectionEvents: {
+      'change': 'render',
+      'remove': 'render'
+    },
+
     initialize: function(params) {
-      var collection = params.collection;
+      var allRecords = [];
+
       this.collection = new RecordSchema.collection();
-      this.collection.reset(collection.allRecords);
+
+      if(params && params.collection) {
+        debugger;
+      }
     },
 
     serializeData: function() {
       var sumExpenses = 0,
         sumIncomes = 0;
 
-      this.collection.each(function(model) {;
+      _.each(this.collection.models, function(model) {
         var kind = model.get('kind').toString();
         var amount = parseFloat(model.get('amount'));
         if (kind == 1)
           sumExpenses += amount;
         if (kind == 2)
           sumIncomes += amount;
-      });
+      }, this);
 
       var balance = sumIncomes - sumExpenses;
 

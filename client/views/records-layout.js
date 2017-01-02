@@ -22,17 +22,26 @@ define([
       'model:removed': 'child:model:removed'
     },
 
+    initialize: function() {
+      // debugger;
+      // this.recordsView = new RecordsView();
+      // this.recordsStatsView = new RecordsStatsView();
+    },
+
     onRender: function() {
-      this.showChildView('recordsRegion', new RecordsView());
+      var recordsView = new RecordsView();
+      var statsView = new RecordsStatsView();
+
+      this.showChildView('statsRegion', statsView);
+      this.showChildView('recordsRegion', recordsView);
     },
 
-    onChildFetchRecords: function(collection) {
-      this.recordsStatsView = new RecordsStatsView(collection);
-      this.showChildView('statsRegion', this.recordsStatsView);
+    onChildFetchRecords: function(opts) {
+      
     },
 
-    onChildModelRemoved: function() {
-      this.render();
+    onChildModelRemoved: function(model) {
+      // this.recordsStatsView.collection.remove(model);
     }
 
   });

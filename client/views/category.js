@@ -17,6 +17,7 @@ define([
       colorpicker: '#colorpicker'
     },
     modelEvents: {
+      'sync': 'render',
       'change': 'onModelChange'
     },
     events: {

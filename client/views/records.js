@@ -64,8 +64,6 @@ define([
 
     onSort: function(e) {
       e.preventDefault();
-      
-
     },
 
     onChildCloneModel: function(model) {
@@ -75,9 +73,7 @@ define([
     },
 
     onRemove: function(model, collection) {
-      this.triggerMethod('model:removed', {
-        collection: collection
-      });
+      this.triggerMethod('model:removed', model);
     },
 
     onNew: function(e) {
