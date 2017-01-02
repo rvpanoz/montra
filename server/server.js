@@ -204,6 +204,16 @@ server.register(require('hapi-auth-jwt'), (err) => {
     }
   });
 
+  server.route({
+    method: 'GET',
+    path: '/charts/piechart',
+    config: {
+      handler: function(req, reply) {
+        var uid = req.auth.credentials.id;
+        return app.charts.piechart(uid, reply);
+      }
+    }
+  })
   server.start(function(err) {
     if (err) {
       throw new Error(err);

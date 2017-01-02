@@ -1,62 +1,72 @@
 define([
   'marionette',
   'templates',
-  // 'chartjs'
-], function(Marionette, templates, Chart) {
+  'schemas/category-schema',
+  'chartjs'
+], function(Marionette, templates, CategorySchema, Chart) {
 
   var DashboardView = Marionette.View.extend({
     template: templates.home,
-    // ui: {
-    //   canvas: '#balance-chart'
-    // },
+    ui: {
+      canvas: '#pie-chart'
+    },
+    collectionEvents: {
+      sync: 'onSync'
+    },
+    initialize: function() {
+      this.collection = new CategorySchema.collection();
+      this.collection.fetch();
+    },
+    onSync: function() {
+      var ctx = this.getUI('canvas');
+      this.data = {
+        labels: [],
+        datasets: [{
+          data: [],
+          backgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56",
+            "#FFCE56",
+            "#36A2EB",
+            "#FFCE56",
+            "#CC33AA",
+            "#BBBCCC",
+            "#FFF000"
+          ],
+          hoverBackgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+          ]
+        }]
+      };
+      $.ajax({
+        url: app.baseUrl + "/charts/piechart",
+        success: _.bind(function(response) {
+          var dataItems = response.data;
+          for (var z in dataItems) {
+            var dataItem = dataItems[z];
 
-    onRender: function() {
-      $('.selectpicker').selectpicker({
-        style: 'btn-info',
-        size: 4
+            this.data.labels.push(this.collection.findWhere({
+              _id: dataItem._id
+            }).get('name'));
+            this.data.datasets[0].data.push(dataItem.total);
+          }
+          // For a pie chart
+          var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: this.data,
+            // options: options
+          });
+        }, this)
       });
+    },
+    onRender: function() {
 
     },
     onAttach: function() {
-      /**
-      this.chart = new Chart(this.ui.canvas[0], {
-        type: 'bar',
-        data: {
-          labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-          datasets: [{
-            label: '#',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255,99,132,1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: true
-              }
-            }]
-          }
-        }
-      });
-    }
-    **/
+
     }
   });
 

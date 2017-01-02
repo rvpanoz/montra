@@ -25,7 +25,7 @@ define([
       'buttonClone': '.clone'
     },
 
-    onModelDestroy: function(model, collection) {
+    onModelDestroy: function(model) {
       this.triggerMethod('remove:model', model);
     },
 

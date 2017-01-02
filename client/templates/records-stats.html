@@ -1,15 +1,18 @@
-<div class="list-group">
-    <a href="#" class="list-group-item">
-        <span class="badge"><%= stats.total %></span> Transactions
-    </a>
-    <br/>
-    <a href="#" class="list-group-item list-group-item-success">
-        <span class="badge badge-success"><%= stats.incomes %>&euro;</span> Incomes
-    </a>
-    <a href="#" class="list-group-item list-group-item-danger">
-        <span class="badge badge-danger"><%= stats.expenses %>&euro;</span> Expenses
-    </a>
-    <a href="#" class="list-group-item list-group-item-default">
-        <span class="badge badge-info"><%= stats.balance %>&euro;</span> Balance
-    </a>
+<div class="notice notice-warning">
+    <strong>Transactions</strong> <span class="badge pull-right"><%= stats.total %></span>
 </div>
+<div class="notice notice-success">
+    <strong>Incomes</strong> <span class="badge badge-success pull-right"><%= stats.incomes %>&euro;</span>
+</div>
+<div class="notice notice-danger">
+    <strong>Expenses</strong> <span class="badge badge-danger pull-right"><%= stats.expenses %>&euro;</span>
+</div>
+<div class="notice notice-info">
+    <strong>Balance</strong> <span class="badge badge-info pull-right"><%= stats.balance %>&euro;</span>
+</div>
+<!-- <div class="notice notice-lg">
+    <strong>Big notice</strong> notice-lg
+</div>
+<div class="notice notice-sm">
+    <strong>Small notice</strong> notice-sm
+</div> -->

@@ -158,9 +158,7 @@ define([
         }
       }
 
-      this.triggerMethod('fetch:records', {
-        collection: this.collection
-      });
+      this.triggerMethod('fetch:records', this.collection);
     },
 
     onNavigate: function(e) {

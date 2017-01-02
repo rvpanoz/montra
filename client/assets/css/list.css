@@ -48,6 +48,7 @@
     line-height: 30px;
     height: 50px;
     padding: 10px;
+    text-align: right;
 }
 
 .records-container .records-list .record-item .record-time i {
@@ -103,7 +104,7 @@
     padding: 10px;
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .records-container .records-list .record-item:first-child {

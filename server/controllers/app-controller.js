@@ -148,9 +148,9 @@ module.exports = function(server) {
 
         var countQuery = function(callback) {
           Record.find(query).populate('category_id').exec(function(err, allRecords) {
-              if (err) throw new Error(err);
-              callback(null, allRecords);
-            });
+            if (err) throw new Error(err);
+            callback(null, allRecords);
+          });
         };
 
         var retrieveQuery = function(callback) {
@@ -410,6 +410,27 @@ module.exports = function(server) {
         });
       }
 
+    },
+
+    charts: {
+      piechart: function(uid, reply) {
+        Record.aggregate({
+            $group: {
+              _id: '$category_id',
+              total: {
+                $sum: '$amount'
+              }
+            }
+          },
+          function(err, data) {
+            if (err) throw new Error(err)
+            reply({
+              success: true,
+              data: data
+            })
+          }
+        );
+      }
     }
   });
 

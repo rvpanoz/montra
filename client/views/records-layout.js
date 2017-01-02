@@ -13,19 +13,9 @@ define([
       statsRegion: '#stats-content',
       recordsRegion: '#records-content'
     },
-    collectionEvents: {
-      'sync': 'render',
-      'sort': 'render'
-    },
     childViewTriggers: {
       'fetch:records': 'child:fetch:records',
       'model:removed': 'child:model:removed'
-    },
-
-    initialize: function() {
-      // debugger;
-      // this.recordsView = new RecordsView();
-      // this.recordsStatsView = new RecordsStatsView();
     },
 
     onRender: function() {
@@ -36,12 +26,19 @@ define([
       this.showChildView('recordsRegion', recordsView);
     },
 
-    onChildFetchRecords: function(opts) {
-      
+    onChildFetchRecords: function(collection) {
+      this.getChildView('statsRegion').collection.reset(collection.allRecords);
+      this.getChildView('statsRegion').render();
     },
 
     onChildModelRemoved: function(model) {
-      // this.recordsStatsView.collection.remove(model);
+      var statsView = this.getChildView('statsRegion');
+      var models = _.filter(statsView.collection.models, function(m) {
+        return m.get('_id') != model.get('_id');
+      });
+      if(models.length) {
+        statsView.collection.reset(models);
+      }
     }
 
   });

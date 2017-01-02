@@ -7,24 +7,21 @@ define([
   var RecordsStatsView = Marionette.View.extend({
     template: templates.recordsStats,
     collectionEvents: {
-      'change': 'render',
-      'remove': 'render'
+      'reset': 'render'
     },
 
-    initialize: function(params) {
-      var allRecords = [];
-
+    initialize: function(collection) {
       this.collection = new RecordSchema.collection();
+    },
 
-      if(params && params.collection) {
-        debugger;
-      }
+    onRender: function() {
+      // debugger;
     },
 
     serializeData: function() {
       var sumExpenses = 0,
         sumIncomes = 0;
-
+        // debugger;
       _.each(this.collection.models, function(model) {
         var kind = model.get('kind').toString();
         var amount = parseFloat(model.get('amount'));
@@ -36,7 +33,7 @@ define([
 
       var balance = sumIncomes - sumExpenses;
 
-      return _.extend(this.collection.toJSON(), {
+      return _.extend({}, {
         stats: {
           total: this.collection.length,
           expenses: sumExpenses.toFixed(2),
