@@ -5,16 +5,19 @@ define(['moment'], function(moment) {
       '#input-amount': {
         observe: 'amount'
       },
-      '[name="input-payment-method"]': 'payment_method',
-      '[name="input-kind"]': 'kind',
+      '[name="input-payment"]': {
+        observe: 'payment_method'
+      },
+      '[name="input-kind"]': {
+        observe: 'kind'
+      },
       '#input-entry-date': {
         observe: 'entry_date'
       },
       '#input-category': {
         observe: 'category_id',
-        onSet: function() {
-          var value = $('#input-category').val();
-          return value;
+        onSet: function(id) {
+          return id;
         }
       },
       '#input-notes': 'notes'

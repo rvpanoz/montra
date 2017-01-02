@@ -1,70 +1,21 @@
-<div class="mui-container-fluid">
-    <div class="mui-row">
-        <div class="mui-col-md-4 mui-col-md-offset-2 user-signin">
-            <h2>Welcome</h2>
-            <div class="mdl-card mdl-shadow--6dp">
-                <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
-                    <h2 class="mdl-card__title-text">Sign in</h2>
-                    <button id="signup-tooltip" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored add">
-                      <i class="material-icons">add</i>
-                    </button>
-                    <div class="mdl-tooltip" for="signup-tooltip">Click to Sign up</div>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    <form action="#">
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <input class="mdl-textfield__input" type="text" id="signin-input-email" name="signin-input-email" />
-                            <label class="mdl-textfield__label" for="signin-input-email">Email</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <input class="mdl-textfield__input" type="password" id="signin-input-password" name="signin-input-password" />
-                            <label class="mdl-textfield__label" for="signin-input-password">Password</label>
-                        </div>
-                    </form>
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect signin">Sign in</button>
-                </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-login">
+            <h4 class="header-login">Welcome back.</h4>
+            <label>Email</label>
+            <input type="text" class="form-control" id="signin-input-email" name="signin-input-email" />
+            </br>
+            <label>Password</label>
+            <input type="password" class="form-control" id="signin-input-password" name="signin-input-password" />
+            </br>
+            <div class="wrapper">
+            <span class="group-btn">
+                <a href="#" class="btn btn-primary btn-md signin">Sign in <i class="fa fa-sign-in"></i></a>
+            </span>
             </div>
-        </div>
-        <div class="mui-col-md-4 mui-col-md-offset-2 user-signup" style="display: none;">
-            <div class="mdl-card mdl-shadow--6dp">
-                <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
-                    <h2 class="mdl-card__title-text">Sign up</h2>
-                    <button id="back-tooltip" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored back">
-                      <i class="material-icons">replay</i>
-                    </button>
-                    <div class="mdl-tooltip" for="back-tooltip">Click to go back</div>
-                </div>
-                <div class="mdl-card__supporting-text">
-                    <form action="#">
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <input class="mdl-textfield__input" type="text" id="input-first-name" name="input-first-name" />
-                            <label class="mdl-textfield__label" for="input-first-name">First name</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <input class="mdl-textfield__input" type="text" id="input-last-name" name="input-last-name" />
-                            <label class="mdl-textfield__label" for="input-last-name">Last name</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <input class="mdl-textfield__input" type="text" id="signup-input-email" name="signup-input-email" />
-                            <label class="mdl-textfield__label" for="signup-input-email">Email</label>
-                        </div>
-                        <div class="mdl-textfield mdl-js-textfield">
-                            <input class="mdl-textfield__input" type="password" id="signup-input-password" name="signup-input-password" />
-                            <label class="mdl-textfield__label" for="signup-input-password">Password</label>
-                        </div>
-                    </form>
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                    <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect signup">Sign up</button>
-                </div>
             </div>
-        </div>
-    </main>
-</div>
 
-<div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
-    <div class="mdl-snackbar__text"></div>
-    <button class="mdl-snackbar__action" type="button"></button>
+        </div>
+    </div>
 </div>

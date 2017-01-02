@@ -9,6 +9,7 @@ const bcrypt = require('bcryptjs');
 const Boom = require('boom');
 const wlog = require('winston');
 const _ = require('lodash');
+const async = require('async');
 const moment = require('moment');
 const createToken = require('../token');
 const utils = require('../util');
@@ -71,7 +72,7 @@ module.exports = function(server) {
     },
 
     records: {
-      browse: function(uid, reply, dataParams, opts) {
+      browse: function(uid, reply, dataParams) {
 
         function str2bool(strvalue) {
           var ret;
@@ -141,23 +142,55 @@ module.exports = function(server) {
           },
           populate: 'category_id',
           lean: true,
-          page: (opts && opts.page) ? opts.page : 1,
+          page: (dataParams && dataParams.page) ? dataParams.page : 1,
           limit: config.perPage
         };
 
-        Record.paginate(query, options, function(err, records) {
-          if (err) {
-            throw new Error(err);
-          }
-          
+        var countQuery = function(callback) {
+          Record.find(query).populate('category_id').exec(function(err, allRecords) {
+              if (err) throw new Error(err);
+              callback(null, allRecords);
+            });
+        };
+
+        var retrieveQuery = function(callback) {
+          Record.paginate(query, options, function(err, records) {
+            if (err) {
+              throw new Error(err);
+            }
+            callback(null, records);
+          });
+        };
+
+        async.parallel([countQuery, retrieveQuery], function(err, results) {
+          //err contains the array of error of all the functions
+          //results contains an array of all the results
+          //results[0] will contain value of doc.length from countQuery function
+          //results[1] will contain doc of retrieveQuery function
+          //You can send the results as
           reply({
             success: true,
-            data: records.docs,
-            total: records.total,
-            pages: records.pages,
-            page: records.page
+            data: results[1].docs,
+            total: results[1].total,
+            pages: results[1].pages,
+            page: results[1].page,
+            allData: results[0]
           });
         });
+
+
+        // Record.paginate(query, options, function(err, records) {
+        //   if (err) {
+        //     throw new Error(err);
+        //   }
+        //   reply({
+        //     success: true,
+        //     data: records.docs,
+        //     total: records.total,
+        //     pages: records.pages,
+        //     page: records.page
+        //   });
+        // });
       },
 
       insert: function(uid, data, reply) {

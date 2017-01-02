@@ -25,8 +25,7 @@ define([
 
         require(["views/" + url.cls], (View) => {
           var params = _.extend(url.params, {});
-          var view = new View(params);
-          app.trigger('app:view_show', view);
+          app.trigger('app:view_show', View, params);
         });
 
       } catch (e) {

@@ -16,7 +16,7 @@ define([
       events: {
         'click button.back': 'onSwitchForms',
         'click button.add': 'onSwitchForms',
-        'click button.signin': 'onEventSignin',
+        'click a.signin': 'onEventSignin',
         'click button.signup': 'onEventRegister'
       },
       ui: {

@@ -1,51 +1,48 @@
 define([
   'marionette',
   'templates',
-  '../views/header'
-], function(Marionette, templates, HeaderView) {
+  '../views/sidebar'
+], function(Marionette, templates, SidebarView) {
   "use strict";
 
   var LayoutView =  Marionette.View.extend({
-    className: 'layout-view',
     template: templates.layout,
+    className: 'layout-view',
     regions: {
-      headerRegion: '#header',
+      sidebarRegion: '#sidebar',
       mainRegion: '#main-content'
     },
     events: {
-      'click .mdl-navigation__link': 'onNavigate'
+      'click .navigation-link': 'onNavigate'
     },
     initialize: function() {
       var mainRegion = this.getRegion('mainRegion');
 
-      this.listenTo(app, 'app:view_show', function(View, options) {
+      this.listenTo(app, 'app:view_show', function(View, params) {
 
         //show the main view
-        mainRegion.show(View, options);
-
-        //set the active view
-        app.content = View;
-
-        // when the page is completely loaded and rendered
-        // I should run componentHandler.upgradeDom() to let MDL render the page.
-        componentHandler.upgradeDom();
+        this.showChildView('mainRegion', new View(params));
 
         //remove obs
         app.wait(false, true);
-        $('.mdl-layout__drawer').removeClass('is-visible');
       });
 
       this.listenTo(app, 'userstate:change', _.bind(function() {
-        this.onUpdateUI();
+
       }, this));
 
     },
 
     onNavigate: function(e) {
-      e.preventDefault();
-      var cls = this.$(e.currentTarget).data('cls');
+      if(e) {
+        e.preventDefault();
+      }
+
+      var target = this.$(e.currentTarget);
+      var cls = target.data('cls');
 
       if (cls) {
+        target.addClass('active');
         app.navigate(cls);
       }
 
@@ -54,27 +51,12 @@ define([
 
     onAttach: function() {
       var token = localStorage.getItem('token');
-      this.getRegion('headerRegion').show(this.headerView);
-      this.onUpdateUI();
+      // this.getRegion('sidebarRegion').show(this.sidebarView);
     },
 
     onRender: function() {
-      this.headerView = new HeaderView();
-    },
-
-    onUpdateUI: function() {
-      var token = localStorage.getItem('token');
-
-      this.headerView.$el.hide();
-      this.$('#sidedrawer').hide();
-      this.$('.mntr-drawer').hide();
-
-      if(token) {
-        this.headerView.$el.show();
-        this.$('#sidedrawer').show();
-        this.$('.mntr-drawer').show();
-      }
-
+      this.showChildView('sidebarRegion', new SidebarView());
+      // this.sidebarView = new SidebarView();
     }
 
   });

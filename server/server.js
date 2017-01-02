@@ -58,7 +58,7 @@ server.register(require('hapi-auth-jwt'), (err) => {
         method: verifyUniqueUser
       }],
       handler: (req, reply) => {
-        let payload = req.payload;
+        var payload = req.payload;
         return app.users.insert(reply, payload);
       }
     }
@@ -86,8 +86,8 @@ server.register(require('hapi-auth-jwt'), (err) => {
     path: '/data/record',
     config: {
       handler: function(req, reply) {
-        let payload = req.payload;
-        let uid = req.auth.credentials.id;
+        var payload = req.payload;
+        var uid = req.auth.credentials.id;
         return app.records.insert(uid, payload, reply);
       }
     }
@@ -98,8 +98,8 @@ server.register(require('hapi-auth-jwt'), (err) => {
     path: '/data/records/{id}',
     config: {
       handler: function(req, reply) {
-        let rid = req.params.id;
-        let uid = req.auth.credentials.id;
+        var rid = req.params.id;
+        var uid = req.auth.credentials.id;
         return app.records.get(uid, rid, reply);
       }
     }
@@ -110,9 +110,9 @@ server.register(require('hapi-auth-jwt'), (err) => {
     path: '/data/records/{id?}',
     config: {
       handler: function(req, reply) {
-        let payload = req.payload;
-        let id = req.payload._id;
-        let uid = req.auth.credentials.id;
+        var payload = req.payload;
+        var id = req.payload._id;
+        var uid = req.auth.credentials.id;
         return app.records.update(uid, id, payload, reply);
       }
     }
@@ -123,8 +123,8 @@ server.register(require('hapi-auth-jwt'), (err) => {
     path: '/data/records/{id}',
     config: {
       handler: function(req, reply) {
-        let uid = req.auth.credentials.id;
-        let rid = req.params.id;
+        var uid = req.auth.credentials.id;
+        var rid = req.params.id;
         return app.records.remove(uid, rid, reply);
       }
     }
@@ -136,9 +136,9 @@ server.register(require('hapi-auth-jwt'), (err) => {
     config: {
       handler: function(req, reply) {
         var uid = req.auth.credentials.id;
-        var opts = req.query;
-       
-        return app.records.browse(uid, reply, false, opts);
+        var dataParams = req.query;
+        //console.log(dataParams);
+        return app.records.browse(uid, reply, dataParams);
       }
     }
   });
@@ -148,8 +148,8 @@ server.register(require('hapi-auth-jwt'), (err) => {
     path: '/data/categories',
     config: {
       handler: function(req, reply) {
-        let params = req.params;
-        let uid = req.auth.credentials.id;
+        var params = req.params;
+        var uid = req.auth.credentials.id;
         return app.categories.browse(uid, reply);
       }
     }
@@ -160,8 +160,8 @@ server.register(require('hapi-auth-jwt'), (err) => {
     path: '/data/category',
     config: {
       handler: function(req, reply) {
-        let payload = req.payload;
-        let uid = req.auth.credentials.id;
+        var payload = req.payload;
+        var uid = req.auth.credentials.id;
         return app.categories.insert(uid, payload, reply);
       }
     }
@@ -172,9 +172,9 @@ server.register(require('hapi-auth-jwt'), (err) => {
     path: '/data/category/{id?}',
     config: {
       handler: function(req, reply) {
-        let payload = req.payload;
-        let id = req.params.id;
-        let uid = req.auth.credentials.id;
+        var payload = req.payload;
+        var id = req.params.id;
+        var uid = req.auth.credentials.id;
         return app.categories.update(uid, id, payload, reply);
       }
     }
@@ -185,8 +185,8 @@ server.register(require('hapi-auth-jwt'), (err) => {
     path: '/data/category/{id}',
     config: {
       handler: function(req, reply) {
-        let cid = req.params.id;
-        let uid = req.auth.credentials.id;
+        var cid = req.params.id;
+        var uid = req.auth.credentials.id;
         return app.categories.get(uid, cid, reply);
       }
     }
@@ -197,27 +197,9 @@ server.register(require('hapi-auth-jwt'), (err) => {
     path: '/data/category/{id}',
     config: {
       handler: function(req, reply) {
-        let cid = req.params.id;
-        let uid = req.auth.credentials.id;
-        return app.categories.remove(uid, cid, reply);
-      }
-    }
-  });
-
-  server.route({
-    method: 'POST',
-    path: '/search/records',
-    config: {
-      handler: function(req, reply) {
+        var cid = req.params.id;
         var uid = req.auth.credentials.id;
-        var payload = req.payload;
-        var opts = {
-          page: 1,
-          sorting: {
-            entry_date: -1
-          }
-        }
-        return app.records.browse(uid, reply, payload, opts);
+        return app.categories.remove(uid, cid, reply);
       }
     }
   });

@@ -6,6 +6,7 @@ define([
 
   var HeaderView =  Marionette.View.extend({
     template: templates.header,
+    className: 'mui-appbar mui--appbar-line-height',
     ui: {
       "signinButton": ".signin",
       "signoutButton": ".signout",
@@ -16,6 +17,10 @@ define([
     events: {
       "click .navigate": "onNavigate",
       "click .signout": "onSignout"
+    },
+
+    onRender: function() {
+      this.$el.attr('id', 'header');
     },
 
     onNavigate: function(e) {

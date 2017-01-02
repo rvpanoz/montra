@@ -13,7 +13,7 @@ define([
       }
     },
     defaults: {
-      amount: 125.45,
+      amount: 0,
       payment_method: 1,
       kind: 1,
       entry_date: new Date(),
@@ -74,6 +74,7 @@ define([
     pages: 1,
     page: 1,
     parse: function(response) {
+      this.allRecords = response.allData;
       this.total = response.total;
       this.pages = response.pages;
       this.page = response.page;

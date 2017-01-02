@@ -7,7 +7,8 @@ define([
 
   var RecordItemView = Marionette.View.extend({
     template: templates.recordItemView,
-    tagName: 'tr',
+    className: 'ticket-item',
+    tagName: 'li',
     events: {
       'click .update': 'onEventUpdate',
       'click .remove': 'onEventRemove'
@@ -41,29 +42,17 @@ define([
       return _.extend(this.model.toJSON(), {
         'entry_date_formatted': moment(new Date(d)).format('DD/MM/YYYY'),
         'kind_descr': (k == 1) ? 'Expense' : 'Income',
-        'kind_color': (k == 1) ? 'secondary' : 'mint',
-        'payment_method_color': (p == 1) ? 'mint' : 'primary',
-        'payment_method_descr': (p == 1) ? 'Cash' : 'Credit card',
-        'label_cls_kind': (k == 1) ? 'primary' : 'primary',
-        'label_cls_payment_method': (p == 1) ? 'primary' : 'primary'
+        'kind_color': (k == 1) ? 'red' : 'green',
+        'kind_check': (k == 1) ? 'times' : 'check',
+        'payment_check': (p == 1) ? 'money' : 'list',
+        'payment_badge': (p == 1) ? 'primary' : 'primary',
+        'payment_method_descr': (p == 1) ? 'Cash' : 'Credit card'
       });
     },
 
     onRender: function() {
       var model = this.model;
       var amount = parseFloat(model.get('amount'));
-
-      if(amount >= 250 && amount <= 500) {
-        this.$el.addClass('value-250-500');
-      }
-
-      if(amount >= 500 && amount <= 750) {
-        this.$el.addClass('value-500-750');
-      }
-
-      if(amount >= 750 && amount <= 10000) {
-        this.$el.addClass('value-750-1000');
-      }
     }
   });
 

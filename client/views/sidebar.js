@@ -4,8 +4,20 @@ define([
 ], function(Marionette, templates) {
   "use strict";
 
-  var SidebarView = Marionette.View.extend({
-    template: templates.sidebar
+  var SidebarView =  Marionette.View.extend({
+    template: templates.sidebar,
+
+    className: 'app-sidebar',
+    onRender: function() {
+      this.$el.attr('id', 'sidebar');
+    },
+    onNavigate: function(e) {
+      e.preventDefault();
+      var cls = this.$(e.currentTarget).data('cls');
+      if(cls) {
+        app.navigate(cls);
+      }
+    }
   });
 
   return SidebarView;

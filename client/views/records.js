@@ -4,18 +4,18 @@ define([
   'schemas/search-schema',
   'schemas/category-schema',
   'views/recordItemView',
+  'views/recordsStatsView',
   'moment',
   'templates'
-], function(Marionette, RecordSchema, SearchSchema, CategorySchema, RecordItemView, moment, templates) {
+], function(Marionette, RecordSchema, SearchSchema, CategorySchema, RecordItemView, RecordsStatsView, moment, templates) {
 
   return Marionette.CompositeView.extend({
+    template: templates.browseRecords,
+    childView: RecordItemView,
     page: 1,
     perPage: 12,
     pagination: true,
-    className: 'mui-container-fluid',
-    template: templates.browseRecords,
-    childView: RecordItemView,
-    pagination: true,
+    className: 'row',
     childViewContainer: '.records-items',
     collectionEvents: {
       'sync': 'onSync',
@@ -24,27 +24,24 @@ define([
     events: {
       'click .pagination-number': 'onPaginate',
       'click .pagination-arrow': 'onPaginate',
-      'click .mntr-filter h4': 'onToggleBlock',
-      'click .mntr-filter-trigger': 'onToggleFilters',
-      'click .mntr-close': 'onToggleFilters',
+      'click .filter-bar h4': 'onToggleBlock',
+      'click .filter-trigger': 'onToggleFilters',
+      'click .filter-close': 'onToggleFilters',
       'click .navigate': 'onNavigate',
-      'click button.filter': 'onSearch',
+      'click button.search': 'onSearch',
+      'click button.btn-new': 'onNew',
       'click .clear': 'onClearSearch',
-      'click .sort': 'onSort'
     },
     ui: {
-      dataTable: '.mdl-data-table',
-      filters: '.mntr-filter',
-      searchForm: '.mntr-filter-form',
+      filters: '.filter-bar',
+      searchForm: '.filter-form',
       inputEntryDateFrom: '#input-entry-date-from',
       inputEntryDateTo: '#input-entry-date-to',
-      divCategory: '.mdl-select',
-      inputCategory_id: '#input-category',
-      next: 'button.next',
-      prev: 'button.prev'
+      inputCategory: '#input-category'
     },
 
     initialize: function() {
+      _.bindAll(this, 'onSync');
       this.collection = new RecordSchema.collection();
       this.categories = new CategorySchema.collection();
       this.collection.fetch();
@@ -52,13 +49,20 @@ define([
 
     _createCategories: function(categories) {
       _.each(categories.data, function(category) {
-        this.ui.inputCategory_id.append('<option value="' + category._id + '">' + category.name + "</option>");
+        this.ui.inputCategory.append('<option value="' + category._id + '">' + category.name + "</option>");
       }, this);
+      this.ui.inputCategory.val("0");
+    },
+
+    onNew: function(e) {
+      e.preventDefault();
+      app.navigate('record');
+      return false;
     },
 
     onToggleBlock: function(e) {
       e.preventDefault();
-      $(e.currentTarget).toggleClass('closed').siblings('.mntr-filter-content').slideToggle(300);
+      $(e.currentTarget).toggleClass('closed').siblings('.filter-bar-content').slideToggle(300);
       return false;
     },
 
@@ -69,6 +73,7 @@ define([
 
     onPaginate: function(e) {
       e.preventDefault();
+
       var target = this.$(e.currentTarget);
       var page;
 
@@ -86,9 +91,10 @@ define([
         this.page = this.numPages();
       }
 
+      /**TODO**/
       this.collection.fetch({
         data: {
-          page: (this.page <= 0) ? 1 : this.page
+          page: page
         }
       });
 
@@ -96,34 +102,29 @@ define([
     },
 
     onSync: function() {
-      if (this.$('ul.component-pagination').hasClass('is-filled')) {
+      var pagination = this.$('ul.pagination');
+      pagination.html('');
+
+      if (this.page > this.numPages()) {
         return;
       }
 
-      var $current = this.$('li.pagination-number');
-      var box = this.$('ul.component-pagination li');
+      var box = this.$('ul.pagination li');
+      var first = this.$('ul.pagination li').eq(1);
       var html = "";
 
-
       if (this.numPages() > 0) {
-        for (var z = 2; z < this.numPages() + 1; z++) {
+        for (var z = 0; z < this.numPages(); z++) {
           var $pageNo = $('<li/>', {
             class: 'pagination-number',
-            text: z
-          });
+          }).html('<a href="#">' + (z + 1) + '</a>');
           html += $pageNo[0].outerHTML;
         }
-        $current.after(html);
-        this.$('ul.component-pagination li').eq(1).addClass('current-number');
-        this.$('ul.component-pagination').addClass('is-filled');
+        pagination.append(html);
+        this.$('ul.pagination').addClass('is-filled');
       }
 
-      var box = this.$('ul.component-pagination li');
-      box.each(function(idx, li) {
-        $(li).removeClass('current-number');
-      });
-
-      box.eq(this.page).addClass('current-number');
+      box.eq(this.page).addClass('active');
 
       if (this.page == 1) {
         this.$('.arrow-left').hide();
@@ -134,33 +135,10 @@ define([
           this.$('.arrow-left').show();
         }
       }
-    },
 
-    onSort: function(e) {
-      e.preventDefault();
-      var $dataTable = this.$('.mdl-data-table');
-      var $element = this.$(e.currentTarget);
-
-      this.collection.sortField = $element.data('field');
-      this.collection.sortDir = $element.hasClass('mdl-data-table__header--sorted-descending') ? -1 : 1;
-
-      //sort collection
-      this.collection.sort();
-
-      if (this.collection.sortDir == 1) {
-        $element.addClass('mdl-data-table__header--sorted-descending');
-        $element.removeClass('mdl-data-table__header--sorted-ascending');
-        this.collection.sortDir = -1;
-      } else {
-        if (this.collection.sortDir == -1) {
-          $element.addClass('mdl-data-table__header--sorted-ascending');
-          $element.removeClass('mdl-data-table__header--sorted-descending');
-          this.collection.sortDir = 1;
-        }
-      }
-
-      //mark element
-      $element.addClass('sorted');
+      this.triggerMethod('fetch:records', {
+        collection: this.collection
+      });
     },
 
     onNavigate: function(e) {
@@ -192,7 +170,7 @@ define([
 
       return _.extend(this.collection.toJSON(), {
         stats: {
-          totals: this.collection.total,
+          total: this.collection.total,
           expenses: sumExpenses.toFixed(2),
           incomes: sumIncomes.toFixed(2),
           balance: balance.toFixed(2)
@@ -206,15 +184,7 @@ define([
         if (z.indexOf(contains) > 0) {
           this.ui[z].datepicker({
             dateFormat: 'dd/mm/yyyy',
-            autoClose: true,
-            onSelect: _.bind(function(d, fd) {
-              if (z.indexOf('Datefrom') > 0) {
-                this.$('.mdl-entry_date-from').addClass('is-dirty');
-              }
-              if (z.indexOf('DateTo') > 0) {
-                this.$('.mdl-entry_date-to').addClass('is-dirty');
-              }
-            }, this)
+            autoClose: true
           });
         }
       }
@@ -224,46 +194,35 @@ define([
       var dateTo = moment().endOf('month').format('DD/MM/YYYY');
 
       this.ui.inputEntryDateFrom.val(dateFrom);
-      this.$('.mdl-entry_date-from').addClass('is-dirty');
       this.ui.inputEntryDateTo.val(dateTo);
-      this.$('.mdl-entry_date-to').addClass('is-dirty');
     },
 
     onRender: function() {
-      componentHandler.upgradeDom();
       this.setDatepickers();
-
       this.categories.fetch().done(_.bind(function(response) {
         this._createCategories(response);
-        this.ui.divCategory.addClass('is-dirty');
+        this.$('.selectpicker').selectpicker();
       }, this));
-
-      var target = this.$('.records-table-container h3');
-      var table = this.$('.mdl-data-table');
-      var top = target.offset().top;
-      var left = table.offset().left;
-
-      this.$('.mntr-filter-trigger').css({
-        top: top - 10,
-        left: left + (table.width() - 50)
-      });
     },
 
     onAttach: function() {},
 
     onClearSearch: function(e) {
       e.preventDefault();
-      this.collection.fetch();
-      this.ui.searchForm.empty();
+      this.collection.fetch({
+        data: {
+          page: 1
+        }
+      });
     },
 
-    onSearch: function(e) {
-      if (e) {
-        e.preventDefault();
-      }
-
+    getData: function() {
       var data = _.extend({});
       var serializedData = this.ui.searchForm.serializeArray();
+
+      _.extend(data, {
+        page: (this.page <= 0) ? 1 : this.page
+      });
 
       _.each(serializedData, function(d) {
         var datefield = $('#' + d.name);
@@ -275,18 +234,21 @@ define([
         }
       }, this);
 
-      if (!_.isEmpty(data)) {
-        $.ajax({
-          url: app.baseUrl + '/search/records',
-          method: 'POST',
-          data: data,
-          success: _.bind(function(response) {
-            this.collection.reset(response.data);
-            this.render();
-            this.onSync();
-          }, this)
-        });
+      return data;
+    },
+
+    onSearch: function(e) {
+      if (e) {
+        e.preventDefault();
       }
+
+      this.searchData = this.getData();
+      this.collection.fetch({
+        data: this.searchData,
+        success: _.bind(function(response) {
+          this.render();
+        }, this)
+      });
 
       return false;
     }

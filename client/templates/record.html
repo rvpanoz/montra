@@ -1,101 +1,139 @@
-<div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--8-col">
-        <div class="mdl-card">
-            <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text"> <% if(items.isNew) { %> New record <% } else { %> Edit record <% } %></h2>
-            </div>
-            <div class="mdl-card__supporting-text">
-                <form action="#" class="form">
-                    <div class="form__article">
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-amount">
-                                <input class="mdl-textfield__input" type="text" id="input-amount" name="input-amount" required/>
-                                <label class="mdl-textfield__label" for="input-amount">Amount</label>
-                            </div>
+<nav class="navbar navbar-default" id="navbar">
+    <div class="container-fluid">
+        <div class="navbar-collapse collapse in">
+            <ul class="nav navbar-nav navbar-mobile">
+                <li>
+                    <button type="button" class="sidebar-toggle">
+            <i class="fa fa-bars"></i>
+          </button>
+                </li>
+                <li class="logo">
+                    <a class="navbar-brand" href="#"><span class="highlight">Record</span> form</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-left">
+                <li class="navbar-title">Record form</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <!-- <div class="row">
+      <div class="col-md-6">
+          <div class="card">
+              <div class="card-body">
+                <div class="alert alert-danger alert-dismissible hide" role="alert">
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                  <strong>Oh snap!</strong> <span class="message">message</span>
+                </div>
+    </div>
+  </div>
+</div>
+    </div> -->
+    <!-- amount row -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+              <div class="card-header"><%= items.title %></div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 form-group form-group-amount">
+                            <label>Amount</label>
+                            <input type="text" class="form-control" id="input-amount" name="input-amount" required placeholder="">
                         </div>
                     </div>
-                    <div class="form__article">
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-entry_date">
-                                <input class="mdl-textfield__input" type="text" id="input-entry-date" data-language='en' name="input-entry-date" required/>
-                                <label class="mdl-textfield__label" for="input-entry-date">Date</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form__article">
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--4-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-category_id">
-                                <!-- <div class="mdl-select mdl-js-select mdl-select--floating-label mdl-category_id">
-                                    <select class="mdl-select__input" id="input-category" name="input-category" required></select>
-                                    <label class="mdl-select__label" for="input-category">Select category</label>
-                                </div> -->
-                                <div class="mui-select">
-                                    <select id="input-category" name="input-category" required>
-                                      
-                                    </select>
-                                    <label>Select category</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form__article">
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--8-col mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-notes">
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <textarea class="mdl-textfield__input" type="text" rows="3" id="input-notes"></textarea>
-                                    <label class="mdl-textfield__label" for="input-notes">Notes</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form__article">
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--4-col">
-                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-1" for="input-kind-1">
-                              <input type="radio" id="input-kind-1" class="mdl-radio__button" name="input-kind" value="1">
-                              <span class="mdl-radio__label">Expense</span>
-                            </label>
-                            </div>
-                            <div class="mdl-cell mdl-cell--4-col">
-                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-kind-2" for="input-kind-2">
-                              <input type="radio" id="input-kind-2" class="mdl-radio__button" name="input-kind" value="2">
-                              <span class="mdl-radio__label">Income</span>
-                            </label>
-                            </div>
-                        </div>
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--4-col">
-                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-payment-method-1" for="input-payment-method-1">
-                              <input type="radio" id="input-payment-method-1" class="mdl-radio__button" name="input-payment-method" value="1">
-                              <span class="mdl-radio__label">Cash</span>
-                            </label>
-                            </div>
-                            <div class="mdl-cell mdl-cell--4-col">
-                                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect label-payment-method-2" for="input-payment-method-2">
-                              <input type="radio" id="input-payment-method-2" class="mdl-radio__button" name="input-payment-method" value="2">
-                              <span class="mdl-radio__label">Credit card</span>
-                            </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mdl-layout-spacer"></div>
-                    <div class="form__action">
-                        <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--2-col">
-                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored save">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-    <div class="mdl-cell mdl-cell--2-col"></div>
+    <!-- date row -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 form-group form-group-entry_date">
+                            <label>Date</label>
+                            <input type="text" class="form-control" id="input-entry-date" data-language='en' name="input-entry-date" required/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- category row -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 form-group form-group-entry_date">
+                            <label>Select category</label>
+                            <select class="form-control selectpicker" id="input-category" name="input-category" required></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- payment method -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="radio radio-inline">
+                                <input type="radio" name="input-payment" id="input-payment-1" value="1" checked>
+                                <label for="input-payment-1">Cash</label>
+                            </div>
+                            <div class="radio radio-inline">
+                                <input type="radio" name="input-payment" id="input-payment-2" value="2">
+                                <label for="input-payment-2">Credit card</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- type method -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="radio radio-inline">
+                                <input type="radio" name="input-kind" id="input-kind-1" value="1" checked>
+                                <label for="input-kind-1">Expense</label>
+                            </div>
+                            <div class="radio radio-inline">
+                                <input type="radio" name="input-kind" id="input-kind-2" value="2">
+                                <label for="input-kind-2">Income</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <button class="btn btn-primary save">Save record</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
-
-
-
-<div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
-    <div class="mdl-snackbar__text"></div>
-    <button class="mdl-snackbar__action" type="button"></button>
+</div>
 </div>

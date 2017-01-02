@@ -12,11 +12,22 @@ requirejs.config({
     'backbone.radio': './bower_components/backbone.radio/build/backbone.radio',
     marionette: './bower_components/backbone.marionette/lib/backbone.marionette',
     moment: './bower_components/moment/min/moment.min',
+    chartjs: './bower_components/chart.js/dist/Chart.min',
+    'bootstrap': './bower_components/bootstrap/dist/js/bootstrap',
+    'bootstrapSelect': './bower_components/bootstrap-select/dist/js/bootstrap-select',
+    'niceScroll': './plugins/nicescroll/jquery.nicescroll.min',
     tpl: 'tpl'
   },
   shim: {
-    jquery: {
-      exports: '$'
+    niceScroll: {
+      exports: '$.niceScroll',
+      deps: ['jquery']
+    },
+    bootstrap: {
+      deps: ['jquery']
+    },
+    bootstrapSelect: {
+      deps: ['jquery', 'bootstrap']
     },
     backbone: {
       exports: 'backbone',
@@ -34,6 +45,15 @@ requirejs.config({
   waitSeconds: 30
 });
 
+requirejs.onError = function(err) {
+  console.log(err.requireType);
+  if (err.requireType === 'timeout') {
+    console.log('modules: ' + err.requireModules);
+  }
+
+  throw new Error(err);
+};
+
 requirejs([
   'jquery',
   'underscore',
@@ -42,6 +62,9 @@ requirejs([
   'config',
   'app',
   'utils',
+  'bootstrap',
+  'bootstrapSelect',
+  'niceScroll',
   'datepicker'
 ], ($, _, Backbone, stickit, config, app, utils) => {
 
@@ -68,50 +91,7 @@ requirejs([
   });
 
   $(document).ready(function() {
-    componentHandler.upgradeDom();
-
-    var $bodyEl = $('body'),
-      $sidedrawerEl = $('#sidedrawer');
-
-
-    function showSidedrawer() {
-      // show overlay
-      var options = {
-        onclose: function() {
-          $sidedrawerEl
-            .removeClass('active')
-            .appendTo(document.body);
-        }
-      };
-
-      var $overlayEl = $(mui.overlay('on', options));
-
-      // show element
-      $sidedrawerEl.appendTo($overlayEl);
-      setTimeout(function() {
-        $sidedrawerEl.addClass('active');
-      }, 20);
-    }
-
-
-    function hideSidedrawer() {
-      $bodyEl.toggleClass('hide-sidedrawer');
-    }
-
-
-    $('.js-show-sidedrawer').on('click', showSidedrawer);
-    $('.js-hide-sidedrawer').on('click', hideSidedrawer);
-
-    var $titleEls = $('strong', $sidedrawerEl);
-
-    $titleEls
-      .next()
-      .hide();
-
-    $titleEls.on('click', function() {
-      $(this).next().slideToggle(200);
-    });
-
+    app.initializeJS();
   });
 
   //start the application
