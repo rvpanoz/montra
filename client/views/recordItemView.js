@@ -7,8 +7,11 @@ define([
 
   var RecordItemView = Marionette.View.extend({
     template: templates.recordItemView,
-    className: 'ticket-item',
+    className: 'record-item',
     tagName: 'li',
+    modelEvents: {
+      'destroy': 'onModelDestroy'
+    },
     events: {
       'click .update': 'onEventUpdate',
       'click .remove': 'onEventRemove'
@@ -18,16 +21,22 @@ define([
       'buttonRemove': '.remove'
     },
 
+    onModelDestroy: function(model, collection) {
+      console.log('model destroyed.');
+    },
+
     onEventUpdate: function(e) {
       e.preventDefault();
       app.navigate('record', {
         id: this.model.get('_id')
       });
+      return false;
     },
 
     onEventRemove: function(e) {
       e.preventDefault();
       var id = this.model.get('_id');
+
       this.model.set('id', id);
       this.model.destroy({
         wait: true
@@ -48,12 +57,8 @@ define([
         'payment_badge': (p == 1) ? 'primary' : 'primary',
         'payment_method_descr': (p == 1) ? 'Cash' : 'Credit card'
       });
-    },
-
-    onRender: function() {
-      var model = this.model;
-      var amount = parseFloat(model.get('amount'));
     }
+
   });
 
   return RecordItemView;

@@ -13,7 +13,7 @@ define([
       }
     },
     defaults: {
-      amount: 0,
+      amount: null,
       payment_method: 1,
       kind: 1,
       entry_date: new Date(),

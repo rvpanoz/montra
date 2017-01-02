@@ -18,32 +18,31 @@
     </div>
 </nav>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <div class="card-title"></div>
-                    <ul class="card-action">
-                        <li>
-                            <button class="btn btn-primary btn-new"><i class="fa fa-plus"></i> New category</button>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card-body no-padding">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Created at</th>
-                                <th>Updated_at</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody class="categories-items"></tbody>
-                    </table>
+<div class="row">
+  <div class="col-md-8">
+    <div class="widget-box">
+        <div class="widget-header bordered-bottom bordered-themesecondary">
+            <i class="widget-icon fa fa-list themesecondary"></i>
+            <h5 class="widget-caption themesecondary">Your categories</h5>
+        </div>
+        <div class="widget-body">
+            <div class="widget-main no-padding">
+                <div class="records-container">
+                  <div class="btn-group">
+                      <button type="button" class="btn btn-default btn-sm new">New category</button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">List actions <span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Remove selected</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Sort</a></li>
+                        </ul>
+                    </div>
+                    <ul class="records-list categories-items"></ul>
                 </div>
             </div>
         </div>
     </div>
+  </div>
 </div>

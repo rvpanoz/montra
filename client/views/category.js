@@ -11,7 +11,6 @@ define([
       '#input-name': 'name'
     },
     ui: {
-      snackbar: '#snackbar',
       name: 'div.input-name'
     },
     modelEvents: {
@@ -63,18 +62,7 @@ define([
 
     onValidationError: function(model) {
       var errors = model.validationError;
-
-      _.each(errors, function(err) {
-        var element = this.$('.mdl-' + err.field);
-        if(element) {
-          element.addClass('is-invalid');
-        }
-      }, this);
-
-      this.ui.snackbar[0].MaterialSnackbar.showSnackbar({
-        message: 'Fill the required fields.'
-      });
-
+      console.log(errors);
       return _.isEmpty(errors) ? void 0 : errors;
     },
 

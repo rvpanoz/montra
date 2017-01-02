@@ -14,10 +14,10 @@ define([
         '#signup-input-password': 'password'
       },
       events: {
-        'click button.back': 'onSwitchForms',
-        'click button.add': 'onSwitchForms',
+        'click a.back': 'onSwitchForms',
+        'click a.add': 'onSwitchForms',
         'click a.signin': 'onEventSignin',
-        'click button.signup': 'onEventRegister'
+        'click a.signup': 'onEventRegister'
       },
       ui: {
         snackbar: '#snackbar'
@@ -29,11 +29,7 @@ define([
       },
 
       _onInvalid: function(model, errors) {
-        if(errors) {
-          this.ui.snackbar[0].MaterialSnackbar.showSnackbar({
-            message: errors[0].message
-          });
-        }
+        alert(errors[0].message);
         return false;
       },
 
@@ -83,9 +79,7 @@ define([
             app.onAppEvent('app:signin', token);
           },
           error: _.bind(function() {
-            this.ui.snackbar[0].MaterialSnackbar.showSnackbar({
-              message: 'Ooops! Something went wrong..'
-            });
+            console.log(arguments);
           }, this)
         });
         return false;
@@ -99,9 +93,7 @@ define([
             this.$('.user-signup').hide();
           }, this),
           error: _.bind(function() {
-            this.ui.snackbar[0].MaterialSnackbar.showSnackbar({
-              message: 'Ooops! Email taken or is invalid.'
-            });
+            console.log('Ooops! Email taken or is invalid.');
           }, this)
         });
 

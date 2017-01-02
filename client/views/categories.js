@@ -10,29 +10,21 @@ define([
     childView: CategoryItemView,
     childViewContainer: '.categories-items',
     collectionEvents: {
-      'sync': '_render'
+      'sync': 'render'
     },
     events: {
-      'click .navigate': 'onNavigate'
+      'click button.new': 'onNew'
     },
 
     initialize: function() {
-      _.bindAll(this, '_render');
       this.collection = new CategorySchema.collection();
       this.collection.fetch();
     },
 
-    onNavigate: function(e) {
+    onNew: function(e) {
       e.preventDefault();
-      var cls = $(e.currentTarget).data('cls');
-      if(cls) {
-        return app.navigate(cls);
-      }
+      app.navigate('category');
       return false;
-    },
-
-    _render: function() {
-      this.render();
     },
 
     serializedData: function() {

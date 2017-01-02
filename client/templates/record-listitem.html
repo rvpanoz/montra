@@ -6,25 +6,28 @@
       </label>
         </div>
     </div>
-    <div class="record-basic col-md-7 col-sm-12">
-        <% if(kind == 1) { %>
-            <span style="color: red;"><%= (-1 * amount) %>&euro;</span>
-            <% } else { %>
-                <span><%= amount %>&euro;</span>
-                <% } %>
-                    <span class="badge badge-default"><%= payment_method_descr %></span>
-                    <span class="badge badge-info pull-right"><span><%= category_id.name %></span></span>
+    <div class="record-basic col-md-5 col-sm-12">
+        <span class="amount" style="color: <%= kind_color %>"><%= amount %>&euro;</span>
+        <span class="badge badge-default"><%= payment_method_descr %></span>
+        <span class="badge badge-info pull-right"><span><%= category_id.name %></span></span>
     </div>
-    <div class="record-time col-md-2 col-sm-6 col-xs-12">
+    <div class="record-time col-md-4 col-sm-6 col-xs-12">
         <div class="divider hidden-md hidden-sm hidden-xs"></div>
         <i class="fa fa-calendar-o"></i>
         <span class="time"><%= entry_date_formatted %></span>
     </div>
     <div class="record-type col-md-2 col-sm-6 col-xs-12">
         <span class="divider hidden-xs"></span>
-        <button class="btn btn-info btn-xs">Update</button>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Actions <span class="caret"></span></button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#" class="update">Update</a></li>
+                <li class="divider"></li>
+                <li><a href="#" class="remove">Remove</a></li>
+            </ul>
+        </div>
     </div>
     <div class="record-state bg-darkorange">
-        <i class="fa fa-<%= kind_check %>" style="color: <%= kind_color %>" aria-hidden="true"></i>
+        <i class="fa fa-<%= kind_check %>" style="position: absolute; left:4px; color: <%= kind_color %>" aria-hidden="true"></i>
     </div>
 </div>

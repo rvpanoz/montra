@@ -19,7 +19,13 @@ define([
     },
     childViewTriggers: {
       'fetch:records': 'child:fetch:records',
+      'model:removed': 'child:model:removed'
     },
+
+    onAttach: function() {
+      // this.recordsStatsView = new RecordsStatsView(opts.collection);
+    },
+
     onRender: function() {
       this.showChildView('recordsRegion', new RecordsView());
     },
@@ -27,6 +33,10 @@ define([
     onChildFetchRecords: function(opts) {
       var recordsStatsView = new RecordsStatsView(opts.collection);
       this.showChildView('statsRegion', recordsStatsView);
+    },
+
+    onChildModelRemoved: function(opts) {
+      /** TODO: render stats **/
     }
 
   });

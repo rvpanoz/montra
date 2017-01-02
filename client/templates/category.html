@@ -18,33 +18,36 @@
     </div>
 </nav>
 
-<div class="container-fluid">
-  <div class="row">
-      <div class="col-md-6">
-          <div class="card">
-            <div class="card-header"><%= items.title %></div>
-              <div class="card-body">
-                  <div class="row">
-                      <div class="col-md-4 form-group form-group-amount">
-                          <label>Name</label>
-                          <input type="text" id="input-name" name="input-name" required class="form-control" placeholder="">
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <div class="widget-box">
+      <div class="widget-header bordered-bottom bordered-themesecondary">
+        <i class="widget-icon fa fa-plus themesecondary"></i>
+        <h5 class="widget-caption themesecondary"><%= items.title %></h5>
+      </div>
+      <div class="widget-body">
+        <div class="widget-main no-padding">
+          <form class="form" style="padding: 15px;">
+              <div class="row">
+                  <div class="col-md-6">
+                      <label for="input-amount">Name</label>
+                      <input type="text" class="form-control" placeholder="name" id="input-name" name="input-name">
+                  </div>
+              </div>
+
+              <div class="row" style="margin-top: 60px;">
+                  <div class="form-footer">
+                      <div class="form-group">
+                          <div class="col-md-9">
+                              <button class="btn btn-info save">Save</button>
+                          </div>
                       </div>
                   </div>
               </div>
-          </div>
+          </form>
+        </div>
       </div>
-  </div>
-  <div class="row">
-      <div class="col-md-6">
-          <div class="card">
-              <div class="card-body">
-                  <div class="row">
-                      <div class="col-md-9">
-                          <button class="btn btn-primary save">Save category</button>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
+    </div>
+
   </div>
 </div>

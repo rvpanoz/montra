@@ -141,7 +141,7 @@ define([
       if (e) {
         e.preventDefault();
       }
-      return app.navigate('records');
+      return app.navigate('records-layout');
     },
 
     serializeData: function() {

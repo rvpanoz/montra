@@ -1,10 +1,10 @@
-.records-container .records-list .ticket-item .record-state i {
+.records-container .records-list .record-item .record-state i {
     font-size: 13px;
     color: #fff;
     line-height: 20px;
 }
 
-.records-container .records-list .ticket-item .record-state {
+.records-container .records-list .record-item .record-state {
     position: absolute;
     top: 13px;
     right: 5px;
@@ -24,32 +24,38 @@
     border: 2px solid #fff;
 }
 
+.record-basic span.amount {
+  display: inline-block;
+  width: 65px;
+}
+
 .record-basic span.badge {
-  margin: 0px 15px 0px 15px;
+  display: inline-block;
+  /*margin: 0px 15px 0px 15px;*/
 }
 
 .bg-palegreen {
     background-color: #a0d468!important;
 }
 
-.records-container .records-list .ticket-item .record-type .type {
+.records-container .records-list .record-item .record-type .type {
     color: #999;
     font-size: 11px;
     text-transform: uppercase;
 }
 
-.records-container .records-list .ticket-item .record-type {
+.records-container .records-list .record-item .record-type {
     line-height: 30px;
     height: 50px;
     padding: 10px;
 }
 
-.records-container .records-list .ticket-item .record-time i {
+.records-container .records-list .record-item .record-time i {
     color: #ccc;
     width: 15px;
 }
 
-.records-container .records-list .ticket-item .divider {
+.records-container .records-list .record-item .divider {
     position: absolute;
     top: 0;
     left: 0;
@@ -59,29 +65,29 @@
     display: inline-block;
 }
 
-.records-container .records-list .ticket-item .record-time {
+.records-container .records-list .record-item .record-time {
     line-height: 30px;
     height: 50px;
     padding: 10px;
 }
 
-.records-container .records-list .ticket-item .record-basic .user-company {
+.records-container .records-list .record-item .record-basic .user-company {
     margin-left: 2px;
     color: #999;
 }
 
-.records-container .records-list .ticket-item .record-basic .user-at {
+.records-container .records-list .record-item .record-basic .user-at {
     margin-left: 2px;
     color: #ccc;
     font-size: 13px;
 }
 
-.records-container .records-list .ticket-item .record-basic .user-name {
+.records-container .records-list .record-item .record-basic .user-name {
     margin-left: 5px;
     font-size: 13px;
 }
 
-.records-container .records-list .ticket-item .record-basic .user-avatar {
+.records-container .records-list .record-item .record-basic .user-avatar {
     width: 30px;
     height: 30px;
     -webkit-border-radius: 3px;
@@ -92,7 +98,7 @@
     background-clip: padding-box;
 }
 
-.records-container .records-list .ticket-item .record-basic {
+.records-container .records-list .record-item .record-basic {
     height: 50px;
     padding: 10px;
     white-space: nowrap;
@@ -100,7 +106,7 @@
     overflow: hidden;
 }
 
-.records-container .records-list .ticket-item {
+.records-container .records-list .record-item {
     position: relative;
     background-color: #fff;
     -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .2);

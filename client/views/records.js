@@ -19,7 +19,8 @@ define([
     childViewContainer: '.records-items',
     collectionEvents: {
       'sync': 'onSync',
-      'sort': 'render'
+      'sort': 'render',
+      'remove': 'onRemove'
     },
     events: {
       'click .pagination-number': 'onPaginate',
@@ -29,7 +30,7 @@ define([
       'click .filter-close': 'onToggleFilters',
       'click .navigate': 'onNavigate',
       'click button.search': 'onSearch',
-      'click button.btn-new': 'onNew',
+      'click button.new': 'onNew',
       'click .clear': 'onClearSearch',
     },
     ui: {
@@ -52,6 +53,12 @@ define([
         this.ui.inputCategory.append('<option value="' + category._id + '">' + category.name + "</option>");
       }, this);
       this.ui.inputCategory.val("0");
+    },
+
+    onRemove: function(model, collection) {
+      this.triggerMethod('model:removed', {
+        collection: collection
+      });
     },
 
     onNew: function(e) {

@@ -7,7 +7,7 @@ define([
 
   var CategoryItemView = Marionette.View.extend({
     template: templates.categoryItemView,
-    tagName: 'tr',
+    className: 'record-item',
     events: {
       'click .update': 'onEventUpdate',
       'click .remove': 'onEventRemove'
