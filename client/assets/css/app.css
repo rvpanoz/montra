@@ -14,6 +14,10 @@ a {
     color: red;
 }
 
+.app-sidebar {
+  width: 100%;
+}
+
 body .app-container>div:first-child {
     margin-top: 0px !important;
 }
@@ -84,4 +88,9 @@ body .app-container>div:first-child {
 
 .record-list .label {
     font-weight: normal;
+}
+
+.record-item .checkbox label:before, .record-item .checkbox label:after, .record-item .radio label:before, .record-item .radio label:after {
+  width: 25px;
+  height: 25px;
 }

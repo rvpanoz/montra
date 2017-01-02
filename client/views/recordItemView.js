@@ -14,6 +14,7 @@ define([
       'destroy': 'onModelDestroy'
     },
     events: {
+      'click :checkbox': 'onSelect',
       'click .update': 'onEventUpdate',
       'click .remove': 'onEventRemove',
       'click .clone': 'onEventClone'
@@ -34,6 +35,14 @@ define([
         id: this.model.get('_id')
       });
       return false;
+    },
+
+    onSelect: function(e) {
+      // e.preventDefault();
+      // var $target = $(e.target);
+      // var selected = $target.is(':checked');
+      // console.log('selected: ', selected, 'value: ', $target.val());
+      return true;
     },
 
     onEventClone: function(e) {
