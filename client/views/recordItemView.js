@@ -1,9 +1,10 @@
 define([
   'marionette',
+  'schemas/record-schema',
   'schemas/category-schema',
   'templates',
   'moment'
-],function(Marionette, CategorySchema, templates, moment) {
+], function(Marionette, RecordSchema, CategorySchema, templates, moment) {
 
   var RecordItemView = Marionette.View.extend({
     template: templates.recordItemView,
@@ -14,11 +15,13 @@ define([
     },
     events: {
       'click .update': 'onEventUpdate',
-      'click .remove': 'onEventRemove'
+      'click .remove': 'onEventRemove',
+      'click .clone': 'onEventClone'
     },
     ui: {
       'buttonUpdate': '.update',
-      'buttonRemove': '.remove'
+      'buttonRemove': '.remove',
+      'buttonClone': '.clone'
     },
 
     onModelDestroy: function(model, collection) {
@@ -31,6 +34,19 @@ define([
         id: this.model.get('_id')
       });
       return false;
+    },
+
+    onEventClone: function(e) {
+      e.preventDefault();
+      var attrs = _.pick(this.model.attributes,
+        'amount',
+        'entry_date',
+        'kind',
+        'payment_method');
+
+      var model = new RecordSchema.model(attrs);
+      model.set('category_id', this.model.get('category_id')._id);
+      this.triggerMethod('clone:model', model);
     },
 
     onEventRemove: function(e) {

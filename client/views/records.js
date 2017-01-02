@@ -17,6 +17,9 @@ define([
     pagination: true,
     className: 'row',
     childViewContainer: '.records-items',
+    childViewTriggers: {
+      'clone:model': 'child:clone:model'
+    },
     collectionEvents: {
       'sync': 'onSync',
       'sort': 'render',
@@ -31,7 +34,7 @@ define([
       'click .navigate': 'onNavigate',
       'click button.search': 'onSearch',
       'click button.new': 'onNew',
-      'click .clear': 'onClearSearch',
+      'click button.clear': 'onClearSearch',
     },
     ui: {
       filters: '.filter-bar',
@@ -53,6 +56,17 @@ define([
         this.ui.inputCategory.append('<option value="' + category._id + '">' + category.name + "</option>");
       }, this);
       this.ui.inputCategory.val("0");
+    },
+
+    _fixFilterBar: function() {
+      var filterBar = this.ui.filters;
+      filterBar.addClass('filter-is-hidden');
+    },
+
+    onChildCloneModel: function(model) {
+      return app.navigate('record', {
+        model: model
+      });
     },
 
     onRemove: function(model, collection) {
@@ -156,7 +170,8 @@ define([
     },
 
     onToggleFilters: function(e) {
-      e.preventDefault();
+      if(e)
+        e.preventDefault();
       this.ui.filters.toggleClass('filter-is-visible');
     },
 
@@ -205,6 +220,7 @@ define([
     },
 
     onRender: function() {
+      this._fixFilterBar();
       this.setDatepickers();
       this.categories.fetch().done(_.bind(function(response) {
         this._createCategories(response);
@@ -215,11 +231,15 @@ define([
     onAttach: function() {},
 
     onClearSearch: function(e) {
-      e.preventDefault();
+      if(e)
+        e.preventDefault();
       this.collection.fetch({
         data: {
           page: 1
-        }
+        },
+        success: _.bind(function() {
+          this.onToggleFilters();
+        }, this)
       });
     },
 

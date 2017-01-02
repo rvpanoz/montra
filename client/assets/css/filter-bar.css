@@ -48,7 +48,14 @@
     font-size: 1.3rem;
 }
 
+.filter-bar.filter-is-hidden {
+  opacity: 0;
+  z-index: -999;
+}
+
 .filter-bar.filter-is-visible {
+    z-index: 999;
+    opacity: 1;
     -webkit-transform: translateX(0);
     -moz-transform: translateX(0);
     -ms-transform: translateX(0);
@@ -64,8 +71,8 @@
 .filter-bar {
     position: absolute;
     top: 0;
-    left: -180px;
-    width: 480px;
+    left: 0;
+    width: 400px;
     height: 100%;
     background: #ffffff;
     box-shadow: 4px 4px 20px transparent;

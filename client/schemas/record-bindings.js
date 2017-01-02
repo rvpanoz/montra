@@ -18,6 +18,9 @@ define(['moment'], function(moment) {
         observe: 'category_id',
         onSet: function(id) {
           return id;
+        },
+        onGet: function(id) {
+          return id;
         }
       },
       '#input-notes': 'notes'

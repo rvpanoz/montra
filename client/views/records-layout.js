@@ -22,10 +22,6 @@ define([
       'model:removed': 'child:model:removed'
     },
 
-    onAttach: function() {
-      // this.recordsStatsView = new RecordsStatsView(opts.collection);
-    },
-
     onRender: function() {
       this.showChildView('recordsRegion', new RecordsView());
     },

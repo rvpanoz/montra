@@ -11,8 +11,9 @@ define([
     template: templates.record,
     className: 'record-form',
     modelEvents: {
-      // 'change': 'onModelChange',
-      // 'sync': '_render'
+      'invalid': 'onValidationError',
+      'change': 'onModelChange',
+      'sync': 'render'
     },
     childViewEvents: {
 
@@ -29,6 +30,7 @@ define([
     },
 
     initialize: function(params) {
+
       //initialize a new record model;
       this.model = new RecordSchema.model();
 
@@ -37,6 +39,10 @@ define([
 
       //setup bindings
       this.bindings = RecordBindings.call(this);
+
+      if(params && params.model) {
+        this.model.set(params.model);
+      }
 
       //fetch model if id
       if (params.id) {
@@ -57,6 +63,10 @@ define([
     _createCategories: function(categories) {
       this.categories = categories.data;
       this.render();
+    },
+
+    onModelChange: function(model) {
+
     },
 
     onNavigate: function(e) {
@@ -83,6 +93,7 @@ define([
           this.model.set('entry_date', d);
         }, this)
       });
+
       if (this.model.isNew()) {
         this.model.set('entry_date', moment().format('DD/MM/YYYY'));
       } else {
@@ -102,7 +113,14 @@ define([
         model.set('payment_method', value);
       });
 
+      this.$('[name="input-category"]').bind('change', function(e) {
+        var category_id = $(e.currentTarget);
+        var value = category_id.val();
+        model.set('category_id', value);
+      });
+
       this.$('.selectpicker').selectpicker();
+      $('.selectpicker').selectpicker('val', this.model.get('category_id'));
       this.stickit();
     },
 
