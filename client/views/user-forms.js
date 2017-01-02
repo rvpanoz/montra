@@ -55,6 +55,8 @@ define([
 
       onRender: function() {
         this.stickit();
+        $('#sidebar').hide();
+        $('#navbar').hide();
       },
 
       onEventSignin: function(e) {

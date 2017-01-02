@@ -59,6 +59,7 @@ define([
     },
 
     onSignout: function() {
+      debugger;
       localStorage.clear();
       app.token = null;
 

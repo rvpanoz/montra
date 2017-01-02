@@ -1,19 +1,21 @@
 define([
   'marionette',
   'templates',
-  '../views/sidebar'
-], function(Marionette, templates, SidebarView) {
+  '../views/sidebar',
+  '../views/header'
+], function(Marionette, templates, SidebarView, NavbarView) {
   "use strict";
 
   var LayoutView =  Marionette.View.extend({
     template: templates.layout,
     className: 'layout-view',
     regions: {
+      navbarRegion: '#navbar',
       sidebarRegion: '#sidebar',
       mainRegion: '#main-content'
     },
     events: {
-      'click .navigation-link': 'onNavigate'
+      'click .signout': 'onSignout'
     },
     initialize: function() {
       var mainRegion = this.getRegion('mainRegion');
@@ -28,35 +30,28 @@ define([
       });
 
       this.listenTo(app, 'userstate:change', _.bind(function() {
-
+        $('#sidebar').toggle();
+        $('#navbar').toggle();
       }, this));
 
     },
 
-    onNavigate: function(e) {
+    onSignout: function(e) {
       if(e) {
         e.preventDefault();
       }
 
-      var target = this.$(e.currentTarget);
-      var cls = target.data('cls');
-
-      if (cls) {
-        target.addClass('active');
-        app.navigate(cls);
-      }
-
+      app.trigger('app:signout');
       return false;
     },
 
     onAttach: function() {
       var token = localStorage.getItem('token');
-      // this.getRegion('sidebarRegion').show(this.sidebarView);
     },
 
     onRender: function() {
       this.showChildView('sidebarRegion', new SidebarView());
-      // this.sidebarView = new SidebarView();
+      this.showChildView('navbarRegion', new NavbarView());
     }
 
   });
