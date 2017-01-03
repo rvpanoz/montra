@@ -58,6 +58,10 @@ body .app-container>div:first-child {
     box-shadow: 0px !important;
 }
 
+.btn:hover {
+  transform: none;
+}
+
 .pagination>li:first-child>a,
 .pagination>li:first-child>span {
     margin-left: 0;

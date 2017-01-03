@@ -7,6 +7,7 @@ define([
 
   var DashboardView = Marionette.View.extend({
     template: templates.home,
+    title: 'Dashboard',
     ui: {
       canvas: '#pie-chart'
     },

@@ -109,6 +109,12 @@ module.exports = function(server) {
             });
           }
 
+          if (dataParams['input-payment']) {
+            _.extend(query, {
+              payment_method: dataParams['input-payments'],
+            });
+          }
+
           if (_.has(dataParams, 'input-entry-date-from')) {
             var edf = moment(new Date(dataParams['input-entry-date-from']));
           }
@@ -145,7 +151,7 @@ module.exports = function(server) {
           page: (dataParams && dataParams.page) ? dataParams.page : 1,
           limit: config.perPage
         };
-
+        console.log(query);
         var countQuery = function(callback) {
           Record.find(query).populate('category_id').exec(function(err, allRecords) {
             if (err) throw new Error(err);

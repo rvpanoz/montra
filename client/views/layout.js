@@ -21,7 +21,7 @@ define([
       var mainRegion = this.getRegion('mainRegion');
 
       this.listenTo(app, 'app:view_show', function(View, params) {
-
+        
         //show the main view
         this.showChildView('mainRegion', new View(params));
 
@@ -61,7 +61,7 @@ define([
         return true;
       });
     },
-    
+
     onAttach: function() {
       var token = localStorage.getItem('token');
       this.initializeJS();
@@ -69,6 +69,7 @@ define([
 
     onRender: function() {
       var token = localStorage.getItem('token');
+      var mainView = this.getChildView('mainRegion');
       this.showChildView('sidebarRegion', new SidebarView());
       this.showChildView('navbarRegion', new NavbarView());
     }

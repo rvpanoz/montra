@@ -249,11 +249,10 @@ define([
       _.extend(data, {
         page: (this.page <= 0) ? 1 : this.page
       });
-
       _.each(serializedData, function(d) {
         var datefield = $('#' + d.name);
         var isDateInput = (d.name.indexOf('date') > 0) ? true : false;
-        if (d.value && isDateInput) {
+        if (isDateInput) {
           data[d.name] = app.stringToDate(d.value, 'dd/mm/yyyy', '/');
         } else {
           data[d.name] = d.value;
