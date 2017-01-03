@@ -29,7 +29,8 @@ define([
       },
 
       _onInvalid: function(model, errors) {
-        alert(errors[0].message);
+        var message = errors[0].message;
+        app.showMessage(message)
         return false;
       },
 

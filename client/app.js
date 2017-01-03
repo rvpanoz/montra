@@ -83,6 +83,31 @@ define([
       }
     },
 
+    showMessage: function(message, html) {
+      var snackbar = $('.snack-wrap');
+
+      //show snackbar
+      snackbar.children().each(function(idx, child) {
+        $(child).addClass('animated');
+      });
+
+      //update message
+      snackbar.find('.snackbar').text(message);
+
+      //hide snackbar
+      setTimeout(_.bind(function() {
+        this.hideMessage();
+      }, this), 5000);
+    },
+
+    hideMessage: function() {
+      var snackbar = $('.snack-wrap');
+      snackbar.children().each(function(idx, child) {
+        $(child).removeClass('animated');
+      });
+      snackbar.find('.snackbar').text('');
+    },
+
     stringToDate(_date, _format, _delimiter) {
       var formatLowerCase = _format.toLowerCase();
       var formatItems = formatLowerCase.split(_delimiter);
