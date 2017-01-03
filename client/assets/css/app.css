@@ -3,13 +3,12 @@
     justify-content: center;
 }
 
-li.selected {
-  background: #ccc !important;
+tr.selected, li.selected {
+    background: #ccc !important;
 }
 
-a {
-    color: #41307c;
-    text-decoration: none;
+.record-item {
+  cursor: pointer;
 }
 
 .required-field::before {
@@ -18,28 +17,51 @@ a {
     color: red;
 }
 
-.app-sidebar {
-  width: 100%;
+.actionbar-container {
+    padding: 15px 15px;
 }
 
+.actionbar-container .btn-action {
+    width: 75px;
+}
+
+.actionbar-container ul.list-actions {
+  display: none;
+}
+
+.navbar .navbar-collapse .navbar-nav.navbar-mobile .navbar-brand .highlight {
+    padding: 10px 5px;
+}
+
+.app-sidebar {
+    width: 100%;
+}
+
+.nav-tabs .glyphicon:not(.no-margin) { margin-right:10px; }
+.tab-pane .list-group-item:first-child {border-top-right-radius: 0px;border-top-left-radius: 0px;}
+.tab-pane .list-group-item:last-child {border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;}
+.tab-pane .list-group .checkbox { display: inline-block;margin: 0px; }
+.tab-pane .list-group input[type="checkbox"]{ margin-top: 2px; }
+.tab-pane .list-group .glyphicon { margin-right:5px; }
+.tab-pane .list-group .glyphicon:hover { color:#FFBC00; }
+a.list-group-item.read { color: #222;background-color: #F3F3F3; }
+hr { margin-top: 5px;margin-bottom: 10px; }
+.nav-pills>li>a {padding: 5px 10px;}
+
 .dont-break-out {
-
-  /* These are technically the same, but use both */
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-
-  -ms-word-break: break-all;
-  /* This is the dangerous one in WebKit, as it breaks things wherever */
-  word-break: break-all;
-  /* Instead use this non-standard one: */
-  word-break: break-word;
-
-  /* Adds a hyphen where the word breaks, if supported (No Blink) */
-  -ms-hyphens: auto;
-  -moz-hyphens: auto;
-  -webkit-hyphens: auto;
-  hyphens: auto;
-
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 body .app-container>div:first-child {
@@ -59,11 +81,10 @@ body .app-container>div:first-child {
 }
 
 .btn:hover {
-  transform: none;
+    transform: none;
 }
 
-.pagination>li:first-child>a,
-.pagination>li:first-child>span {
+.pagination>li:first-child>a, .pagination>li:first-child>span {
     margin-left: 0;
 }
 
@@ -72,9 +93,9 @@ body .app-container>div:first-child {
 }
 
 .user-forms {
-  position: absolute;
-  top: 25%;
-  left: 50%;
+    position: absolute;
+    top: 25%;
+    left: 50%;
 }
 
 .form-login {
@@ -119,6 +140,6 @@ body .app-container>div:first-child {
 }
 
 .record-item .checkbox label:before, .record-item .checkbox label:after, .record-item .radio label:before, .record-item .radio label:after {
-  width: 25px;
-  height: 25px;
+    width: 25px;
+    height: 25px;
 }

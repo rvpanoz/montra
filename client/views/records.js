@@ -9,15 +9,16 @@ define([
 ], function(Marionette, RecordSchema, CategorySchema, RecordItemView, RecordsStatsView, moment, templates) {
 
   return Marionette.CompositeView.extend({
-    template: templates.browseRecords,
-    childView: RecordItemView,
+    className: 'row',
+    selected: [],
     page: 1,
     perPage: 12,
-    pagination: true,
-    className: 'row',
+    template: templates.browseRecords,
+    childView: RecordItemView,
     childViewContainer: '.records-items',
     childViewTriggers: {
-      'clone:model': 'child:clone:model'
+      'clone:model': 'child:clone:model',
+      'select:model': 'child:select:model'
     },
     collectionEvents: {
       'sync': 'onSync',
@@ -25,17 +26,21 @@ define([
       'remove': 'onRemove'
     },
     events: {
+      'click a.select-all': 'onSelectAll',
+      'click a.select-none': 'onSelectNone',
       'click .pagination-number': 'onPaginate',
       'click .pagination-arrow': 'onPaginate',
       'click .filter-bar h4': 'onToggleBlock',
       'click .filter-trigger': 'onToggleFilters',
       'click .filter-close': 'onToggleFilters',
       'click .navigate': 'onNavigate',
+      'click a.sort': 'onSort',
       'click button.search': 'onSearch',
       'click button.new': 'onNew',
       'click button.clear': 'onClearSearch'
     },
     ui: {
+      actions: '.list-actions',
       filters: '.filter-bar',
       searchForm: '.filter-form',
       inputEntryDateFrom: '#input-entry-date-from',
@@ -62,8 +67,54 @@ define([
       filterBar.addClass('filter-is-hidden');
     },
 
+    _getSelectedModels: function() {
+      var selected = _.filter(this.collection.models, function(model) {
+        return model.get('_selected') == true;
+      });
+      return selected;
+    },
+
+    onSelectAll: function(e) {
+      e.preventDefault();
+      var target = this.$(e.currentTarget);
+      _.each(this.collection.models, function(model) {
+        model.set('_selected', true);
+      });
+      target.closest('.button-group').toggleClass('open');
+      return false;
+    },
+
+    onSelectNone: function(e) {
+      e.preventDefault();
+      var target = this.$(e.currentTarget);
+      _.each(this.collection.models, function(model) {
+        model.set('_selected', false);
+      });
+      target.closest('.button-group').toggleClass('open');
+      return false;
+    },
+
+    onChildSelectModel: function(model) {
+      this._selected = [];
+      this.getUI('actions').toggle();
+      this._selected = this._getSelectedModels();
+    },
+
     onSort: function(e) {
       e.preventDefault();
+      var target = this.$(e.currentTarget);
+      var field = target.data('field');
+      var dir = target.data('dir');
+
+      if(dir == 'DESC') {
+        target.closest('.fa').addClass('fa-arrow-up').removeClass('fa-arrow-down');
+        dir = 'ASC';
+      } else if(dir == 'ASC') {
+        target.closest('.fa').addClass('fa-arrow-down').removeClass('fa-arrow-up');
+        dir = 'DESC';
+      }
+
+      target.attr('data-dir', dir);
     },
 
     onChildCloneModel: function(model) {

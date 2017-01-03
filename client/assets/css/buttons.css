@@ -1,0 +1,45 @@
+.btn-app {
+  color: #ffffff;
+  background-color: #611BBD;
+  border-color: #130269;
+}
+
+.btn-app:hover, 
+.btn-app:focus,
+.btn-app:active,
+.btn-app.active,
+.open .dropdown-toggle.btn-app {
+  color: #ffffff;
+  background-color: #49247A;
+  border-color: #130269;
+}
+
+.btn-app:active,
+.btn-app.active,
+.open .dropdown-toggle.btn-app {
+  background-image: none;
+}
+
+.btn-app.disabled,
+.btn-app[disabled],
+fieldset[disabled] .btn-app,
+.btn-app.disabled:hover,
+.btn-app[disabled]:hover,
+fieldset[disabled] .btn-app:hover,
+.btn-app.disabled:focus,
+.btn-app[disabled]:focus,
+fieldset[disabled] .btn-app:focus,
+.btn-app.disabled:active,
+.btn-app[disabled]:active,
+fieldset[disabled] .btn-app:active,
+.btn-app.disabled.active,
+.btn-app[disabled].active,
+fieldset[disabled] .btn-app.active {
+  background-color: #611BBD;
+  border-color: #130269;
+}
+
+.btn-app .badge {
+  color: #611BBD;
+  background-color: #ffffff;
+}

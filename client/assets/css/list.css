@@ -56,16 +56,6 @@
     width: 15px;
 }
 
-.records-container .records-list .record-item .divider {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 50px;
-    width: 1px;
-    background-color: #eee;
-    display: inline-block;
-}
-
 .records-container .records-list .record-item .record-time {
     line-height: 30px;
     height: 50px;

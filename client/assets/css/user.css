@@ -8,24 +8,24 @@ a:hover {
   text-decoration: none;
 }
 /*=== 3. Text Outside the Box ===*/
-.etc-login-form {
+.etc-user-form {
   color: #919191;
   padding: 10px 20px;
 }
-.etc-login-form p {
+.etc-user-form p {
   margin-bottom: 5px;
 }
 
 /*=== 4. Main Form ===*/
-.login-form {
+.user-form {
   max-width: 300px;
   border-radius: 5px;
   display: inline-block;
 }
-.main-login-form {
+.main-user-form {
   position: relative;
 }
-.login-form .form-control {
+.user-form .form-control {
   border: 0;
   box-shadow: 0 0 0;
   border-radius: 0;
@@ -35,34 +35,34 @@ a:hover {
   font-weight: bold;
   height:auto;
 }
-.login-form .form-control::-webkit-input-placeholder {
+.user-form .form-control::-webkit-input-placeholder {
   color: #999999;
 }
-.login-form .form-control:-moz-placeholder,
-.login-form .form-control::-moz-placeholder,
-.login-form .form-control:-ms-input-placeholder {
+.user-form .form-control:-moz-placeholder,
+.user-form .form-control::-moz-placeholder,
+.user-form .form-control:-ms-input-placeholder {
   color: #999999;
 }
-.login-form .form-group {
+.user-form .form-group {
   margin-bottom: 0;
   border-bottom: 2px solid #efefef;
   padding-right: 20px;
   position: relative;
 }
-.login-form .form-group:last-child {
+.user-form .form-group:last-child {
   border-bottom: 0;
 }
-.login-group {
+.user-group {
   background: #ffffff;
   color: #999999;
   border-radius: 8px;
   padding: 10px 20px;
 }
-.login-group-checkbox {
+.user-group-checkbox {
   padding: 5px 0;
 }
-/*=== 5. Login Button ===*/
-.login-form .login-button, .signup-form .login-button {
+/*=== 5. user Button ===*/
+.user-form .user-button, .signup-form .user-button {
   position: absolute;
   right: -25px;
   top: 50%;
@@ -76,20 +76,20 @@ a:hover {
   border-radius: 50%;
   transition: all ease-in-out 500ms;
 }
-.login-form .login-button:hover, .signup-form .login-button:hover {
+.user-form .user-button:hover, .signup-form .user-button:hover {
   color: #555555;
   transform: rotate(450deg);
 }
-.login-form .login-button.clicked, .signup-form .login-button.clicked {
+.user-form .user-button.clicked, .signup-form .user-button.clicked {
   color: #555555;
 }
-.login-form .login-button.clicked:hover {
+.user-form .user-button.clicked:hover {
   transform: none;
 }
-.login-form .login-button.clicked.success {
+.user-form .user-button.clicked.success {
   color: #2ecc71;
 }
-.login-form .login-button.clicked.error {
+.user-form .user-button.clicked.error {
   color: #e74c3c;
 }
 /*=== 6. Form Invalid ===*/
@@ -121,7 +121,7 @@ label.form-invalid:after {
   border-width: 6px;
 }
 /*=== 7. Form - Main Message ===*/
-.login-form-main-message {
+.user-form-main-message {
   background: #ffffff;
   color: #999999;
   border-left: 3px solid transparent;
@@ -133,15 +133,15 @@ label.form-invalid:after {
   opacity: 0;
   transition: all ease-in-out 200ms;
 }
-.login-form-main-message.show {
+.user-form-main-message.show {
   height: auto;
   opacity: 1;
   padding: 10px 20px 10px 17px;
 }
-.login-form-main-message.success {
+.user-form-main-message.success {
   border-left-color: #2ecc71;
 }
-.login-form-main-message.error {
+.user-form-main-message.error {
   border-left-color: #e74c3c;
 }
 /*=== 9. Misc ===*/

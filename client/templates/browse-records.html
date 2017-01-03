@@ -5,32 +5,75 @@
     </div>
     <div class="widget-body">
         <div class="widget-main no-padding">
+            <div class="actionbar-container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                            <div class="button-group">
+                                <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-action" data-toggle="dropdown">
+                                  <span class="glyphicon glyphicon-cog"></span>
+                                  <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="#">Select</a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="#" class="select-all">All</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="select-none">None</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                            <button type="button" class="btn btn-default btn-xs btn-action">
+                            <span class="glyphicon glyphicon-refresh"></span>
+                          </button>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                            <button type="button" class="btn btn-default btn-xs btn-action filter-trigger">
+                            <span class="glyphicon glyphicon-search"></span>
+                          </button>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                            <ul class="nav nav-pills list-actions">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">Update</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Copy</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Delete</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="records-container">
-              <div class="btn-group">
-                  <button type="button" class="btn btn-success btn-sm new">
-                    <i class="fa fa-plus"></i>
-                  New record</button>
-              </div>
-              <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Sorting <span class="caret"></span></button>
-                  <ul class="dropdown-menu" role="menu">
-                      <li><a href="#" data-sort="amount" data-dir="desc">Desceding</a></li>
-                      <li><a href="#" data-sort="amount" data-dir="asc">Ascending</a></li>
-                  </ul>
-              </div>
-              <div class="btn-group pull-right">
-                  <button type="button" class="btn btn-info btn-sm filter-trigger">
-                  <i class="fa fa-search"></i>
-                  Filters</button>
-              </div>
-
-                <ul class="records-list records-items"></ul>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Date <a href="#" class="sort" data-dir="DESC" data-field="entry_date"><i class="fa fa-arrow-down"></i> </a></th>
+                                <th>Category</th>
+                                <th style="text-align: right">Amount <a href="#" class="sort" data-dir="DESC" data-field="amount"><i class="fa fa-arrow-down"></i> </a></th>
+                            </tr>
+                        </thead>
+                        <tbody class="records-items"></tbody>
+                    </table>
+                </div>
                 <nav>
                     <ul class="pagination"></ul>
                 </nav>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <div class="filter-bar">

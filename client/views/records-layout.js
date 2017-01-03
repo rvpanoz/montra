@@ -13,7 +13,7 @@ define([
       statsRegion: '#stats-content',
       recordsRegion: '#records-content'
     },
-    childViewTriggers: {
+    xx_childViewTriggers: {
       'fetch:records': 'child:fetch:records',
       'model:removed': 'child:model:removed'
     },
@@ -22,7 +22,7 @@ define([
       var recordsView = new RecordsView();
       var statsView = new RecordsStatsView();
 
-      this.showChildView('statsRegion', statsView);
+      // this.showChildView('statsRegion', statsView);
       this.showChildView('recordsRegion', recordsView);
     },
 

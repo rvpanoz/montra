@@ -9,11 +9,12 @@ define([
   var RecordItemView = Marionette.View.extend({
     template: templates.recordItemView,
     className: 'record-item',
-    tagName: 'li',
+    tagName: 'tr',
     modelEvents: {
       'destroy': 'onModelDestroy'
     },
     events: {
+      'click': 'onClick',
       'click .check-action': 'onSelect',
       'click .update': 'onEventUpdate',
       'click .remove': 'onEventRemove',
@@ -23,6 +24,23 @@ define([
       'buttonUpdate': '.update',
       'buttonRemove': '.remove',
       'buttonClone': '.clone'
+    },
+
+    initialize: function() {
+      this.listenTo(this.model, 'change:_selected', _.bind(function(model, selected) {
+        if(selected == true) {
+          this.$el.addClass('selected');
+        } else if(selected == false) {
+          this.$el.removeClass('selected');
+        }
+      }, this));
+    },
+
+    onClick: function(e) {
+      e.preventDefault();
+      var isSelected = this.$el.hasClass('selected');
+      this.model.set('_selected', !isSelected);
+      this.triggerMethod('select:model', this.model);
     },
 
     onModelDestroy: function(model) {
