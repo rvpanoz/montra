@@ -36,7 +36,6 @@ define([
       'click .navigate': 'onNavigate',
       'click a.sort': 'onSort',
       'click button.search': 'onSearch',
-      'click button.new': 'onNew',
       'click button.clear': 'onClearSearch'
     },
     ui: {
@@ -125,12 +124,6 @@ define([
 
     onRemove: function(model, collection) {
       this.triggerMethod('model:removed', model);
-    },
-
-    onNew: function(e) {
-      e.preventDefault();
-      app.navigate('record');
-      return false;
     },
 
     onToggleBlock: function(e) {

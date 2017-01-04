@@ -92,35 +92,6 @@ body .app-container>div:first-child {
     z-index: 100000010;
 }
 
-.user-forms {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-}
-
-.form-login {
-    background-color: #EDEDED;
-    padding-top: 10px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 15px;
-    border-color: #d2d2d2;
-    border-width: 5px;
-    box-shadow: 0 1px 0 #cfcfcf;
-}
-
-.form-login h4 {
-    border: 0 solid #fff;
-    border-bottom-width: 1px;
-    padding-bottom: 10px;
-    text-align: center;
-}
-
-.user-forms .container {
-    margin-top: 60px;
-}
-
 .action-bar {
     margin-bottom: 40px;
 }

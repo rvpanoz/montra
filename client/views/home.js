@@ -42,16 +42,19 @@ define([
           ]
         }]
       };
+
       $.ajax({
         url: app.baseUrl + "/charts/piechart",
         success: _.bind(function(response) {
           var dataItems = response.data;
           for (var z in dataItems) {
             var dataItem = dataItems[z];
+            var id = dataItem._id;
+            var model = this.collection.find(function(model) {
+              return model.get('_id') == id;
+            });
 
-            this.data.labels.push(this.collection.findWhere({
-              _id: dataItem._id
-            }).get('name'));
+            this.data.labels.push('category-' + id);
             this.data.datasets[0].data.push(dataItem.total);
           }
           // For a pie chart
@@ -63,9 +66,7 @@ define([
         }, this)
       });
     },
-    onRender: function() {
 
-    },
     onAttach: function() {
 
     }

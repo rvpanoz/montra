@@ -21,7 +21,7 @@
     z-index: 20000001;
 }
 
-.snackclose, label {
+.snackclose, .snack-wrap label {
     bottom: -70px;
     position: absolute;
     border: 0;
@@ -32,7 +32,7 @@
     z-index: 20000002;
 }
 
-label {
+.snack-wrap label {
     z-index: 20000003;
     display: block;
     width: 100%;

@@ -14,13 +14,14 @@ define([
         '#signup-input-password': 'password'
       },
       events: {
+        'click button.toggle': 'onToggle',
         'click a.back': 'onSwitchForms',
         'click a.add': 'onSwitchForms',
         'click a.signin': 'onEventSignin',
         'click a.signup': 'onEventRegister'
       },
       ui: {
-        snackbar: '#snackbar'
+        'user-profile': '.user-profile'
       },
 
       initialize: function() {
@@ -28,9 +29,14 @@ define([
         this.listenTo(this.model, 'invalid', _.bind(this._onInvalid, this));
       },
 
+      onToggle: function(e) {
+        e.preventDefault();
+        this.getUI('user-profile').toggleClass('profile-open');
+      },
+
       _onInvalid: function(model, errors) {
         var message = errors[0].message;
-        app.showMessage(message)
+        app.showMessage(message);
         return false;
       },
 

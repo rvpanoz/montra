@@ -1,51 +1,22 @@
-<div class="user-form user-signin">
-		<form id="user-form" class="text-left">
-			<div class="user-form-main-message"></div>
-			<div class="main-user-form">
-				<div class="user-group">
-					<div class="form-group">
-						<label for="lg_username" class="sr-only">Email</label>
-						<input type="text" class="form-control" id="signin-input-email" name="signin-input-email" placeholder="email">
-					</div>
-					<div class="form-group">
-						<label for="lg_password" class="sr-only">Password</label>
-						<input type="password" class="form-control" id="signin-input-password" name="signin-input-password" placeholder="password">
-					</div>
+<div class="user-container">
+	<div class="user-profile">
+		<button class="user-profile-avatar toggle">
+	 	<img src="https://pbs.twimg.com/profile_images/554631714970955776/uzPxPPtr.jpeg" alt="Avatar">
+		</button>
+		<div class="user-profile-form">
+			<div class="user-profile-fields">
+				<div class="field">
+					<input type="text" id="fieldUser" class="input" required="" pattern=".*\S.*">
+					<label for="fieldUser" class="label">Username</label>
 				</div>
-				<a href="#" class="btn btn-primary btn-md signin user-button"><i class="fa fa-chevron-right"></i></a>
+				<div class="field">
+					<input type="password" id="fieldPassword" class="input" required="" pattern=".*\S.*">
+					<label for="fieldPassword" class="label">Password</label>
+				</div>
+				<div class="user-footer">
+					<button class="btn">Login</button>
+				</div>
 			</div>
-			<div class="etc-user-form">
-				<p><a href="#" class="add">Create new account</a></p>
-			</div>
-		</form>
-	</div>
-
-	<div class="user-form user-signup" style="display: none;">
-			<form id="signup-form" class="text-left">
-				<div class="user-form-main-message"></div>
-				<div class="main-user-form">
-					<div class="user-group">
-						<div class="form-group">
-							<label for="lg_username" class="sr-only">First name</label>
-							<input type="text" class="form-control" id="signin-input-email" name="signin-input-email" placeholder="first name">
-						</div>
-						<div class="form-group">
-							<label for="lg_username" class="sr-only">Last name</label>
-							<input type="text" class="form-control" id="signin-input-email" name="signin-input-email" placeholder="last name">
-						</div>
-						<div class="form-group">
-							<label for="lg_username" class="sr-only">Email</label>
-							<input type="text" class="form-control" id="signin-input-email" name="signin-input-email" placeholder="email">
-						</div>
-						<div class="form-group">
-							<label for="lg_password" class="sr-only">Password</label>
-							<input type="password" class="form-control" id="signin-input-password" name="signin-input-password" placeholder="password">
-						</div>
-					</div>
-					<a href="#" class="btn btn-primary btn-md signin user-button"><i class="fa fa-chevron-right"></i></a>
-				</div>
-				<div class="etc-user-form">
-					<p><a href="#" class="back">Back to login</a></p>
-				</div>
-			</form>
 		</div>
+	</div>
+</div>

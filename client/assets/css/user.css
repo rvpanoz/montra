@@ -1,153 +1,104 @@
-/*=== 2. Anchor Link ===*/
-a {
-  color: #aaaaaa;
-  transition: all ease-in-out 200ms;
-}
-a:hover {
-  color: #333333;
-  text-decoration: none;
-}
-/*=== 3. Text Outside the Box ===*/
-.etc-user-form {
-  color: #919191;
-  padding: 10px 20px;
-}
-.etc-user-form p {
-  margin-bottom: 5px;
+/** user forms **/
+
+*, *:after, *:before {
+    box-sizing: border-box;
 }
 
-/*=== 4. Main Form ===*/
-.user-form {
-  max-width: 300px;
-  border-radius: 5px;
-  display: inline-block;
+.user-forms .user-container {
+    position: absolute;
+    width: 24em;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: intro .7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
-.main-user-form {
-  position: relative;
+
+.user-forms .user-profile {
+    position: relative;
 }
-.user-form .form-control {
-  border: 0;
-  box-shadow: 0 0 0;
-  border-radius: 0;
-  background: transparent;
-  color: #555555;
-  padding: 7px 0;
-  font-weight: bold;
-  height:auto;
+
+.user-forms .profile-open {}
+
+.profile-open .user-profile-form {
+    visibility: visible;
+    height: auto;
+    opacity: 1;
+    transform: translateY(-6em);
+    padding-top: 12em;
 }
-.user-form .form-control::-webkit-input-placeholder {
-  color: #999999;
+
+.user-forms .profile-open .user-fields {
+    opacity: 1;
+    visibility: visible;
 }
-.user-form .form-control:-moz-placeholder,
-.user-form .form-control::-moz-placeholder,
-.user-form .form-control:-ms-input-placeholder {
-  color: #999999;
+
+.user-forms .profile-open .user-profile-avatar {
+    transform: translate(-50%, -1.5em);
+    border-radius: 50%;
 }
-.user-form .form-group {
-  margin-bottom: 0;
-  border-bottom: 2px solid #efefef;
-  padding-right: 20px;
-  position: relative;
+
+.user-forms img {
+    vertical-align: middle;
+    max-width: 100%;
 }
-.user-form .form-group:last-child {
-  border-bottom: 0;
+
+.user-forms .user-profile-avatar {
+    position: absolute;
+    z-index: 30000001;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 1.25em;
+    overflow: hidden;
+    width: 4.5em;
+    height: 4.5em;
+    display: block;
+    transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform;
 }
-.user-group {
-  background: #ffffff;
-  color: #999999;
-  border-radius: 8px;
-  padding: 10px 20px;
+
+.user-forms button.btn-image {
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
 }
-.user-group-checkbox {
-  padding: 5px 0;
+
+.user-forms .user-profile-form {
+    position: relative;
+    background: white;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    padding: 3em;
+    border-radius: .25em;
+    -webkit-filter: drop-shadow(0 0 2em rgba(0, 0, 0, 0.2));
+    transition: opacity .4s ease-in-out, height .4s ease-in-out, transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-/*=== 5. user Button ===*/
-.user-form .user-button, .signup-form .user-button {
-  position: absolute;
-  right: -25px;
-  top: 50%;
-  background: #ffffff;
-  color: #999999;
-  padding: 11px 0;
-  width: 50px;
-  height: 50px;
-  margin-top: -25px;
-  border: 5px solid #efefef;
-  border-radius: 50%;
-  transition: all ease-in-out 500ms;
+
+.user-forms .input {
+    width: 100%;
+    font-size: 100%;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    height: 2rem;
+    line-height: 2rem;
+    border-bottom: 1px solid #eee;
+    color: #777;
+    transition: all .2s ease-in;
 }
-.user-form .user-button:hover, .signup-form .user-button:hover {
-  color: #555555;
-  transform: rotate(450deg);
+
+.user-forms .user-fields {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.user-form .user-button.clicked, .signup-form .user-button.clicked {
-  color: #555555;
+
+.user-forms .field {
+    position: relative;
+    margin-bottom: 2em;
 }
-.user-form .user-button.clicked:hover {
-  transform: none;
-}
-.user-form .user-button.clicked.success {
-  color: #2ecc71;
-}
-.user-form .user-button.clicked.error {
-  color: #e74c3c;
-}
-/*=== 6. Form Invalid ===*/
-label.form-invalid {
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 5;
-  display: block;
-  margin-top: -25px;
-  padding: 7px 9px;
-  background: #777777;
-  color: #ffffff;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 11px;
-}
-label.form-invalid:after {
-  top: 100%;
-  right: 10px;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: transparent;
-  border-top-color: #777777;
-  border-width: 6px;
-}
-/*=== 7. Form - Main Message ===*/
-.user-form-main-message {
-  background: #ffffff;
-  color: #999999;
-  border-left: 3px solid transparent;
-  border-radius: 3px;
-  margin-bottom: 8px;
-  font-weight: bold;
-  height: 0;
-  padding: 0 20px 0 17px;
-  opacity: 0;
-  transition: all ease-in-out 200ms;
-}
-.user-form-main-message.show {
-  height: auto;
-  opacity: 1;
-  padding: 10px 20px 10px 17px;
-}
-.user-form-main-message.success {
-  border-left-color: #2ecc71;
-}
-.user-form-main-message.error {
-  border-left-color: #e74c3c;
-}
-/*=== 9. Misc ===*/
-.logo {
-  padding: 15px 0;
-  font-size: 25px;
-  color: #aaaaaa;
-  font-weight: bold;
+
+.user-forms .user-footer {
+    padding-top: 1em;
 }
