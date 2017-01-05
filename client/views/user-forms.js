@@ -15,13 +15,14 @@ define([
       },
       events: {
         'click button.toggle': 'onToggle',
-        'click a.back': 'onSwitchForms',
-        'click a.add': 'onSwitchForms',
+        'click a.switch': 'onSwitchForms',
         'click a.signin': 'onEventSignin',
         'click a.signup': 'onEventRegister'
       },
       ui: {
-        'user-profile': '.user-profile'
+        'user-profile': '.user-profile',
+        'signin-input-email': '#signin-input-email',
+        'signin-input-password': '#signin-input-password'
       },
 
       initialize: function() {
@@ -32,6 +33,7 @@ define([
       onToggle: function(e) {
         e.preventDefault();
         this.getUI('user-profile').toggleClass('profile-open');
+        return false;
       },
 
       _onInvalid: function(model, errors) {
@@ -42,10 +44,8 @@ define([
 
       onSwitchForms: function(e) {
         e.preventDefault();
-
         var signinForm = this.$('.user-signin');
         var signupForm = this.$('.user-signup');
-
         if(signinForm.is(":visible")) {
           signinForm.hide();
           signupForm.show();
@@ -56,26 +56,17 @@ define([
         return false;
       },
 
-      onAttach: function() {
-        $('.mdl-layout__drawer').hide();
-      },
-
       onRender: function() {
         this.stickit();
-        $('#sidebar').hide();
-        $('#navbar').hide();
       },
 
       onEventSignin: function(e) {
         e.preventDefault();
-
-        //validate model
         var isValid = this.model.validate(this.model.attributes);
         if(_.isArray(isValid)) {
           this.model.trigger('invalid', this, isValid);
           return;
         }
-
         $.ajax({
           url: app.baseUrl + '/user/authenticate',
           method: 'POST',

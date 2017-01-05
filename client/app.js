@@ -69,16 +69,14 @@ define([
     },
 
     wait: function(active, t) {
-      var spinner = $('.mdl-spinner');
+      var spinner = $('#loader-container');
       var tm = (t) ? 0 : 500;
 
       if (active == true) {
-        spinner.addClass('is-active');
-        $('.mdl-layout__obfuscator').addClass('is-visible');
+        spinner.show();
       } else if (active == false) {
         setTimeout(function() {
-          spinner.removeClass('is-active');
-          $('.mdl-layout__obfuscator').removeClass('is-visible');
+          spinner.hide();
         }, tm);
       }
     },

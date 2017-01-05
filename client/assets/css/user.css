@@ -1,10 +1,6 @@
 /** user forms **/
 
-*, *:after, *:before {
-    box-sizing: border-box;
-}
-
-.user-forms .user-container {
+.user-container {
     position: absolute;
     width: 24em;
     left: 50%;
@@ -13,13 +9,13 @@
     animation: intro .7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-.user-forms .user-profile {
+.user-container .user-profile {
     position: relative;
 }
 
-.user-forms .profile-open {}
+.user-container .profile-open {}
 
-.profile-open .user-profile-form {
+.user-container .profile-open .user-profile-form {
     visibility: visible;
     height: auto;
     opacity: 1;
@@ -27,22 +23,22 @@
     padding-top: 12em;
 }
 
-.user-forms .profile-open .user-fields {
+.user-container .profile-open .user-fields {
     opacity: 1;
     visibility: visible;
 }
 
-.user-forms .profile-open .user-profile-avatar {
+.user-container .profile-open .user-profile-avatar {
     transform: translate(-50%, -1.5em);
     border-radius: 50%;
 }
 
-.user-forms img {
+.user-container img {
     vertical-align: middle;
     max-width: 100%;
 }
 
-.user-forms .user-profile-avatar {
+.user-container .user-profile-avatar {
     position: absolute;
     z-index: 30000001;
     left: 50%;
@@ -56,14 +52,14 @@
     will-change: transform;
 }
 
-.user-forms button.btn-image {
+.user-container button {
     cursor: pointer;
     border: 0;
     padding: 0;
     background-color: transparent;
 }
 
-.user-forms .user-profile-form {
+.user-container .user-profile-form {
     position: relative;
     background: white;
     visibility: hidden;
@@ -75,30 +71,27 @@
     transition: opacity .4s ease-in-out, height .4s ease-in-out, transform .4s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.user-forms .input {
-    width: 100%;
-    font-size: 100%;
-    border: 0;
-    padding: 0;
-    background-color: transparent;
-    height: 2rem;
-    line-height: 2rem;
-    border-bottom: 1px solid #eee;
-    color: #777;
-    transition: all .2s ease-in;
+.profile-open .user-profile-fields {
+    opacity: 1;
+    visibility: visible;
 }
-
-.user-forms .user-fields {
+.user-profile-fields {
     opacity: 0;
     visibility: hidden;
     transition: opacity .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.user-forms .field {
+.user-container .user-fields {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.user-container .field {
     position: relative;
     margin-bottom: 2em;
 }
 
-.user-forms .user-footer {
+.user-container .user-footer {
     padding-top: 1em;
 }

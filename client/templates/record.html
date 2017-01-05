@@ -9,78 +9,80 @@
                 <div class="widget-main no-padding">
                     <form class="form" style="padding: 15px;">
                         <fieldset>
-                          <legend>Basic input</legend>
-
-                        <div class="row" style="margin-top: 15px;">
-                            <div class="col-md-6">
-                                <div class="form-group form-group-amount">
-                                    <label for="input-amount">Amount</label>
-                                    <input type="text" class="form-control" placeholder="amount" id="input-amount" name="input-amount">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: 15px;">
-                            <div class="col-md-6">
-                                <div class="form-group form-group-entry_date">
-                                    <label for="input-entry-date-to">Date</label>
-                                    <input type="text" class="form-control" placeholder="date" id="input-entry-date" data-language='en' name="input-entry-date">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: 15px;">
-                            <div class="col-md-6">
-                                <div class="form-group form-group-category_id">
-                                    <label for="input-category">Category</label>
-                                    <select class="selectpicker form-control" id="input-category" name="input-category"></select>
-                                </div>
-                            </div>
-                        </div>
-                          </fieldset>
-                          <fieldset style="margin-top: 60px;">
-                            <legend>Type and Payment</legend>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="radio radio-inline">
-                                    <input type="radio" name="input-payment" id="input-payment-1" value="1" checked>
-                                    <label for="input-payment-1">Cash</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="radio radio-inline">
-                                    <input type="radio" name="input-payment" id="input-payment-2" value="2">
-                                    <label for="input-payment-2">Credit card</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: 15px;">
-                            <div class="col-md-6">
-                                <div class="radio radio-inline">
-                                    <input type="radio" name="input-kind" id="input-kind-1" value="1" checked>
-                                    <label for="input-kind-1">Expense</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="radio radio-inline">
-                                    <input type="radio" name="input-kind" id="input-kind-2" value="2">
-                                    <label for="input-kind-2">Income</label>
-                                </div>
-                            </div>
-                        </div>
-                      </fieldset>
-                        <div class="row" style="margin-top: 60px;">
-                            <div class="form-footer">
-                                <div class="form-group">
-                                    <div class="col-md-9">
-                                        <button class="btn btn-info save">Save</button>&nbsp;
-                                        <button class="btn btn-danger back">Cancel</button>
+                            <legend>Amount and Date</legend>
+                            <div class="row" style="margin-top: 15px;">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <div class="form-group form-group-amount">
+                                        <label for="input-amount">Amount</label>
+                                        <input type="text" class="form-control" id="input-amount" name="input-amount">
                                     </div>
                                 </div>
                             </div>
+                            <div class="row" style="margin-top: 15px;">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                    <div class="form-group form-group-entry_date">
+                                        <label for="input-entry-date-to">Date</label>
+                                        <input type="text" class="form-control" placeholder="date" id="input-entry-date" data-language='en' name="input-entry-date">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset style="margin-top: 60px">
+                            <legend>Category</legend>
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                                    <div class="form-group form-group-category_id">
+                                        <label for="input-category">Category</label>
+                                        <select class="selectpicker form-control" id="input-category" name="input-category"></select>
+                                    </div>
+                                </div>
+                            </div>
+                          </fieldset>
+                <fieldset style="margin-top: 60px;">
+                    <legend>Type and Payment</legend>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <div class="radio radio-inline">
+                                <input type="radio" name="input-payment" id="input-payment-1" value="1" checked>
+                                <label for="input-payment-1">Cash</label>
+                            </div>
                         </div>
-                    </form>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <div class="radio radio-inline">
+                                <input type="radio" name="input-payment" id="input-payment-2" value="2">
+                                <label for="input-payment-2">Credit card</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <div class="radio radio-inline">
+                                <input type="radio" name="input-kind" id="input-kind-1" value="1" checked>
+                                <label for="input-kind-1">Expense</label>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <div class="radio radio-inline">
+                                <input type="radio" name="input-kind" id="input-kind-2" value="2">
+                                <label for="input-kind-2">Income</label>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="row" style="margin-top: 60px;">
+                    <div class="form-footer">
+                        <div class="form-group">
+                            <div class="col-md-9">
+                                <button class="btn btn-info save">Save</button>&nbsp;
+                                <button class="btn btn-danger back">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                </form>
             </div>
         </div>
-
     </div>
+
+</div>
 </div>
