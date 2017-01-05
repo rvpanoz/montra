@@ -26,6 +26,7 @@ define([
       'remove': 'onRemove'
     },
     events: {
+      'click button.btn-new': 'onNew',
       'click a.select-all': 'onSelectAll',
       'click a.select-none': 'onSelectNone',
       'click .pagination-number': 'onPaginate',
@@ -71,6 +72,12 @@ define([
         return model.get('_selected') == true;
       });
       return selected;
+    },
+
+    onNew: function(e) {
+      e.preventDefault();
+      app.navigate('record');
+      return false;
     },
 
     onSelectAll: function(e) {
@@ -133,7 +140,6 @@ define([
     },
 
     numPages: function() {
-      // return Math.ceil(this.collection.total / this.perPage);
       return this.collection.pages;
     },
 
@@ -213,8 +219,9 @@ define([
     },
 
     onToggleFilters: function(e) {
-      if(e)
+      if(e) {
         e.preventDefault();
+      }
       this.ui.filters.toggleClass('filter-is-visible');
     },
 
@@ -234,6 +241,9 @@ define([
       var balance = sumIncomes - sumExpenses;
 
       return _.extend(this.collection.toJSON(), {
+        records: {
+          style: 'display:' + (this.collection.total == 0) ? 'none' : 'block'
+        },
         stats: {
           total: this.collection.total,
           expenses: sumExpenses.toFixed(2),

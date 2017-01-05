@@ -53,7 +53,6 @@ define([
       if (e) {
         e.preventDefault();
       }
-
       this.model.save(null, {
         success: _.bind(this.onEventSaveCallback, this)
       });

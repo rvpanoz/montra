@@ -61,15 +61,13 @@ define([
     onSignout: function() {
       localStorage.clear();
       app.token = null;
-
       app.onAppEvent('userstate:change');
       app.navigate('user-forms');
-
       return false;
     },
 
     wait: function(active, t) {
-      var spinner = $('#loader-container');
+      var spinner = $('.loader-container');
       var tm = (t) ? 0 : 500;
 
       if (active == true) {

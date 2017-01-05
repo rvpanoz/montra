@@ -1,28 +1,41 @@
-<div class="row">
-  <div class="col-md-8">
-    <div class="widget-box">
-        <div class="widget-header bordered-bottom bordered-themesecondary">
-            <i class="widget-icon fa fa-list themesecondary"></i>
-            <h5 class="widget-caption themesecondary">Your categories</h5>
-        </div>
-        <div class="widget-body">
-            <div class="widget-main no-padding">
-                <div class="records-container">
-                  <div class="btn-group">
-                      <button type="button" class="btn btn-default btn-sm new">New category</button>
+<% if(!stats.total) { %>
+    <div class="alert alert-info alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 id="oh-snap!"><a class="anchorjs-link" href="#"><span class="anchorjs-icon"></span></a></h4>
+        <p>Oh snap! You do not have any categories!</p>
+        <p>
+            <button type="button" class="btn btn-success btn-new">Add category</button>
+        </p>
+    </div>
+    <% } %>
+      <div class="row" style="<%= records.style %>">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+             <button type="button" class="btn btn-success btn-new">Add category</button>
+         </div>
+         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+           <div class="widget-box">
+            <div class="widget-header bordered-bottom bordered-themesecondary">
+                <i class="widget-icon fa fa-list themesecondary"></i>
+                <h5 class="widget-caption themesecondary">Your categories</h5>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main no-padding">
+                    <div class="records-container">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-sm new">New category</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">List actions <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Remove selected</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Sort</a></li>
+                            </ul>
+                        </div>
+                        <ul class="records-list categories-items"></ul>
                     </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">List actions <span class="caret"></span></button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Remove selected</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Sort</a></li>
-                        </ul>
-                    </div>
-                    <ul class="records-list categories-items"></ul>
                 </div>
             </div>
         </div>
+      </div>
     </div>
-  </div>
-</div>

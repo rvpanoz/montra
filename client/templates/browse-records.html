@@ -4,86 +4,94 @@
         <h4 id="oh-snap!"><a class="anchorjs-link" href="#"><span class="anchorjs-icon"></span></a></h4>
         <p>Oh snap! You do not have any records!</p>
         <p>
-            <button type="button" class="btn btn-danger">Take this action</button>
+            <button type="button" class="btn btn-success btn-new">Add record</button>
         </p>
     </div>
     <% } else { %>
-        <div class="widget-box">
-            <div class="widget-header bordered-bottom bordered-themesecondary">
-                <i class="widget-icon fa fa-list themesecondary"></i>
-                <h5 class="widget-caption themesecondary">Your Records</h5>
-            </div>
-            <div class="widget-body">
-                <div class="widget-main no-padding">
-                    <div class="actionbar-container">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
-                                    <div class="button-group">
-                                        <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-action" data-toggle="dropdown">
-                                  <span class="glyphicon glyphicon-cog"></span>
-                                  <span class="caret"></span>
-                                </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <a href="#">Select</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="#" class="select-all">All</a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="select-none">None</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
-                                    <button type="button" class="btn btn-default btn-xs btn-action">
-                            <span class="glyphicon glyphicon-refresh"></span>
-                          </button>
-                                </div>
-                                <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
-                                    <button type="button" class="btn btn-default btn-xs btn-action filter-trigger">
-                            <span class="glyphicon glyphicon-search"></span>
-                          </button>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                                    <ul class="nav nav-pills list-actions">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" href="#">Update</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Copy</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Delete</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="records-container">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Date <a href="#" class="sort" data-dir="DESC" data-field="entry_date"><i class="fa fa-arrow-down"></i> </a></th>
-                                        <th>Category</th>
-                                        <th style="text-align: right">Amount <a href="#" class="sort" data-dir="DESC" data-field="amount"><i class="fa fa-arrow-down"></i> </a></th>
-                                    </tr>
-                                </thead>
-                                <tbody class="records-items"></tbody>
-                            </table>
-                        </div>
-                        <nav>
-                            <ul class="pagination"></ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
+        <div class="row">
+          <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+               <button type="button" class="btn btn-success btn-new">Add record</button>
+           </div>
+           <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+             <div class="widget-box">
+                 <div class="widget-header bordered-bottom bordered-themesecondary">
+                     <i class="widget-icon fa fa-list themesecondary"></i>
+                     <h5 class="widget-caption themesecondary">Your Records</h5>
+                 </div>
+                 <div class="widget-body">
+                     <div class="widget-main no-padding">
+                         <div class="actionbar-container">
+                             <div class="container">
+                                 <div class="row">
+                                     <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                                         <div class="button-group">
+                                             <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-action" data-toggle="dropdown">
+                                       <span class="glyphicon glyphicon-cog"></span>
+                                       <span class="caret"></span>
+                                     </button>
+                                             <ul class="dropdown-menu">
+                                                 <li>
+                                                     <a href="#">Select</a>
+                                                 </li>
+                                                 <li class="divider"></li>
+                                                 <li>
+                                                     <a href="#" class="select-all">All</a>
+                                                 </li>
+                                                 <li>
+                                                     <a href="#" class="select-none">None</a>
+                                                 </li>
+                                             </ul>
+                                         </div>
+                                     </div>
+                                     <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                                         <button type="button" class="btn btn-default btn-xs btn-action">
+                                 <span class="glyphicon glyphicon-refresh"></span>
+                               </button>
+                                     </div>
+                                     <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                                         <button type="button" class="btn btn-default btn-xs btn-action filter-trigger">
+                                 <span class="glyphicon glyphicon-search"></span>
+                               </button>
+                                     </div>
+                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                                         <ul class="nav nav-pills list-actions">
+                                             <li class="nav-item">
+                                                 <a class="nav-link active" href="#">Update</a>
+                                             </li>
+                                             <li class="nav-item">
+                                                 <a class="nav-link" href="#">Copy</a>
+                                             </li>
+                                             <li class="nav-item">
+                                                 <a class="nav-link" href="#">Delete</a>
+                                             </li>
+                                         </ul>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="records-container">
+                             <div class="table-responsive">
+                                 <table class="table">
+                                     <thead>
+                                         <tr>
+                                             <th>Date <a href="#" class="sort" data-dir="DESC" data-field="entry_date"><i class="fa fa-arrow-down"></i> </a></th>
+                                             <th>Category</th>
+                                             <th style="text-align: right">Amount <a href="#" class="sort" data-dir="DESC" data-field="amount"><i class="fa fa-arrow-down"></i> </a></th>
+                                         </tr>
+                                     </thead>
+                                     <tbody class="records-items"></tbody>
+                                 </table>
+                             </div>
+                             <nav>
+                                 <ul class="pagination"></ul>
+                             </nav>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+           </div>
         </div>
+
         <% } %>
             <div class="filter-bar">
                 <div class="card">

@@ -14,7 +14,7 @@ define([
       recordsRegion: '#records-content'
     },
     events: {
-      'click a.new': 'onNew',
+
     },
     xx_childViewTriggers: {
       'fetch:records': 'child:fetch:records',
@@ -42,14 +42,7 @@ define([
       if(models.length) {
         statsView.collection.reset(models);
       }
-    },
-
-    onNew: function(e) {
-      e.preventDefault();
-      app.navigate('record');
-      return false;
-    },
-
+    }
   });
 
   return RecordsLayoutView;

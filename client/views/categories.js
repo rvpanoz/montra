@@ -13,7 +13,7 @@ define([
       'sync': 'render'
     },
     events: {
-      'click button.new': 'onNew'
+      'click button.btn-new': 'onNew'
     },
 
     initialize: function() {
@@ -27,9 +27,15 @@ define([
       return false;
     },
 
-    serializedData: function() {
+    serializeData: function() {
+      var style = (this.collection.length == 0) ? 'display:none' : 'display:block';
       return _.extend(this.collection.toJSON(), {
-
+        records: {
+          style: style
+        },
+        stats: {
+          total: this.collection.length
+        }
       });
     }
   });
