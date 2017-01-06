@@ -66,6 +66,10 @@ define([
       return false;
     },
 
+    checkState: function() {
+      return localStorage.get('token');
+    },
+
     wait: function(active, t) {
       var spinner = $('.loader-container');
       var tm = (t) ? 1000 : 1500;

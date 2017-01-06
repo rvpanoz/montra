@@ -97,12 +97,6 @@ module.exports = function(server) {
             }
           }
 
-          if (dataParams['input-payment-method']) {
-            _.extend(query, {
-              payment_method: dataParams['input-payment-method'],
-            });
-          }
-
           if (dataParams['input-kind']) {
             _.extend(query, {
               kind: dataParams['input-kind'],
@@ -111,7 +105,7 @@ module.exports = function(server) {
 
           if (dataParams['input-payment']) {
             _.extend(query, {
-              payment_method: dataParams['input-payments'],
+              payment_method: dataParams['input-payment'],
             });
           }
 
@@ -151,7 +145,9 @@ module.exports = function(server) {
           page: (dataParams && dataParams.page) ? dataParams.page : 1,
           limit: config.perPage
         };
+
         console.log(query);
+        
         var countQuery = function(callback) {
           Record.find(query).populate('category_id').exec(function(err, allRecords) {
             if (err) throw new Error(err);
@@ -168,12 +164,8 @@ module.exports = function(server) {
           });
         };
 
+        /** run in parallel **/
         async.parallel([countQuery, retrieveQuery], function(err, results) {
-          //err contains the array of error of all the functions
-          //results contains an array of all the results
-          //results[0] will contain value of doc.length from countQuery function
-          //results[1] will contain doc of retrieveQuery function
-          //You can send the results as
           reply({
             success: true,
             data: results[1].docs,
@@ -183,20 +175,6 @@ module.exports = function(server) {
             allData: results[0]
           });
         });
-
-
-        // Record.paginate(query, options, function(err, records) {
-        //   if (err) {
-        //     throw new Error(err);
-        //   }
-        //   reply({
-        //     success: true,
-        //     data: records.docs,
-        //     total: records.total,
-        //     pages: records.pages,
-        //     page: records.page
-        //   });
-        // });
       },
 
       insert: function(uid, data, reply) {

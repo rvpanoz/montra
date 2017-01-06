@@ -8,7 +8,7 @@ tr.selected, li.selected {
 }
 
 .record-item {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .required-field::before {
@@ -21,12 +21,16 @@ tr.selected, li.selected {
     padding: 15px 0px 15px 0px;
 }
 
+i.glyphicon-item, span.glyphicon-item {
+    font-size: 2.2em;
+}
+
 .actionbar-container .btn-action {
     /*width: 75px;*/
 }
 
 .actionbar-container ul.list-actions {
-  display: none;
+    display: none;
 }
 
 .navbar .navbar-collapse .navbar-nav.navbar-mobile .navbar-brand .highlight {
@@ -37,16 +41,50 @@ tr.selected, li.selected {
     width: 100%;
 }
 
-.nav-tabs .glyphicon:not(.no-margin) { margin-right:10px; }
-.tab-pane .list-group-item:first-child {border-top-right-radius: 0px;border-top-left-radius: 0px;}
-.tab-pane .list-group-item:last-child {border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;}
-.tab-pane .list-group .checkbox { display: inline-block;margin: 0px; }
-.tab-pane .list-group input[type="checkbox"]{ margin-top: 2px; }
-.tab-pane .list-group .glyphicon { margin-right:5px; }
-.tab-pane .list-group .glyphicon:hover { color:#FFBC00; }
-a.list-group-item.read { color: #222;background-color: #F3F3F3; }
-hr { margin-top: 5px;margin-bottom: 10px; }
-.nav-pills>li>a {padding: 5px 10px;}
+.nav-tabs .glyphicon:not(.no-margin) {
+    margin-right: 10px;
+}
+
+.tab-pane .list-group-item:first-child {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.tab-pane .list-group-item:last-child {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.tab-pane .list-group .checkbox {
+    display: inline-block;
+    margin: 0px;
+}
+
+.tab-pane .list-group input[type="checkbox"] {
+    margin-top: 2px;
+}
+
+.tab-pane .list-group .glyphicon {
+    margin-right: 5px;
+}
+
+.tab-pane .list-group .glyphicon:hover {
+    color: #FFBC00;
+}
+
+a.list-group-item.read {
+    color: #222;
+    background-color: #F3F3F3;
+}
+
+hr {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.nav-pills>li>a {
+    padding: 5px 10px;
+}
 
 .dont-break-out {
     /* These are technically the same, but use both */
@@ -116,7 +154,7 @@ body .app-container>div:first-child {
 }
 
 .loader-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
 }

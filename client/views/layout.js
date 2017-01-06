@@ -14,9 +14,6 @@ define([
       sidebarRegion: '#sidebar',
       mainRegion: '#main-content'
     },
-    events: {
-      'click .signout': 'onSignout'
-    },
     initialize: function() {
       var mainRegion = this.getRegion('mainRegion');
 
@@ -30,6 +27,7 @@ define([
       });
 
       this.listenTo(app, 'userstate:change', _.bind(function() {
+        console.log(arguments);
         $('#sidebar').toggle();
         $('#navbar').toggle();
       }, this));
@@ -44,14 +42,6 @@ define([
         this.getRegion('sidebarRegion').empty();
         this.getRegion('navbarRegion').empty();
       }
-    },
-
-    onSignout: function(e) {
-      if (e) {
-        e.preventDefault();
-      }
-      app.trigger('app:signout');
-      return false;
     },
 
     initializeJS: function() {

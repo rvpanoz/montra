@@ -5464,10 +5464,11 @@ pre {
 .list-group {
   position: relative; }
   .list-group > .list-group-item {
-    padding: 12px 16px;
+    /*padding: 12px 16px;
     margin-bottom: 2px;
     border-radius: 1px;
-    position: relative; }
+    position: relative; */
+  }
     .list-group > .list-group-item.list-group-item-primary {
       border: 1px solid #42b4f2;
       background-color: rgba(134, 207, 247, 0.5);

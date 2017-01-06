@@ -1,41 +1,47 @@
 <% if(!stats.total) { %>
-    <div class="alert alert-info alert-dismissible fade in" role="alert">
+    <div class="alert alert-info alert-dismissible fade in hide" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
         <h4 id="oh-snap!"><a class="anchorjs-link" href="#"><span class="anchorjs-icon"></span></a></h4>
-        <p>Oh snap! You do not have any categories!</p>
+        <p>Oh snap! You do not have any records!</p>
         <p>
             <button type="button" class="btn btn-success btn-new">Add category</button>
         </p>
     </div>
     <% } %>
-      <div class="row" style="<%= records.style %>">
-        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-             <button type="button" class="btn btn-success btn-new">Add category</button>
-         </div>
-         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-           <div class="widget-box">
+        <div class="widget-box" style="<%= records.style %>">
             <div class="widget-header bordered-bottom bordered-themesecondary">
                 <i class="widget-icon fa fa-list themesecondary"></i>
                 <h5 class="widget-caption themesecondary">Your categories</h5>
             </div>
             <div class="widget-body">
                 <div class="widget-main no-padding">
-                    <div class="records-container">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default btn-sm new">New category</button>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="actionbar-container">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="btn-group btn-group-justified" role="group" aria-label="toolbar">
+                                            <a href="#" class="btn btn-default btn-new"><i class="glyphicon glyphicon-plus"></i> New</a>
+                                            <a href="#" class="btn btn-default btn-update"><span class="glyphicon glyphicon-edit"></span>Update</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="categories-container">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Name <a href="#" class="sort" data-dir="DESC" data-field="entry_date"><i class="fa fa-arrow-down"></i> </a></th>
+                                                <th>Created at</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="categories-items"></tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">List actions <span class="caret"></span></button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Remove selected</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Sort</a></li>
-                            </ul>
-                        </div>
-                        <ul class="records-list categories-items"></ul>
                     </div>
                 </div>
             </div>
         </div>
-      </div>
-    </div>

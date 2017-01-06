@@ -16,7 +16,7 @@ define([
     events: {
 
     },
-    xx_childViewTriggers: {
+    childViewTriggers: {
       'fetch:records': 'child:fetch:records',
       'model:removed': 'child:model:removed'
     },
@@ -25,7 +25,7 @@ define([
       var recordsView = new RecordsView();
       var statsView = new RecordsStatsView();
 
-      // this.showChildView('statsRegion', statsView);
+      this.showChildView('statsRegion', statsView);
       this.showChildView('recordsRegion', recordsView);
     },
 

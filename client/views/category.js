@@ -36,8 +36,9 @@ define([
 
     onRender: function() {
       this.stickit();
+      var color = this.model.get('color');
       this.ui.colorpicker.colorpicker({
-        color: '#AA3399',
+        color: (_.isNull(color) ? '#AA3399' : color),
         format: 'hex'
       });
       this.ui.colorpicker.bind('changeColor', _.bind(function(e) {
