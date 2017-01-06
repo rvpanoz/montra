@@ -24,22 +24,7 @@ define([
         labels: [],
         datasets: [{
           data: [],
-          backgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56",
-            "#FFCE56",
-            "#36A2EB",
-            "#FFCE56",
-            "#CC33AA",
-            "#BBBCCC",
-            "#FFF000"
-          ],
-          hoverBackgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56"
-          ]
+          backgroundColor: []
         }]
       };
 
@@ -54,22 +39,21 @@ define([
               return model.get('_id') == id;
             });
 
-            this.data.labels.push('category-' + id);
+            this.data.labels.push(model.get('name'));
             this.data.datasets[0].data.push(dataItem.total);
+            if(_.isNull(model.get('color')))
+              model.set('color', '#ccc');
+            this.data.datasets[0].backgroundColor.push(model.get('color'));
           }
-          // For a pie chart
-          var myPieChart = new Chart(ctx, {
+
+          var pieChart = new Chart(ctx, {
             type: 'pie',
-            data: this.data,
-            // options: options
+            data: this.data
           });
         }, this)
       });
-    },
-
-    onAttach: function() {
-
     }
+
   });
 
   return DashboardView;

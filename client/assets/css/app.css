@@ -18,11 +18,11 @@ tr.selected, li.selected {
 }
 
 .actionbar-container {
-    padding: 15px 15px;
+    padding: 15px 0px 15px 0px;
 }
 
 .actionbar-container .btn-action {
-    width: 75px;
+    /*width: 75px;*/
 }
 
 .actionbar-container ul.list-actions {
@@ -113,4 +113,10 @@ body .app-container>div:first-child {
 .record-item .checkbox label:before, .record-item .checkbox label:after, .record-item .radio label:before, .record-item .radio label:after {
     width: 25px;
     height: 25px;
+}
+
+.loader-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
 }

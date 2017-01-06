@@ -26,7 +26,7 @@ define([
       'remove': 'onRemove'
     },
     events: {
-      'click button.btn-new': 'onNew',
+      'click a.btn-new': 'onNew',
       'click a.select-all': 'onSelectAll',
       'click a.select-none': 'onSelectNone',
       'click .pagination-number': 'onPaginate',
@@ -36,6 +36,7 @@ define([
       'click .filter-close': 'onToggleFilters',
       'click .navigate': 'onNavigate',
       'click a.sort': 'onSort',
+      'click a.update': 'onUpdate',
       'click button.search': 'onSearch',
       'click button.clear': 'onClearSearch'
     },
@@ -80,6 +81,18 @@ define([
       return false;
     },
 
+    onUpdate: function(e) {
+      e.preventDefault();
+      var selected = this._getSelectedModels();
+      if(selected.length > 1) {
+        return;
+      }
+      app.navigate('record', {
+        id: _.first(selected).get('_id')
+      });
+      return false;
+    },
+
     onSelectAll: function(e) {
       e.preventDefault();
       var target = this.$(e.currentTarget);
@@ -102,8 +115,12 @@ define([
 
     onChildSelectModel: function(model) {
       this._selected = [];
-      this.getUI('actions').toggle();
       this._selected = this._getSelectedModels();
+      if(this._selected.length > 1) {
+        this.getUI('actions').hide();
+        return;
+      }
+      this.getUI('actions').toggle();
     },
 
     onSort: function(e) {

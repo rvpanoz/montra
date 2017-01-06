@@ -6,14 +6,13 @@ const Hapi = require('hapi');
 const Wreck = require('wreck');
 const Mongoose = require('mongoose');
 const Boom = require('boom');
-const _ = require('lodash');
-
 const secret = require('./secret');
+const _ = require('lodash');
 const config = require('./config');
 const verifyCredentials = require('./util').verifyCredentials;
 const verifyUniqueUser = require('./util').verifyUniqueUser;
 
-// database connection
+// mongoose configuration
 Mongoose.connect(config.mongoConString);
 
 // use bluebird Promises Library
@@ -137,7 +136,6 @@ server.register(require('hapi-auth-jwt'), (err) => {
       handler: function(req, reply) {
         var uid = req.auth.credentials.id;
         var dataParams = req.query;
-        //console.log(dataParams);
         return app.records.browse(uid, reply, dataParams);
       }
     }
@@ -213,7 +211,11 @@ server.register(require('hapi-auth-jwt'), (err) => {
         return app.charts.piechart(uid, reply);
       }
     }
-  })
+  });
+
+  var app = new require('./controllers/app-controller')(server);
+  
+  //*start the server
   server.start(function(err) {
     if (err) {
       throw new Error(err);
@@ -221,6 +223,5 @@ server.register(require('hapi-auth-jwt'), (err) => {
     console.log('Server is running at ' + server.info.host + ":" + server.info.port);
   });
 
-  var app = new require('./controllers/app-controller')(server);
 });
 
