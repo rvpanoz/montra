@@ -191,6 +191,12 @@ define([
     },
 
     onSync: function() {
+      var pages = this.numPages();
+      if(pages < 2) {
+        this.triggerMethod('fetch:records', this.collection);
+        return;
+      }
+
       var pagination = this.$('ul.pagination');
       pagination.html('');
 

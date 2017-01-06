@@ -54,31 +54,36 @@
         <!-- filters form -->
         <div class="filter-bar">
             <div class="card">
-                <div class="card-header">
-                    Filter records
-                </div>
                 <div class="card-body">
                     <div class="row">
                         <form class="form filter-form">
-                            <div class="row filter-row">
+                            <fieldset>
+                              <legend>Date range</legend>
+                            <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <label for="input-entry-date-from">Date from</label>
+                                    <!-- <label for="input-entry-date-from">Date from</label> -->
                                     <input type="text" class="form-control" placeholder="date from" id="input-entry-date-from" data-language='en' name="input-entry-date-from">
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <label for="input-entry-date-to">Date to</label>
+                                    <!-- <label for="input-entry-date-to">Date to</label> -->
                                     <input type="text" class="form-control" placeholder="date from" id="input-entry-date-to" data-language='en' name="input-entry-date-to">
                                 </div>
                             </div>
-                            <div class="row filter-row">
-                                <div class="col-md-6">
-                                    <label for="input-category">Category</label>
+                          </fieldset>
+                          <fieldset style="margin-top: 15px;">
+                            <legend>Category</legend>
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <!-- <label for="input-category">Category</label> -->
                                     <select class="selectpicker form-control" id="input-category" name="input-category">
-                      <option value="0" class="option-default"></value>
-                    </select>
+                                      <option value="0" class="option-default"></value>
+                                      </select>
                                 </div>
                             </div>
-                            <div class="row filter-row">
+                          </fieldset>
+                          <fieldset style="margin-top: 15px;">
+                            <legend>Type and Payment</legend>
+                            <div class="row">
                                 <div class="col-md-6 col-sm-3 col-xs-3">
                                     <div class="radio radio-inline">
                                         <input type="radio" name="input-payment" id="input-payment-1" value="1" checked>
@@ -92,7 +97,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row filter-row">
+                            <div class="row">
                                 <div class="col-md-6 col-sm-3 col-xs-3">
                                     <div class="radio radio-inline">
                                         <input type="radio" name="input-kind" id="input-kind-1" value="1" checked>
@@ -106,6 +111,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </fieldset>
                             <div class="row" style="margin-top: 60px;">
                                 <div class="form-footer">
                                     <div class="form-group">
@@ -119,7 +125,7 @@
                         </form>
                         <!-- close filter -->
                         <a href="#" class="filter-close">
-                            <i class="fa fa-close"></i>
+                            <i class="glyphicon glyphicon-remove-sign"></i>
                         </a>
                     </div>
                 </div>
