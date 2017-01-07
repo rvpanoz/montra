@@ -1,4 +1,4 @@
-# Montra - MarionetteJS with Google Material Lite design.
+# HapiJS - MarionetteJS with Bootstrap design.
 
 Personal expense tracking application
 
@@ -21,7 +21,6 @@ to install the required modules.
 ## Built With
 
 * [MarionetteJS](http://marionettejs.com/)
-* [Google Material Lite](https://getmdl.io/)
 * [HapiJS](http://hapijs.com/) - Used as a REST API
 
 ## Authors
