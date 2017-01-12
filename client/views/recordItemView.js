@@ -38,8 +38,8 @@ define([
 
     onClick: function(e) {
       e.preventDefault();
-      var isSelected = this.$el.hasClass('selected');
-      this.model.set('_selected', !isSelected);
+      var isSelected = this.$el.toggleClass('selected');
+      this.model.set('_selected', this.$el.hasClass('selected'));
       this.triggerMethod('select:model', this.model);
     },
 

@@ -11,29 +11,16 @@ define([
     className: 'layout-view',
     regions: {
       navbarRegion: '#navbar',
-      sidebarRegion: '#sidebar',
+      sidebarRegion: '#sidebar-content',
       mainRegion: '#main-content'
-    },
-    events: {
-      'click .signout': 'onSignout'
     },
     initialize: function() {
       var mainRegion = this.getRegion('mainRegion');
 
       this.listenTo(app, 'app:view_show', function(View, params) {
-
-        //show the main view
         this.showChildView('mainRegion', new View(params));
-
-        //remove obs
         app.wait(false, true);
       });
-
-      this.listenTo(app, 'userstate:change', _.bind(function() {
-        $('#sidebar').toggle();
-        $('#navbar').toggle();
-      }, this));
-
     },
 
     checkState: function(token) {
@@ -44,14 +31,6 @@ define([
         this.getRegion('sidebarRegion').empty();
         this.getRegion('navbarRegion').empty();
       }
-    },
-
-    onSignout: function(e) {
-      if (e) {
-        e.preventDefault();
-      }
-      app.trigger('app:signout');
-      return false;
     },
 
     initializeJS: function() {

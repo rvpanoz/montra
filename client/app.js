@@ -11,7 +11,7 @@ define([
     content: null,
     region: '#app-content',
     baseUrl: config.protocol + config.host + ":" + config.port,
-    publicUrls: ['user-forms'],
+    publicUrls: ['login'],
 
     onBeforeStart: function() {
       this.router = new Router();
@@ -62,19 +62,29 @@ define([
       localStorage.clear();
       app.token = null;
       app.onAppEvent('userstate:change');
-      app.navigate('user-forms');
+      app.navigate('login');
       return false;
+    },
+
+    checkState: function() {
+      return localStorage.get('token');
     },
 
     wait: function(active, t) {
       var spinner = $('.loader-container');
-      var tm = (t) ? 0 : 500;
+      var tm = (t) ? 1000 : 1500;
 
       if (active == true) {
+        $('.app-container').css({
+          opacity: 0.5
+        });
         spinner.show();
       } else if (active == false) {
         setTimeout(function() {
           spinner.hide();
+          $('.app-container').css({
+            opacity: 1
+          });
         }, tm);
       }
     },

@@ -14,21 +14,41 @@ requirejs.config({
     chartjs: './bower_components/chart.js/dist/Chart.min',
     tpl: 'tpl',
     'backbone.radio': './bower_components/backbone.radio/build/backbone.radio',
-    'bootstrap': './bower_components/bootstrap/dist/js/bootstrap',
-    'bootstrapSelect': './bower_components/bootstrap-select/dist/js/bootstrap-select',
     'bootstrapColorpicker': './bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker',
-    'niceScroll': './plugins/nicescroll/jquery.nicescroll.min'
+    'bootstrap': './assets/libs/bootstrap/js/bootstrap.min',
+    'bootstrap-switch': './assets/libs/bootstrap-switch/dist/js/bootstrap-switch.min',
+    'theme': './assets/js/main',
+    'scrollbar': './assets/libs/jquery.scrollbar/jquery.scrollbar.min',
+    'tabdrop': './assets/libs/bootstrap-tabdrop/bootstrap-tabdrop.min',
+    'ionrangeslider': './assets/libs/ionrangeslider/js/ion.rangeSlider.min',
+    'sparkline': './assets/libs/sparkline/jquery.sparkline.min',
+    'inputNumber': './assets/libs/inputNumber/js/inputNumber',
+    'bootstrapSelect': './bower_components/bootstrap-select/dist/js/bootstrap-select'
   },
   shim: {
-    niceScroll: {
-      exports: '$.niceScroll',
+    inputNumber: {
       deps: ['jquery']
+    },
+    ionrangeslider: {
+      deps: ['jquery']
+    },
+    'bootstrap-switch': {
+      deps: ['jquery']
+    },
+    tabdrop: {
+      deps: ['jquery']
+    },
+    scrollbar: {
+      deps: ['jquery']
+    },
+    theme: {
+      deps: ['scrollbar', 'tabdrop']
+    },
+    bootstrapSelect: {
+      deps: ['bootstrap']
     },
     bootstrap: {
       deps: ['jquery']
-    },
-    bootstrapSelect: {
-      deps: ['jquery', 'bootstrap']
     },
     bootstrapColorpicker: {
       deps: ['jquery', 'bootstrap']
@@ -43,6 +63,9 @@ requirejs.config({
     },
     datepicker: {
       exports: 'datepicker',
+      deps: ['jquery']
+    },
+    sparkline: {
       deps: ['jquery']
     }
   },
@@ -65,9 +88,13 @@ requirejs([
   'config',
   'app',
   'utils',
+  'theme',
   'bootstrap',
   'bootstrapSelect',
-  'niceScroll',
+  'inputNumber',
+  'sparkline',
+  'ionrangeslider',
+  'bootstrap-switch',
   'datepicker'
 ], ($, _, Backbone, stickit, config, app, utils) => {
 
@@ -93,43 +120,9 @@ requirejs([
     app.wait(false);
   });
 
-  $(document).ready(function() {
-    //tool tips
-    $('.tooltips').tooltip();
-
-    //popovers
-    $('.popovers').popover();
-
-    //custom scrollbar
-    //for html
-    $("html").niceScroll({
-      styler: "fb",
-      cursorcolor: "#007AFF",
-      cursorwidth: '6',
-      cursorborderradius: '10px',
-      background: '#F7F7F7',
-      cursorborder: '',
-      zindex: '1000'
-    });
-    //for sidebar
-    $("#sidebar").niceScroll({
-      styler: "fb",
-      cursorcolor: "#007AFF",
-      cursorwidth: '3',
-      cursorborderradius: '10px',
-      background: '#F7F7F7',
-      cursorborder: ''
-    });
-    // for scroll panel
-    $(".scroll-panel").niceScroll({
-      styler: "fb",
-      cursorcolor: "#007AFF",
-      cursorwidth: '3',
-      cursorborderradius: '10px',
-      background: '#F7F7F7',
-      cursorborder: ''
-    });
-  });
+  // $(document).ready(function() {
+  //
+  // });
 
   //start the application
   app.start();

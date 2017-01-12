@@ -7,31 +7,17 @@ define([
 
   var CategoryItemView = Marionette.View.extend({
     template: templates.categoryItemView,
-    className: 'record-item',
+    className: 'category-item',
+    tagName: 'tr',
     events: {
-      'click .update': 'onEventUpdate',
-      'click .remove': 'onEventRemove'
-    },
-    ui: {
-      'buttonUpdate': '.update',
-      'buttonRemove': '.remove'
+      'click': 'onClick',
     },
 
-    onEventUpdate: function(e) {
+    onClick: function(e) {
       e.preventDefault();
-      app.navigate('category', {
-        id: this.model.get('_id')
-      });
-    },
-
-    onEventRemove: function(e) {
-      e.preventDefault();
-      var id = this.model.get('_id');
-      this.model.set('id', id);
-      this.model.destroy({
-        wait: true
-      });
-      return false;
+      var isSelected = this.$el.toggleClass('selected');
+      this.model.set('_selected', this.$el.hasClass('selected'));
+      this.triggerMethod('select:model', this.model);
     },
 
     serializeData: function() {

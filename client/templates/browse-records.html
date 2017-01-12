@@ -1,5 +1,5 @@
 <% if(!stats.total) { %>
-    <div class="alert alert-info alert-dismissible fade in" role="alert">
+    <div class="alert alert-info alert-dismissible fade in hide" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
         <h4 id="oh-snap!"><a class="anchorjs-link" href="#"><span class="anchorjs-icon"></span></a></h4>
         <p>Oh snap! You do not have any records!</p>
@@ -7,161 +7,127 @@
             <button type="button" class="btn btn-success btn-new">Add record</button>
         </p>
     </div>
-    <% } else { %>
-        <div class="row">
-          <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-               <button type="button" class="btn btn-success btn-new">Add record</button>
-           </div>
-           <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-             <div class="widget-box">
-                 <div class="widget-header bordered-bottom bordered-themesecondary">
-                     <i class="widget-icon fa fa-list themesecondary"></i>
-                     <h5 class="widget-caption themesecondary">Your Records</h5>
-                 </div>
-                 <div class="widget-body">
-                     <div class="widget-main no-padding">
-                         <div class="actionbar-container">
-                             <div class="container">
-                                 <div class="row">
-                                     <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
-                                         <div class="button-group">
-                                             <button type="button" class="btn btn-default btn-xs dropdown-toggle btn-action" data-toggle="dropdown">
-                                       <span class="glyphicon glyphicon-cog"></span>
-                                       <span class="caret"></span>
-                                     </button>
-                                             <ul class="dropdown-menu">
-                                                 <li>
-                                                     <a href="#">Select</a>
-                                                 </li>
-                                                 <li class="divider"></li>
-                                                 <li>
-                                                     <a href="#" class="select-all">All</a>
-                                                 </li>
-                                                 <li>
-                                                     <a href="#" class="select-none">None</a>
-                                                 </li>
-                                             </ul>
-                                         </div>
-                                     </div>
-                                     <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
-                                         <button type="button" class="btn btn-default btn-xs btn-action">
-                                 <span class="glyphicon glyphicon-refresh"></span>
-                               </button>
-                                     </div>
-                                     <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
-                                         <button type="button" class="btn btn-default btn-xs btn-action filter-trigger">
-                                 <span class="glyphicon glyphicon-search"></span>
-                               </button>
-                                     </div>
-                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
-                                         <ul class="nav nav-pills list-actions">
-                                             <li class="nav-item">
-                                                 <a class="nav-link active" href="#">Update</a>
-                                             </li>
-                                             <li class="nav-item">
-                                                 <a class="nav-link" href="#">Copy</a>
-                                             </li>
-                                             <li class="nav-item">
-                                                 <a class="nav-link" href="#">Delete</a>
-                                             </li>
-                                         </ul>
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="records-container">
-                             <div class="table-responsive">
-                                 <table class="table">
-                                     <thead>
-                                         <tr>
-                                             <th>Date <a href="#" class="sort" data-dir="DESC" data-field="entry_date"><i class="fa fa-arrow-down"></i> </a></th>
-                                             <th>Category</th>
-                                             <th style="text-align: right">Amount <a href="#" class="sort" data-dir="DESC" data-field="amount"><i class="fa fa-arrow-down"></i> </a></th>
-                                         </tr>
-                                     </thead>
-                                     <tbody class="records-items"></tbody>
-                                 </table>
-                             </div>
-                             <nav>
-                                 <ul class="pagination"></ul>
-                             </nav>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-           </div>
-        </div>
-
-        <% } %>
-            <div class="filter-bar">
-                <div class="card">
-                    <div class="card-header">
-                        Filter records
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <form class="form filter-form">
-                                <div class="row filter-row">
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <label for="input-entry-date-from">Date from</label>
-                                        <input type="text" class="form-control" placeholder="date from" id="input-entry-date-from" data-language='en' name="input-entry-date-from">
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <label for="input-entry-date-to">Date to</label>
-                                        <input type="text" class="form-control" placeholder="date from" id="input-entry-date-to" data-language='en' name="input-entry-date-to">
-                                    </div>
-                                </div>
-                                <div class="row filter-row">
-                                    <div class="col-md-6">
-                                        <label for="input-category">Category</label>
-                                        <select class="selectpicker form-control" id="input-category" name="input-category">
-                      <option value="0" class="option-default"></value>
-                    </select>
-                                    </div>
-                                </div>
-                                <div class="row filter-row">
-                                    <div class="col-md-6">
-                                        <div class="radio radio-inline">
-                                            <input type="radio" name="input-payment" id="input-payment-1" value="1" checked>
-                                            <label for="input-payment-1">Cash</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="radio radio-inline">
-                                            <input type="radio" name="input-payment" id="input-payment-2" value="2">
-                                            <label for="input-payment-2">Credit card</label>
+    <% } %>
+        <div class="widget-box" style="<%= records.style %>">
+            <div class="widget-header bordered-bottom bordered-themesecondary">
+                <i class="widget-icon fa fa-list themesecondary"></i>
+                <h5 class="widget-caption themesecondary">Your Records</h5>
+            </div>
+            <div class="widget-body">
+                <div class="widget-main no-padding">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="actionbar-container">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="btn-group btn-group-justified" role="group" aria-label="toolbar">
+                                            <a href="#" class="btn btn-default btn-new"><i class="glyphicon glyphicon-plus"></i> New</a>
+                                            <a href="#" class="btn btn-default filter-trigger"><i class="glyphicon glyphicon-search"></i> Search</a>
+                                            <a href="#" class="btn btn-default update"><span class="glyphicon glyphicon-edit"></span>Update</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row filter-row">
-                                    <div class="col-md-6">
-                                        <div class="radio radio-inline">
-                                            <input type="radio" name="input-kind" id="input-kind-1" value="1" checked>
-                                            <label for="input-kind-1">Expense</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="radio radio-inline">
-                                            <input type="radio" name="input-kind" id="input-kind-2" value="2">
-                                            <label for="input-kind-2">Income</label>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="records-container">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Date <a href="#" class="sort" data-dir="DESC" data-field="entry_date"><i class="fa fa-arrow-down"></i> </a></th>
+                                                <th>Category</th>
+                                                <th style="text-align: right">Amount <a href="#" class="sort" data-dir="DESC" data-field="amount"><i class="fa fa-arrow-down"></i> </a></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="records-items"></tbody>
+                                    </table>
                                 </div>
-                                <div class="row filter-row">
-                                    <div class="form-footer">
-                                        <div class="form-group">
-                                            <div class="col-md-9">
-                                                <button class="btn btn-info btn-sm search">Search</button>&nbsp;
-                                                <button class="btn btn-danger btn-sm clear">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            <!-- close filter -->
-                            <a href="#" class="filter-close">
-                                <i class="fa fa-close"></i>
-                            </a>
+                                <nav>
+                                    <ul class="pagination"></ul>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- filters form -->
+        <div class="filter-bar">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <form class="form filter-form">
+                            <fieldset>
+                              <legend>Date range</legend>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <!-- <label for="input-entry-date-from">Date from</label> -->
+                                    <input type="text" class="form-control" placeholder="date from" id="input-entry-date-from" data-language='en' name="input-entry-date-from">
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <!-- <label for="input-entry-date-to">Date to</label> -->
+                                    <input type="text" class="form-control" placeholder="date from" id="input-entry-date-to" data-language='en' name="input-entry-date-to">
+                                </div>
+                            </div>
+                          </fieldset>
+                          <fieldset style="margin-top: 15px;">
+                            <legend>Category</legend>
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                                    <!-- <label for="input-category">Category</label> -->
+                                    <select class="selectpicker form-control" id="input-category" name="input-category">
+                                      <option value="0" class="option-default"></value>
+                                      </select>
+                                </div>
+                            </div>
+                          </fieldset>
+                          <fieldset style="margin-top: 15px;">
+                            <legend>Type and Payment</legend>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-3 col-xs-3">
+                                    <div class="radio radio-inline">
+                                        <input type="radio" name="input-payment" id="input-payment-1" value="1" checked>
+                                        <label for="input-payment-1">Cash</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-3 col-xs-4">
+                                    <div class="radio radio-inline">
+                                        <input type="radio" name="input-payment" id="input-payment-2" value="2">
+                                        <label for="input-payment-2">Credit card</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-sm-3 col-xs-3">
+                                    <div class="radio radio-inline">
+                                        <input type="radio" name="input-kind" id="input-kind-1" value="1" checked>
+                                        <label for="input-kind-1">Expense</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-3 col-xs-4">
+                                    <div class="radio radio-inline">
+                                        <input type="radio" name="input-kind" id="input-kind-2" value="2">
+                                        <label for="input-kind-2">Income</label>
+                                    </div>
+                                </div>
+                            </div>
+                            </fieldset>
+                            <div class="row" style="margin-top: 60px;">
+                                <div class="form-footer">
+                                    <div class="form-group">
+                                        <div class="col-md-9">
+                                            <button class="btn btn-info search">Search</button>&nbsp;
+                                            <button class="btn btn-danger clear">Clear</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <!-- close filter -->
+                        <a href="#" class="filter-close">
+                            <i class="glyphicon glyphicon-remove-sign"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>

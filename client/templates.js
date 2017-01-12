@@ -16,7 +16,7 @@ define((require) => {
     recordItemView: require('tpl!templates/record-listitem.html'),
     categoriesSelect: require('tpl!templates/microtemplates/categories-select.html'),
     categoryOption: require('tpl!templates/microtemplates/category-option.html'),
-    userForms: require('tpl!templates/user-forms.html')
+    userForms: require('tpl!templates/login.html')
   }
 
 });

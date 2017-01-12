@@ -20,7 +20,7 @@ define([
         }
 
         if((!token || _.isNull(token)) && ($.inArray(url.cls, app.publicUrls) == -1)) {
-          return app.navigate('user-forms');
+          return app.navigate('login');
         }
 
         require(["views/" + url.cls], (View) => {
