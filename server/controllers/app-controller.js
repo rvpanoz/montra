@@ -104,7 +104,7 @@ module.exports = function(server) {
 
               /** kind filter **/
               var kind = _.get(dataParams, 'input-kind');
-              if(str2bool(kind)) {
+              if(kind) {
                 _.extend(query, {
                     kind: kind
                   });
@@ -112,7 +112,7 @@ module.exports = function(server) {
 
               /** payment_method filter **/
               var payment_method = _.get(dataParams, 'input-payment-method');
-              if(str2bool(payment_method)) {
+              if(payment_method) {
                 _.extend(query, {
                     payment_method: payment_method
                   });
