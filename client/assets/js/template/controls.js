@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	if ($('.template__controls').length) {
-
+		debugger;
 		$('.selectpicker').selectpicker();
 
 		$('.nav-pills, .nav-tabs').tabdrop();

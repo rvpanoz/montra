@@ -1,47 +1,40 @@
-<% if(!stats.total) { %>
-    <div class="alert alert-info alert-dismissible fade in hide" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 id="oh-snap!"><a class="anchorjs-link" href="#"><span class="anchorjs-icon"></span></a></h4>
-        <p>Oh snap! You do not have any records!</p>
-        <p>
-            <button type="button" class="btn btn-success btn-new">Add category</button>
-        </p>
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title"><%= title %></h3>
     </div>
-    <% } %>
-        <div class="widget-box" style="<%= records.style %>">
-            <div class="widget-header bordered-bottom bordered-themesecondary">
-                <i class="widget-icon fa fa-list themesecondary"></i>
-                <h5 class="widget-caption themesecondary">Your categories</h5>
+    <div class="panel-body">
+        <div class="scroll-wrapper scrollable scrollbar-macosx" style="position: relative;">
+            <div class="scrollable scrollbar-macosx scroll-content" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 444px;">
+                <table class="table table_sortable {sortlist: [[0,0]]}" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="header headerSortDown">Name</th>
+                            <th class="header">Created</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Date</th>
+                            <th>Created</th>
+                        </tr>
+                    </tfoot>
+                    <tbody class="categories-items"></tbody>
+                </table>
             </div>
-            <div class="widget-body">
-                <div class="widget-main no-padding">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="actionbar-container">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="btn-group btn-group-justified" role="group" aria-label="toolbar">
-                                            <a href="#" class="btn btn-default btn-new"><i class="glyphicon glyphicon-plus"></i> New</a>
-                                            <a href="#" class="btn btn-default btn-update"><span class="glyphicon glyphicon-edit"></span>Update</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="categories-container">
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Name <a href="#" class="sort" data-dir="DESC" data-field="entry_date"><i class="fa fa-arrow-down"></i> </a></th>
-                                                <th>Created at</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="categories-items"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="scroll-element scroll-x">
+                <div class="scroll-element_outer">
+                    <div class="scroll-element_size"></div>
+                    <div class="scroll-element_track"></div>
+                    <div class="scroll-bar" style="width: 96px;"></div>
+                </div>
+            </div>
+            <div class="scroll-element scroll-y">
+                <div class="scroll-element_outer">
+                    <div class="scroll-element_size"></div>
+                    <div class="scroll-element_track"></div>
+                    <div class="scroll-bar" style="height: 96px;"></div>
                 </div>
             </div>
         </div>
+    </div>
+</div>

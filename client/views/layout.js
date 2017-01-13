@@ -21,45 +21,29 @@ define([
         this.showChildView('mainRegion', new View(params));
         app.wait(false, true);
       });
-    },
 
-    checkState: function(token) {
-      if(token) {
+      this.listenTo(app, 'userstate:change', _.bind(function(state) {
+        this.checkState();
+      }, this));
+    },
+    onAttach: function() {
+
+    },
+    onRender: function() {
+      var token = localStorage.getItem('token');
+      var mainView = this.getChildView('mainRegion');
+      this.checkState(token);
+    },
+    checkState: function() {
+      var token = localStorage.getItem('token');
+      if (token) {
         this.showChildView('sidebarRegion', new SidebarView());
         this.showChildView('navbarRegion', new NavbarView());
       } else {
         this.getRegion('sidebarRegion').empty();
         this.getRegion('navbarRegion').empty();
       }
-    },
-
-    initializeJS: function() {
-      $(".sidebar-toggle").bind("click", function(e) {
-        $("#sidebar").toggleClass("active");
-        $(".app-container").toggleClass("__sidebar");
-      });
-
-      $(".navbar-toggle").bind("click", function(e) {
-        $("#navbar").toggleClass("active");
-        $(".app-container").toggleClass("__navbar");
-      });
-
-      $('.sidebar-nav .navigation-link').bind('click', function(e) {
-        $("#sidebar").toggleClass("active");
-        return true;
-      });
-    },
-
-    onAttach: function() {
-      this.initializeJS();
-    },
-
-    onRender: function() {
-      var token = localStorage.getItem('token');
-      var mainView = this.getChildView('mainRegion');
-      this.checkState(token);
     }
-
   });
 
   return LayoutView;

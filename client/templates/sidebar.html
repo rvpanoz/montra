@@ -5,16 +5,7 @@
                 <div class="fa fa-fw fa-home"></div>
             </div>
             <div class="quickmenu__item">
-                <div class="fa fa-fw fa-envelope-o"></div>
-            </div>
-            <div class="quickmenu__item new">
-                <div class="fa fa-fw fa-comments-o"></div>
-            </div>
-            <div class="quickmenu__item">
-                <div class="fa fa-fw fa-feed"></div>
-            </div>
-            <div class="quickmenu__item">
-                <div class="fa fa-fw fa-cog"></div>
+                <div class="fa fa-fw fa-list"></div>
             </div>
         </div>
     </div>
@@ -25,47 +16,60 @@
             <div class="sidebar__menu active" style="margin-left: 0px;">
                 <div class="sidebar__title">Menu</div>
                 <ul class="nav nav-menu">
-                    <li>
-                        <a href="./">
+                    <li class="active">
+                        <a href="#" class="navigation-link" data-cls="home">
                             <div class="nav-menu__ico"><i class="fa fa-fw fa-star"></i></div>
                             <div class="nav-menu__text"><span>Dashboard</span></div>
                         </a>
                     </li>
-                    <li class="active">
-                        <a href="#">
+                    <li>
+                        <a href="#" class="navigation-link" data-cls="records">
                             <div class="nav-menu__ico"><i class="fa fa-fw fa-list"></i></div>
                             <div class="nav-menu__text"><span>Records</span></div>
-                            <div class="nav-menu__right"><i class="fa fa-fw fa-angle-right arrow"></i></div>
                         </a>
-                        <ul class="nav nav-menu__second collapse">
-                            <li><a href="#">New</a></li>
-                        </ul>
                     </li>
+                    <li>
+                        <a href="#" class="navigation-link" data-cls="categories">
+                            <div class="nav-menu__ico"><i class="fa fa-fw fa-list"></i></div>
+                            <div class="nav-menu__text"><span>Categories</span></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar__menu">
+                <div class="sidebar__btn"><a href="" class="btn btn-block btn-default navigation-link" data-cls="record">New record</a></div>
+                <div class="sidebar__title">Records</div>
+                <ul class="nav nav-menu">
                     <li>
                         <a href="#">
                             <div class="nav-menu__ico"><i class="fa fa-fw fa-list"></i></div>
-                            <div class="nav-menu__text"><span>Categories</span></div>
-                            <div class="nav-menu__right"><i class="fa fa-fw fa-angle-right arrow"></i></div>
+                            <div class="nav-menu__text"><span>Incomes</span></div>
+                            <div class="nav-menu__right"><i class="badge badge-default"><b>2</b> / 100</i></div>
                         </a>
-                        <ul class="nav nav-menu__second collapse">
-                            <li><a href="#">New</a></li>
-                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="nav-menu__ico"><i class="fa fa-fw fa-upload"></i></div>
+                            <div class="nav-menu__text"><span>Expenses</span></div>
+                            <div class="nav-menu__right"><i class="badge badge-default">30</i></div>
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="scroll-element scroll-x scroll-scrollx_visible">
-            <div class="scroll-element_outer">
-                <div class="scroll-element_size"></div>
-                <div class="scroll-element_track"></div>
-                <div class="scroll-bar" style="width: 19px; left: 0px;"></div>
-            </div>
-        </div>
-        <div class="scroll-element scroll-y scroll-scrollx_visible">
-            <div class="scroll-element_outer">
-                <div class="scroll-element_size"></div>
-                <div class="scroll-element_track"></div>
-                <div class="scroll-bar" style="height: 89px;"></div>
-            </div>
+    </div>
+    <div class="scroll-element scroll-x scroll-scrollx_visible">
+        <div class="scroll-element_outer">
+            <div class="scroll-element_size"></div>
+            <div class="scroll-element_track"></div>
+            <div class="scroll-bar" style="width: 19px; left: 0px;"></div>
         </div>
     </div>
+    <div class="scroll-element scroll-y scroll-scrollx_visible">
+        <div class="scroll-element_outer">
+            <div class="scroll-element_size"></div>
+            <div class="scroll-element_track"></div>
+            <div class="scroll-bar" style="height: 89px;"></div>
+        </div>
+    </div>
+</div>

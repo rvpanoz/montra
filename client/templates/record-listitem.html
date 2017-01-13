@@ -1,18 +1,15 @@
 <td>
-  <div class="record-time">
-      <div class="divider hidden-md hidden-sm hidden-xs"></div>
-      <span class="time"><%= entry_date_formatted %></span>
-  </div>
+  <div class="divider hidden-md hidden-sm hidden-xs"></div>
+  <span class="time"><%= entry_date_formatted %></span>
 </td>
 <td>
-  <div class="record-basic">
-      <span class="label" style="background-color:<%= category_id.color %>">
-      <span><%= category_id.name.substring(0,3) %></span></span>
-  </div>
+  <!-- <span class="label" style="background-color:<%= category_id.color %>"> -->
+  <span><%= category_id.name %></span>
+<!-- </span> -->
 </td>
 <td>
-  <div class="record-type">
-      <span class="glyphicon glyphicon-<%= payment_check %>"></span>
-      <span class="amount pull-right" style="color: <%= kind_color %>"> <%= amount %>&euro;</span>
-  </div>
+  <span class="glyphicon glyphicon-<%= payment_check %>"></span>
+</td>
+<td>
+  <span class="amount pull-right" style="color: <%= kind_color %>"> <%= amount %>&euro;</span>
 </td>

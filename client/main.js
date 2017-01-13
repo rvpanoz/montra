@@ -16,57 +16,52 @@ requirejs.config({
     'backbone.radio': './bower_components/backbone.radio/build/backbone.radio',
     'bootstrapColorpicker': './bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker',
     'bootstrap': './assets/libs/bootstrap/js/bootstrap.min',
-    'bootstrap-switch': './assets/libs/bootstrap-switch/dist/js/bootstrap-switch.min',
-    'theme': './assets/js/main',
     'scrollbar': './assets/libs/jquery.scrollbar/jquery.scrollbar.min',
+    'themejs': './assets/js/main',
     'tabdrop': './assets/libs/bootstrap-tabdrop/bootstrap-tabdrop.min',
-    'ionrangeslider': './assets/libs/ionrangeslider/js/ion.rangeSlider.min',
-    'sparkline': './assets/libs/sparkline/jquery.sparkline.min',
-    'inputNumber': './assets/libs/inputNumber/js/inputNumber',
-    'bootstrapSelect': './bower_components/bootstrap-select/dist/js/bootstrap-select'
+    'bootstrap-switch': './assets/libs/bootstrap-switch/dist/js/bootstrap-switch.min',
+    'bootstrap-select': './assets/libs/bootstrap-select/dist/js/bootstrap-select',
+    'bootstrap-validator': './assets/libs/bootstrap-validator/dist/validator',
+    'bootstrap-datepicker': './assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker',
+    'inputNumber': './assets/libs/inputNumber/js/inputNumber'
+
+    // 'validator': './assets/js/template/validation',
+    // 'sparkline': './assets/libs/sparkline/jquery.sparkline.min',
+    //
+    // 'summerNote': './assets/libs/summernote/dist/summernote',
+    // 'bootstrap-validator': './assets/libs/bootstrap-validator/dist/validator',
+    // 'bootstrap-switch': './assets/libs/bootstrap-switch/dist/js/bootstrap-switch'
   },
   shim: {
-    inputNumber: {
-      deps: ['jquery']
-    },
-    ionrangeslider: {
-      deps: ['jquery']
-    },
-    'bootstrap-switch': {
+    scrollbar: {
       deps: ['jquery']
     },
     tabdrop: {
       deps: ['jquery']
     },
-    scrollbar: {
-      deps: ['jquery']
-    },
-    theme: {
-      deps: ['scrollbar', 'tabdrop']
-    },
-    bootstrapSelect: {
-      deps: ['bootstrap']
-    },
     bootstrap: {
       deps: ['jquery']
     },
-    bootstrapColorpicker: {
+    inputNumber: {
+      deps: ['jquery']
+    },
+    summerNote: {
+      deps: ['jquery']
+    },
+    'bootstrap-datepicker': {
       deps: ['jquery', 'bootstrap']
     },
-    backbone: {
-      exports: 'backbone',
-      deps: ['jquery', 'underscore']
+    'bootstrap-select': {
+      deps: ['jquery', 'bootstrap']
     },
-    stickit: {
-      exports: 'stickit',
-      deps: ['backbone']
-    },
-    datepicker: {
-      exports: 'datepicker',
+    'bootstrap-switch': {
       deps: ['jquery']
     },
-    sparkline: {
-      deps: ['jquery']
+    'bootstrap-validator': {
+      deps: ['bootstrap']
+    },
+    themejs: {
+      deps: ['scrollbar', 'tabdrop', 'bootstrap-switch', 'inputNumber']
     }
   },
   waitSeconds: 30
@@ -88,14 +83,8 @@ requirejs([
   'config',
   'app',
   'utils',
-  'theme',
   'bootstrap',
-  'bootstrapSelect',
-  'inputNumber',
-  'sparkline',
-  'ionrangeslider',
-  'bootstrap-switch',
-  'datepicker'
+  'themejs'
 ], ($, _, Backbone, stickit, config, app, utils) => {
 
   $.ajaxSetup({
@@ -119,10 +108,6 @@ requirejs([
   $(document).ajaxComplete(function() {
     app.wait(false);
   });
-
-  // $(document).ready(function() {
-  //
-  // });
 
   //start the application
   app.start();

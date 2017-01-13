@@ -10,7 +10,7 @@ $(document).ready(function() {
 	quickmenu($('.quickmenu__item.active'));
 
 	$('body').on('click', '.quickmenu__item', function() {
-		quickmenu($(this))
+		quickmenu($(this));
 	});
 
 	function quickmenu(item) {
@@ -32,6 +32,7 @@ $(document).ready(function() {
 
 	$('body.main-scrollable .main__scroll').scrollbar();
 	$('.scrollable').scrollbar({'disableBodyScroll' : true});
+
 	$(window).on('resize', function() {
 		$('body.main-scrollable .main__scroll').scrollbar();
 		$('.scrollable').scrollbar({'disableBodyScroll' : true});
@@ -106,9 +107,9 @@ $(document).ready(function() {
 
 	$("input.bs-switch").bootstrapSwitch();
 
-	$('.settings-slider').ionRangeSlider({
-		decorate_both: false
-	});
+	// $('.settings-slider').ionRangeSlider({
+	// 	decorate_both: false
+	// });
 
 	if ($('input[type=number]').length) {
 		$('input[type=number]').inputNumber({

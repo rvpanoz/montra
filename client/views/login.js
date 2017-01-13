@@ -6,7 +6,7 @@ define([
 
     var UserFormsView = Marionette.View.extend({
       template: templates.userForms,
-      className: 'login',
+      title: 'Login',
       bindings: {
         '#signin-input-email': 'email',
         '#signin-input-password': 'password',
@@ -98,6 +98,12 @@ define([
         });
 
         return false;
+      },
+
+      serializeData: function() {
+        return {
+          title: this.title
+        }
       }
     });
 

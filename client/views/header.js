@@ -6,17 +6,26 @@ define([
   var HeaderView =  Marionette.View.extend({
     template: templates.header,
     events: {
-      'click .signout': 'signout'
+      'click a.navigation-link': 'onNavigate',
+      'click a.signout': 'signout'
     },
-
-    onRender: function() {
-      this.$el.attr('id', 'navbar');
+    onNavigate: function(e) {
+      e.preventDefault();
+      var second_nav = $(this).find('.collapse').first();
+      if (second_nav.length) {
+        second_nav.collapse('toggle');
+        $(this).toggleClass('opened');
+      }
+      var cls = this.$(e.currentTarget).data('cls');
+      if(cls) {
+        app.navigate(cls);
+      }
+      return false;
     },
-
     signout: function(e) {
       e.preventDefault();
       localStorage.removeItem('token');
-      app.navigate('home');
+      app.navigate('login');
     }
   });
 

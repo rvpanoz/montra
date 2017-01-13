@@ -4,7 +4,9 @@ define([
   'schemas/record-bindings',
   'schemas/category-schema',
   'templates',
-  'moment'
+  'moment',
+  'bootstrap-select',
+  'bootstrap-datepicker'
 ], function(Marionette, RecordSchema, RecordBindings, CategorySchema, templates, moment) {
 
   return Marionette.View.extend({
@@ -30,7 +32,6 @@ define([
     },
 
     initialize: function(params) {
-
       //initialize a new record model;
       this.model = new RecordSchema.model();
 
@@ -78,7 +79,13 @@ define([
       return false;
     },
 
+    onAttach: function() {
+      this.$('.selectpicker').selectpicker();
+		  this.$('.input-entry-date').datepicker();
+    },
+
     onRender: function() {
+      console.log('onRender');
       var model = this.model;
 
       this.ui.inputCategory_id.append('<option value="0"');
@@ -86,13 +93,13 @@ define([
         this.ui.inputCategory_id.append('<option value="' + category._id + '">' + category.name + "</option>");
       }, this);
 
-      this.ui.inputEntryDate.datepicker({
-        dateFormat: 'dd/mm/yyyy',
-        autoClose: true,
-        onSelect: _.bind(function(d, fd) {
-          this.model.set('entry_date', d);
-        }, this)
-      });
+      // this.ui.inputEntryDate.datepicker({
+      //   dateFormat: 'dd/mm/yyyy',
+      //   autoClose: true,
+      //   onSelect: _.bind(function(d, fd) {
+      //     this.model.set('entry_date', d);
+      //   }, this)
+      // });
 
       if (this.model.isNew()) {
         this.model.set('entry_date', moment().format('DD/MM/YYYY'));
@@ -119,8 +126,9 @@ define([
         model.set('category_id', value);
       });
 
-      this.$('.selectpicker').selectpicker();
-      $('.selectpicker').selectpicker('val', this.model.get('category_id'));
+      // this.$('.selectpicker').selectpicker();
+      // $('.selectpicker').selectpicker('val', this.model.get('category_id'));
+
       this.stickit();
     },
 
@@ -159,15 +167,12 @@ define([
       if (e) {
         e.preventDefault();
       }
-      return app.navigate('records-layout');
+      return app.navigate('records');
     },
 
     serializeData: function() {
       return {
-        items: {
-          isNew: this.model.isNew(),
-          title: (this.model.isNew()) ? 'New record' : 'Edit record'
-        }
+        title: (this.model.isNew()) ? 'New record' : 'Edit record'
       }
     }
   });

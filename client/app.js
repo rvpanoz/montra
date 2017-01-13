@@ -22,7 +22,6 @@ define([
         cls: cls,
         params: params
       });
-
       app.router.navigate(JSON.stringify(url), {
         trigger: true
       });
@@ -52,14 +51,14 @@ define([
         app.token = token;
 
         app.onAppEvent('userstate:change');
-        app.navigate('records-layout');
+        app.navigate('records');
       }
 
       return false;
     },
 
     onSignout: function() {
-      localStorage.clear();
+      localStorage.removeItem('token');
       app.token = null;
       app.onAppEvent('userstate:change');
       app.navigate('login');
