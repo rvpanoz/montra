@@ -24,6 +24,11 @@ to install the required modules.
 
 * [HapiJS](http://hapijs.com/) - Used as a REST API
 
+## Authentication
+
+username: demo@demo.com
+password: demo123
+
 ## Authors
 
 **rvpanoz(at)gmail.com**
