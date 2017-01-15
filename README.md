@@ -24,7 +24,7 @@ to install the required modules.
 
 * [HapiJS](http://hapijs.com/) - Used as a REST API
 
-![alt tag](http://104.236.59.96/montra/montra.png)
+![alt tag](http://104.236.58.95/montra/montra.png)
 
 ## Authentication
 
