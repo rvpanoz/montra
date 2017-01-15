@@ -24,6 +24,13 @@ to install the required modules.
 
 * [HapiJS](http://hapijs.com/) - Used as a REST API
 
+![alt tag](http://104.236.58.95/montra/montra.png)
+
+## Authentication
+
+* username: demo@demo.com
+* password: demo123
+
 ## Authors
 
 **rvpanoz(at)gmail.com**
