@@ -1,11 +1,3 @@
-.panel-main {
-  min-height: 500px;
-}
-
-.selected{
-  background: #ccc;
-}
-
 .loader-container {
     position: absolute;
     width: 24em;

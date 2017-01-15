@@ -25,13 +25,20 @@ define([
       'model:removed': 'child:model:removed',
       'model:selected': 'child:model:selected',
       'apply:filters': 'child:view:filter',
-      'records:paginate': 'child:records:paginate'
+      'paginate': 'child:records:paginate'
+    },
+    events: {
+      'click .new': 'onNew'
+    },
+
+    onNew: function(e) {
+      e.preventDefault();
+      return app.navigate('records/record');
     },
 
     onRender: function() {
       var recordsView = new RecordsView();
       var filtersView = new FiltersView();
-
       this.showChildView('filtersRegion', filtersView);
       this.showChildView('recordsRegion', recordsView);
     },
@@ -48,22 +55,31 @@ define([
       }));
     },
 
-    onChildRecordsPaginate: function(opts) {
-      var page = opts.page || 1;
+    onChildRecordsPaginate: function(page) {
+      var pagination = this.getChildView('paginationRegion');
       var recordsView = this.getChildView('recordsRegion');
+
+      if(this.query) {
+        this.query.page = page;
+      }
+      
       if(recordsView && recordsView.collection) {
-        recordsView.collection.trigger('paginate', page);
+        var collection = recordsView.collection;
+        collection.fetch({
+          data: (this.query) ? this.query : {
+            page: page
+          }
+        });
       }
     },
 
     onChildFetchRecords: function(collection) {
-      var totalsView = this.getChildView('totalsRegion');
       var paginationView = this.getChildView('paginationRegion');
-
       this.showChildView('paginationRegion', new PaginationView({
         collection: collection
       }));
 
+      var totalsView = this.getChildView('totalsRegion');
       this.showChildView('totalsRegion', new TotalsView({
         collection: collection
       }));
@@ -77,11 +93,13 @@ define([
       detailsRegion.empty();
     },
 
-    onChildViewFilter: function(data) {
+    onChildViewFilter: function(opts) {
+      this.query = opts.data;
       var recordsView = this.getChildView('recordsRegion');
       recordsView.collection.fetch({
-        data: data
+        data: this.query
       });
+      return false;
     },
 
     serializeData: function() {

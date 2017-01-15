@@ -5,14 +5,14 @@ define([
 ], function(Marionette, UserSchema, templates) {
 
     var UserFormsView = Marionette.View.extend({
-      template: templates.login,
+      template: templates.register,
       title: 'User management',
       bindings: {
         '#input-email': 'email',
         '#input-password': 'password'
       },
       events: {
-        'click input#btn-login': 'onSignin'
+        'click input#btn-register': 'onRegister',
       },
       ui: {
         'input-email': '#input-email',
@@ -34,28 +34,17 @@ define([
         this.stickit();
       },
 
-      onSignin: function(e) {
+      onRegister: function(e) {
         e.preventDefault();
-        var isValid = this.model.validate(this.model.attributes);
-        if(_.isArray(isValid)) {
-          this.model.trigger('invalid', this, isValid);
-          return;
-        }
-        $.ajax({
-          url: app.baseUrl + '/user/authenticate',
-          method: 'POST',
-          data: {
-            email: this.model.get('email'),
-            password: this.model.get('password')
-          },
-          success: function(response) {
-            var token = response.data.id_token;
-            app.onAppEvent('app:signin', token);
-          },
+        this.model.save(null, {
+          success: _.bind(function(model) {
+            app.navigate('login');
+          }, this),
           error: _.bind(function() {
-
+            console.log('Ooops! Email taken or is invalid.');
           }, this)
         });
+
         return false;
       },
 

@@ -18,6 +18,7 @@ define((require) => {
     detailsRecord: require('tpl!templates/microtemplates/details-record.html'),
     detailsCategory: require('tpl!templates/microtemplates/details-category.html'),
     login: require('tpl!templates/login.html'),
+    register: require('tpl!templates/register.html'),
     filtersView: require('tpl!templates/microtemplates/filters-view.html'),
     totalsView: require('tpl!templates/microtemplates/totals-view.html'),
     pagination: require('tpl!views/components/pagination/pagination.html'),

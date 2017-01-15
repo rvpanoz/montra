@@ -78,20 +78,17 @@ define([
         this.model.set('kind', category_id);
       }, this));
 
-      //payment-method
-      this.ui.payment.bind('change', _.bind(function(e) {
-        var method = parseInt($(e.currentTarget).val());
-        this.model.set('payment-method', method);
+      //kind
+      this.ui.payment.selectpicker();
+      this.ui.payment.bind('hidden.bs.select', _.bind(function (e) {
+        var payment_method = this.ui.payment.selectpicker('val');
+        this.model.set('payment_method', payment_method);
       }, this));
     },
 
     getData: function() {
       var data = _.extend({});
       var serializedData = this.getUI('filters').serializeArray();
-
-      _.extend(data, {
-        page: (this.page <= 0) ? 1 : this.page
-      });
 
       _.each(serializedData, function(d) {
         var datefield = $('#' + d.name);
@@ -110,8 +107,11 @@ define([
       if (e) {
         e.preventDefault();
       }
-      this.data = this.getData();
-      this.triggerMethod("apply:filters", this.data);
+      this.triggerMethod("apply:filters", {
+        data: _.extend(this.getData(), {
+          page: 1
+        })
+      });
       return false;
     }
   });

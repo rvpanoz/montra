@@ -14,23 +14,10 @@ define([
     },
     onUpdate: function(e) {
       e.preventDefault();
-      app.navigate('records/record', {
+      return app.navigate('records/record', {
         id: this.model.get('_id')
       });
-      return false;
     },
-    onEventClone: function(e) {
-      e.preventDefault();
-      var attrs = _.pick(this.model.attributes,
-        'amount',
-        'entry_date',
-        'kind',
-        'payment_method');
-      var model = new RecordSchema.model(attrs);
-      model.set('category_id', this.model.get('category_id')._id);
-      this.triggerMethod('clone:model', model);
-    },
-
     onRemove: function(e) {
       e.preventDefault();
       var id = this.model.get('_id');

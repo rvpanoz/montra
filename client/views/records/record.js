@@ -14,7 +14,6 @@ define([
     className: 'record-form',
     modelEvents: {
       'invalid': 'onValidationError',
-      'change': 'onModelChange',
       'sync': 'render'
     },
     events: {
@@ -22,9 +21,9 @@ define([
       'click .cancel': 'onBack'
     },
     ui: {
-      inputKind: '#input-kind',
-      inputCategory: '#input-category',
-      inputEntryDate: '#input-entry-date'
+      kind: '#input-kind',
+      category: '#input-category',
+      entryDate: '#input-entry-date'
     },
 
     initialize: function(params) {
@@ -59,38 +58,33 @@ define([
       this.render();
     },
 
-    onModelChange: function(model) {
-      console.log('model changed', model);
-    },
-
     onRender: function() {
       var model = this.model;
 
-      //stickit
-      this.stickit();
-
       //categories build
-      this.ui.inputCategory.append('<option value="0"');
+      this.ui.category.append('<option value="0"');
       _.each(this.categories, function(category) {
-        this.ui.inputCategory.append('<option value="' + category._id + '">' + category.name + "</option>");
+        this.ui.category.append('<option value="' + category._id + '">' + category.name + "</option>");
       }, this);
 
       //selectpicker category
-      this.ui.inputCategory.selectpicker();
-      this.ui.inputCategory.bind('hidden.bs.select', _.bind(function (e) {
-        var category_id = this.ui.inputCategory.selectpicker('val');
+      this.ui.category.selectpicker();
+      this.ui.category.selectpicker('val', this.model.get('category_id'));
+      this.ui.category.bind('hidden.bs.select', _.bind(function (e) {
+        var category_id = this.ui.category.selectpicker('val');
         this.model.set('category_id', category_id);
       }, this));
 
       //selectpicker kind
-      this.ui.inputKind.selectpicker();
-      this.ui.inputKind.bind('hidden.bs.select', _.bind(function (e) {
-        var kind = this.ui.inputKind.selectpicker('val');
+      this.ui.kind.selectpicker();
+      this.ui.kind.selectpicker('val', this.model.get('kind'));
+      this.ui.kind.bind('hidden.bs.select', _.bind(function (e) {
+        var kind = this.ui.kind.selectpicker('val');
         this.model.set('kind', kind);
       }, this));
 
       //datepicker date
-      this.ui.inputEntryDate.datepicker({
+      this.ui.entryDate.datepicker({
         dateFormat: 'dd/mm/yyyy',
         autoClose: true,
         onSelect: _.bind(function(d, fd) {
@@ -102,22 +96,18 @@ define([
         this.model.set('entry_date', moment().format('DD/MM/YYYY'));
       } else {
         var d = this.model.get('entry_date');
-        this.ui.inputEntryDate.val(d);
+        this.ui.entryDate.val(d);
       }
+
+      //stickit
+      this.stickit();
     },
 
     onSave: function(e) {
-      if (e) {
-        e.preventDefault();
-      }
-
+      e.preventDefault();
       this.model.save(null, {
-        success: _.bind(this.onEventSaveCallback, this)
+        success: _.bind(this.onBack, this)
       });
-    },
-
-    onEventSaveCallback: function(model) {
-      return this.onBack();
     },
 
     onValidationError: function(model) {
@@ -138,9 +128,6 @@ define([
     },
 
     onBack: function(e) {
-      if (e) {
-        e.preventDefault();
-      }
       return app.navigate('records/records');
     },
 

@@ -9,11 +9,14 @@ define([
     incomes: 0,
     expenses: 0,
     balance: 0,
+    className: 'panel panel-success',
     ui: {
       canvas: '#totals'
     },
     initialize: function(opts) {
-      this.collection = opts.collection || [];
+      this.collection = opts.collection;
+      this.expenses = this.collection.getAllExpenses();
+      this.incomes = this.collection.getAllIncomes();
     },
     onRender: function() {
       if(!this.collection.length) {
@@ -26,6 +29,25 @@ define([
         data: data,
         options: this.options
       });
+    },
+    serializeData: function() {
+      var expenses = 0, incomes = 0;
+      _.each(this.expenses, function(record) {
+        var amount = record.amount;
+        expenses = expenses + Number(parseFloat(amount).toFixed(2));
+      }, this);
+      _.each(this.incomes, function(record) {
+        var amount = record.amount;
+        incomes = incomes + Number(parseFloat(amount).toFixed(2));
+      }, this);
+
+      var balance = parseFloat(incomes - expenses).toFixed(2);
+      return {
+        recordsNo: this.collection.total,
+        incomes: incomes,
+        expenses: expenses,
+        balance: balance
+      }
     },
     generateData: function() {
       var allRecords = this.collection.allRecords;

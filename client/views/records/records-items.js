@@ -21,27 +21,13 @@ define([
       'select:model': 'child:select:model'
     },
     collectionEvents: {
-      'paginate': 'onPaginate',
       'sync': 'onSync',
       'remove': 'onRemove'
     },
     events: {
       'click a.btn-new': 'onNew',
       'click a.select-all': 'onSelectAll',
-      'click a.select-none': 'onSelectNone',
-      'click .pagination-number': 'onPaginate',
-      'click .pagination-arrow': 'onPaginate',
-      'click .navigate': 'onNavigate',
-      'click a.sort': 'onSort',
-      'click a.update': 'onUpdate',
-      'click button.search': 'onSearch',
-      'click button.clear': 'onClearSearch'
-    },
-    ui: {
-      searchForm: '.datalist-filter',
-      inputEntryDateFrom: '#input-entry-date-from',
-      inputEntryDateTo: '#input-entry-date-to',
-      inputCategory: '#input-category'
+      'click a.select-none': 'onSelectNone'
     },
 
     initialize: function() {
@@ -51,10 +37,7 @@ define([
       this.collection.fetch({
         data: {
           page: 1
-        },
-        success: _.bind(function() {
-          // this.triggerMethod("fetch:records", this.collection);
-        }, this)
+        }
       });
     },
 
@@ -63,18 +46,6 @@ define([
         return model.get('_selected') == true;
       });
       return selected;
-    },
-
-    onRender: function() {
-      console.log('records-items render');
-    },
-
-    onPaginate: function(page) {
-      this.collection.fetch({
-        data: {
-          page: page
-        }
-      });
     },
 
     onSelectAll: function(e) {
