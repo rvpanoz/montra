@@ -9,9 +9,10 @@ define([
 
   var Application = Marionette.Application.extend({
     content: null,
+    pagination: false,
     region: '#app-content',
     baseUrl: config.protocol + config.host + ":" + config.port,
-    publicUrls: ['login'],
+    publicUrls: ['login', 'register'],
 
     onBeforeStart: function() {
       this.router = new Router();
@@ -51,7 +52,7 @@ define([
         app.token = token;
 
         app.onAppEvent('userstate:change');
-        app.navigate('records');
+        app.navigate('home');
       }
 
       return false;

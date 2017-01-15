@@ -11,6 +11,7 @@ define([
       'click a.navigation-link': 'onNavigate',
       'click a.signout': 'onSignout'
     },
+
     onNavigate: function(e) {
       e.preventDefault();
       var second_nav = $(this).find('.collapse').first();
@@ -24,6 +25,7 @@ define([
       }
       return false;
     },
+    
     onSignout: function(e) {
       if (e) {
         e.preventDefault();

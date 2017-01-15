@@ -5,13 +5,18 @@
     <div class="panel-body">
         <div class="scroll-wrapper scrollable scrollbar-macosx" style="position: relative;">
             <div class="scrollable scrollbar-macosx scroll-content" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 444px;">
+                <ul role="tablist" class="nav nav-tabs">
+                    <li role="presentation">
+                      <a href="#" aria-controls="new" role="tab" data-toggle="tab" class="new"><i class="fa fa-plus"></i>&nbsp;New record</a>
+                    </li>
+                </ul>
                 <table class="table table_sortable {sortlist: [[0,0]]}" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th class="header headerSortDown">Date</th>
                             <th class="header">Category</th>
                             <th class="header">Payment</th>
-                            <th class="header">Amount</th>
+                            <th class="header pull-right">Amount</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -19,25 +24,11 @@
                             <th>Date</th>
                             <th>Category</th>
                             <th>Payment</th>
-                            <th>Amount</th>
+                            <th class="pull-right">Amount</th>
                         </tr>
                     </tfoot>
                     <tbody class="records-items"></tbody>
                 </table>
-            </div>
-            <div class="scroll-element scroll-x">
-                <div class="scroll-element_outer">
-                    <div class="scroll-element_size"></div>
-                    <div class="scroll-element_track"></div>
-                    <div class="scroll-bar" style="width: 96px;"></div>
-                </div>
-            </div>
-            <div class="scroll-element scroll-y">
-                <div class="scroll-element_outer">
-                    <div class="scroll-element_size"></div>
-                    <div class="scroll-element_track"></div>
-                    <div class="scroll-bar" style="height: 96px;"></div>
-                </div>
             </div>
         </div>
     </div>

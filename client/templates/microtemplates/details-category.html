@@ -1,0 +1,25 @@
+<div class="details-preview__cont">
+  <div title="<%= name %>" class="details-preview__name">
+    <%= name %></div>
+  <div class="details-preview__data">
+    <div class="details-preview__info">
+      <div class="details-preview__edit">
+        <div class="btn-group btn-group-sm">
+          <button type="button" class="btn btn-danger update">Edit</button>
+          <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            class="btn btn-danger dropdown-toggle"><span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a href="#" class="update">Details</a></li>
+            <li><a href="#" class="remove">Delete</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="details-preview__props">
+    <div title="date" class="details-preview__prop">
+      <i class="fa fa-calendar"></i><span class="details-preview__location"
+        title="Date"><%= created_at_formatted %></span>
+    </div>
+  </div>
+</div>

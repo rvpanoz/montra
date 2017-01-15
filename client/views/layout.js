@@ -8,15 +8,15 @@ define([
 
   var LayoutView = Marionette.View.extend({
     template: templates.layout,
-    className: 'layout-view',
+    className: 'app-view',
     regions: {
       navbarRegion: '#navbar',
       sidebarRegion: '#sidebar-content',
-      mainRegion: '#main-content'
+      mainRegion: '#main-content',
+      loginRegion: '.login-form'
     },
     initialize: function() {
       var mainRegion = this.getRegion('mainRegion');
-
       this.listenTo(app, 'app:view_show', function(View, params) {
         this.showChildView('mainRegion', new View(params));
         app.wait(false, true);
@@ -26,14 +26,13 @@ define([
         this.checkState();
       }, this));
     },
-    onAttach: function() {
 
-    },
     onRender: function() {
       var token = localStorage.getItem('token');
       var mainView = this.getChildView('mainRegion');
       this.checkState(token);
     },
+
     checkState: function() {
       var token = localStorage.getItem('token');
       if (token) {
@@ -43,6 +42,12 @@ define([
         this.getRegion('sidebarRegion').empty();
         this.getRegion('navbarRegion').empty();
       }
+    },
+
+    onRender: function() {
+      var token = localStorage.getItem('token');
+      var mainView = this.getChildView('mainRegion');
+      this.checkState(token);
     }
   });
 

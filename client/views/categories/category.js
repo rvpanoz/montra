@@ -21,8 +21,8 @@ define([
       'change': 'onModelChange'
     },
     events: {
-      'click .save': 'onEventSave',
-      'click .back': 'onEventBack'
+      'click .save': 'onSave',
+      'click .cancel': 'onBack'
     },
 
     initialize: function(params) {
@@ -50,7 +50,7 @@ define([
 
     },
 
-    onEventSave: function(e) {
+    onSave: function(e) {
       if (e) {
         e.preventDefault();
       }
@@ -64,30 +64,26 @@ define([
     },
 
     onEventSaveCallback: function(model) {
-      app.navigate('categories');
+      app.navigate('categories/categories');
       return false;
     },
 
     onValidationError: function(model) {
       var errors = model.validationError;
-      console.log(errors);
       return _.isEmpty(errors) ? void 0 : errors;
     },
 
-    onEventBack: function(e) {
+    onBack: function(e) {
       if (e) {
         e.preventDefault();
       }
-      app.navigate('categories');
+      app.navigate('categories/categories');
       return false;
     },
 
     serializeData: function() {
       return {
-        items: {
-          isNew: this.model.isNew(),
-          title: (this.model.isNew()) ? 'New category' : 'Edit category'
-        }
+        title: (this.model.isNew()) ? 'New category' : 'Edit category'
       }
     }
   });

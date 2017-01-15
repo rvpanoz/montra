@@ -88,6 +88,16 @@ define([
       var field = this.sortField;
       var dir = this.sortDir;
       return (dir == -1) ? -m1.get(field) : m1.get(field);
+    },
+    getAllExpenses: function() {
+      return _.filter(this.allRecords, function(model) {
+        return model.kind == 1;
+      });
+    },
+    getAllIncomes: function() {
+      return _.filter(this.allRecords, function(model) {
+        return model.kind == 2;
+      });
     }
   });
 

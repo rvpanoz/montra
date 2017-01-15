@@ -1,3 +1,20 @@
+.panel-main {
+  min-height: 500px;
+}
+
+.selected{
+  background: #ccc;
+}
+
+.loader-container {
+    position: absolute;
+    width: 24em;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    animation: intro .7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
 /*    --------------------------------------------------
 	:: Login Section
 	-------------------------------------------------- */
@@ -5,7 +22,7 @@
     padding-top: 50px
 }
 #login .form-wrap {
-    width: 30%;
+    width: 50%;
     margin: 0 auto;
 }
 #login h1 {

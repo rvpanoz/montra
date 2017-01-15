@@ -15,13 +15,7 @@ define(['moment'], function(moment) {
         observe: 'entry_date'
       },
       '#input-category': {
-        observe: 'category_id',
-        onSet: function(id) {
-          return id;
-        },
-        onGet: function(id) {
-          return id;
-        }
+        observe: 'category_id'
       },
       '#input-notes': 'notes'
     };

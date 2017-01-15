@@ -19,18 +19,14 @@ requirejs.config({
     'scrollbar': './assets/libs/jquery.scrollbar/jquery.scrollbar.min',
     'themejs': './assets/js/main',
     'tabdrop': './assets/libs/bootstrap-tabdrop/bootstrap-tabdrop.min',
+    'selectize': './assets/libs/selectize/dist/js/standalone/selectize.min',
     'bootstrap-switch': './assets/libs/bootstrap-switch/dist/js/bootstrap-switch.min',
     'bootstrap-select': './assets/libs/bootstrap-select/dist/js/bootstrap-select',
     'bootstrap-validator': './assets/libs/bootstrap-validator/dist/validator',
     'bootstrap-datepicker': './assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker',
     'inputNumber': './assets/libs/inputNumber/js/inputNumber'
-
-    // 'validator': './assets/js/template/validation',
     // 'sparkline': './assets/libs/sparkline/jquery.sparkline.min',
-    //
-    // 'summerNote': './assets/libs/summernote/dist/summernote',
-    // 'bootstrap-validator': './assets/libs/bootstrap-validator/dist/validator',
-    // 'bootstrap-switch': './assets/libs/bootstrap-switch/dist/js/bootstrap-switch'
+    // 'summerNote': './assets/libs/summernote/dist/summernote'
   },
   shim: {
     scrollbar: {
@@ -61,7 +57,10 @@ requirejs.config({
       deps: ['bootstrap']
     },
     themejs: {
-      deps: ['scrollbar', 'tabdrop', 'bootstrap-switch', 'inputNumber']
+      deps: ['scrollbar', 'tabdrop', 'bootstrap-switch', 'inputNumber', 'selectize']
+    },
+    datepicker: {
+      deps: ['jquery']
     }
   },
   waitSeconds: 30

@@ -1,7 +1,7 @@
 define([
   'marionette',
   'schemas/category-schema',
-  'views/categoryItemView',
+  './category-item',
   'templates'
 ], function(Marionette, CategorySchema, CategoryItemView, templates) {
 

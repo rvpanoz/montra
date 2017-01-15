@@ -12,33 +12,63 @@
         <div class="template template__validation">
             <div class="row">
                 <div class="col-md-5">
-                    <div class="panel panel-danger">
+                    <div class="panel panel-danger panel-main">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Fill the form</h3>
+                            <h3 class="panel-title">Record</h3>
                         </div>
                         <div class="panel-body">
                             <form data-toggle="validator" data-disable="false" role="form" novalidate="true">
-                                <div class="form-group">
-                                    <label for="input-amount" class="control-label">Amount</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">&euro;</span>
-                                        <input type="text" pattern="^[0-9]{1,}$" maxlength="15" class="form-control" id="input-amount" required="">
+                                <div class="form-group form-group-amount">
+                                    <label>Amount</label>
+                                    <div class="input-group date">
+                                        <input type="text" id="input-amount" name="input-amount" class="form-control" required="">
+                                        <div class="input-group-addon">
+                                            <div class="fa fa-euro"></div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="input-entry-date" class="control-label">Date</label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">&euro;</span>
-                                        <input type="text" pattern="^[0-9]{1,}$" maxlength="15" class="form-control input-entry-date" id="input-entry-date" required="">
+                                <div class="form-group form-group-entry_date">
+                                    <label>Date</label>
+                                    <div class="input-group date">
+                                        <input type="text" id="input-entry-date" name="input-entry-date" class="form-control">
+                                        <div class="input-group-addon">
+                                            <div class="fa fa-calendar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-group-category_id">
+                                    <label for="input-category" class="control-label">Category</label>
+                                    <select placeholder="Select" class="selectpicker-category form-control" id="input-category"></select>
+                                </div>
+
+                                <div class="form-group form-group-kind">
+                                    <label class="control-label">Type and Payment</label>
+                                    <select placeholder="Select" class="selectpicker-kind form-control" id="input-kind" name="input-kind">
+                                      <option value="1">Expense</option>
+                                      <option value="2">Income</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group form-group-payment_metho">
+                                    <div class="row">
+                                        <div class="col-sm-4 col-xs-4">
+                                            <div class="panel-body">
+                                                <div class="radio">
+                                                    <input type="radio" name="input-payment" id="input-payment-1" value="1" checked>
+                                                    <label for="input-payment-1">Cash</label>
+                                                </div>
+                                                <div class="radio">
+                                                    <input type="radio" name="input-payment" id="input-payment-2" value="2">
+                                                    <label for="input-payment-2">Credit card</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="input-category" class="control-label">Category</label>
-                                    <select placeholder="Select" class="selectpicker form-control" id="input-category"></select>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Save record</button>
+                                  <button type="submit" class="btn btn-info save pull-right">Save record</button>
                                 </div>
                             </form>
                         </div>

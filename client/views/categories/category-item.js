@@ -9,6 +9,9 @@ define([
     template: templates.categoryItemView,
     className: 'category-item',
     tagName: 'tr',
+    attributes: {
+      role: 'row'
+    },
     events: {
       'click': 'onClick',
     },
@@ -17,7 +20,7 @@ define([
       e.preventDefault();
       var isSelected = this.$el.toggleClass('selected');
       this.model.set('_selected', this.$el.hasClass('selected'));
-      this.triggerMethod('select:model', this.model);
+      this.triggerMethod('model:selected', this.model);
     },
 
     serializeData: function() {

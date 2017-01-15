@@ -485,29 +485,29 @@ body.main-scrollable .main {
 .users-new {
   padding: 10px 5px;
 }
-.users-preview {
+.details-preview {
   margin-bottom: 15px;
 }
-.users-preview__cont {
+.details-preview__cont {
   padding: 10px 15px;
   background-color: #f9f9f9;
   border-radius: 4px;
 }
-.users-preview__name {
+.details-preview__name {
   font-size: 24px;
   line-height: 1.1;
   color: #88939C;
   margin-bottom: 10px;
 }
-.users-preview__data {
+.details-preview__data {
   margin-bottom: 15px;
 }
-.users-preview__data:after {
+.details-preview__data:after {
   content: '';
   display: block;
   clear: both;
 }
-.users-preview__photo {
+.details-preview__photo {
   float: left;
   width: 100%;
   max-width: 190px;
@@ -516,7 +516,7 @@ body.main-scrollable .main {
   height: 100px;
   position: relative;
 }
-.users-preview__photo div {
+.details-preview__photo div {
   height: 100%;
   background-position: 50% 50%;
   background-size: cover;
@@ -524,12 +524,12 @@ body.main-scrollable .main {
   background-image: url('../img/nophoto.png');
   border-radius: 4px;
 }
-.users-preview__info {
+.details-preview__info {
   float: left;
   width: 75px;
   box-sizing: border-box;
 }
-.users-preview__position {
+.details-preview__position {
   font-weight: 500;
   font-size: 15px;
   margin-bottom: 5px;
@@ -537,16 +537,16 @@ body.main-scrollable .main {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.users-preview__stat {
+.details-preview__stat {
   margin-bottom: 10px;
 }
-.users-preview__edit {
+.details-preview__edit {
   white-space: nowrap;
 }
-.users-preview__props {
+.details-preview__props {
   color: #88939C;
 }
-.users-preview__prop {
+.details-preview__prop {
   white-space: nowrap;
   margin-bottom: 3px;
   overflow: hidden;
@@ -555,21 +555,21 @@ body.main-scrollable .main {
   padding: 4px 6px 2px;
   border-radius: 2px;
 }
-.users-preview__prop:last-of-type {
+.details-preview__prop:last-of-type {
   margin-bottom: 0;
 }
-.users-preview__prop .fa {
+.details-preview__prop .fa {
   width: 20px;
   text-align: center;
   margin-right: 6px;
 }
-.users-preview__notes {
+.details-preview__notes {
   margin-bottom: 15px;
   font-size: 14px;
   line-height: 14px;
   text-align: left;
 }
-.users-preview__actions {
+.details-preview__actions {
   text-align: right;
 }
 .template__btns {

@@ -10,6 +10,9 @@ define([
     template: templates.recordItemView,
     className: 'record-item',
     tagName: 'tr',
+    attributes: {
+      role: 'row'
+    },
     modelEvents: {
       'destroy': 'onModelDestroy'
     },
@@ -40,19 +43,11 @@ define([
       e.preventDefault();
       var isSelected = this.$el.toggleClass('selected');
       this.model.set('_selected', this.$el.hasClass('selected'));
-      this.triggerMethod('select:model', this.model);
+      this.triggerMethod('model:selected', this.model);
     },
 
     onModelDestroy: function(model) {
       this.triggerMethod('remove:model', model);
-    },
-
-    onEventUpdate: function(e) {
-      e.preventDefault();
-      app.navigate('record', {
-        id: this.model.get('_id')
-      });
-      return false;
     },
 
     onSelect: function(e) {
@@ -65,30 +60,6 @@ define([
       }
       this.model.set('_selected', selected);
       return true;
-    },
-
-    onEventClone: function(e) {
-      e.preventDefault();
-      var attrs = _.pick(this.model.attributes,
-        'amount',
-        'entry_date',
-        'kind',
-        'payment_method');
-
-      var model = new RecordSchema.model(attrs);
-      model.set('category_id', this.model.get('category_id')._id);
-      this.triggerMethod('clone:model', model);
-    },
-
-    onEventRemove: function(e) {
-      e.preventDefault();
-      var id = this.model.get('_id');
-
-      this.model.set('id', id);
-      this.model.destroy({
-        wait: true
-      });
-      return false;
     },
 
     serializeData: function() {
