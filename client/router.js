@@ -16,11 +16,17 @@ define([
         var url = utils.decode(actions), opts;
 
         if(_.isNull(url)) {
-          return app.navigate('home');
+          url = {
+            cls: 'home'
+          }
         }
 
         if((!token || _.isNull(token)) && ($.inArray(url.cls, app.publicUrls) == -1)) {
-          return app.navigate('user-forms');
+          return app.navigate('login');
+        } else {
+          if(($.inArray(url.cls, app.publicUrls) !== -1)) {
+            app.onAppEvent('userstate:change');
+          }
         }
 
         require(["views/" + url.cls], (View) => {

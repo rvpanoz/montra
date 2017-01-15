@@ -9,9 +9,10 @@ define([
 
   var Application = Marionette.Application.extend({
     content: null,
+    pagination: false,
     region: '#app-content',
     baseUrl: config.protocol + config.host + ":" + config.port,
-    publicUrls: ['user-forms'],
+    publicUrls: ['login', 'register'],
 
     onBeforeStart: function() {
       this.router = new Router();
@@ -22,7 +23,6 @@ define([
         cls: cls,
         params: params
       });
-
       app.router.navigate(JSON.stringify(url), {
         trigger: true
       });
@@ -52,17 +52,17 @@ define([
         app.token = token;
 
         app.onAppEvent('userstate:change');
-        app.navigate('records-layout');
+        app.navigate('home');
       }
 
       return false;
     },
 
     onSignout: function() {
-      localStorage.clear();
+      localStorage.removeItem('token');
       app.token = null;
       app.onAppEvent('userstate:change');
-      app.navigate('user-forms');
+      app.navigate('login');
       return false;
     },
 

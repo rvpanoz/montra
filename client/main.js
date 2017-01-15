@@ -14,35 +14,52 @@ requirejs.config({
     chartjs: './bower_components/chart.js/dist/Chart.min',
     tpl: 'tpl',
     'backbone.radio': './bower_components/backbone.radio/build/backbone.radio',
-    'bootstrap': './bower_components/bootstrap/dist/js/bootstrap',
-    'bootstrapSelect': './bower_components/bootstrap-select/dist/js/bootstrap-select',
     'bootstrapColorpicker': './bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker',
-    'niceScroll': './plugins/nicescroll/jquery.nicescroll.min'
+    'bootstrap': './assets/libs/bootstrap/js/bootstrap.min',
+    'scrollbar': './assets/libs/jquery.scrollbar/jquery.scrollbar.min',
+    'themejs': './assets/js/main',
+    'tabdrop': './assets/libs/bootstrap-tabdrop/bootstrap-tabdrop.min',
+    'selectize': './assets/libs/selectize/dist/js/standalone/selectize.min',
+    'bootstrap-switch': './assets/libs/bootstrap-switch/dist/js/bootstrap-switch.min',
+    'bootstrap-select': './assets/libs/bootstrap-select/dist/js/bootstrap-select',
+    'bootstrap-validator': './assets/libs/bootstrap-validator/dist/validator',
+    'bootstrap-datepicker': './assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker',
+    'inputNumber': './assets/libs/inputNumber/js/inputNumber'
+    // 'sparkline': './assets/libs/sparkline/jquery.sparkline.min',
+    // 'summerNote': './assets/libs/summernote/dist/summernote'
   },
   shim: {
-    niceScroll: {
-      exports: '$.niceScroll',
+    scrollbar: {
+      deps: ['jquery']
+    },
+    tabdrop: {
       deps: ['jquery']
     },
     bootstrap: {
       deps: ['jquery']
     },
-    bootstrapSelect: {
+    inputNumber: {
+      deps: ['jquery']
+    },
+    summerNote: {
+      deps: ['jquery']
+    },
+    'bootstrap-datepicker': {
       deps: ['jquery', 'bootstrap']
     },
-    bootstrapColorpicker: {
+    'bootstrap-select': {
       deps: ['jquery', 'bootstrap']
     },
-    backbone: {
-      exports: 'backbone',
-      deps: ['jquery', 'underscore']
+    'bootstrap-switch': {
+      deps: ['jquery']
     },
-    stickit: {
-      exports: 'stickit',
-      deps: ['backbone']
+    'bootstrap-validator': {
+      deps: ['bootstrap']
+    },
+    themejs: {
+      deps: ['scrollbar', 'tabdrop', 'bootstrap-switch', 'inputNumber', 'selectize']
     },
     datepicker: {
-      exports: 'datepicker',
       deps: ['jquery']
     }
   },
@@ -66,9 +83,7 @@ requirejs([
   'app',
   'utils',
   'bootstrap',
-  'bootstrapSelect',
-  'niceScroll',
-  'datepicker'
+  'themejs'
 ], ($, _, Backbone, stickit, config, app, utils) => {
 
   $.ajaxSetup({
@@ -91,44 +106,6 @@ requirejs([
 
   $(document).ajaxComplete(function() {
     app.wait(false);
-  });
-
-  $(document).ready(function() {
-    //tool tips
-    $('.tooltips').tooltip();
-
-    //popovers
-    $('.popovers').popover();
-
-    //custom scrollbar
-    //for html
-    $("html").niceScroll({
-      styler: "fb",
-      cursorcolor: "#007AFF",
-      cursorwidth: '6',
-      cursorborderradius: '10px',
-      background: '#F7F7F7',
-      cursorborder: '',
-      zindex: '1000'
-    });
-    //for sidebar
-    $("#sidebar").niceScroll({
-      styler: "fb",
-      cursorcolor: "#007AFF",
-      cursorwidth: '3',
-      cursorborderradius: '10px',
-      background: '#F7F7F7',
-      cursorborder: ''
-    });
-    // for scroll panel
-    $(".scroll-panel").niceScroll({
-      styler: "fb",
-      cursorcolor: "#007AFF",
-      cursorwidth: '3',
-      cursorborderradius: '10px',
-      background: '#F7F7F7',
-      cursorborder: ''
-    });
   });
 
   //start the application

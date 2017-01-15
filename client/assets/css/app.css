@@ -1,157 +1,9 @@
-.center-content {
-    align-items: center;
-    justify-content: center;
+.panel-main {
+  min-height: 500px;
 }
 
-tr.selected, li.selected {
-    background: #ccc !important;
-}
-
-.record-item {
-    cursor: pointer;
-}
-
-.required-field::before {
-    content: " * ";
-    float: left;
-    color: red;
-}
-
-.actionbar-container {
-    padding: 15px 0px 15px 0px;
-}
-
-i.glyphicon-item, span.glyphicon-item {
-    font-size: 2.2em;
-    top: 15px;
-}
-
-.actionbar-container .btn-action {
-    /*width: 75px;*/
-}
-
-.actionbar-container ul.list-actions {
-    display: none;
-}
-
-.navbar .navbar-collapse .navbar-nav.navbar-mobile .navbar-brand .highlight {
-    padding: 10px 5px;
-}
-
-.app-sidebar {
-    width: 100%;
-}
-
-.nav-tabs .glyphicon:not(.no-margin) {
-    margin-right: 10px;
-}
-
-.tab-pane .list-group-item:first-child {
-    border-top-right-radius: 0px;
-    border-top-left-radius: 0px;
-}
-
-.tab-pane .list-group-item:last-child {
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-}
-
-.tab-pane .list-group .checkbox {
-    display: inline-block;
-    margin: 0px;
-}
-
-.tab-pane .list-group input[type="checkbox"] {
-    margin-top: 2px;
-}
-
-.tab-pane .list-group .glyphicon {
-    margin-right: 5px;
-}
-
-.tab-pane .list-group .glyphicon:hover {
-    color: #FFBC00;
-}
-
-a.list-group-item.read {
-    color: #222;
-    background-color: #F3F3F3;
-}
-
-hr {
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-
-.nav-pills>li>a {
-    padding: 5px 10px;
-}
-
-.dont-break-out {
-    /* These are technically the same, but use both */
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    -ms-word-break: break-all;
-    /* This is the dangerous one in WebKit, as it breaks things wherever */
-    word-break: break-all;
-    /* Instead use this non-standard one: */
-    word-break: break-word;
-    /* Adds a hyphen where the word breaks, if supported (No Blink) */
-    -ms-hyphens: auto;
-    -moz-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-}
-
-body .app-container>div:first-child {
-    margin-top: 0px !important;
-}
-
-.navbar {
-    padding: 0px !important;
-}
-
-.navbar-collapse {
-    overflow: hidden !important;
-}
-
-.btn.btn-primary:hover {
-    box-shadow: 0px !important;
-}
-
-.btn:hover {
-    transform: none;
-}
-
-.pagination>li:first-child>a, .pagination>li:first-child>span {
-    margin-left: 0;
-}
-
-.datepickers-container {
-    z-index: 100000010;
-}
-
-.action-bar {
-    margin-bottom: 40px;
-}
-
-.row {
-    margin-right: 0px;
-    margin-left: 0px;
-}
-
-.record-list {
-    position: relative;
-    padding: 5px 0;
-}
-
-.record-list .label {
-    font-weight: normal;
-}
-
-.record-item .checkbox label:before, .record-item .checkbox label:after, .record-item .radio label:before, .record-item .radio label:after {
-    width: 25px;
-    height: 25px;
+.selected{
+  background: #ccc;
 }
 
 .loader-container {
@@ -161,4 +13,66 @@ body .app-container>div:first-child {
     top: 50%;
     transform: translate(-50%, -50%);
     animation: intro .7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/*    --------------------------------------------------
+	:: Login Section
+	-------------------------------------------------- */
+#login {
+    padding-top: 50px
+}
+#login .form-wrap {
+    width: 50%;
+    margin: 0 auto;
+}
+#login h1 {
+    color: #1fa67b;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+#login .form-group {
+    margin-bottom: 25px;
+}
+#login .checkbox {
+    margin-bottom: 20px;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+#login .checkbox.show:before {
+    content: '\e013';
+    color: #1fa67b;
+    font-size: 17px;
+    margin: 1px 0 0 3px;
+    position: absolute;
+    pointer-events: none;
+    font-family: 'Glyphicons Halflings';
+}
+#login .checkbox .character-checkbox {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    vertical-align: middle;
+    display: inline-block;
+}
+#login .checkbox .label {
+    color: #6d6d6d;
+    font-size: 13px;
+    font-weight: normal;
+}
+#login .btn.btn-custom {
+    font-size: 14px;
+	margin-bottom: 20px;
+}
+#login .forget {
+    font-size: 13px;
+	text-align: center;
+	display: block;
 }

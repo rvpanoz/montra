@@ -42,7 +42,7 @@ define([
     },
     validate: function(attrs) {
       var errors = [];
-
+      
       if (!attrs.amount) {
         errors.push({
           field: 'amount',

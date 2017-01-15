@@ -8,34 +8,34 @@ define([
 
   var LayoutView = Marionette.View.extend({
     template: templates.layout,
-    className: 'layout-view',
+    className: 'app-view',
     regions: {
       navbarRegion: '#navbar',
-      sidebarRegion: '#sidebar',
-      mainRegion: '#main-content'
+      sidebarRegion: '#sidebar-content',
+      mainRegion: '#main-content',
+      loginRegion: '.login-form'
     },
     initialize: function() {
       var mainRegion = this.getRegion('mainRegion');
-
       this.listenTo(app, 'app:view_show', function(View, params) {
-
-        //show the main view
         this.showChildView('mainRegion', new View(params));
-
-        //remove obs
         app.wait(false, true);
       });
 
-      this.listenTo(app, 'userstate:change', _.bind(function() {
-        console.log(arguments);
-        $('#sidebar').toggle();
-        $('#navbar').toggle();
+      this.listenTo(app, 'userstate:change', _.bind(function(state) {
+        this.checkState();
       }, this));
-
     },
 
-    checkState: function(token) {
-      if(token) {
+    onRender: function() {
+      var token = localStorage.getItem('token');
+      var mainView = this.getChildView('mainRegion');
+      this.checkState(token);
+    },
+
+    checkState: function() {
+      var token = localStorage.getItem('token');
+      if (token) {
         this.showChildView('sidebarRegion', new SidebarView());
         this.showChildView('navbarRegion', new NavbarView());
       } else {
@@ -44,33 +44,11 @@ define([
       }
     },
 
-    initializeJS: function() {
-      $(".sidebar-toggle").bind("click", function(e) {
-        $("#sidebar").toggleClass("active");
-        $(".app-container").toggleClass("__sidebar");
-      });
-
-      $(".navbar-toggle").bind("click", function(e) {
-        $("#navbar").toggleClass("active");
-        $(".app-container").toggleClass("__navbar");
-      });
-
-      $('.sidebar-nav .navigation-link').bind('click', function(e) {
-        $("#sidebar").toggleClass("active");
-        return true;
-      });
-    },
-
-    onAttach: function() {
-      this.initializeJS();
-    },
-
     onRender: function() {
       var token = localStorage.getItem('token');
       var mainView = this.getChildView('mainRegion');
       this.checkState(token);
     }
-
   });
 
   return LayoutView;

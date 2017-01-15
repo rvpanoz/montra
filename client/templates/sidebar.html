@@ -1,43 +1,59 @@
-<div class="sidebar-header">
-    <a class="sidebar-brand" href="#"><span class="highlight">Montra</span> app</a>
-    <button type="button" class="sidebar-toggle">
-      <i class="fa fa-times"></i>
-    </button>
-  </div>
-<div class="sidebar-menu">
-  <ul class="sidebar-nav">
-    <li class="">
-      <a href="#" data-cls="home" class="navigation-link">
-        <div class="icon">
-          <i class="glyphicon glyphicon-tasks glyphicon-item" aria-hidden="true"></i>
+<div class="quickmenu">
+    <div class="quickmenu__cont">
+        <div class="quickmenu__list">
+            <div class="quickmenu__item active">
+                <div class="fa fa-fw fa-home"></div>
+            </div>
+            <div class="quickmenu__item">
+                <div class="fa fa-fw fa-list"></div>
+            </div>
         </div>
-        <div class="title">Dashboard</div>
-      </a>
-    </li>
-    <li>
-      <a href="#" data-cls="records-layout" class="navigation-link">
-        <div class="icon">
-          <i class="glyphicon glyphicon-tasks glyphicon-item" aria-hidden="true"></i>
-        </div>
-        <div class="title">Records</div>
-      </a>
-    </li>
-    <li>
-      <a href="#" data-cls="categories-layout" class="navigation-link">
-        <div class="icon">
-          <i class="glyphicon glyphicon-tasks glyphicon-item" aria-hidden="true"></i>
-        </div>
-        <div class="title">Categories</div>
-      </a>
-    </li>
-    <li>
-        <a href="#" class="signout">
-          <div class="icon">
-            <i class="glyphicon glyphicon-tasks glyphicon-item" aria-hidden="true"></i>
-          </div>
-          <div class="title">Sign out</div>
-        </a>
-    </li>
-  </ul>
+    </div>
 </div>
-<div class="sidebar-footer"></div>
+<div class="scroll-wrapper scrollable scrollbar-macosx" style="position: relative;">
+    <div class="scrollable scrollbar-macosx scroll-content scroll-scrollx_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 747px;">
+        <div class="sidebar__cont">
+            <div class="sidebar__menu active" style="margin-left: 0px;">
+                <div class="sidebar__title">Menu</div>
+                <ul class="nav nav-menu">
+                    <li class="active">
+                        <a href="#" class="navigation-link" data-cls="home">
+                            <div class="nav-menu__ico"><i class="fa fa-fw fa-star"></i></div>
+                            <div class="nav-menu__text"><span>Dashboard</span></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="navigation-link" data-cls="records/records">
+                            <div class="nav-menu__ico"><i class="fa fa-fw fa-list"></i></div>
+                            <div class="nav-menu__text"><span>Records</span></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="navigation-link" data-cls="categories/categories">
+                            <div class="nav-menu__ico"><i class="fa fa-fw fa-list"></i></div>
+                            <div class="nav-menu__text"><span>Categories</span></div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar__menu">
+                <div class="sidebar__btn"><a href="" class="btn btn-block btn-default navigation-link" data-cls="records/record">New record</a></div>
+                <div class="sidebar__btn"><a href="" class="btn btn-block btn-default navigation-link" data-cls="categories/category">New category</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="scroll-element scroll-x scroll-scrollx_visible">
+        <div class="scroll-element_outer">
+            <div class="scroll-element_size"></div>
+            <div class="scroll-element_track"></div>
+            <div class="scroll-bar" style="width: 19px; left: 0px;"></div>
+        </div>
+    </div>
+    <div class="scroll-element scroll-y scroll-scrollx_visible">
+        <div class="scroll-element_outer">
+            <div class="scroll-element_size"></div>
+            <div class="scroll-element_track"></div>
+            <div class="scroll-bar" style="height: 89px;"></div>
+        </div>
+    </div>
+</div>

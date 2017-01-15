@@ -1,0 +1,76 @@
+<form class="datalist-filter">
+    <div class="input-group datalist-filter__search">
+        <input type="text" placeholder="Search" class="form-control" disabled="">
+        <span class="input-group-btn">
+            <button type="button" role="button" data-toggle="collapse" data-target="#datalist-filter__detail"
+              aria-controls="users__filter-detail" aria-expanded="false" class="btn btn-default collapsed">
+              <div class="fa fa-filter"></div>
+            </button>
+          </span>
+    </div>
+    <div id="datalist-filter__detail" class="collapse" aria-expanded="false" style="height: 0px;">
+        <div class="container-fluid datalist-filter__detail">
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-calendar-minus-o"></i></div>
+                            <input type="text" class="form-control input-entry-date-from has-filter" placeholder="date from" id="input-entry-date-from" data-language='en' name="input-entry-date-from">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-calendar-plus-o"></i></div>
+                            <input type="text" class="form-control input-entry-date-to has-filter" placeholder="date from" id="input-entry-date-to" data-language='en' name="input-entry-date-to">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-list"></i></div>
+                            <select class="selectpicker-category form-control input-category has-filter" id="input-category" name="input-category">
+                              <option value="0" class="option-default">Category</value>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="fa fa-list"></i></div>
+                            <select placeholder="Select" class="selectpicker-kind has-filter input-kind form-control" id="input-kind" name="input-kind">
+                              <option value="0">Type</option>
+                          <option value="1">Expense</option>
+                          <option value="2">Income</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 input-daterange">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="panel-body">
+                                    <div class="radio">
+                                        <input type="radio" name="input-payment" class="has-filter input-payment" id="input-payment-1" value="1" checked>
+                                        <label for="input-payment-1">Cash</label>
+                                    </div>
+                                    <div class="radio">
+                                        <input type="radio" name="input-payment" class="has-filter input-payment" id="input-payment-2" value="2">
+                                        <label for="input-payment-2">Credit card</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

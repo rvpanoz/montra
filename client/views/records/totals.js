@@ -1,0 +1,77 @@
+define([
+  'marionette',
+  'templates',
+  'chartjs'
+], function(Marionette, templates) {
+
+  var TotalsView = Marionette.View.extend({
+    template: templates.totalsView,
+    incomes: 0,
+    expenses: 0,
+    balance: 0,
+    ui: {
+      canvas: '#totals'
+    },
+    initialize: function(opts) {
+      this.collection = opts.collection || [];
+    },
+    onRender: function() {
+      if(!this.collection.length) {
+        return true;
+      }
+      var ctx = this.getUI('canvas');
+      var data = this.generateData();
+      this.barChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: data,
+        options: this.options
+      });
+    },
+    generateData: function() {
+      var allRecords = this.collection.allRecords;
+      var data = {
+        labels: ["Incomes", "Expenses", "Balance"],
+        datasets: [{
+          label: "Statistics",
+          backgroundColor: [
+            "#4BC0C0",
+            "#E7E9ED",
+            "#36A2EB"
+        ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)'
+          ],
+          borderWidth: 1,
+          data: [],
+        }]
+      };
+
+      // this.collection.reset(allRecords);
+      _.each(allRecords, _.bind(function(model) {
+        var k = model.kind;
+        var amount = Number(model.amount);
+        switch (k) {
+          case 2:
+            this.incomes+=amount;
+            break;
+          default:
+            this.expenses+=amount;
+        }
+      }, this));
+
+      this.expenses = parseFloat(this.expenses).toFixed(2);
+      this.incomes = parseFloat(this.incomes).toFixed(2);
+
+      data.datasets[0].data.push(this.incomes);
+      data.datasets[0].data.push(this.expenses);
+      this.balance = parseFloat(this.incomes - this.expenses).toFixed(2);
+      data.datasets[0].data.push(this.balance);
+
+      return data;
+    }
+  });
+
+  return TotalsView;
+});

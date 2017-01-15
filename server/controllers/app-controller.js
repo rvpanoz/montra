@@ -104,20 +104,19 @@ module.exports = function(server) {
 
               /** kind filter **/
               var kind = _.get(dataParams, 'input-kind');
-              if(kind) {
+              if (str2bool(kind)) {
                 _.extend(query, {
-                    kind: kind
-                  });
-                }
+                  kind: kind
+                });
+              }
 
               /** payment_method filter **/
-              var payment_method = _.get(dataParams, 'input-payment-method');
-              if(payment_method) {
+              var payment_method = _.get(dataParams, 'input-payment');
+              if (str2bool(payment_method)) {
                 _.extend(query, {
-                    payment_method: payment_method
-                  });
-                }
-
+                  payment_method: payment_method
+                });
+              }
 
               if (_.has(dataParams, 'input-entry-date-from')) {
                 var edf = moment(new Date(_.get(dataParams, 'input-entry-date-from')));
@@ -155,7 +154,7 @@ module.exports = function(server) {
                 page: (dataParams && dataParams.page) ? dataParams.page : 1,
                 limit: config.perPage
               };
-              console.log(query);
+
               var countQuery = function(callback) {
                 Record.find(query).populate('category_id').exec(function(err, allRecords) {
                   if (err) throw new Error(err);
