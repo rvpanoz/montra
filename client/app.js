@@ -8,6 +8,7 @@ define([
   'use strict';
 
   var Application = Marionette.Application.extend({
+    isAdmin: false,
     content: null,
     pagination: false,
     region: '#app-content',
