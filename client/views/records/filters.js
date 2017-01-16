@@ -108,7 +108,9 @@ define([
         e.preventDefault();
       }
       this.triggerMethod("apply:filters", {
-        data: this.getData()
+        data: _.extend(this.getData(), {
+          page: 1
+        })
       });
       return false;
     }

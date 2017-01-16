@@ -12,23 +12,11 @@ define([
     content: null,
     pagination: false,
     region: '#app-content',
-    baseUrl: config.protocol + config.host + ":" + config.port,
+    baseUrl: config.baseUrl + ":" + config.port,
     publicUrls: ['login', 'register'],
 
     onBeforeStart: function() {
       this.router = new Router();
-    },
-
-    navigate: function(cls, params) {
-      var url = _.extend({
-        cls: cls,
-        params: params
-      });
-      app.router.navigate(JSON.stringify(url), {
-        trigger: true
-      });
-
-      return false;
     },
 
     onStart: function() {
@@ -47,6 +35,18 @@ define([
       this.trigger(event, opts);
     },
 
+    navigate: function(cls, params) {
+      var url = _.extend({
+        cls: cls,
+        params: params
+      });
+      app.router.navigate(JSON.stringify(url), {
+        trigger: true
+      });
+
+      return false;
+    },
+
     onSignin: function(token) {
       if (token) {
         localStorage.setItem('token', token);
@@ -55,7 +55,6 @@ define([
         app.onAppEvent('userstate:change');
         app.navigate('home');
       }
-
       return false;
     },
 

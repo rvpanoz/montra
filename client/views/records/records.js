@@ -55,18 +55,21 @@ define([
       }));
     },
 
-    onChildRecordsPaginate: function(opts) {
-      var query = _.extend({});
+    onChildRecordsPaginate: function(page) {
       var pagination = this.getChildView('paginationRegion');
-      var page = pagination.getPage() || opts.page;
       var recordsView = this.getChildView('recordsRegion');
 
-      query.page = page || 1;
       if(this.query) {
-        query.data = this.query;
+        this.query.page = page;
       }
+      
       if(recordsView && recordsView.collection) {
-        recordsView.collection.trigger('paginate', query);
+        var collection = recordsView.collection;
+        collection.fetch({
+          data: (this.query) ? this.query : {
+            page: page
+          }
+        });
       }
     },
 

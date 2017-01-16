@@ -21,7 +21,6 @@ define([
       'select:model': 'child:select:model'
     },
     collectionEvents: {
-      'paginate': 'onPaginate',
       'sync': 'onSync',
       'remove': 'onRemove'
     },
@@ -47,16 +46,6 @@ define([
         return model.get('_selected') == true;
       });
       return selected;
-    },
-
-    onRender: function() {
-      
-    },
-
-    onPaginate: function(opts) {
-      this.collection.fetch({
-        data: opts
-      });
     },
 
     onSelectAll: function(e) {

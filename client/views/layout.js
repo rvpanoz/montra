@@ -19,6 +19,7 @@ define([
       var mainRegion = this.getRegion('mainRegion');
       this.listenTo(app, 'app:view_show', function(View, params) {
         this.showChildView('mainRegion', new View(params));
+        this.getRegion('mainRegion').currentView.$el.toggleClass('bounceInLeft animated')
         app.wait(false, true);
       });
 
@@ -27,27 +28,23 @@ define([
       }, this));
     },
 
+    onBeforeRender: function() {
+
+    },
+
     onRender: function() {
-      var token = localStorage.getItem('token');
-      var mainView = this.getChildView('mainRegion');
-      this.checkState(token);
+      this.checkState();
     },
 
     checkState: function() {
       var token = localStorage.getItem('token');
       if (token) {
-        this.showChildView('sidebarRegion', new SidebarView());
-        this.showChildView('navbarRegion', new NavbarView());
+        this.showChildView('sidebarRegion', new SidebarView()).$el.toggleClass('bounceInLeft animated');
+        this.showChildView('navbarRegion', new NavbarView()).$el.toggleClass('bounceInDown animated');
       } else {
         this.getRegion('sidebarRegion').empty();
         this.getRegion('navbarRegion').empty();
       }
-    },
-
-    onRender: function() {
-      var token = localStorage.getItem('token');
-      var mainView = this.getChildView('mainRegion');
-      this.checkState(token);
     }
   });
 

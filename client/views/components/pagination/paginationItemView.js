@@ -12,10 +12,8 @@ define([
     },
     onClick: function(e) {
       e.preventDefault();
-      this.triggerMethod('paginate', {
-        page: this.$el.text()
-      });
-      return false;
+      var page = parseInt(this.$el.text());
+      this.triggerMethod('paginate', page);
     }
   });
 
