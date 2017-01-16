@@ -153,7 +153,7 @@ module.exports = function(server) {
           populate: 'category_id',
           lean: true,
           page: (dataParams && dataParams.page) ? dataParams.page : 1,
-          limit: config.perPage
+          limit: config.perPage || 12
         };
 
         var countQuery = function(callback) {
@@ -165,7 +165,7 @@ module.exports = function(server) {
 
         var retrieveQuery = function(callback) {
           Record.paginate(query, options, function(err, records) {
-            console.log(query);
+   
             if (err) {
               throw new Error(err);
             }

@@ -6,13 +6,13 @@ define([
 
     var UserFormsView = Marionette.View.extend({
       template: templates.login,
-      title: 'User management',
+      title: 'User login',
       bindings: {
         '#input-email': 'email',
         '#input-password': 'password'
       },
       events: {
-        'click input#btn-login': 'onSignin'
+        'click button.btn-signin': 'onSignin'
       },
       ui: {
         'input-email': '#input-email',

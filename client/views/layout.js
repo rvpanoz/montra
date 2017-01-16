@@ -28,10 +28,6 @@ define([
       }, this));
     },
 
-    onBeforeRender: function() {
-
-    },
-
     onRender: function() {
       this.checkState();
     },

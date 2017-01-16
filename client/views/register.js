@@ -12,7 +12,7 @@ define([
         '#input-password': 'password'
       },
       events: {
-        'click input#btn-register': 'onRegister',
+        'click button.btn-register': 'onRegister',
       },
       ui: {
         'input-email': '#input-email',

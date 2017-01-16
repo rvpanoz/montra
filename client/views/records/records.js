@@ -38,9 +38,10 @@ define([
 
     onRender: function() {
       var recordsView = new RecordsView();
+      this.showChildView('recordsRegion', recordsView);
+
       var filtersView = new FiltersView();
       this.showChildView('filtersRegion', filtersView);
-      this.showChildView('recordsRegion', recordsView);
     },
 
     onChildModelSelected: function(model) {
@@ -56,13 +57,12 @@ define([
     },
 
     onChildRecordsPaginate: function(page) {
-      var pagination = this.getChildView('paginationRegion');
       var recordsView = this.getChildView('recordsRegion');
 
       if(this.query) {
         this.query.page = page;
       }
-      
+
       if(recordsView && recordsView.collection) {
         var collection = recordsView.collection;
         collection.fetch({
