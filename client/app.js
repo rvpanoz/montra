@@ -71,7 +71,7 @@ define([
     },
 
     wait: function(active, t) {
-      var spinner = $('.loader-container');
+      var spinner = $('#circlesLoader');
       var tm = (t) ? 1000 : 1500;
 
       if (active == true) {

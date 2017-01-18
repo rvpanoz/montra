@@ -16,8 +16,8 @@
     <link href="./assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="./assets/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="./assets/libs/jquery.scrollbar/jquery.scrollbar.css" rel="stylesheet">
-    <link href="./assets/libs/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet"
-    <link href="./assets/libs/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+	<link href="./assets/libs/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+    <link href="./assets/libs/datatables/media/css/dataTables.bootstrap.css" rel="stylesheet" <link href="./assets/libs/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
     <link href="./assets/libs/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" rel="stylesheet">
     <link href="./plugins/datepicker/css/datepicker.min.css" rel="stylesheet">
     <link href="./assets/libs/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
@@ -33,7 +33,9 @@
     <div class="wrapper" id="app-content"></div>
 
     <!-- loading indicator -->
-    <div class="loading.loading--double"></div>
+    <div id="circlesLoader">
+        <div id="firstCircle"></div>
+    </div>
 
     <script data-main="main" src="./bower_components/requirejs/require.js"></script>
     <script scr="http://localhost:35729/livereload.js"></script>
