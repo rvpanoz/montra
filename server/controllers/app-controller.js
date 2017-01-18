@@ -43,6 +43,7 @@ module.exports = function(server) {
         reply({
           success: true,
           data: {
+            admin: req.pre.user.admin,
             id_token: createToken(req.pre.user)
           }
         });

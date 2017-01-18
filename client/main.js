@@ -24,7 +24,8 @@ requirejs.config({
     'bootstrap-select': './assets/libs/bootstrap-select/dist/js/bootstrap-select',
     'bootstrap-validator': './assets/libs/bootstrap-validator/dist/validator',
     'bootstrap-datepicker': './assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker',
-    'inputNumber': './assets/libs/inputNumber/js/inputNumber'
+    'inputNumber': './assets/libs/inputNumber/js/inputNumber',
+    'Morris': './assets/libs/morris.js/morris.js'
     // 'sparkline': './assets/libs/sparkline/jquery.sparkline.min',
     // 'summerNote': './assets/libs/summernote/dist/summernote'
   },

@@ -49,6 +49,9 @@ define([
             password: this.model.get('password')
           },
           success: function(response) {
+            if(response.data.admin == true) {
+              app.isAdmin = true;
+            }
             var token = response.data.id_token;
             app.onAppEvent('app:signin', token);
           },

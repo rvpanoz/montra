@@ -26,6 +26,7 @@ define([
       e.preventDefault();
       localStorage.removeItem('token');
       app.navigate('login');
+      return false;
     }
   });
 

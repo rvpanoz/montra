@@ -27,10 +27,12 @@ define([
       }, this));
     },
 
+    onBeforeRender: function() {
+
+    },
+
     onRender: function() {
-      var token = localStorage.getItem('token');
-      var mainView = this.getChildView('mainRegion');
-      this.checkState(token);
+      this.checkState();
     },
 
     checkState: function() {
@@ -42,12 +44,6 @@ define([
         this.getRegion('sidebarRegion').empty();
         this.getRegion('navbarRegion').empty();
       }
-    },
-
-    onRender: function() {
-      var token = localStorage.getItem('token');
-      var mainView = this.getChildView('mainRegion');
-      this.checkState(token);
     }
   });
 

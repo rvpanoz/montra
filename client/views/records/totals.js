@@ -34,13 +34,14 @@ define([
       var expenses = 0, incomes = 0;
       _.each(this.expenses, function(record) {
         var amount = record.amount;
-        expenses = expenses + Number(parseFloat(amount).toFixed(2));
+        var type = record.kind;
+        if(type == 2) {
+          incomes = Number(parseFloat(incomes + amount).toFixed(2));
+        } else if(type == 1) {
+          expenses = Number(parseFloat(expenses + amount).toFixed(2));
+        }
       }, this);
-      _.each(this.incomes, function(record) {
-        var amount = record.amount;
-        incomes = incomes + Number(parseFloat(amount).toFixed(2));
-      }, this);
-
+      
       var balance = parseFloat(incomes - expenses).toFixed(2);
       return {
         recordsNo: this.collection.total,
