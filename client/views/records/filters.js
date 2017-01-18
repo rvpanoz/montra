@@ -15,7 +15,7 @@ define([
       category: '.input-category',
       kind: '.input-kind',
       payment: '.input-payment',
-      filters: '.datalist-filter'
+      filters: '.filters-form'
     },
     modelEvents: {
       'change': 'onModelChange'

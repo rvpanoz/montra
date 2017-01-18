@@ -10,10 +10,7 @@ define([
 ], function(config, Marionette, RecordSchema, CategorySchema, RecordItemView, moment, templates) {
 
   return Marionette.CompositeView.extend({
-    title: 'Your records',
-    selected: [],
     className: 'dataTables_paginate paging_numbers',
-    page: 1,
     perPage: config.perPage,
     template: templates.browseRecords,
     childView: RecordItemView,
@@ -34,6 +31,7 @@ define([
 
     initialize: function() {
       _.bindAll(this, 'onSync');
+      this.title = 'Your records';
       this.collection = new RecordSchema.collection();
       this.categories = new CategorySchema.collection();
       this.collection.fetch({
