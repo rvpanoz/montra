@@ -6,13 +6,13 @@ const Hapi = require('hapi');
 const Wreck = require('wreck');
 const Mongoose = require('mongoose');
 const Boom = require('boom');
-const secret = require('./secret');
 const _ = require('lodash');
+const secret = require('./secret');
 const config = require('./config');
 const verifyCredentials = require('./util').verifyCredentials;
 const verifyUniqueUser = require('./util').verifyUniqueUser;
 
-// mongoose configuration
+// database connection
 Mongoose.connect(config.mongoConString);
 
 // use bluebird Promises Library

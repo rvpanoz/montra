@@ -1,0 +1,42 @@
+<div class="main__cont">
+    <div class="main-heading">
+        <div class="main-title">
+            <ol class="breadcrumb">
+                <li class="active">
+                    <%= title %>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="container-fluid half-padding">
+        <div class="template template__validation">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="panel panel-danger panel-main">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Category</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form data-toggle="validator" data-disable="false" role="form" novalidate="true">
+                                <div class="form-group form-group-amount">
+                                    <label>Name</label>
+                                    <div class="input-group date">
+                                        <input type="text" id="input-name" name="input-name" class="form-control" required="">
+                                        <div class="input-group-addon">
+                                            <div class="fa fa-list"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <button type="submit" class="btn btn-info save pull-right">Save category</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

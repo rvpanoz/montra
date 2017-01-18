@@ -13,10 +13,8 @@ define([
     ui: {
       canvas: '#totals'
     },
-    initialize: function(opts) {
-      this.collection = opts.collection;
-      this.expenses = this.collection.getAllExpenses();
-      this.incomes = this.collection.getAllIncomes();
+    initialize: function() {
+
     },
     onRender: function() {
       if(!this.collection.length) {
@@ -32,16 +30,17 @@ define([
     },
     serializeData: function() {
       var expenses = 0, incomes = 0;
-      _.each(this.expenses, function(record) {
-        var amount = record.amount;
-        var type = record.kind;
+      _.each(this.collection.models, function(record) {
+        var amount = Number(record.get('amount'));
+        var type = record.get('kind');
+
         if(type == 2) {
-          incomes = Number(parseFloat(incomes + amount).toFixed(2));
+          incomes = parseFloat(incomes + amount).toFixed(2);
         } else if(type == 1) {
-          expenses = Number(parseFloat(expenses + amount).toFixed(2));
+          expenses = parseFloat(expenses + amount).toFixed(2);
         }
       }, this);
-      
+  
       var balance = parseFloat(incomes - expenses).toFixed(2);
       return {
         recordsNo: this.collection.total,
