@@ -44,12 +44,6 @@ define([
     },
 
     onChildModelSelected: function(model) {
-      var recordsView = this.getChildView('recordsRegion');
-      var models = _.each(recordsView.collection.models, function(cmodel) {
-        if (cmodel !== model) {
-          cmodel.set('_selected', false);
-        }
-      });
       this.showChildView('detailsRegion', new DetailsView({
         model: model
       }));
@@ -62,7 +56,7 @@ define([
       if(this.query) {
         this.query.page = page;
       }
-      
+
       if(recordsView && recordsView.collection) {
         var collection = recordsView.collection;
         collection.fetch({

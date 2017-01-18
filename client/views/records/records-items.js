@@ -1,4 +1,5 @@
 define([
+  'config',
   'marionette',
   'schemas/record-schema',
   'schemas/category-schema',
@@ -6,13 +7,13 @@ define([
   'moment',
   'templates',
   'datepicker'
-], function(Marionette, RecordSchema, CategorySchema, RecordItemView, moment, templates) {
+], function(config, Marionette, RecordSchema, CategorySchema, RecordItemView, moment, templates) {
 
   return Marionette.CompositeView.extend({
     title: 'Your records',
     selected: [],
     page: 1,
-    perPage: 12,
+    perPage: config.perPage,
     template: templates.browseRecords,
     childView: RecordItemView,
     childViewContainer: '.records-items',

@@ -7,6 +7,7 @@ const Wreck = require('wreck');
 const Mongoose = require('mongoose');
 const Boom = require('boom');
 const _ = require('lodash');
+
 const secret = require('./secret');
 const config = require('./config');
 const verifyCredentials = require('./util').verifyCredentials;
@@ -20,6 +21,7 @@ Mongoose.Promise = require('bluebird');
 
 // enable debug mode - log queries to the console
 Mongoose.set('debug', config.mongoDebug);
+
 // hapi server instance
 var server = new Hapi.Server({
   connections: {
@@ -31,6 +33,7 @@ var server = new Hapi.Server({
     }
   }
 });
+
 
 // server connection
 server.connection({
@@ -79,144 +82,26 @@ server.register(require('hapi-auth-jwt'), (err) => {
     }
   });
 
-  // application routes
-  server.route({
-    method: 'POST',
-    path: '/data/record',
-    config: {
-      handler: function(req, reply) {
-        var payload = req.payload;
-        var uid = req.auth.credentials.id;
-        return app.records.insert(uid, payload, reply);
-      }
-    }
-  });
+  //record routes
+  server.route(require('./routes/record-routes'));
 
-  server.route({
-    method: 'GET',
-    path: '/data/records/{id}',
-    config: {
-      handler: function(req, reply) {
-        var rid = req.params.id;
-        var uid = req.auth.credentials.id;
-        return app.records.get(uid, rid, reply);
-      }
-    }
-  });
+  //category routes
+  server.route(require('./routes/category-routes'));
 
-  server.route({
-    method: 'PUT',
-    path: '/data/records/{id?}',
-    config: {
-      handler: function(req, reply) {
-        var payload = req.payload;
-        var id = req.payload._id;
-        var uid = req.auth.credentials.id;
-        return app.records.update(uid, id, payload, reply);
-      }
-    }
-  });
-
-  server.route({
-    method: 'DELETE',
-    path: '/data/records/{id}',
-    config: {
-      handler: function(req, reply) {
-        var uid = req.auth.credentials.id;
-        var rid = req.params.id;
-        return app.records.remove(uid, rid, reply);
-      }
-    }
-  });
-
-  server.route({
-    method: 'GET',
-    path: '/data/records',
-    config: {
-      handler: function(req, reply) {
-        var uid = req.auth.credentials.id;
-        var dataParams = req.query;
-        return app.records.browse(uid, reply, dataParams);
-      }
-    }
-  });
-
-  server.route({
-    method: 'GET',
-    path: '/data/categories',
-    config: {
-      handler: function(req, reply) {
-        var params = req.params;
-        var uid = req.auth.credentials.id;
-        return app.categories.browse(uid, reply);
-      }
-    }
-  });
-
-  server.route({
-    method: 'POST',
-    path: '/data/category',
-    config: {
-      handler: function(req, reply) {
-        var payload = req.payload;
-        var uid = req.auth.credentials.id;
-        return app.categories.insert(uid, payload, reply);
-      }
-    }
-  });
-
-  server.route({
-    method: 'PUT',
-    path: '/data/category/{id?}',
-    config: {
-      handler: function(req, reply) {
-        var payload = req.payload;
-        var id = req.params.id;
-        var uid = req.auth.credentials.id;
-        return app.categories.update(uid, id, payload, reply);
-      }
-    }
-  });
-
-  server.route({
-    method: 'GET',
-    path: '/data/category/{id}',
-    config: {
-      handler: function(req, reply) {
-        var cid = req.params.id;
-        var uid = req.auth.credentials.id;
-        return app.categories.get(uid, cid, reply);
-      }
-    }
-  });
-
-  server.route({
-    method: 'DELETE',
-    path: '/data/category/{id}',
-    config: {
-      handler: function(req, reply) {
-        var cid = req.params.id;
-        var uid = req.auth.credentials.id;
-        return app.categories.remove(uid, cid, reply);
-      }
-    }
-  });
-
+  //custom routes
   server.route({
     method: 'GET',
     path: '/charts/piechart',
     config: {
-      handler: function(req, reply) {
+      handler: function (req, reply) {
         var uid = req.auth.credentials.id;
         return app.charts.piechart(uid, reply);
       }
     }
   });
 
-  var app = new require('./controllers/app-controller')(server);
-  
   //*start the server
-  server.start(function(err) {
+  server.start(function (err) {
     if (err) {
       throw new Error(err);
     }
@@ -224,4 +109,3 @@ server.register(require('hapi-auth-jwt'), (err) => {
   });
 
 });
-
