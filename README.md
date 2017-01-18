@@ -1,20 +1,20 @@
 Personal expense tracking application
 
+
 ## Getting Started
 
-Clone the repository and then cd to client folder and run 
-
 ```
+git clone 
+cd /client
 bower install
 ```
-
-Then cd to server folder and run
-
+to install the required client libs and dependencies
 ```
+cd /server
 npm install
 ```
+to install the required server modules.
 
-to install the required modules.
 
 ## Built With
 
