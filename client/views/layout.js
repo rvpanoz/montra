@@ -18,17 +18,14 @@ define([
     initialize: function() {
       var mainRegion = this.getRegion('mainRegion');
       this.listenTo(app, 'app:view_show', function(View, params) {
-        this.showChildView('mainRegion', new View(params));
+        var view = new View(params);
+        this.showChildView('mainRegion', view);
         app.wait(false, true);
       });
 
       this.listenTo(app, 'userstate:change', _.bind(function(state) {
         this.checkState();
       }, this));
-    },
-
-    onBeforeRender: function() {
-
     },
 
     onRender: function() {
@@ -40,9 +37,17 @@ define([
       if (token) {
         this.showChildView('sidebarRegion', new SidebarView());
         this.showChildView('navbarRegion', new NavbarView());
+        $('.main').css({
+          'padding-left': '200px',
+          'margin-left': '-200px'
+        });
       } else {
         this.getRegion('sidebarRegion').empty();
         this.getRegion('navbarRegion').empty();
+        $('.main').css({
+          'padding-left': 0,
+          'margin-left:': 0
+        });
       }
     }
   });

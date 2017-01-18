@@ -40,6 +40,8 @@ server.connection({
   port: config.port,
 });
 
+var app = new require('./controllers/app')(server);
+
 server.register(require('hapi-auth-jwt'), (err) => {
 
   // strategy 'jwt'
@@ -87,18 +89,6 @@ server.register(require('hapi-auth-jwt'), (err) => {
 
   //category routes
   server.route(require('./routes/category-routes'));
-
-  //custom routes
-  server.route({
-    method: 'GET',
-    path: '/charts/piechart',
-    config: {
-      handler: function (req, reply) {
-        var uid = req.auth.credentials.id;
-        return app.charts.piechart(uid, reply);
-      }
-    }
-  });
 
   //*start the server
   server.start(function (err) {

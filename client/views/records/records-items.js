@@ -12,6 +12,7 @@ define([
   return Marionette.CompositeView.extend({
     title: 'Your records',
     selected: [],
+    className: 'dataTables_paginate paging_numbers',
     page: 1,
     perPage: config.perPage,
     template: templates.browseRecords,

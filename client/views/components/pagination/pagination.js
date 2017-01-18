@@ -6,6 +6,7 @@ define([
 
   var PaginationView = Marionette.CompositeView.extend({
     template: templates.pagination,
+    className: 'dataTables_paginate paging_numbers',
     childView: PaginationItemView,
     childViewContainer: '.pagination-items',
     page: 1,
