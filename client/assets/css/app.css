@@ -1,69 +1,73 @@
 .wrapper {
-  overflow-x: hidden;
-  overflow-y: scroll;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
+
 /** buttons **/
+
 .fixed-button {
-  background-color: #FF2434;
-  color: #FFFFFF;
-  border: none;
-  outline: none;
-  position: fixed;
-  top: 60px;
-  right: 46%;
-  height: 50px;
-  width: 50px;
-  margin-bottom: 20px;
-  border-radius: 30px;
-  box-shadow: 1px 3px 5px #888888;
+    background-color: #FF2434;
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    position: fixed;
+    top: 60px;
+    right: 46%;
+    height: 50px;
+    width: 50px;
+    margin-bottom: 20px;
+    border-radius: 30px;
+    box-shadow: 1px 3px 5px #888888;
 }
 
 @keyframes wobble {
-  16.65% {
-    -webkit-transform: translateY(8px);
-    -ms-transform: translateY(8px);
-    transform: translateY(8px);
-  }
-  33.3% {
-    -webkit-transform: translateY(-6px);
-    -ms-transform: translateY(-6px);
-    transform: translateY(-6px);
-  }
-  49.95% {
-    -webkit-transform: translateY(4px);
-    -ms-transform: translateY(4px);
-    transform: translateY(4px);
-  }
-  66.6% {
-    -webkit-transform: translateY(-2px);
-    -ms-transform: translateY(-2px);
-    transform: translateY(-2px);
-  }
-  83.25% {
-    -webkit-transform: translateY(1px);
-    -ms-transform: translateY(1px);
-    transform: translateY(1px);
-  }
-  100% {
-    -webkit-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0);
-  }
+    16.65% {
+        -webkit-transform: translateY(8px);
+        -ms-transform: translateY(8px);
+        transform: translateY(8px);
+    }
+    33.3% {
+        -webkit-transform: translateY(-6px);
+        -ms-transform: translateY(-6px);
+        transform: translateY(-6px);
+    }
+    49.95% {
+        -webkit-transform: translateY(4px);
+        -ms-transform: translateY(4px);
+        transform: translateY(4px);
+    }
+    66.6% {
+        -webkit-transform: translateY(-2px);
+        -ms-transform: translateY(-2px);
+        transform: translateY(-2px);
+    }
+    83.25% {
+        -webkit-transform: translateY(1px);
+        -ms-transform: translateY(1px);
+        transform: translateY(1px);
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
 }
 
 .wobble {
-  -webkit-animation-name: wobble;
-  animation-name: wobble;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-timing-function: ease-in-out;
-  animation-timing-function: ease-in-out;
-  -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
+    -webkit-animation-name: wobble;
+    animation-name: wobble;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
 }
 
+
 /** loader **/
+
 .loader-container {
     position: absolute;
     width: 24em;
@@ -78,6 +82,7 @@ div#circlesLoader {
     height: 50px;
     margin: auto;
 }
+
 div#circlesLoader div#firstCircle {
     width: 100%;
     height: 100%;
@@ -87,6 +92,7 @@ div#circlesLoader div#firstCircle {
     border-bottom-color: transparent;
     position: relative;
 }
+
 div#circlesLoader div#secondCircle {
     height: 80%;
     width: 80%;
@@ -98,6 +104,7 @@ div#circlesLoader div#secondCircle {
     top: 2px;
     left: 2px;
 }
+
 div#circlesLoader div#thirdCircle {
     height: 80%;
     width: 80%;
@@ -109,11 +116,14 @@ div#circlesLoader div#thirdCircle {
     top: 1px;
     left: 1px;
 }
+
 div#circlesLoader div#firstCircle, div#circlesLoader div#secondCircle, div#circlesLoader div#thirdCircle {
     animation: spin 0.8s ease-out infinite;
 }
+
 div#circlesLoader div.circle {
-    position: absolute;;
+    position: absolute;
+    ;
     height: 20px;
     width: 20px;
     border-radius: 50%;
@@ -122,6 +132,7 @@ div#circlesLoader div.circle {
     top: 40%;
     left: 19px;
 }
+
 div#circlesLoader div.circle div.innerRing {
     border: 1px solid #F00;
     height: 50%;
@@ -132,6 +143,7 @@ div#circlesLoader div.circle div.innerRing {
     left: 4px;
     animation: ajaxLoader 1s ease-in-out infinite;
 }
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -140,16 +152,42 @@ div#circlesLoader div.circle div.innerRing {
         transform: rotate(360deg);
     }
 }
+
+
 /*    --------------------------------------------------
 	:: Login Section
 	-------------------------------------------------- */
-#login {
-    padding-top: 50px
+
+#login .form-wrap {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 50%;
+    font-size: 55px;
+    background: #f6f6f6;
+    /* just for demo */
+    padding: 15px;
+    /* width: 400px; */
+    -webkit-transform: translate(0%, -50%);
+    -ms-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
 }
+
+#login {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    padding-top: 50px;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+}
+
 #login .form-wrap {
     width: 50%;
     margin: 0 auto;
 }
+
 #login h1 {
     color: #1fa67b;
     font-size: 18px;
@@ -157,9 +195,11 @@ div#circlesLoader div.circle div.innerRing {
     font-weight: bold;
     padding-bottom: 20px;
 }
+
 #login .form-group {
     margin-bottom: 25px;
 }
+
 #login .checkbox {
     margin-bottom: 20px;
     position: relative;
@@ -169,6 +209,7 @@ div#circlesLoader div.circle div.innerRing {
     -o-user-select: none;
     user-select: none;
 }
+
 #login .checkbox.show:before {
     content: '\e013';
     color: #1fa67b;
@@ -178,6 +219,7 @@ div#circlesLoader div.circle div.innerRing {
     pointer-events: none;
     font-family: 'Glyphicons Halflings';
 }
+
 #login .checkbox .character-checkbox {
     width: 25px;
     height: 25px;
@@ -187,17 +229,20 @@ div#circlesLoader div.circle div.innerRing {
     vertical-align: middle;
     display: inline-block;
 }
+
 #login .checkbox .label {
     color: #6d6d6d;
     font-size: 13px;
     font-weight: normal;
 }
+
 #login .btn.btn-custom {
     font-size: 14px;
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
+
 #login .forget {
     font-size: 13px;
-	text-align: center;
-	display: block;
+    text-align: center;
+    display: block;
 }

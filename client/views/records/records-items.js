@@ -6,7 +6,9 @@ define([
   './record-item',
   'moment',
   'templates',
-  'datepicker'
+  'datepicker',
+  'datatables.net',
+  'datatables.net-bs'
 ], function(config, Marionette, RecordSchema, CategorySchema, RecordItemView, moment, templates) {
 
   return Marionette.CompositeView.extend({
@@ -22,6 +24,9 @@ define([
       'sync': 'onSync',
       'remove': 'onRemove'
     },
+    ui: {
+      'records-table': '.records-table'
+    },
     initialize: function() {
       _.bindAll(this, 'onSync');
       this.title = 'Your records';
@@ -30,7 +35,16 @@ define([
       this.collection.fetch();
     },
 
-    _getSelectedModels: function() {
+    onRender: function() {
+      if(this.$el.length) {
+        this.getUI('records-table').DataTable({
+          paging: false,
+          ordering: false
+        });
+      }
+    },
+
+    getSelectedModels: function() {
       var selected = _.filter(this.collection.models, function(model) {
         return model.get('_selected') == true;
       });
@@ -38,7 +52,7 @@ define([
     },
 
     onChildSelectedModel: function(model) {
-      var selected = this._getSelectedModels();
+      var selected = this.getSelectedModels();
       var hide = selected.length > 1;
       this.triggerMethod('toggle:details', hide);
     },

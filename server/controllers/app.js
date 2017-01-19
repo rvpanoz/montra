@@ -70,32 +70,6 @@ module.exports = function(server) {
           });
         });
       }
-    },
-
-    charts: {
-      piechart: function(uid, reply) {
-        Record.aggregate([{
-            $match: {
-              user_id: uid,
-              // kind: 2
-            }
-          }, {
-            $group: {
-              _id: '$category_id',
-              total: {
-                $sum: '$amount'
-              }
-            }
-          }],
-          function(err, data) {
-            if (err) throw new Error(err)
-            reply({
-              success: true,
-              data: data
-            })
-          }
-        );
-      }
     }
   });
 

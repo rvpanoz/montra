@@ -2,7 +2,8 @@ define([
   'marionette',
   'schemas/category-schema',
   './category-item',
-  'templates'
+  'templates',
+  'dataTables'
 ], function(Marionette, CategorySchema, CategoryItemView, templates) {
 
   return Marionette.CompositeView.extend({
@@ -20,13 +21,19 @@ define([
       'click a.btn-new': 'onNew',
       'click a.btn-update': 'onUpdate'
     },
-
+    ui: {
+      'categories-table': '.categories-table'
+    },
     initialize: function() {
       this.collection = new CategorySchema.collection();
       this.collection.fetch();
     },
 
-    _getSelectedModels: function() {
+    onRender: function() {
+      this.getUI('categories-table').DataTable();
+    },
+
+    getSelectedModels: function() {
       var selected = _.filter(this.collection.models, function(model) {
         return model.get('_selected') == true;
       });
@@ -41,7 +48,7 @@ define([
 
     onUpdate: function(e) {
       e.preventDefault();
-      var selected = this._getSelectedModels();
+      var selected = this.getSelectedModels();
       if(selected.length > 1) {
         return;
       }

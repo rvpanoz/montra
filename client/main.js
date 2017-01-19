@@ -16,6 +16,9 @@ requirejs.config({
     'backbone.radio': './bower_components/backbone.radio/build/backbone.radio',
     'bootstrapColorpicker': './bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker',
     'bootstrap': './assets/libs/bootstrap/js/bootstrap.min',
+    'datatables.net': './assets/libs/datatables/media/js/jquery.dataTables',
+    'datatables.net-bs': './assets/libs/datatables/media/js/dataTables.bootstrap',
+    'datatables.net-responsive': './assets/libs/datatables/media/js/responsive.bootstrap',
     'themejs': './assets/js/main',
     'tabdrop': './assets/libs/bootstrap-tabdrop/bootstrap-tabdrop.min',
     'selectize': './assets/libs/selectize/dist/js/standalone/selectize.min',
@@ -35,30 +38,39 @@ requirejs.config({
     inputNumber: {
       deps: ['jquery']
     },
-    'bootstrap-datepicker': {
-      deps: ['jquery', 'bootstrap']
-    },
-    'bootstrap-select': {
-      deps: ['jquery', 'bootstrap']
-    },
-    'bootstrap-switch': {
-      deps: ['jquery']
-    },
-    'bootstrap-validator': {
-      deps: ['bootstrap']
-    },
     themejs: {
       deps: ['tabdrop', 'bootstrap-switch', 'inputNumber', 'selectize']
     },
     datepicker: {
       deps: ['jquery']
+    },
+    'datatables.net-responsive': {
+      deps: ['datatables.net']
+    },
+    'datatables.net': {
+      deps: ['jquery']
+    },
+    'datatables.net-bs': {
+      deps: ['jquery', 'datatables.net']
+    },
+    'bootstrap-datepicker': {
+      deps: ['bootstrap']
+    },
+    'bootstrap-select': {
+      deps: ['bootstrap']
+    },
+    'bootstrap-switch': {
+      deps: ['bootstrap']
+    },
+    'bootstrap-validator': {
+      deps: ['bootstrap']
     }
   },
   waitSeconds: 30
 });
 
 requirejs.onError = function(err) {
-  console.error(err);
+  // debugger;
   if (err.requireType === 'timeout') {
     console.log('modules: ' + err.requireModules);
   }
@@ -83,6 +95,15 @@ requirejs([
     beforeSend: function(xhr) {
       var token = localStorage.getItem('token');
       xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+    },
+    statusCode: {
+      401: function(data) {
+        if(data && data.responseText) {
+          var response = JSON.parse(data.responseText);
+          $('#unauthorized').modal('toggle').find('.modal-message').text(response.message);
+          return false;
+        }
+      }
     }
   });
 

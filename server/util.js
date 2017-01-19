@@ -37,16 +37,19 @@ function verifyCredentials(req, res) {
       email: req.payload.email
     }]
   }, (err, user) => {
+    if(err) {
+      throw new Error(err);
+    }
     if (user) {
       bcrypt.compare(password, user.password, (err, isValid) => {
         if (isValid) {
           res(user);
         } else {
-          res(Boom.badRequest('Incorrect password!'));
+          res(Boom.unauthorized('Incorrect password!'));
         }
       });
     } else {
-      res(Boom.badRequest('Incorrect email!'));
+      res(Boom.unauthorized('Incorrect password!'));
     }
   });
 }

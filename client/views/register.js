@@ -1,8 +1,9 @@
 define([
+  'underscore',
   'marionette',
   'schemas/user-schema',
   'templates'
-], function(Marionette, UserSchema, templates) {
+], function(_, Marionette, UserSchema, templates) {
 
     var UserFormsView = Marionette.View.extend({
       template: templates.register,
@@ -13,6 +14,7 @@ define([
       },
       events: {
         'click input#btn-register': 'onRegister',
+        'click input#btn-cancel': 'onCancel'
       },
       ui: {
         'input-email': '#input-email',
@@ -34,11 +36,18 @@ define([
         this.stickit();
       },
 
+      onCancel: function(e) {
+        e.preventDefault();
+        return app.navigate('login');
+      },
+
       onRegister: function(e) {
         e.preventDefault();
         this.model.save(null, {
           success: _.bind(function(model) {
-            app.navigate('login');
+            app.navigate('login', {
+              registered: true
+            });
           }, this),
           error: _.bind(function() {
             console.log('Ooops! Email taken or is invalid.');
