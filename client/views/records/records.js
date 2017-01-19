@@ -25,7 +25,8 @@ define([
       'model:removed': 'child:model:removed',
       'model:selected': 'child:model:selected',
       'apply:filters': 'child:view:filter',
-      'paginate': 'child:records:paginate'
+      'paginate': 'child:records:paginate',
+      'toggle:details': 'child:toggle:details'
     },
     events: {
       'click .new': 'onNew'
@@ -39,14 +40,24 @@ define([
     onRender: function() {
       var recordsView = new RecordsView();
       var filtersView = new FiltersView();
+
       this.showChildView('filtersRegion', filtersView);
       this.showChildView('recordsRegion', recordsView);
     },
 
     onChildModelSelected: function(model) {
-      this.showChildView('detailsRegion', new DetailsView({
-        model: model
-      }));
+      var detailsView = this.getChildView('detailsRegion');
+      detailsView.model = model;
+      detailsView.render();
+    },
+
+    onChildToggleDetails: function(hide) {
+      var detailsView = this.getChildView('detailsRegion');
+      if(detailsView && hide == true) {
+        // detailsView.$el.removeClass('fadeIn').addClass('fadeOut animated');
+      } else if(detailsView && hide == false) {
+        // detailsView.$el.removeClass('fadeOut').addClass('fadeIn animated');
+      }
     },
 
     onChildRecordsPaginate: function(page) {
@@ -68,23 +79,32 @@ define([
     },
 
     onChildFetchRecords: function(collection) {
+      this.collection = collection;
       var paginationView = this.getChildView('paginationRegion');
+      var model = this.collection.first();
+      var totalsView = this.getChildView('totalsRegion');
+      var detailsView = this.getChildView('detailsRegion');
+
+      model.set('_selected', true);
+
       this.showChildView('paginationRegion', new PaginationView({
         collection: collection
       }));
 
-      var totalsView = this.getChildView('totalsRegion');
       this.showChildView('totalsRegion', new TotalsView({
         collection: collection
       }));
 
-      var detailsRegion = this.getRegion('detailsRegion');
-      detailsRegion.empty();
+      if(!detailsView) {
+        this.showChildView('detailsRegion', new DetailsView({
+          model: model
+        }));
+      }
     },
 
     onChildModelRemoved: function(model) {
-      var detailsRegion = this.getRegion('detailsRegion');
-      detailsRegion.empty();
+      // var detailsRegion = this.getRegion('detailsRegion');
+      // detailsRegion.empty();
     },
 
     onChildViewFilter: function(opts) {

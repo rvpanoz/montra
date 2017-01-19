@@ -10,15 +10,11 @@ define([
     template: templates.recordItemView,
     className: 'record-item',
     tagName: 'tr',
-    // attributes: {
-    //   role: 'row'
-    // },
     modelEvents: {
       'destroy': 'onModelDestroy'
     },
     events: {
       'click': 'onClick',
-      'click .check-action': 'onSelect',
       'click .update': 'onEventUpdate',
       'click .remove': 'onEventRemove',
       'click .clone': 'onEventClone'
@@ -41,25 +37,13 @@ define([
 
     onClick: function(e) {
       e.preventDefault();
-      var isSelected = this.$el.toggleClass('selected');
+      this.$el.toggleClass('selected');
       this.model.set('_selected', this.$el.hasClass('selected'));
       this.triggerMethod('model:selected', this.model);
     },
 
     onModelDestroy: function(model) {
       this.triggerMethod('remove:model', model);
-    },
-
-    onSelect: function(e) {
-      var $target = $(e.target);
-      var selected = $target.is(':checked');
-      if(selected == true) {
-        $target.closest('li').addClass('selected')
-      } else if(selected == false) {
-        $target.closest('li').removeClass('selected')
-      }
-      this.model.set('_selected', selected);
-      return true;
     },
 
     serializeData: function() {

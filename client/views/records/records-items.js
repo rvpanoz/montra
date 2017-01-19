@@ -10,35 +10,24 @@ define([
 ], function(config, Marionette, RecordSchema, CategorySchema, RecordItemView, moment, templates) {
 
   return Marionette.CompositeView.extend({
-    // className: 'dataTables_paginate paging_numbers',
     perPage: config.perPage,
     template: templates.browseRecords,
     childView: RecordItemView,
     childViewContainer: '.records-items',
     childViewTriggers: {
       'clone:model': 'child:clone:model',
-      'select:model': 'child:select:model'
+      'model:selected': 'child:selected:model'
     },
     collectionEvents: {
       'sync': 'onSync',
       'remove': 'onRemove'
     },
-    events: {
-      'click a.btn-new': 'onNew',
-      'click a.select-all': 'onSelectAll',
-      'click a.select-none': 'onSelectNone'
-    },
-
     initialize: function() {
       _.bindAll(this, 'onSync');
       this.title = 'Your records';
       this.collection = new RecordSchema.collection();
       this.categories = new CategorySchema.collection();
-      this.collection.fetch({
-        data: {
-          page: 1
-        }
-      });
+      this.collection.fetch();
     },
 
     _getSelectedModels: function() {
@@ -48,27 +37,10 @@ define([
       return selected;
     },
 
-    onSelectAll: function(e) {
-      e.preventDefault();
-      var target = this.$(e.currentTarget);
-      _.each(this.collection.models, function(model) {
-        model.set('_selected', true);
-      });
-      return false;
-    },
-
-    onSelectNone: function(e) {
-      e.preventDefault();
-      var target = this.$(e.currentTarget);
-      _.each(this.collection.models, function(model) {
-        model.set('_selected', false);
-      });
-      return false;
-    },
-
-    onChildSelectModel: function(model) {
-      this._selected = [];
-      this._selected = this._getSelectedModels();
+    onChildSelectedModel: function(model) {
+      var selected = this._getSelectedModels();
+      var hide = selected.length > 1;
+      this.triggerMethod('toggle:details', hide);
     },
 
     onRemove: function(model, collection) {

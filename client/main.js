@@ -58,6 +58,7 @@ requirejs.config({
 });
 
 requirejs.onError = function(err) {
+  console.error(err);
   if (err.requireType === 'timeout') {
     console.log('modules: ' + err.requireModules);
   }
