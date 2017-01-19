@@ -70,6 +70,11 @@ module.exports = function(server) {
           });
         });
       }
+    },
+    charts: {
+      getMonthlyData: function(uid) {
+        //todo..
+      }
     }
   });
 
