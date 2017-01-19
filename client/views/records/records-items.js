@@ -39,7 +39,8 @@ define([
       if(this.$el.length) {
         this.getUI('records-table').DataTable({
           paging: false,
-          ordering: false
+          ordering: true,
+          info: false
         });
       }
     },

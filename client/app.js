@@ -43,7 +43,6 @@ define([
       app.router.navigate(JSON.stringify(url), {
         trigger: true
       });
-
       return false;
     },
 

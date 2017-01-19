@@ -12,6 +12,25 @@ define([
       'click a.signout': 'onSignout'
     },
 
+    initialize: function() {
+      this.listenTo(app, "sidebar:switch", _.bind(function(sectionClass) {
+        var section = this.$('.' + sectionClass);
+        if(section.length) {
+          this.quickmenu(section, sectionClass);
+        }
+      }, this));
+    },
+
+    /** copy from assets/js/main.js **/
+    quickmenu: function(item, cls) {
+      var menu = this.$('.sidebar__menu');
+      menu.removeClass('active').eq(item.index()).addClass('active');
+      this.$('.quickmenu__item').removeClass('active');
+      this.$('.for-' + cls).addClass('active');
+      item.addClass('active');
+      menu.eq(0).css('margin-left', '-'+item.index()*200+'px');
+    },
+
     onNavigate: function(e) {
       e.preventDefault();
       var second_nav = $(this).find('.collapse').first();
@@ -25,7 +44,7 @@ define([
       }
       return false;
     },
-    
+
     onSignout: function(e) {
       if (e) {
         e.preventDefault();

@@ -3,7 +3,8 @@ define([
   'schemas/category-schema',
   './category-item',
   'templates',
-  'dataTables'
+  'datatables.net',
+  'datatables.net-bs'
 ], function(Marionette, CategorySchema, CategoryItemView, templates) {
 
   return Marionette.CompositeView.extend({
@@ -30,7 +31,13 @@ define([
     },
 
     onRender: function() {
-      this.getUI('categories-table').DataTable();
+      if(this.$el.length) {
+        this.getUI('categories-table').DataTable({
+          paging: false,
+          ordering: true,
+          info: false
+        });
+      }
     },
 
     getSelectedModels: function() {

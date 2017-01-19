@@ -37,6 +37,10 @@ define([
       return app.navigate('records/record');
     },
 
+    onAttach: function() {
+      this.triggerMethod('sidebar:active', 1);
+    },
+
     onRender: function() {
       var recordsView = new RecordsView();
       var filtersView = new FiltersView();
@@ -53,11 +57,6 @@ define([
 
     onChildToggleDetails: function(hide) {
       var detailsView = this.getChildView('detailsRegion');
-      if(detailsView && hide == true) {
-        // detailsView.$el.removeClass('fadeIn').addClass('fadeOut animated');
-      } else if(detailsView && hide == false) {
-        // detailsView.$el.removeClass('fadeOut').addClass('fadeIn animated');
-      }
     },
 
     onChildRecordsPaginate: function(page) {
@@ -100,6 +99,8 @@ define([
           model: model
         }));
       }
+
+      app.triggerMethod("sidebar:switch", "actions");
     },
 
     onChildModelRemoved: function(model) {

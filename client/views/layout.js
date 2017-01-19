@@ -20,6 +20,7 @@ define([
       this.listenTo(app, 'app:view_show', function(View, params) {
         var view = new View(params);
         this.showChildView('mainRegion', view);
+        app.triggerMethod("sidebar:switch", "menu");
         app.wait(false, true);
       });
 
