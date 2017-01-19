@@ -10,7 +10,7 @@ define([
 ], function(config, Marionette, RecordSchema, CategorySchema, RecordItemView, moment, templates) {
 
   return Marionette.CompositeView.extend({
-    className: 'dataTables_paginate paging_numbers',
+    // className: 'dataTables_paginate paging_numbers',
     perPage: config.perPage,
     template: templates.browseRecords,
     childView: RecordItemView,

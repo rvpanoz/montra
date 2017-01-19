@@ -10,9 +10,9 @@ define([
     template: templates.recordItemView,
     className: 'record-item',
     tagName: 'tr',
-    attributes: {
-      role: 'row'
-    },
+    // attributes: {
+    //   role: 'row'
+    // },
     modelEvents: {
       'destroy': 'onModelDestroy'
     },

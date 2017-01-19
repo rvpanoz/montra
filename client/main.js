@@ -16,7 +16,6 @@ requirejs.config({
     'backbone.radio': './bower_components/backbone.radio/build/backbone.radio',
     'bootstrapColorpicker': './bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker',
     'bootstrap': './assets/libs/bootstrap/js/bootstrap.min',
-    'scrollbar': './assets/libs/jquery.scrollbar/jquery.scrollbar.min',
     'themejs': './assets/js/main',
     'tabdrop': './assets/libs/bootstrap-tabdrop/bootstrap-tabdrop.min',
     'selectize': './assets/libs/selectize/dist/js/standalone/selectize.min',
@@ -24,15 +23,9 @@ requirejs.config({
     'bootstrap-select': './assets/libs/bootstrap-select/dist/js/bootstrap-select',
     'bootstrap-validator': './assets/libs/bootstrap-validator/dist/validator',
     'bootstrap-datepicker': './assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker',
-    'inputNumber': './assets/libs/inputNumber/js/inputNumber',
-    'Morris': './assets/libs/morris.js/morris.js'
-    // 'sparkline': './assets/libs/sparkline/jquery.sparkline.min',
-    // 'summerNote': './assets/libs/summernote/dist/summernote'
+    'inputNumber': './assets/libs/inputNumber/js/inputNumber'
   },
   shim: {
-    scrollbar: {
-      deps: ['jquery']
-    },
     tabdrop: {
       deps: ['jquery']
     },
@@ -40,9 +33,6 @@ requirejs.config({
       deps: ['jquery']
     },
     inputNumber: {
-      deps: ['jquery']
-    },
-    summerNote: {
       deps: ['jquery']
     },
     'bootstrap-datepicker': {
@@ -58,7 +48,7 @@ requirejs.config({
       deps: ['bootstrap']
     },
     themejs: {
-      deps: ['scrollbar', 'tabdrop', 'bootstrap-switch', 'inputNumber', 'selectize']
+      deps: ['tabdrop', 'bootstrap-switch', 'inputNumber', 'selectize']
     },
     datepicker: {
       deps: ['jquery']

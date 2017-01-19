@@ -17,30 +17,31 @@ define([
 
     },
     onRender: function() {
-      if(!this.collection.length) {
-        return true;
-      }
-      var ctx = this.getUI('canvas');
-      var data = this.generateData();
-      this.barChart = new Chart(ctx, {
-        type: 'horizontalBar',
-        data: data,
-        options: this.options
-      });
+      // if(!this.collection.length) {
+      //   return true;
+      // }
+      // var ctx = this.getUI('canvas');
+      // var data = this.generateData();
+      // this.barChart = new Chart(ctx, {
+      //   type: 'horizontalBar',
+      //   data: data,
+      //   options: this.options
+      // });
     },
     serializeData: function() {
       var expenses = 0, incomes = 0;
-      _.each(this.collection.models, function(record) {
-        var amount = Number(record.get('amount'));
-        var type = record.get('kind');
-
+      _.each(this.collection.allRecords, function(record) {
+        var amount = Number(record.amount);
+        var type = record.kind;
         if(type == 2) {
-          incomes = parseFloat(incomes + amount).toFixed(2);
+          incomes+=amount;
+          incomes = Number(parseFloat(incomes).toFixed(2));
         } else if(type == 1) {
-          expenses = parseFloat(expenses + amount).toFixed(2);
+          expenses+=amount;
+          expenses = Number(parseFloat(expenses).toFixed(2));
         }
       }, this);
-  
+
       var balance = parseFloat(incomes - expenses).toFixed(2);
       return {
         recordsNo: this.collection.total,

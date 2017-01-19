@@ -30,15 +30,6 @@ $(document).ready(function() {
 		}
 	});
 
-	$('body.main-scrollable .main__scroll').scrollbar();
-	$('.scrollable').scrollbar({'disableBodyScroll' : true});
-
-	$(window).on('resize', function() {
-		$('body.main-scrollable .main__scroll').scrollbar();
-		$('.scrollable').scrollbar({'disableBodyScroll' : true});
-	});
-
-	$('.selectize-dropdown-content').addClass('scrollable scrollbar-macosx').scrollbar({'disableBodyScroll' : true});
 	$('.nav-pills, .nav-tabs').tabdrop();
 
 	$('body').on('click', '.header-navbar-mobile__menu button', function() {

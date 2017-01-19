@@ -1,3 +1,7 @@
+body {
+  overflow-y: scroll;
+}
+
 /** buttons **/
 .fixed-button {
   background-color: #FF2434;
