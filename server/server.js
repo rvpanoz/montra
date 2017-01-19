@@ -90,6 +90,9 @@ server.register(require('hapi-auth-jwt'), (err) => {
   //category routes
   server.route(require('./routes/category-routes'));
 
+  //charts routes
+  server.route(require('./routes/charts-routes'));
+
   //*start the server
   server.start(function (err) {
     if (err) {

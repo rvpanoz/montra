@@ -23,6 +23,9 @@ define([
 
     /** copy from assets/js/main.js **/
     quickmenu: function(item, cls) {
+      if(item.hasClass('active')) {
+        return;
+      }
       var menu = this.$('.sidebar__menu');
       menu.removeClass('active').eq(item.index()).addClass('active');
       this.$('.quickmenu__item').removeClass('active');
