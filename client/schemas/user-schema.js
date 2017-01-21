@@ -14,8 +14,8 @@ define([
     },
 
     defaults: {
-      email: null,
-      password: null,
+      email: 'demo@demo.com',
+      password: 'demo',
       updated_at: new Date(),
       created_at: new Date()
     },

@@ -79,12 +79,11 @@ define([
 
     onChildFetchRecords: function(collection) {
       this.collection = collection;
+
       var paginationView = this.getChildView('paginationRegion');
-      var model = this.collection.first();
       var totalsView = this.getChildView('totalsRegion');
       var detailsView = this.getChildView('detailsRegion');
 
-      model.set('_selected', true);
 
       this.showChildView('paginationRegion', new PaginationView({
         collection: collection
@@ -94,7 +93,9 @@ define([
         collection: collection
       }));
 
-      if(!detailsView) {
+      if(!detailsView && this.collection.length) {
+        var model = this.collection.first();
+        model.set('_selected', true);
         this.showChildView('detailsRegion', new DetailsView({
           model: model
         }));

@@ -40,6 +40,8 @@ define([
         this.getUI('records-table').DataTable({
           paging: false,
           ordering: true,
+          sorting: false,
+          searching: false,
           info: false
         });
       }
